@@ -4,30 +4,6 @@
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
 
 	<link rel="stylesheet" href="{% static 'css/homepage.css' %}">
-	<style type="text/css">
-		.row:after {
-  content: "";
-  display: table;
-  clear: both;
-}
-
-/* Six columns side by side */
-.column {
-  float: left;
-  width: 16.66%;
-}
-
-/* Add a transparency effect for thumnbail images */
-.demo {
-  opacity: 0.6;
-}
-
-.active,
-.demo:hover {
-  opacity: 1;
-}
-
-	</style>
 {% endblock headerinclude %}
 
 {% block footerinclude %}
@@ -61,7 +37,7 @@
 		  </div>
 		</nav>
 		<div style="text-align: center;">
-			 <img src="{% static 'images/pic.jpg' %}" width="85%" height="50%" alt="">
+			 <img src="{% static 'images/pic.jpg' %}" width="85%" height="40%" alt="">
 		</div>
 		<br>
 		<div class="left">
@@ -74,10 +50,15 @@
 			  	<button type="button" class="btn btn-secondary"><i class="fa fa-sort" aria-hidden="true"></i></button>
 			  </div>
 			</div>
-		</div>
-		<br>
-		<div class="left">
-			New Releases
+			<br>
+			<span class="text">New Releases</span>
+			<div class="flex-container">
+				<div class="box">
+						 
+				</div>
+			</div>
+			<br><br><br><br><br>
+			<span class="text">Recommended</span>
 			<div class="flex-container">
 				<div class="box">
 						 
