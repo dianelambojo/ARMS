@@ -1,31 +1,16 @@
 {% block headerinclude %}	
 	{% load static %}
-	 <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.css">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
-
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
 
 	<link rel="stylesheet" href="{% static 'css/homepage.css' %}">
 {% endblock headerinclude %}
 
 {% block footerinclude %}
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s" crossorigin="anonymous"></script>
 
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-
-	<!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-
-
-
-
-	
-	
-	<!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js"></script> -->
 
 	<script type="text/javascript" src="{% static 'js/homepage.js' %}"></script>
 {% endblock footerinclude %}
@@ -53,223 +38,31 @@
 		</nav>
 		<div style="text-align: center;">
 			 <img src="{% static 'images/pic.jpg' %}" width="85%" height="40%" alt="">
-			 <div class="centered">Online Resources</div>
 		</div>
 <!-- hi guys -->
 		<br>
 		<div class="left">
 			<div class="input-group md-form form-sm form-1 pl-0">
-				<div class="input-group-prepend">
-					<span class="input-group-text" id="basic-text1"><i class="fa fa-search" aria-hidden="true"></i></span>
-				</div>
-				<input class="width my-0 py-1" type="text" placeholder="Search" aria-label="Search">
-				<div>&nbsp;
-					<button type="button" class="btn btn-secondary"><i class="fa fa-sort" aria-hidden="true"></i></button>
-				</div>
+			  <div class="input-group-prepend">
+			    <span class="input-group-text" id="basic-text1"><i class="fa fa-search" aria-hidden="true"></i></span>
+			  </div>
+			  <input class="width my-0 py-1" type="text" placeholder="Search" aria-label="Search">
+			  <div>&nbsp;
+			  	<button type="button" class="btn btn-secondary"><i class="fa fa-sort" aria-hidden="true"></i></button>
+			  </div>
 			</div>
 			<br>
-			<div class="container">
-				<span class="text">New Releases</span>
-				<div class="slider">
-					<div class="container">
-						<img class="thumbnail" src="{% static 'images/percy.png' %}" alt="">
-						<div>
-							<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#viewModal">INFO</button>
-						</div>
-					</div>
-					<div class="container">
-						<img class="thumbnail" src="{% static 'images/python1.jpg' %}" alt="">
-						<div>
-							<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#viewModal">INFO</button>
-						</div>
-					</div>
-					<div class="container">
-						<img class="thumbnail" src="{% static 'images/python2.jpg' %}" alt="">
-						<div>
-							<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#viewModal">INFO</button>
-						</div>
-					</div>
-					<div class="container">
-						<img class="thumbnail" src="{% static 'images/inferno.webp' %}" alt="">
-						<div>
-							<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#viewModal">INFO</button>
-						</div>
-					</div>
-					<div class="container">
-						<img class="thumbnail" src="{% static 'images/journal1.jpg' %}" alt="">
-						<div>
-							<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#viewModal">INFO</button>
-						</div>
-					</div>
-					<div class="container">
-						<img class="thumbnail" src="{% static 'images/joperd.jpg' %}" alt="">
-						<div>
-							<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#viewModal">INFO</button>
-						</div>
-					</div>
-					<div class="container">
-						<img class="thumbnail" src="{% static 'images/joperd2.jpg' %}" alt="">
-						<div>
-							<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#viewModal">INFO</button>
-						</div>
-					</div>
-					<div class="container">
-						<img class="thumbnail" src="{% static 'images/research.jpg' %}" alt="">
-						<div>
-							<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#viewModal">INFO</button>
-						</div>
-					</div>
-				</div>
-				<span class="text">Recommended</span>
-				<div class="slider">
-					<div class="container">
-						<img class="thumbnail" src="{% static 'images/percy.png' %}" alt="">
-						<div>
-							<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#viewModal">INFO</button>
-						</div>
-					</div>
-					<div class="container">
-						<img class="thumbnail" src="{% static 'images/python1.jpg' %}" alt="">
-						<div>
-							<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#viewModal">INFO</button>
-						</div>
-					</div>
-					<div class="container">
-						<img class="thumbnail" src="{% static 'images/python2.jpg' %}" alt="">
-						<div>
-							<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#viewModal">INFO</button>
-						</div>
-					</div>
-					<div class="container">
-						<img class="thumbnail" src="{% static 'images/inferno.webp' %}" alt="">
-						<div>
-							<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#viewModal">INFO</button>
-						</div>
-					</div>
-					<div class="container">
-						<img class="thumbnail" src="{% static 'images/journal1.jpg' %}" alt="">
-						<div>
-							<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#viewModal">INFO</button>
-						</div>
-					</div>
-					<div class="container">
-						<img class="thumbnail" src="{% static 'images/joperd.jpg' %}" alt="">
-						<div>
-							<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#viewModal">INFO</button>
-						</div>
-					</div>
-					<div class="container">
-						<img class="thumbnail" src="{% static 'images/joperd2.jpg' %}" alt="">
-						<div>
-							<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#viewModal">INFO</button>
-						</div>
-					</div>
-					<div class="container">
-						<img class="thumbnail" src="{% static 'images/research.jpg' %}" alt="">
-						<div>
-							<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#viewModal">INFO</button>
-						</div>
-					</div>
-				</div>
-				<span class="text">Popular</span>
-				<div class="slider">
-					<div class="container">
-						<img class="thumbnail" src="{% static 'images/percy.png' %}" alt="">
-						<div>
-							<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#viewModal">INFO</button>
-						</div>
-					</div>
-					<div class="container">
-						<img class="thumbnail" src="{% static 'images/python1.jpg' %}" alt="">
-						<div>
-							<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#viewModal">INFO</button>
-						</div>
-					</div>
-					<div class="container">
-						<img class="thumbnail" src="{% static 'images/python2.jpg' %}" alt="">
-						<div>
-							<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#viewModal">INFO</button>
-						</div>
-					</div>
-					<div class="container">
-						<img class="thumbnail" src="{% static 'images/inferno.webp' %}" alt="">
-						<div>
-							<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#viewModal">INFO</button>
-						</div>
-					</div>
-					<div class="container">
-						<img class="thumbnail" src="{% static 'images/journal1.jpg' %}" alt="">
-						<div>
-							<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#viewModal">INFO</button>
-						</div>
-					</div>
-					<div class="container">
-						<img class="thumbnail" src="{% static 'images/joperd.jpg' %}" alt="">
-						<div>
-							<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#viewModal">INFO</button>
-						</div>
-					</div>
-					<div class="container">
-						<img class="thumbnail" src="{% static 'images/joperd2.jpg' %}" alt="">
-						<div>
-							<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#viewModal">INFO</button>
-						</div>
-					</div>
-					<div class="container">
-						<img class="thumbnail" src="{% static 'images/research.jpg' %}" alt="">
-						<div>
-							<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#viewModal">INFO</button>
-						</div>
-					</div>
+			<span class="text">New Releases</span>
+			<div class="flex-container">
+				<div class="box">
+						 
 				</div>
 			</div>
-		</div>
-
-
-
-		<!-- VIEW MODAL -->
-		<div class="modal fade" id="viewModal" tabindex="-1" role="dialog" aria-labelledby="ViewModalLabel" aria-hidden="true">
-			<div class="modal-dialog" role="document">
-				<div class="modal-content">
-					<div class="modal-header">
-						<h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-							<span aria-hidden="true">&times;</span>
-						</button>
-					</div>
-					<div class="modal-body">
-						<div class="container-fluid">
-						    <div class="row">
-						    	<div class="col">
-									<img class="thumbnail" src="{% static 'images/percy.png' %}" alt="">
-									<div>
-										<button type="button" class="btn btn-circ"><i class="fa fa-book" aria-hidden="true"></i></button>
-										<button type="button" class="btn btn-circ"><i class="fa fa-bookmark" aria-hidden="true"></i></button>
-										<button type="button" class="btn btn-circ"><i class="fa fa-download" aria-hidden="true"></i></button>
-									</div>
-							    </div>
-							    <div class="col-6">
-									<span class="author">John Doe</span>
-									<div class="title">
-										dkcnsodnsonvs
-									</div>
-									<div class="year">
-										dkcnsodnsonvs
-									</div><br>
-									<div>
-										Sypnosis:
-										<div class="summary">
-											The story follows the adventures of amnesiac Percy Jackson, a demigod son of Poseidon, as he meets a camp of Roman demigods and goes to Alaska with his new friends Hazel Levesque and Frank Zhang to free the Greek god of death, Thanatos, and help save the world from Gaea, the earth goddess.
-										</div>
-									</div>
-							    </div>
-						    </div>
-						</div>
-					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-						<button type="button" class="btn btn-primary">Save changes</button>
-					</div>
+			<br><br><br><br><br>
+			<span class="text">Recommended</span>
+			<div class="flex-container">
+				<div class="box">
+						 
 				</div>
 			</div>
 		</div>
