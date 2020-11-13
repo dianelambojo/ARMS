@@ -1,0 +1,118 @@
+.input-group.md-form.form-sm.form-1 input{
+  border: 1px solid #bdbdbd;
+  border-top-right-radius: 1.5rem;
+  border-bottom-right-radius: 1.5rem;
+}
+
+.input-group-text{
+  border-radius: 1.5rem;
+}
+
+.width{
+  width: 89%;
+}
+
+.btn{
+  border-radius: 1.5rem;
+  background-color: #F4CC3C;
+}
+
+.btn-header{
+  border-radius: 1.5rem;
+  background-color: #8e1301;
+  font-weight: bold;
+  color: white;
+}
+
+.btn-header:hover{
+  background-color:#F4CC3C ;
+}
+
+.btn-selected{
+  border-radius: 1.5rem;
+  background-color: #F4CC3C;
+  font-weight: bold;
+
+}
+
+
+.logo{
+  text-align: center;
+}
+
+.nav-link_b{
+  color: #800000;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.nav-link_a{
+  color: #F4CC3C;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.nav-item{
+  padding-right: 30px;
+}
+
+.nav-link_b:hover {
+    text-decoration: none;
+    color: #F4CC3C;
+    background: rgba(255,255,255,0.2);
+}
+
+.nav-link_a:hover {
+    text-decoration: none;
+    color: #F4CC3C;
+    background: rgba(255,255,255,0.2);
+}
+
+a:active{
+  text-decoration: underline;
+  color: #800000;
+}
+
+.left{
+  padding-left:5em;
+}
+
+.right{
+  padding-right:5em;
+}
+
+
+.content{
+  max-width: 90%;
+  margin: auto;
+}
+
+
+
+
+.nav-pills .pill-books .nav-link:not(.active) {
+  border-radius: 1.5rem;
+    background-color: #8e1301;
+}
+
+.nav-pills .pill-users .nav-link:not(.active) {
+  border-radius: 1.5rem;
+    background-color: #8e1301;
+}
+
+
+/* active (faded) */
+.nav-pills .pill-books .nav-link {
+  border-radius: 1.5rem;
+    background-color: #F4CC3C;
+    color: white;
+    font-weight: bold;
+}
+
+.nav-pills .pill-users .nav-link {
+  border-radius: 1.5rem;
+    background-color: #F4CC3C;
+    color:white;
+    font-weight: bold;
+}
+
