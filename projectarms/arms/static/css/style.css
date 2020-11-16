@@ -174,12 +174,12 @@ form .txt_field{
 }
 .txt_field label{
   position: absolute;
-  top: 50px;
+  top: -15px;
   left: 5px;
   color: #adadad;
   /* transform: translateY(-50); */
   font-size: 16px;
-  pointer-events: none;
+  /* pointer-events: none; */
   /* transition: .5s; */
 }
 .txt_field span::before{
@@ -244,5 +244,8 @@ input[type="submit"]:hover{
   background: rgba(221, 221, 221, 0.5)!important;
   border-radius: 50px;
 }
+/*--------------------------------------------------------------
+# Register
+--------------------------------------------------------------*/
 
 
