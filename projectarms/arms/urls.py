@@ -10,7 +10,8 @@ urlpatterns = [
 
     #TEST URL
     path('dashboard', views.ArmsAdminView.as_view(), name="arms_admin_view"),
-    path('homepage', views.HomepageView.as_view(), name="homepage_view")
+    path('homepage', views.HomepageView.as_view(), name="homepage_view"),
+    path('profile', views.ProfileIndexView.as_view(), name='profile_view')
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

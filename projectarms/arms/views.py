@@ -23,3 +23,7 @@ class HomepageView(View):
 
 	def post(self, request):
 		return render(request, 'homepage.html')
+
+class ProfileIndexView(View):
+	def get(self, request):
+		return render(request, 'profile.html')
