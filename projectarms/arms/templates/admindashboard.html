@@ -94,7 +94,6 @@
       </div>
     </div>
    
-
     <div class="tab-content" id="pills-tabContent">
       <div class="tab-pane fade show active" id="pills-books" role="tabpanel" aria-labelledby="pills-books-tab"> <br>
         <div class="content">
@@ -131,45 +130,114 @@
                 </td>
               </tr>
 
-    <!-- MODAL VIEW -->
-                 <div class="modal fade" id="ViewModal-{{book.id}}" tabindex="-1" role="dialog" aria-labelledby="ViewModalLabel" aria-hidden="true">
-                        <div class="modal-dialog " role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                  <h6 class="modal-title" id="ViewModalLabel">BOOK INFORMATION</h6>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                      <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-
-                                <form id="updateForm" method="post">
-                                  {% csrf_token %}
-                                    
-                                <input type="text" name="bookid" value ="{{book.id}}" hidden>
-
-                                <div class="modal-body">
-                                  <div class="form-row">
-                                    <div class="form-group col-md-6">
-                                          <label for="booktitle">Book Title</label>
-                                          <input type="text" class="form-control" id="booktitle" name="booktitle" value = "{{book.bookTitle}}">
-                                      </div>
-                                      <div class="form-group col-md-6">
-                                          <label for="bookauthor">Author/s</label>
-                                          <input type="text" class="form-control" id="bookauthor" name="bookauthor" value = "{{book.bookAuthor}}">
-                                      </div>
-                                    </div>
-                                  </div>
-                                </form>
-                              </div>
-                            </div>
+    <!-- MODAL VIEW BOOK -->
+              <div class="modal fade" id="ViewModal-{{book.id}}" tabindex="-1" role="dialog" aria-labelledby="ViewModalLabel" aria-hidden="true">
+                <div class="modal-dialog " role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h6 class="modal-title" id="ViewModalLabel">BOOK INFORMATION</h6>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <form id="updateForm" method="post">
+                      {% csrf_token %}
+                      <input type="text" name="bookid" value ="{{book.id}}" hidden>
+                      <div class="modal-body">
+                        <div class="form-row">
+                          <div class="form-group col-md-6">
+                            <label for="booktitle">Book Title</label>
+                            <input type="text" class="form-control" id="booktitle" name="booktitle" value = "{{book.bookTitle}}">
                           </div>
-                        {% endfor %}
-                      </tbody>
-                    </table>
+                          <div class="form-group col-md-6">
+                            <label for="bookauthor">Author/s</label>
+                            <input type="text" class="form-control" id="bookauthor" name="bookauthor" value = "{{book.bookAuthor}}">
+                          </div>
+                        </div>
+                      </div>
+                    </form>
                   </div>
                 </div>
-        <div class="tab-pane fade" id="pills-users" role="tabpanel" aria-labelledby="pills-users-tab"> USER;S TABLE HELLOOO</div>
-        </div>
+              </div>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="tab-pane fade" id="pills-users" role="tabpanel" aria-labelledby="pills-users-tab">
+      <div class="content">
+          <table class="table">
+            <div class="input-group md-form form-sm form-1 pl-0">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-text1"><i class="fa fa-search" aria-hidden="true"></i></span>
+              </div>
+              <input type="text" class="width my-0 py-1" placeholder="Search" aria-label="Search">
+              <div> &nbsp;
+                <button type="button" class="btn btn-secondary"><i class="fa fa-sort" aria-hidden="true"></i></button>
+              </div>
+            </div>
+            <br>
+            <thead>
+              <tr>
+                <th scope="col">User ID</th>
+                <th scope="col">First name</th>
+                <th scope="col">Last name</th>
+                <th scope="col">Gender</th>
+                <th scope="col">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for user in users %}
+              <tr>
+                <th scope="row"> {{user.person_ptr_id}} </th>
+                <td>{{user.firstname}}</td>
+                <td>{{user.lastname}}</td>
+                <td>{{user.gender}}</td>
+                <td>
+                  <button type="button" class="btn" data-toggle="modal" data-target="#ViewModal-{{user.id}}"> <span class="fa fa-eye"></span> </button>
+                  <button type="button" class="btn" data-toggle="modal" data-target="#DeleteModal-{{user.id}}"><span class="fa fa-trash"></span> </button>
+                </td>
+              </tr>
+
+    <!-- MODAL VIEW BOOK -->
+              <div class="modal fade" id="ViewModal-{{book.id}}" tabindex="-1" role="dialog" aria-labelledby="ViewModalLabel" aria-hidden="true">
+                <div class="modal-dialog " role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h6 class="modal-title" id="ViewModalLabel">USER INFORMATION</h6>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <form id="updateForm" method="post">
+                      {% csrf_token %}
+                      <input type="text" name="userid" value ="{{user.id}}" hidden>
+                      <div class="modal-body">
+                        <div class="form-row">
+                          <div class="form-group col-md-6">
+                            <label for="booktitle">User ID</label>
+                            <input type="text" class="form-control" id="userid" name="userid" value = "{{user.userID}}">
+                          </div>
+                          <div class="form-group col-md-6">
+                            <label for="bookauthor">First name</label>
+                            <input type="text" class="form-control" id="fname" name="fname" value = "{{user.firstname}}">
+                          </div>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    </div>
+
+
+  </div>
       </div>
   
 

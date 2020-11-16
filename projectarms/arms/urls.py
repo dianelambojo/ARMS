@@ -9,7 +9,13 @@ urlpatterns = [
     # path('api/data', views.get_data, name='api-data'),
 
     #TEST URL
+<<<<<<< HEAD
     path('', views.ArmsAdminView.as_view(), name="arms_admin_view"),
+=======
+    path('dashboard', views.ArmsAdminView.as_view(), name="arms_admin_view"),
+    path('homepage', views.HomepageView.as_view(), name="homepage_view"),
+    path('profile', views.ProfileIndexView.as_view(), name='profile_view')
+>>>>>>> f661d3d996234cee5f6f10c3dc0478e39cca6a30
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

@@ -15,3 +15,15 @@ class ArmsAdminView(View):
 			'users' : User.objects.all()
 		}
 		return render(request,'admindashboard.html', context)
+
+
+class HomepageView(View):
+	def get(self, request):
+		return render(request, 'homepage.html')
+
+	def post(self, request):
+		return render(request, 'homepage.html')
+
+class ProfileIndexView(View):
+	def get(self, request):
+		return render(request, 'profile.html')
