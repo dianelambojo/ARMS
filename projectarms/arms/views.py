@@ -27,3 +27,15 @@ class HomepageView(View):
 class ProfileIndexView(View):
 	def get(self, request):
 		return render(request, 'profile.html')
+
+class LandingPageIndexView(View):
+	def get(self, request):
+		return render(request, 'landingpage.html')
+
+class LoginIndexView(View):
+	def get(self, request):
+		return render(request, 'login.html')
+
+class RegisterIndexView(View):
+	def get(self, request):
+		return render(request, 'register.html')

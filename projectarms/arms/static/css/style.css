@@ -121,6 +121,8 @@ a:active{
   color: #800000;
   font-size: 14px;
   background: white;
+  position : absolute;
+  bottom: 0;
 }
 /*--------------------------------------------------------------
 # Login
@@ -128,7 +130,7 @@ a:active{
 #body {
   margin: 0;
   padding: 0;
-  font-family: montserrat;
+  font-family: Sora;
   background: white;
   overflow : hidden;
 }
@@ -137,15 +139,20 @@ a:active{
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 400px;
+  width: 600px;
   background: white;
   border-radius: 10px;
+}
+.login-body{
+  padding: 10px 10px 10px 10px;
 }
 .login h1{
   text-align: center;
   padding: 0 0 20px 0;
   border-bottom: 1px solid silver;
-
+  font-style: normal;
+  font-weight: 750;
+  font-size: 2rem;
 }
 .login form{
   padding: 0 40px;
@@ -170,10 +177,10 @@ form .txt_field{
   top: 50px;
   left: 5px;
   color: #adadad;
-  transform: translateY(-50);
+  /* transform: translateY(-50); */
   font-size: 16px;
   pointer-events: none;
-  transition: .5s;
+  /* transition: .5s; */
 }
 .txt_field span::before{
   content: '';
@@ -182,22 +189,23 @@ form .txt_field{
   left: 0;
   width: 100%;
   height: 2px;
-  background: #2691d9;
+  background: #800000;
   transition: .5s;
 }
-.txt_field input:focus ~ label,
+/* .txt_field input:focus ~ label,
 .txt_field input:valid ~ label{
   top: -5px;
-  color: #2691d9;
+  color: #800000;
 }
 .txt_field input:focus ~ span::before,
 .txt_field input:valid ~ span::before{
   width: 100%;;
-}
+} */
 .pass{
-  margin: -5px 0 20px 5px;
+  margin: 5px -5px 10px 5px;
   columns: #a6a6a6;
   cursor: pointer;
+  font-size: 15px;
 }
 .pass:hover{
   text-decoration: underline;
@@ -206,7 +214,7 @@ input[type="submit"]{
   width:100%;
   height: 50px;
   border: 1px solid;
-  background: #2691d9;
+  background: #800000;
   border-radius: 25px;
   font-size: 18px;
   color:#e9f4fb;
@@ -215,7 +223,7 @@ input[type="submit"]{
   outline: none;
 }
 input[type="submit"]:hover{
-  border-color: #2691d9;
+  border-color: #800000;
   transition: .5s;
 }
 .signup_link{
@@ -225,11 +233,16 @@ input[type="submit"]:hover{
   color: #666666;
 }
 .signup_link a{
-  color: #2691d9;
+  color: #800000;
   text-decoration: none;
 }
 .signup_link a:hover{
   text-decoration: underline;
+}
+.panel-transparent {
+  background: white;
+  background: rgba(221, 221, 221, 0.5)!important;
+  border-radius: 50px;
 }
 
 
