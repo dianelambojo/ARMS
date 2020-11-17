@@ -75,6 +75,8 @@
 				<span class="text">New Releases</span>
 				<div class="slider">
 
+					<img class="thumbnail" src="{% static 'images/percy.png' %}" alt="The Son of Neptune" title="The Son of Neptune" data-toggle="modal" data-target="#viewModal">
+
 					<img class="thumbnail" src="{% static 'images/python1.jpg' %}" alt="Python Programming" title="Python Programming" data-toggle="modal" data-target="#viewModal">
 				
 					<img class="thumbnail" src="{% static 'images/python2.jpg' %}" alt="SQL and Python Programming" title="SQL and Python Programming" data-toggle="modal" data-target="#viewModal">
@@ -95,6 +97,8 @@
 				<span class="text">Recommended</span>
 				<div class="slider">
 
+					<img class="thumbnail" src="{% static 'images/percy.png' %}" alt="The Son of Neptune" title="The Son of Neptune" data-toggle="modal" data-target="#viewModal">
+
 					<img class="thumbnail" src="{% static 'images/python1.jpg' %}" alt="Python Programming" title="Python Programming" data-toggle="modal" data-target="#viewModal">
 				
 					<img class="thumbnail" src="{% static 'images/python2.jpg' %}" alt="SQL and Python Programming" title="SQL and Python Programming" data-toggle="modal" data-target="#viewModal">
@@ -113,6 +117,8 @@
 
 				<span class="text">Popular</span>
 				<div class="slider">
+
+					<img class="thumbnail" src="{% static 'images/percy.png' %}" alt="The Son of Neptune" title="The Son of Neptune" data-toggle="modal" data-target="#viewModal">
 
 					<img class="thumbnail" src="{% static 'images/python1.jpg' %}" alt="Python Programming" title="Python Programming" data-toggle="modal" data-target="#viewModal">
 				
@@ -141,7 +147,7 @@
 			<div class="modal-dialog" role="document">
 				<div class="modal-content">
 					<div class="modal-header">
-						<h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+						<h5 class="modal-title" id="exampleModalLabel">Details</h5>
 						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 							<span aria-hidden="true">&times;</span>
 						</button>
@@ -156,9 +162,9 @@
 										<span class="count">26 People downloaded this book</span>
 									</div>
 									<div class="box">
-										<button type="button" class="btn btn-circ"><a href="{% static 'images/Revised-Prototype.pdf' %}" id="pdfFile" target="_blank"><i class="fa fa-book fa-sm" aria-hidden="true"></i></a></button>
+										<button type="button" class="btn btn-circ"><a href="{% static 'images/The Son of Neptune.pdf' %}" id="pdfFile" target="_blank"><i class="fa fa-book fa-sm" aria-hidden="true"></i></a></button>
 										<button type="button" class="btn btn-circ"><i class="fa fa-bookmark fa-sm" aria-hidden="true"></i></button>
-										<button type="button" class="btn btn-circ"><a href="{% static 'images/Revised-Prototype.pdf' %}" download><i class="fa fa-download fa-sm" aria-hidden="true"></i></a></button>
+										<button type="button" class="btn btn-circ"><a href="{% static 'images/The Son of Neptune.pdf' %}" download><i class="fa fa-download fa-sm" aria-hidden="true"></i></a></button>
 										<span class="label">Read</span>&nbsp;&nbsp;
 										<span class="label">Bookmark</span>
 										<span class="label">Download</span>
@@ -177,12 +183,12 @@
 										<div class="summary">
 											The story follows the adventures of amnesiac Percy Jackson, a demigod son of Poseidon, as he meets a camp of Roman demigods and goes to Alaska with his new friends Hazel Levesque and Frank Zhang to free the Greek god of death, Thanatos, and help save the world from Gaea, the earth goddess.
 										</div>
-									</div>
+									</div><br>
 									<div>
-										<button type="button" class="btn btn-cite"> CITE </button>
+										<button type="button" class="btn btn-cite" data-toggle="modal" data-target="#citeModal"> CITE </button>
 									</div>
 							    </div>
-						    </div>
+						    </div> <!-- row -->
 						</div>
 					</div>
 					<div class="modal-footer">
@@ -190,7 +196,41 @@
 					</div>
 				</div>
 			</div>
-		</div>
+		</div> <!-- VIEW Modal -->
+
+		<!-- CITE MODAL -->
+		<div class="modal fade" id="citeModal" tabindex="-1" role="dialog" aria-labelledby="CiteModalLabel" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="exampleModalLabel">How to do you want to cite it?</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<div class="container-fluid">
+							<div>
+								<select class="cite" id="citeStyle" name="citeStyle" required>
+									<option value="Cite 1"> Cite 1 </option>
+									<option value="Cite 2"> Cite 2 </option>
+									<option value="Cite 3"> Cite 3 </option>
+								</select>
+							</div><br>
+							<div>
+								<textarea class="textarea" id="citationText" name="citationText" readonly>Borman, W. C., Hanson, M.A., Oppler, S. H., Pulakos, E. D., & White, L. A. (1993). Role of early supervisory experience in supervisor performance. Journal of Applied Psychology, 78, 443-449. Retrieved October 23, 2000, from PsycARTICLES database.</textarea>
+							</div>
+						</div> 
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+						<button type="button" class="btn btn-success" data-dismiss="modal">Copy</button>
+					</div>
+				</div>
+			</div>
+		</div> <!-- CITE Modal -->
+
+
 	</div>
 
 	<!-- <button type="button" class="btn btn-danger" ><a href="{% static 'images/Revised-Prototype.pdf' %}" target="_blank">Open</a></button> -->

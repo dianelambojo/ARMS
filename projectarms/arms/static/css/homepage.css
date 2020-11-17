@@ -203,6 +203,11 @@
 .btn-cite{
 	border: none;
 	background-color: white;
+	font-size: 13px;
+	color: blue;
+	text-decoration: underline;
+	font-family: 'Times New Roman';
+	padding: 0px;
 }
 
 .btn-primary{
@@ -245,4 +250,18 @@
 	border-radius: 50%;
 }
 
+/* citation choices */
+.cite{
+	height: 30px;
+	width: 450px;	
+	text-align: right;
+}
 
+/* textarea */
+.textarea{
+	height: 130px;
+	width: 450px;
+	resize: none; 
+	font-size: 13px;
+	font-family: 'Times New Roman';
+}
