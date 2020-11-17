@@ -1,3 +1,7 @@
+/*--------------------------------------------------------------
+#Dashboard
+--------------------------------------------------------------*/
+
 .input-group.md-form.form-sm.form-1 input{
   border: 1px solid #bdbdbd;
   border-top-right-radius: 1.5rem;
@@ -12,29 +16,19 @@
   width: 89%;
 }
 
-.btn{
+.btn-modal{
   border-radius: 1.5rem;
   background-color: #F4CC3C;
 }
 
-.btn-header{
+.btn-modal:hover{
   border-radius: 1.5rem;
-  background-color: #8e1301;
-  font-weight: bold;
-  color: white;
+  background-color: #f5e29d;
 }
 
-.btn-header:hover{
-  background-color:#F4CC3C ;
+.btn-search{
+   border-radius: 1.5rem;
 }
-
-.btn-selected{
-  border-radius: 1.5rem;
-  background-color: #F4CC3C;
-  font-weight: bold;
-
-}
-
 
 .logo{
   text-align: center;
@@ -60,6 +54,7 @@
     text-decoration: none;
     color: #F4CC3C;
     background: rgba(255,255,255,0.2);
+  border-bottom: 2px solid #F4CC3C;
 }
 
 .nav-link_a:hover {
@@ -87,15 +82,15 @@ a:active{
   margin: auto;
 }
 
-
+/* nav pills book  & users */
 .nav-pills .pill-books .nav-link:not(.active) {
   border-radius: 1.5rem;
-    background-color: #8e1301;
+    background-color: #800000;
 }
 
 .nav-pills .pill-users .nav-link:not(.active) {
   border-radius: 1.5rem;
-    background-color: #8e1301;
+    background-color: #800000;
 }
 
 
@@ -112,6 +107,75 @@ a:active{
     background-color: #F4CC3C;
     color:white;
     font-weight: bold;
+}
+
+ /* hover */
+.nav-pills .pill-books .nav-link:hover{
+  border-radius: 1.5rem;
+    background-color: #F4CC3C;
+    color: white;
+    font-weight: bold;
+}
+
+.nav-pills .pill-users .nav-link:hover {
+  border-radius: 1.5rem;
+    background-color: #F4CC3C;
+    color:white;
+    font-weight: bold;
+}
+
+/* Dropdown Button */
+.dropbtn {
+  background-color: white;
+  color: #F4CC3C;
+  font-size: 16px;
+  border: none;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+  color: #800000;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {
+  color: #F4CC3C;
+
+}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {
+  display: block;
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+/* Change the background color of the dropdown button when the dropdown content is shown */
+.dropdown:hover .dropbtn {
+  text-decoration: none;
+    border-bottom: 2px solid #F4CC3C;
 }
 
 /*--------------------------------------------------------------
