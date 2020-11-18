@@ -1,35 +1,42 @@
 {% extends "base.html" %}
 {% block content %}
     <div class ="register">
-        <h1>SIGN UP </h1>
-        <form method="post">
-            <div class="txt_field">
-                <input type="text required">
-                <span></span>
-                <label>Name</label>
+        <div class= "panel-transparent">
+            <div class= "register-body">
+                <h1>SIGN UP </h1>
+                <form method="post">
+                    <div class="txt_field">
+                        <input type="text required">
+                        <span></span>
+                        <label>Name</label>
+                    </div>
+                    <!-- <div class="radio_field">
+                        <input type="radio" id="male" name="gender" value="male">
+                            <label for="male">Male</label><br>
+                        <input type="radio" id="female" name="gender" value="female">
+                            <label for="female">Female</label><br>
+                        <span></span>
+                        <label>Gender</label>
+                    </div> -->
+                    <div class="txt_field">
+                        <input type="text required">
+                        <span></span>
+                        <label>UserID (School ID)</label>
+                    </div>
+                    <div class="txt_field">
+                        <input type="password" required>
+                        <span></span>
+                        <label>Password</label>
+                    </div>
+                    <div class="txt_field">
+                        <input type="password" required>
+                        <span></span>
+                        <label>Confirm Password</label>
+                    </div>
+                    <!--checkbox agree to terms-->
+                    <input type="submit" value="SIGN UP">
+                </form>
             </div>
-            <div class="txt_field">
-                <input type="text required">
-                <span></span>
-                <label>Gender</label>
-            </div>
-            <div class="txt_field">
-                <input type="text required">
-                <span></span>
-                <label>UserID (School ID)</label>
-            </div>
-            <div class="txt_field">
-                <input type="password" required>
-                <span></span>
-                <label>Password</label>
-            </div>
-            <div class="txt_field">
-                <input type="password" required>
-                <span></span>
-                <label>Confirm Password</label>
-            </div>
-            <!--checkbox agree to terms-->
-            
-        </form>
+        </div>
     </div>
 {% endblock content %}

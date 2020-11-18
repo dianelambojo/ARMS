@@ -35,7 +35,7 @@
 }
 
 .nav-link_b{
-  color: #800000;
+  color: #F4CC3C;
   font-weight: bold;
   text-transform: uppercase;
 }
@@ -311,5 +311,60 @@ input[type="submit"]:hover{
 /*--------------------------------------------------------------
 # Register
 --------------------------------------------------------------*/
-
-
+.register{
+  position : absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 600px;
+  background: white;
+  border-radius: 10px;
+}
+.register-body{
+  padding: 10px 10px 10px 10px;
+}
+.register h1{
+  text-align: center;
+  padding: 0 0 20px 0;
+  border-bottom: 1px solid silver;
+  font-style: normal;
+  font-weight: 750;
+  font-size: 2rem;
+}
+.register form{
+  padding: 0 40px;
+  box-sizing: border=box;
+}
+form .txt_field{
+  position: relative;
+  border-bottom: 2px solid #adadad;
+  margin: 30px 0;
+}
+/* .skewed-bg {
+  background: #830024;
+  color: #FFF;
+  padding: 2em;
+  position: relative;
+  min-height:300px;
+  overflow:hidden;
+}
+.skewed-bg:after {
+content: '';
+position: absolute;
+bottom: -75%; left: 0; right: 0;
+height:100%;
+background:#FFF;
+transform: skew(0deg, -9deg);
+} */
+.triangle{
+  height:0;
+  width: 0;
+  border-top:400px solid #800000;
+  border-left: 700px solid transparent;
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: -1;
+}
+.landingpage-body{
+}
