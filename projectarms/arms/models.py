@@ -1,44 +1,74 @@
 from django.db import models
-
+from datetime import datetime
 # Create your models here.
 
-class Person(models.Model):
-
+class User(models.Model):
+	user_id = models.CharField(primary_key=True, max_length=50)
+	password = models.CharField(max_length=100)
 	firstname = models.CharField(max_length = 100)
 	lastname = models.CharField(max_length = 100)
+	email = models.CharField(max_length = 100)
+	birthdate = models.DateField(default = datetime.now())
 
 	G_CHOICES = [('M','Male'),('F','Female')]
 	gender=models.CharField(max_length = 50, choices=G_CHOICES)
 
-	class Meta:
-		db_table = "Person"
-
-class Books(models.Model):
-
-	bookTitle = models.CharField(max_length = 100)
-	bookAuthor = models.CharField(max_length = 100)
-	bookCover = models.FileField(upload_to='media')
-	yearPublished = models.IntegerField()
-	bookTags = models.CharField(max_length = 100)
-	bookSummary = models.CharField(max_length = 100)
-	bookCategory = models.CharField(max_length = 100)
-
-	class Meta:
-		db_table = "Books"
-
-class User(Person):
-	userID = models.IntegerField()
-	password = models.CharField(max_length = 100)
-	books = models.ManyToManyField(Books)
+	contact_number =  models.CharField(max_length = 15)
 
 	class Meta:
 		db_table = "User"
 
-class Administrator(Person):
-	userID = models.IntegerField()
-	password = models.CharField(max_length = 100)
-	books = models.ManyToManyField(Books)
+class Student(models.Model):
+	student_id = models.ForeignKey(User, on_delete=models.CASCADE)
+
+	class Meta:
+		db_table = "Student"
+
+class Employee(models.Model):
+	employee_id =  models.ForeignKey(User, on_delete=models.CASCADE)
+
+	class Meta:
+		db_table = "Employee"
+
+class Administrator(models.Model):
+	admin_id = models.CharField(primary_key=True, max_length=50)
 
 	class Meta:
 		db_table = "Administrator"
+
+class Author(models.Model):
+	book_author_id = models.CharField(primary_key=True, max_length=50)
+	firstname = models.CharField(max_length = 100)
+	lastname = models.CharField(max_length = 100)
+	email = models.CharField(max_length = 100)
+	birthdate = models.DateField(default = datetime.now())
+	G_CHOICES = [('M','Male'),('F','Female')]
+	gender=models.CharField(max_length = 50, choices=G_CHOICES)
+
+	class Meta:
+		db_table = "Author"
+
+class Category(models.Model):
+	book_category_no = models.CharField(primary_key=True, max_length=50)
+	book_category = models.CharField(max_length=100)
+
+	class Meta:
+		db_table = "Category"
+
+class Books(models.Model):
+	book_id = models.CharField(primary_key=True, max_length=50)
+	book_title = models.CharField(max_length = 100)
+	book_author_id = models.ForeignKey(Author, on_delete=models.CASCADE)
+	book_cover = models.FileField(upload_to='media')
+	book_year = models.IntegerField()
+	book_tags = models.CharField(max_length = 100)
+	book_summary = models.CharField(max_length = 100)
+	book_category_no = models.ForeignKey(Category, on_delete=models.CASCADE)
+	book_info = models.CharField(max_length = 100)
+	is_bookmarked = models.BooleanField()
+	is_downloaded = models.BooleanField()
+	is_read = models.BooleanField()
+
+	class Meta:
+		db_table = "Books"
 
