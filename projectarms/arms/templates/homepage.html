@@ -1,27 +1,35 @@
+<!-- Author: Garcia
+	Date: 2020
+	Description: Homepage HTML Code
+-->
+
 {% block headerinclude %}	
 	{% load static %}
+	<title>ARMS</title>
 	 <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+	 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+	<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.css">
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+	<link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
 
-
+	<div class="triangle"></div>
 	<link rel="stylesheet" href="{% static 'css/homepage.css' %}">
-
+	
 {% endblock headerinclude %}
 
 {% block footerinclude %}
-
+	
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.js"></script>
 	 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
-  	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+  	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 
 
 	<script type="text/javascript" src="{% static 'js/homepage.js' %}"></script>
+
 {% endblock footerinclude %}
 
 {% block content %}
@@ -29,27 +37,25 @@
 		<nav class="navbar navbar-expand-lg">
 			<div class="container">
 				<a href="#" class="navbar-brand">
-			  		<img src="{% static 'images/cit.jpg' %}" width="80" alt="" class="d-inline-block align-middle mr-2">
-			  	<span class="text-uppercase font-weight-bold" style="color: black; font-size: 30px; letter-spacing: 5px; font-family: 'Times New Roman'">ARMS</span>
-				</a>
-
-				<button type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler"><span class="navbar-toggler-icon"></span></button>
+	                <img src="{% static 'images/cit.jpg' %}" width="80" alt="" class="d-inline-block align-middle mr-2">
+	                <span class="text-uppercase font-weight-bold" style="color: black;">A R M S</span>
+              	</a>
 
 				<div id="navbarSupportedContent" class="collapse navbar-collapse">
-					<ul class="navbar-nav ml-auto">
-					  	<li class="nav-item active"><a href='{% url "arms:homepage_view" %}' class="nav-link_b active">Home</a></li>
-					  	<li class="nav-item active"><a href='#' class="nav-link_b">About Us</a></li>
-					    <li class="nav-item active">  	
-					      	<div class="dropdown">
-								<button class="dropbtn">Hi, User</button>
-								<div class="dropdown-content">
-									<a href='{% url "arms:profile_view" %}'>Profile</a>
-									<a href="#">Log out</a>
-								</div>
-							</div>
-					  	</li>
-					</ul>
-				</div>
+                <ul class="navbar-nav ml-auto">
+                  <li class="nav-item active"><a href='#' class="nav-link_b">Home</a></li>
+                  <li class="nav-item active"><a href='#' class="nav-link_b">About Us</a></li>
+                  <li class="nav-item active">
+                    <div class="dropdown">
+                      <button class="dropbtn">Hi, User</button>
+                      <div class="dropdown-content">
+                        <a href="#">Profile</a>
+                        <a href="#">Log out</a>
+                      </div>
+                    </div>
+                  </li>
+                </ul>
+              </div>
 		  	</div>
 		</nav>
 		<div style="text-align: center;">
@@ -62,7 +68,7 @@
 				<div class="input-group-prepend">
 					<span class="input-group-text" id="basic-text1"><i class="fa fa-search" aria-hidden="true"></i></span>
 				</div>
-				<input class="width my-0 py-1" type="text" placeholder="Search" id="searchBox" aria-label="Search">
+				<input class="width my-0 py-1" type="text" placeholder="Search title, author, year" id="searchBox">
 
 				<!--<span id="filter-count"></span>-->
 				<div>&nbsp;
@@ -71,75 +77,120 @@
 			</div>
 			<br>
 			<div class="container">
-
+				<span id="searched">
+					<span id="result"></span>
+				</span>
 				<span class="text">New Releases</span>
-				<div class="slider">
+				<ul>
+					<div class="slider">
+						<li>
+							<img class="thumbnail" src="{% static 'images/percy.png' %}" alt="The Son of Neptune" title="The Son of Neptune" data-toggle="modal" data-target="#viewModal">
+						</li>
 
-					<img class="thumbnail" src="{% static 'images/percy.png' %}" alt="The Son of Neptune" title="The Son of Neptune" data-toggle="modal" data-target="#viewModal">
+						<li>
+							<img class="thumbnail" src="{% static 'images/python1.jpg' %}" alt="Python Programming" title="Python Programming" data-toggle="modal" data-target="#viewModal">
+						</li>
 
-					<img class="thumbnail" src="{% static 'images/python1.jpg' %}" alt="Python Programming" title="Python Programming" data-toggle="modal" data-target="#viewModal">
-				
-					<img class="thumbnail" src="{% static 'images/python2.jpg' %}" alt="SQL and Python Programming" title="SQL and Python Programming" data-toggle="modal" data-target="#viewModal">
-				
-					<img class="thumbnail" src="{% static 'images/inferno.webp' %}" alt="Dante's The Divine Comedy" title="Dante's The Divine Comedy" data-toggle="modal" data-target="#viewModal">
+						<li>
+							<img class="thumbnail" src="{% static 'images/python2.jpg' %}" alt="SQL and Python Programming" title="SQL and Python Programming" data-toggle="modal" data-target="#viewModal">
+						</li>
 
-					<img class="thumbnail" src="{% static 'images/journal1.jpg' %}" alt="International Journal of Research and Innovation in Social Science" title="International Journal of Research and Innovation in Social Science" data-toggle="modal" data-target="#viewModal">
-				
-					<img class="thumbnail" src="{% static 'images/joperd.jpg' %}" alt="Joperd 1" title="Joperd 1" data-toggle="modal" data-target="#viewModal">
-				
-					<img class="thumbnail" src="{% static 'images/joperd2.jpg' %}" alt="Joperd 2" title="Joperd 2" data-toggle="modal" data-target="#viewModal">
-				
-					<img class="thumbnail" src="{% static 'images/research.jpg' %}" alt="Project Management Strategies for Complete Projects Case Study Report" title="Project Management Strategies for Complete Projects Case Study Report" data-toggle="modal" data-target="#viewModal">
+						<li>
+							<img class="thumbnail" src="{% static 'images/inferno.webp' %}" alt="Dante's The Divine Comedy" title="Dante's The Divine Comedy" data-toggle="modal" data-target="#viewModal">
+						</li>
 
-				</div>
+						<li>
+							<img class="thumbnail" src="{% static 'images/journal1.jpg' %}" alt="International Journal of Research and Innovation in Social Science" title="International Journal of Research and Innovation in Social Science" data-toggle="modal" data-target="#viewModal">
+						</li>
+						
+						<li>
+							<img class="thumbnail" src="{% static 'images/joperd.jpg' %}" alt="Joperd 1" title="Joperd 1" data-toggle="modal" data-target="#viewModal">
+						</li>
 
-		
+						<li>
+							<img class="thumbnail" src="{% static 'images/joperd2.jpg' %}" alt="Joperd 2" title="Joperd 2" data-toggle="modal" data-target="#viewModal">
+						</li>
+						
+						<li>
+							<img class="thumbnail" src="{% static 'images/research.jpg' %}" alt="Project Management Strategies for Complete Projects Case Study Report" title="Project Management Strategies for Complete Projects Case Study Report" data-toggle="modal" data-target="#viewModal">
+						</li>
+					</div>
+				</ul>
 				<span class="text">Recommended</span>
-				<div class="slider">
+				<ul>
+					<div class="slider">
+						<li>
+							<img class="thumbnail" src="{% static 'images/percy.png' %}" alt="The Son of Neptune" title="The Son of Neptune" data-toggle="modal" data-target="#viewModal">
+						</li>
 
-					<img class="thumbnail" src="{% static 'images/percy.png' %}" alt="The Son of Neptune" title="The Son of Neptune" data-toggle="modal" data-target="#viewModal">
+						<li>
+							<img class="thumbnail" src="{% static 'images/python1.jpg' %}" alt="Python Programming" title="Python Programming" data-toggle="modal" data-target="#viewModal">
+						</li>
 
-					<img class="thumbnail" src="{% static 'images/python1.jpg' %}" alt="Python Programming" title="Python Programming" data-toggle="modal" data-target="#viewModal">
-				
-					<img class="thumbnail" src="{% static 'images/python2.jpg' %}" alt="SQL and Python Programming" title="SQL and Python Programming" data-toggle="modal" data-target="#viewModal">
-				
-					<img class="thumbnail" src="{% static 'images/inferno.webp' %}" alt="Dante's The Divine Comedy" title="Dante's The Divine Comedy" data-toggle="modal" data-target="#viewModal">
+						<li>
+							<img class="thumbnail" src="{% static 'images/python2.jpg' %}" alt="SQL and Python Programming" title="SQL and Python Programming" data-toggle="modal" data-target="#viewModal">
+						</li>
 
-					<img class="thumbnail" src="{% static 'images/journal1.jpg' %}" alt="International Journal of Research and Innovation in Social Science" title="International Journal of Research and Innovation in Social Science" data-toggle="modal" data-target="#viewModal">
-				
-					<img class="thumbnail" src="{% static 'images/joperd.jpg' %}" alt="Joperd 1" title="Joperd 1" data-toggle="modal" data-target="#viewModal">
-				
-					<img class="thumbnail" src="{% static 'images/joperd2.jpg' %}" alt="Joperd 2" title="Joperd 2" data-toggle="modal" data-target="#viewModal">
-				
-					<img class="thumbnail" src="{% static 'images/research.jpg' %}" alt="Project Management Strategies for Complete Projects Case Study Report" title="Project Management Strategies for Complete Projects Case Study Report" data-toggle="modal" data-target="#viewModal">
+						<li>
+							<img class="thumbnail" src="{% static 'images/inferno.webp' %}" alt="Dante's The Divine Comedy" title="Dante's The Divine Comedy" data-toggle="modal" data-target="#viewModal">
+						</li>
 
-				</div>
+						<li>
+							<img class="thumbnail" src="{% static 'images/journal1.jpg' %}" alt="International Journal of Research and Innovation in Social Science" title="International Journal of Research and Innovation in Social Science" data-toggle="modal" data-target="#viewModal">
+						</li>
+						
+						<li>
+							<img class="thumbnail" src="{% static 'images/joperd.jpg' %}" alt="Joperd 1" title="Joperd 1" data-toggle="modal" data-target="#viewModal">
+						</li>
 
+						<li>
+							<img class="thumbnail" src="{% static 'images/joperd2.jpg' %}" alt="Joperd 2" title="Joperd 2" data-toggle="modal" data-target="#viewModal">
+						</li>
+						
+						<li>
+							<img class="thumbnail" src="{% static 'images/research.jpg' %}" alt="Project Management Strategies for Complete Projects Case Study Report" title="Project Management Strategies for Complete Projects Case Study Report" data-toggle="modal" data-target="#viewModal">
+						</li>
+					</div>
+				</ul>
 				<span class="text">Popular</span>
-				<div class="slider">
+				<ul>
+					<div class="slider">
+						<li>
+							<img class="thumbnail" src="{% static 'images/percy.png' %}" alt="The Son of Neptune" title="The Son of Neptune" data-toggle="modal" data-target="#viewModal">
+						</li>
 
-					<img class="thumbnail" src="{% static 'images/percy.png' %}" alt="The Son of Neptune" title="The Son of Neptune" data-toggle="modal" data-target="#viewModal">
+						<li>
+							<img class="thumbnail" src="{% static 'images/python1.jpg' %}" alt="Python Programming" title="Python Programming" data-toggle="modal" data-target="#viewModal">
+						</li>
 
-					<img class="thumbnail" src="{% static 'images/python1.jpg' %}" alt="Python Programming" title="Python Programming" data-toggle="modal" data-target="#viewModal">
-				
-					<img class="thumbnail" src="{% static 'images/python2.jpg' %}" alt="SQL and Python Programming" title="SQL and Python Programming" data-toggle="modal" data-target="#viewModal">
-				
-					<img class="thumbnail" src="{% static 'images/inferno.webp' %}" alt="Dante's The Divine Comedy" title="Dante's The Divine Comedy" data-toggle="modal" data-target="#viewModal">
+						<li>
+							<img class="thumbnail" src="{% static 'images/python2.jpg' %}" alt="SQL and Python Programming" title="SQL and Python Programming" data-toggle="modal" data-target="#viewModal">
+						</li>
 
-					<img class="thumbnail" src="{% static 'images/journal1.jpg' %}" alt="International Journal of Research and Innovation in Social Science" title="International Journal of Research and Innovation in Social Science" data-toggle="modal" data-target="#viewModal">
-				
-					<img class="thumbnail" src="{% static 'images/joperd.jpg' %}" alt="Joperd 1" title="Joperd 1" data-toggle="modal" data-target="#viewModal">
-				
-					<img class="thumbnail" src="{% static 'images/joperd2.jpg' %}" alt="Joperd 2" title="Joperd 2" data-toggle="modal" data-target="#viewModal">
-				
-					<img class="thumbnail" src="{% static 'images/research.jpg' %}" alt="Project Management Strategies for Complete Projects Case Study Report" title="Project Management Strategies for Complete Projects Case Study Report" data-toggle="modal" data-target="#viewModal">
+						<li>
+							<img class="thumbnail" src="{% static 'images/inferno.webp' %}" alt="Dante's The Divine Comedy" title="Dante's The Divine Comedy" data-toggle="modal" data-target="#viewModal">
+						</li>
 
-				</div>
+						<li>
+							<img class="thumbnail" src="{% static 'images/journal1.jpg' %}" alt="International Journal of Research and Innovation in Social Science" title="International Journal of Research and Innovation in Social Science" data-toggle="modal" data-target="#viewModal">
+						</li>
+						
+						<li>
+							<img class="thumbnail" src="{% static 'images/joperd.jpg' %}" alt="Joperd 1" title="Joperd 1" data-toggle="modal" data-target="#viewModal">
+						</li>
+
+						<li>
+							<img class="thumbnail" src="{% static 'images/joperd2.jpg' %}" alt="Joperd 2" title="Joperd 2" data-toggle="modal" data-target="#viewModal">
+						</li>
+						
+						<li>
+							<img class="thumbnail" src="{% static 'images/research.jpg' %}" alt="Project Management Strategies for Complete Projects Case Study Report" title="Project Management Strategies for Complete Projects Case Study Report" data-toggle="modal" data-target="#viewModal">
+						</li>
+					</div>
+				</ul>
 
 			</div> <!-- Container -->
 		</div> <!-- Left -->
-			
-
 
 
 		<!-- VIEW MODAL -->
@@ -156,7 +207,7 @@
 						<div class="container-fluid">
 						    <div class="row">
 						    	<div class="col">
-									<a href="{% static 'images/percy.png' %}"><img class="thumbnail" style="margin-bottom: 5px;" src="{% static 'images/percy.png' %}" alt=""></a>
+									<a href="{% static 'images/percy.png' %}"><img class="thumbnail2" style="margin-bottom: 5px;" src="{% static 'images/percy.png' %}" alt=""></a>
 									<div>
 										<span class="count">25 People read this book</span><br>
 										<span class="count">26 People downloaded this book</span>
@@ -224,15 +275,44 @@
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-						<button type="button" class="btn btn-success" data-dismiss="modal">Copy</button>
+						<button type="button" class="btn btn-success" id="showToast" onclick="copyCitation()">Copy</button>
 					</div>
 				</div>
 			</div>
+
+			<!-- TOAST -->
+			<div aria-live="polite" aria-atomic="true" style="position: relative; min-height: 200px;">
+			  	<!-- Position it -->
+			  	<div style="position: absolute; top: -200; right: 230;">
+					<div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+					  <div class="toast-header">
+					    <strong class="mr-auto"><i class="fa fa-check" aria-hidden="true"></i> Copied</strong>
+					    <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+					      <span aria-hidden="true">&times;</span>
+					    </button>
+					  </div>
+					  <div class="toast-body">
+					    Citation has been copied.
+					  </div>
+					</div> 
+				</div>
+			</div><!-- TOAST -->
 		</div> <!-- CITE Modal -->
 
-
+		 <footer id="footer">
+	        <div class="container d-md-flex py-4">
+	          <div class="mr-md-auto text-center text-md-left">
+	            <!--Audio-->
+	            <a type="button" class="btn btn-warning btn-circle">
+	              <i class="fa fa-microphone" style="color:maroon"></i>
+	            </a>
+	          </div>
+	          <!-- <div class="mr-md-auto text-center text-md-right">
+	            <div class="copyright">
+	              &copy; Copyright <strong><span>Archived of Reading Materials</span></strong>. All Rights Reserved
+	            </div> -->
+	          </div>
+	        </div>
+	    </footer>
 	</div>
-
-	<!-- <button type="button" class="btn btn-danger" ><a href="{% static 'images/Revised-Prototype.pdf' %}" target="_blank">Open</a></button> -->
-	<!-- <embed src="{% static 'images/Revised-Prototype.pdf' %}" width="800px" height="2100px" /> -->
 {% endblock content %}

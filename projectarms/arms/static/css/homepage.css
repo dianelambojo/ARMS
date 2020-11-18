@@ -9,23 +9,13 @@
 	border-radius: 1.5rem;
 }
 
-/* others */
 .width{
-	width: 50%;
+	width: 70%;
 }
 
+/* others */
 .left{
 	padding-left:5em;
-}
-
-.text{
-	font-weight: bold;
-	font-family: 'Times New Roman';
-	font-size: 20px;
-}
-
-.logo{
-  text-align: center;
 }
 
 .centered {
@@ -40,12 +30,24 @@
 }
 
 
+/* Label */
+.text{
+	font-weight: bold;
+	font-family: 'Times New Roman';
+	font-size: 20px;
+}
+
+/* Logo Position */
+.logo{
+  text-align: center;
+}
+
 
 /* nav-item list */
 .nav-link_b{
-	color: #FF8C00;
-	font-weight: bold;
-    text-transform: uppercase;
+  color: #F4CC3C;
+  font-weight: bold;
+  text-transform: uppercase;
 }
 
 .nav-item{
@@ -54,12 +56,25 @@
 
 .nav-link_b:hover {
   	text-decoration: none;
-    border-bottom: 2px solid #FF8C00;
-    color: #FF8C00;
+    border-bottom: 2px solid #F4CC3C;
+    color: #F4CC3C;
+    background: rgba(255,255,255,0.2);
 }
 
 /* Images */
 .thumbnail{
+	cursor: pointer;
+	border: 2px solid black;
+	width: 190px;
+	height: 190px;
+	margin-right: 15px;
+}
+
+.thumbnail:hover{
+	opacity: 2;
+}
+
+.thumbnail2{
 	cursor: pointer;
 	border: 2px solid black;
 	width: 180px;
@@ -67,7 +82,7 @@
 	margin-right: 15px;
 }
 
-.thumbnail:hover{
+.thumbnail2:hover{
 	opacity: 1;
 }
 
@@ -79,11 +94,14 @@
 }
 
 .slider div {
-  margin: 3px;
+  margin-bottom: : 1px;
+  padding-bottom: 1px;
+  margin-top: 5px;
+  padding-top: 1px;
 }
 
 .slick-slide {
-  opacity: 0.8;
+  opacity: 0.7;
   width: 5px;
 }
 
@@ -91,7 +109,7 @@
   display: block;
   max-width: 10% !important;
   max-height: 20% !important;
-  opacity: 1.5;
+  opacity: 2;
 }
 
 /* Modal Book Details */
@@ -136,8 +154,8 @@
 
 /* Dropdown Button */
 .dropbtn {
-  background-color: white;
-  color: #FF8C00;
+  background-color: #800000;
+  color: #F4CC3C;
   font-size: 16px;
   border: none;
   font-weight: bold;
@@ -154,7 +172,7 @@
 .dropdown-content {
   display: none;
   position: absolute;
-  background-color: #f1f1f1;
+  background-color: #F4CC3C;
   min-width: 160px;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 1;
@@ -172,19 +190,23 @@
 
 /* Change color of dropdown links on hover */
 .dropdown-content a:hover {
-	background-color: #ddd;
+  color: #800000;
+  border-bottom: 2px solid #800000;
+  background: rgba(255,255,255,0.2);
+
 }
 
 /* Show the dropdown menu on hover */
 .dropdown:hover .dropdown-content {
-	display: block;
-	background-color: rgba(255, 255, 255, 0.5);
+  display: block;
+  background-color: #F4CC3C;
 }
 
 /* Change the background color of the dropdown button when the dropdown content is shown */
 .dropdown:hover .dropbtn {
-	text-decoration: none;
-    border-bottom: 2px solid #FF8C00;
+  text-decoration: none;
+    border-bottom: 2px solid #F4CC3C;
+    background: rgba(255,255,255,0.2);
 }
 
 /* Button box */
@@ -238,7 +260,6 @@
     z-index: 1000;
     top: 30%;
     right: -60px;
-    color: #BFAFB2;
     border-radius: 50%;
 }
 
@@ -265,3 +286,21 @@
 	font-size: 13px;
 	font-family: 'Times New Roman';
 }
+
+/* Toast check icon*/
+.fa-check{
+	color: #008000;
+}
+
+/* Upper Right Red Triangle*/
+.triangle{
+  height:0;
+  width: 0;
+  border-top:400px solid #800000;
+  border-left: 700px solid transparent;
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: -1;
+}
+
