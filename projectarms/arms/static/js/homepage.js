@@ -91,11 +91,13 @@ $(document).ready(function () {
               $(this).fadeOut();
               $(".text").hide();
               $(".btn-next").hide();
+
           // Show the div item if the phrase matches 
           } else {
               $("#result").html("Results"+"<br>");
               $(this).show().appendTo("#searched");
               
+              //$(this).show();
               //$(".text").show();
               //$(".btn-next").show();
               //count++;
