@@ -93,6 +93,10 @@ a:active{
     background-color: #7d2d2d;
 }
 
+.nav-pills .pill-addbook .nav-link:not(.active) {
+  border-radius: 1.5rem;
+    background-color: #7d2d2d;
+}
 
 /* active (faded) */
 .nav-pills .pill-books .nav-link {
@@ -109,6 +113,13 @@ a:active{
     font-weight: bold;
 }
 
+.nav-pills .pill-addbook .nav-link {
+  border-radius: 1.5rem;
+    background-color: #F4CC3C;
+    color:white;
+    font-weight: bold;
+}
+
  /* hover */
 .nav-pills .pill-books .nav-link:hover{
   border-radius: 1.5rem;
@@ -118,6 +129,12 @@ a:active{
 }
 
 .nav-pills .pill-users .nav-link:hover {
+  border-radius: 1.5rem;
+    background-color: #F4CC3C;
+    color:white;
+    font-weight: bold;
+}
+.nav-pills .pill-addbook .nav-link:hover {
   border-radius: 1.5rem;
     background-color: #F4CC3C;
     color:white;

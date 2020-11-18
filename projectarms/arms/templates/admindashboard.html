@@ -47,8 +47,7 @@
                     <div class="dropdown">
                       <button class="dropbtn">Hi, Administrator</button>
                       <div class="dropdown-content">
-                        <a href="#">Profile</a>
-                        <a href="#">Log out</a>
+                        <a href='{% url "arms:landingpage_view" %}'>Log out</a>
                       </div>
                     </div>
                   </li>
@@ -76,6 +75,9 @@
             </li>
             <li class="nav-item pill-users">
               <a class="nav-link" id="pills-users-tab" data-toggle="pill" href="#pills-users" role="tab" aria-controls="pills-users" aria-selected="false">Users</a>
+            </li>
+            <li class="nav-item pill-addbook">
+              <a class="nav-link" id="pills-addbook-tab" data-toggle="pill" href="#pills-addbook" role="tab" aria-controls="pills-addbook" aria-selected="false">Add book</a>
             </li>
           </ul>
         </div>
@@ -267,6 +269,13 @@
         </table>
       </div>
     </div>
+    <div class="tab-pane fade" id="pills-users" role="tabpanel" aria-labelledby="pills-users-tab"> <br>
+      <div class="content">
+
+      </div>
+    </div>
+
+
   </div>
 </div>
 {% endblock content %}
