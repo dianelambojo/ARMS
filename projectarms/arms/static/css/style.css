@@ -85,12 +85,12 @@ a:active{
 /* nav pills book  & users */
 .nav-pills .pill-books .nav-link:not(.active) {
   border-radius: 1.5rem;
-    background-color: #800000;
+    background-color: #7d2d2d;
 }
 
 .nav-pills .pill-users .nav-link:not(.active) {
   border-radius: 1.5rem;
-    background-color: #800000;
+    background-color: #7d2d2d;
 }
 
 
@@ -126,7 +126,7 @@ a:active{
 
 /* Dropdown Button */
 .dropbtn {
-  background-color: white;
+  background-color: #800000;
   color: #F4CC3C;
   font-size: 16px;
   border: none;
@@ -144,7 +144,7 @@ a:active{
 .dropdown-content {
   display: none;
   position: absolute;
-  background-color: #f1f1f1;
+  background-color: #F4CC3C;
   min-width: 160px;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 1;
@@ -162,20 +162,23 @@ a:active{
 
 /* Change color of dropdown links on hover */
 .dropdown-content a:hover {
-  color: #F4CC3C;
+  color: #800000;
+  border-bottom: 2px solid #800000;
+  background: rgba(255,255,255,0.2);
 
 }
 
 /* Show the dropdown menu on hover */
 .dropdown:hover .dropdown-content {
   display: block;
-  background-color: rgba(255, 255, 255, 0.5);
+  background-color: #F4CC3C;
 }
 
 /* Change the background color of the dropdown button when the dropdown content is shown */
 .dropdown:hover .dropbtn {
   text-decoration: none;
     border-bottom: 2px solid #F4CC3C;
+    background: rgba(255,255,255,0.2);
 }
 
 /*--------------------------------------------------------------
