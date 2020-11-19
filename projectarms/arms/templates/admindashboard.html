@@ -62,8 +62,9 @@
   <div class="container">
     <div class="container d-flex flex-sm-column justify-content-between py-1">
       <div class="row text-center py-6 align-content-between flex-wrap">
+        <hr>
         <div class="col-lg-3 d-flex justify-content-center align-items-center">
-          <a class="text-uppercase font-weight-bold" style="color: black; font-size: 20px; text-decoration: underline;">DASHBOARD
+          <a class="text-uppercase font-weight-bold" style="color: black; font-size: 25px; text-decoration: underline;">DASHBOARD
           </a>
         </div>
         <div class="col-lg-3">
@@ -76,12 +77,9 @@
             <li class="nav-item pill-users">
               <a class="nav-link" id="pills-users-tab" data-toggle="pill" href="#pills-users" role="tab" aria-controls="pills-users" aria-selected="false">Users</a>
             </li>
-            <li class="nav-item pill-addbook">
-              <a class="nav-link" id="pills-addbook-tab" data-toggle="pill" href="#pills-addbook" role="tab" aria-controls="pills-addbook" aria-selected="false">Add book</a>
-            </li>
           </ul>
-        </div>
-      </div>
+        </div> 
+      </div> 
     </div>
    
     <div class="tab-content" id="pills-tabContent">
@@ -97,6 +95,12 @@
                 <button type="button" class="btn btn-secondary btn-search"><i class="fa fa-sort" aria-hidden="true"></i></button>
               </div>
             </div>
+            <br>
+           <!-- <ul class="nav nav-pills justify-content-center" id="pills-tab" role="tablist">
+            <li class="nav-item pill-addbook">
+              <a class="nav-link" id="pills-addbook-tab" data-toggle="modal" data-target="#addBook_Modal" href="#pills-addbook" role="tab" aria-controls="pills-addbook" aria-selected="false"> <span style="color: #ffffff"; class="fa fa-plus"></span>  Add book</a>
+            </li>
+          </ul> -->
             <br>
             <thead>
               <tr>
@@ -269,15 +273,72 @@
         </table>
       </div>
     </div>
-    <div class="tab-pane fade" id="pills-users" role="tabpanel" aria-labelledby="pills-users-tab"> <br>
-      <div class="content">
+                                     <div class="modal fade" id="addBook_Modal" role="dialog">
+                                  <div class="modal-dialog">
+                                                
+                                  <!-- Modal content-->      
+                                  <div class="modal-content">
+                                    <div class="modal-header" style="background-color: maroon">
+                                          <h4 class="modal-title" style="color: white">Add Book</h4>
+                                        </div>
 
+                                       <div class="modal-body" style="background-color: gold">
+                                      <div class = "row">
+                                        <div class="col-1"> </div>
+                                          <form>
+                                            <div class="form-group row">
+                                              <label for="Title" class="col-sm-4 col-form-label">Title</label>
+                                              <div class="col-sm-8">
+                                                <input type="text" class="form-control" id="Title" placeholder="Book Title" required="">
+                                               </div>
+                                            </div>
+
+                                            <div class="form-group row">
+                                              <label for="Author" class="col-sm-4 col-form-label">Author</label>
+                                               <div class="col-sm-8">
+                                               <input type="text" class="form-control" id="Author" placeholder="Book Author" required="">
+                                               </div>
+                                            </div>
+
+                                            <div class="form-group row">
+                                               <label for="Year" class="col-sm-4 col-form-label">Year Published</label>
+                                              <div class="col-sm-8">
+                                               <input type="date" class="form-control" id="Year" placeholder="Date Published">
+                                              </div>
+                                            </div>
+
+                                            <div class="form-group row">
+                                               <label for="Sypnosis" class="col-sm-4 col-form-label">Sypnosis</label>
+                                              <div class="col-sm-8">
+                                               <textarea id="Sypnosis" rows='4' cols='30'></textarea>
+                                              </div>
+                                            </div>
+                                            
+                                            <label>Select an image: </label><br>
+                                            <input type="file" name="img1"><br><br>
+
+                                            <label>Upload your File: </label><br>
+                                            <input type="file" name="img2">
+                                            
+                                          </form>
+                                                      
+                                      </div>
+                                    </div>
+
+                            <div class="modal-footer" style="background-color: maroon">
+                              <button type="button" class="btn btn-primary" data-dismiss="modal">Save</button>
+                               <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                            </div>
+                                  </div>
+                                  <br>
+                                  <br>
+                           
+                                 
       </div>
     </div>
 
 
-  </div>
-</div>
+  
 {% endblock content %}
 <footer id="footer">
         <div class="container d-md-flex py-4">
