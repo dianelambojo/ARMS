@@ -1,5 +1,5 @@
 from django.db import models
-from datetime import datetime
+from django.utils import timezone
 # Create your models here.
 
 class User(models.Model):
@@ -8,7 +8,7 @@ class User(models.Model):
 	firstname = models.CharField(max_length = 100)
 	lastname = models.CharField(max_length = 100)
 	email = models.CharField(max_length = 100)
-	birthdate = models.DateField(default = datetime.now())
+	birthdate = models.DateField(default = timezone.now())
 
 	G_CHOICES = [('M','Male'),('F','Female')]
 	gender=models.CharField(max_length = 50, choices=G_CHOICES)
@@ -41,7 +41,7 @@ class Author(models.Model):
 	firstname = models.CharField(max_length = 100)
 	lastname = models.CharField(max_length = 100)
 	email = models.CharField(max_length = 100)
-	birthdate = models.DateField(default = datetime.now())
+	birthdate = models.DateField(default = timezone.now())
 	G_CHOICES = [('M','Male'),('F','Female')]
 	gender=models.CharField(max_length = 50, choices=G_CHOICES)
 
