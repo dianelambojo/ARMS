@@ -381,6 +381,7 @@ form .txt_field{
   left: 200px;
 }
 .landingimg{
+  position: absolute;
 }
 /*--------------------------------------------------------------
 # About Us
