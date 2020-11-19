@@ -7,7 +7,7 @@
 	{% load static %}
 	<title>ARMS</title>
 	 <!-- Bootstrap CSS -->
-	 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 	<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.css">
@@ -21,7 +21,7 @@
 {% block footerinclude %}
 	
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.js"></script>
-	 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
@@ -303,9 +303,9 @@
 	        <div class="container d-md-flex py-4">
 	          <div class="mr-md-auto text-center text-md-left">
 	            <!--Audio-->
-	            <a type="button" class="btn btn-warning btn-circle">
-	              <i class="fa fa-microphone" style="color:maroon"></i>
-	            </a>
+	            <button type="button" class="btn btn-warning btn-circle">
+	              <i class="fa fa-microphone" style="color:maroon" onclick="runSpeechRecognition()"></i>
+	            </button>
 	          </div>
 	          <!-- <div class="mr-md-auto text-center text-md-right">
 	            <div class="copyright">

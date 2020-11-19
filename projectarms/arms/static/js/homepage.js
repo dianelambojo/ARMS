@@ -155,3 +155,79 @@ $(document).ready(function(){
     $('.toast').toast('show');
   });
 });
+
+
+$(document).ready(function(){
+  $('#citeStyle').change(function(){
+    var style = $('#citeStyle :selected').text();
+  });
+});
+
+
+function runSpeechRecognition() {
+    // new speech recognition object
+    var SpeechRecognition = SpeechRecognition || webkitSpeechRecognition;
+    var recognition = new SpeechRecognition();
+    var search = document.getElementById("searchBox");
+
+
+   
+    // This runs when the speech recognition service starts
+    recognition.onstart = function() {
+        recognition.continous = true;
+        //if('speechSynthesis' in window) {
+          // Speech Synthesis supported 🎉
+          //var msg = new SpeechSynthesisUtterance();
+          //msg.text = "Good day! What can I do for you?";
+         // window.speechSynthesis.speak(msg);
+        //}else{
+          // Speech Synthesis Not Supported 😣
+        //  alert("Sorry, your browser doesn't support text to speech!");
+        //}
+        //console.log("We are listening. Try speaking into the microphone.");
+    };
+
+    recognition.onspeechend = function() {
+        // when user is done speaking
+        //recognition.stop();
+        recognition.resume();
+    }
+                  
+    // This runs when the speech recognition service returns result
+    recognition.onresult = function(event) {
+        var transcript = event.results[0][0].transcript;
+        search.value = transcript;
+
+        var filter = $("#searchBox").val();
+        //var count = 0;
+        var display = document.getElementById("searched");
+
+        // Loop through the captions div 
+        $(".thumbnail").each(function(){
+
+            // If the div item does not contain the text phrase fade it out
+            if ($(this).attr('title').search(new RegExp(filter, "i")) < 0) {
+                $(this).fadeOut();
+                $(".text").hide();
+                $(".btn-next").hide();
+            // Show the div item if the phrase matches 
+            } else {
+                $("#result").html("Results"+"<br>");
+                $(this).show().appendTo("#searched");
+                
+                //$(".text").show();
+                //$(".btn-next").show();
+                //count++;
+            }
+        });
+
+
+
+
+        var confidence = event.results[0][0].confidence;
+    };
+                  
+    // start recognition
+    recognition.start();
+}
+
