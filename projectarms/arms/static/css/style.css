@@ -221,25 +221,6 @@ a:active{
   bottom: 0;
 }
 /*--------------------------------------------------------------
-# About Us
---------------------------------------------------------------*/
-.section{
-  position: absolute;
-  top: 100px;
-  left: 200px;
-  width:90%;
-  display: block;
-  margin: 80px auto;
-}
-.left-section{
-  width: 50%;
-  float: left;
-  padding-right: 50px;
-}
-.content{
-  text-align: justify;
-}
-/*--------------------------------------------------------------
 # Login
 --------------------------------------------------------------*/
 .body {
@@ -399,4 +380,21 @@ form .txt_field{
   top: 200px;
   left: 200px;
 }
-
+/*--------------------------------------------------------------
+# About Us
+--------------------------------------------------------------*/
+.section{
+  position: absolute;
+  top: 100px;
+  left: 200px;
+  display: block;
+  margin: 80px auto;
+}
+.left-section{
+  width: 50%;
+  float: left;
+  padding-right: 50px;
+}
+.content{
+  text-align: justify;
+}
