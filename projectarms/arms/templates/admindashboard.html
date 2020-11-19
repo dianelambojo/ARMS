@@ -180,6 +180,7 @@
         </table>
       </div>
     </div>
+    <!-- user table -->
     <div class="tab-pane fade" id="pills-users" role="tabpanel" aria-labelledby="pills-users-tab"> <br>
       <div class="content">
           <table class="table"> 
@@ -193,30 +194,32 @@
               </div>
             </div>
             <br>
+
             <thead>
               <tr>
-                <th scope="col">User ID</th>
-                <th scope="col">First name</th>
-                <th scope="col">Last name</th>
-                <th scope="col">Gender</th>
-                <th scope="col">Action</th>
+                <th>User ID</th>
+                <th>First name</th>
+                <th>Last name</th>
+                <th>Gender</th>
+                <th>Action</th>
               </tr>
             </thead>
+
             <tbody>
-              {% for user in users %}
               <tr>
-                <th scope="row"> {{user.person_ptr_id}} </th>
-                <td>{{user.firstname}}</td>
-                <td>{{user.lastname}}</td>
-                <td>{{user.gender}}</td>
+                <td> 1 </td>
+                <td>Diane</td>
+                <td>Lambojo</td>
+                <td>Female</td>
                 <td>
-                  <button type="button" class="btn" data-toggle="modal" data-target="#ViewModal1-{{user.id}}"> <span style="color: #800000"; class="fa fa-eye"></span> </button>
-                  <button type="button" class="btn" data-toggle="modal" data-target="#DeleteModal1-{{user.id}}"><span style="color: #800000"; class="fa fa-trash"></span> </button>
+                  <button type="button" class="btn btn-modal" data-toggle="modal" data-target="#ViewModal1"> <span style="color: #800000"; class="fa fa-eye"></span> </button>
+                  <button type="button" class="btn btn-modal" data-toggle="modal" data-target="#DeleteModal1"><span style="color: #800000"; class="fa fa-trash"></span> </button>
                 </td>
               </tr>
-
+            </tbody>
+          </table>
     <!-- MODAL VIEW BOOK -->
-              <div class="modal fade" id="ViewModal1-{{book.id}}" tabindex="-1" role="dialog" aria-labelledby="ViewModalLabel1" aria-hidden="true">
+              <div class="modal fade" id="ViewModal1" tabindex="-1" role="dialog" aria-labelledby="ViewModalLabel1" aria-hidden="true">
                 <div class="modal-dialog " role="document">
                   <div class="modal-content">
                     <div class="modal-header">
@@ -227,16 +230,16 @@
                     </div>
                     <form id="updateForm" method="post">
                       {% csrf_token %}
-                      <input type="text" name="userid" value ="{{user.id}}" hidden>
+                      <input type="text" name="userid" value ="" hidden>
                       <div class="modal-body">
                         <div class="form-row">
                           <div class="form-group col-md-6">
                             <label for="booktitle">User ID</label>
-                            <input type="text" class="form-control" id="userid" name="userid" value = "{{user.userID}}">
+                            <input type="text" class="form-control" id="userid" name="userid" value = "">
                           </div>
                           <div class="form-group col-md-6">
                             <label for="bookauthor">First name</label>
-                            <input type="text" class="form-control" id="fname" name="fname" value = "{{user.firstname}}">
+                            <input type="text" class="form-control" id="fname" name="fname" value = "">
                           </div>
                         </div>
                       </div>
@@ -245,7 +248,7 @@
                 </div>
               </div>
       <!-- Modal Delete -->
-              <div class="modal fade" id="DeleteModal1-{{user.id}}" tabindex="-1" role="dialog" aria-labelledby="DeleteModalLabel1" aria-hidden="true">
+              <div class="modal fade" id="DeleteModal1" tabindex="-1" role="dialog" aria-labelledby="DeleteModalLabel1" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                   <div class="modal-content">
                     <div class="modal-header">
@@ -257,7 +260,7 @@
                        <form id="deleteForm" method="post" >
                         {% csrf_token %} 
                         <div class="modal-body">
-                          <input type="text" name="bookid" value = {{book.id}} hidden>
+                          <input type="text" name="bookid" value ="" hidden>
                         Are you sure you want to delete this record?
                       </div>
                       <div class="modal-footer">
@@ -268,15 +271,14 @@
                   </div>
                 </div>
               </div>
-            {% endfor %}
-          </tbody>
         </table>
       </div>
     </div>
-                                     <div class="modal fade" id="addBook_Modal" role="dialog">
+
+     <!--                                <div class="modal fade" id="addBook_Modal" role="dialog">
                                   <div class="modal-dialog">
                                                 
-                                  <!-- Modal content-->      
+                                   
                                   <div class="modal-content">
                                     <div class="modal-header" style="background-color: maroon">
                                           <h4 class="modal-title" style="color: white">Add Book</h4>
@@ -335,7 +337,7 @@
                            
                                  
       </div>
-    </div>
+    </div> -->
 
 
   
