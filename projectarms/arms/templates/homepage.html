@@ -1,65 +1,14 @@
+{% extends "base_1.1.html" %}
 <!-- Author: Garcia
 	Date: 2020
 	Description: Homepage HTML Code
 -->
 
-{% block headerinclude %}	
-	{% load static %}
-	<title>ARMS</title>
-	 <!-- Bootstrap CSS -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-	<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet"/>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css">
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.css">
-	<link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
-
-	<div class="triangle"></div>
-	<link rel="stylesheet" href="{% static 'css/homepage.css' %}">
-	
-{% endblock headerinclude %}
-
-{% block footerinclude %}
-	
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.js"></script>
-	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
-  	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-
-
-	<script type="text/javascript" src="{% static 'js/homepage.js' %}"></script>
-
-{% endblock footerinclude %}
-
 {% block content %}
+	{% load static %}
 	<div class="container">
-		<nav class="navbar navbar-expand-lg">
-			<div class="container">
-				<a href="#" class="navbar-brand">
-	                <img src="{% static 'images/cit.jpg' %}" width="80" alt="" class="d-inline-block align-middle mr-2">
-	                <span class="text-uppercase font-weight-bold" style="color: black;">A R M S</span>
-              	</a>
-
-				<div id="navbarSupportedContent" class="collapse navbar-collapse">
-                <ul class="navbar-nav ml-auto">
-                  <li class="nav-item active"><a href="{% url 'arms:homepage_view' %}" class="nav-link_b">Home</a></li>
-                  <li class="nav-item active"><a href='#' class="nav-link_b">About Us</a></li>
-                  <li class="nav-item active">
-                    <div class="dropdown">
-                      <button class="dropbtn">Hi, User</button>
-                      <div class="dropdown-content">
-                        <a href="{% url 'arms:profile_view' %}">Profile</a>
-                        <a href="{% url 'arms:landingpage_view' %}">Log out</a>
-                      </div>
-                    </div>
-                  </li>
-                </ul>
-              </div>
-		  	</div>
-		</nav>
 		<div style="text-align: center;">
-			 <img src="{% static 'images/pic.jpg' %}" width="85%" height="40%" alt="">
+			 <img src="{% static 'images/pic.jpg' %}" height="250px" width="85%" alt="">
 			 <div class="centered">Online Resources</div>
 		</div>
 		<br>
@@ -81,10 +30,10 @@
 					<span id="result"></span>
 				</span>
 				<span class="text">New Releases</span>
-				<ul>
+				<ul class="list">
 					<div class="slider">
 						<li>
-							<img class="thumbnail" src="{% static 'images/percy.png' %}" alt="The Son of Neptune" title="The Son of Neptune" data-toggle="modal" data-target="#viewModal">
+							<img class="thumbnail" src="{% static 'images/percy.png' %}" alt="The Son of Neptune" title="The Son of Neptune 1990 Rick Riordan" data-toggle="modal" data-target="#viewModal">
 						</li>
 
 						<li>
@@ -117,7 +66,7 @@
 					</div>
 				</ul>
 				<span class="text">Recommended</span>
-				<ul>
+				<ul class="list">
 					<div class="slider">
 						<li>
 							<img class="thumbnail" src="{% static 'images/percy.png' %}" alt="The Son of Neptune" title="The Son of Neptune" data-toggle="modal" data-target="#viewModal">
@@ -153,7 +102,7 @@
 					</div>
 				</ul>
 				<span class="text">Popular</span>
-				<ul>
+				<ul class="list">
 					<div class="slider">
 						<li>
 							<img class="thumbnail" src="{% static 'images/percy.png' %}" alt="The Son of Neptune" title="The Son of Neptune" data-toggle="modal" data-target="#viewModal">
@@ -188,7 +137,6 @@
 						</li>
 					</div>
 				</ul>
-
 			</div> <!-- Container -->
 		</div> <!-- Left -->
 
@@ -213,7 +161,7 @@
 										<span class="count">26 People downloaded this book</span>
 									</div>
 									<div class="box">
-										<button type="button" class="btn btn-circ"><a href="{% static 'images/The Son of Neptune.pdf' %}" id="pdfFile" target="_blank"><i class="fa fa-book fa-sm" aria-hidden="true"></i></a></button>
+										<button type="button" class="btn btn-circ" onclick="openPDF()"><a href="{% static 'images/The Son of Neptune.pdf' %}" id="pdfFile" target="_blank"><i class="fa fa-book fa-sm" aria-hidden="true"></i></a></button>
 										<button type="button" class="btn btn-circ"><i class="fa fa-bookmark fa-sm" aria-hidden="true"></i></button>
 										<button type="button" class="btn btn-circ"><a href="{% static 'images/The Son of Neptune.pdf' %}" download><i class="fa fa-download fa-sm" aria-hidden="true"></i></a></button>
 										<span class="label">Read</span>&nbsp;&nbsp;
@@ -298,21 +246,5 @@
 				</div>
 			</div><!-- TOAST -->
 		</div> <!-- CITE Modal -->
-
-		 <footer id="footer">
-	        <div class="container d-md-flex py-4">
-	          <div class="mr-md-auto text-center text-md-left">
-	            <!--Audio-->
-	            <button type="button" class="btn btn-warning btn-circle">
-	              <i class="fa fa-microphone" style="color:maroon" onclick="runSpeechRecognition()"></i>
-	            </button>
-	          </div>
-	          <!-- <div class="mr-md-auto text-center text-md-right">
-	            <div class="copyright">
-	              &copy; Copyright <strong><span>Archived of Reading Materials</span></strong>. All Rights Reserved
-	            </div> -->
-	          </div>
-	        </div>
-	    </footer>
 	</div>
 {% endblock content %}

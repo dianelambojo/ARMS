@@ -1,29 +1,40 @@
 //Book Slider
 $(document).ready(function() {
   $('.slider').slick({
-    centerMode: true,
-    centerPadding: '100px',
-    slidesToShow: 3,
+    dots: true,
+    infinite: false,
+    speed: 600,
+    slidesToShow: 4,
+    slidesToScroll: 1,
     nextArrow: '<button type="button" class="btn btn-next"><i class="fa fa-arrow-right" aria-hidden="true"></i></button>',
+    prevArrow: '<button type="button" class="btn btn-prev"><i class="fa fa-arrow-left" aria-hidden="true"></i></button>',
     responsive: [
       {
-        breakpoint: 768,
+        breakpoint: 1024,
         settings: {
-          arrows: false,
-          centerMode: true,
-          centerPadding: '40px',
-          slidesToShow: 3
+          slidesToShow: 3,
+          slidesToScroll: 3,
+          infinite: true,
+          dots: true
+        }
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2
         }
       },
       {
         breakpoint: 480,
         settings: {
-          arrows: false,
-          centerMode: true,
-          centerPadding: '40px',
-          slidesToShow: 1
+          slidesToShow: 1,
+          slidesToScroll: 1
         }
       }
+      // You can unslick at a given breakpoint now by adding:
+      // settings: "unslick"
+      // instead of a settings object
     ],
   });
 });
@@ -91,15 +102,19 @@ $(document).ready(function () {
               $(this).fadeOut();
               $(".text").hide();
               $(".btn-next").hide();
+              $(".btn-prev").hide();
+              $(".slick-dots").hide();
 
           // Show the div item if the phrase matches 
           } else {
               $("#result").html("Results"+"<br>");
               $(this).show().appendTo("#searched");
-              
+              $(".slider").hide();
               //$(this).show();
               //$(".text").show();
-              //$(".btn-next").show();
+             // $(".btn-next").show();
+              //$(".btn-prev").show();
+              //$(".slick-dots").show();
               //count++;
           }
       });
@@ -130,10 +145,10 @@ $(document).ready(function () {
   }
 }*/
 
-/*function openPDF(){
-  var file = document.getElementById('pdfFile').val();
+function openPDF(){
+  var file = document.getElementById('pdfFile').getAttribute('href');
   window.open(file, "_blank");
-}*/
+}
 
 
 //Copy the auto generated citation to clipboard
@@ -157,13 +172,15 @@ $(document).ready(function(){
 });
 
 
-$(document).ready(function(){
+/*$(document).ready(function(){
   $('#citeStyle').change(function(){
     var style = $('#citeStyle :selected').text();
   });
 });
+*/
 
 
+//Speech to Text feature
 function runSpeechRecognition() {
     // new speech recognition object
     var SpeechRecognition = SpeechRecognition || webkitSpeechRecognition;
