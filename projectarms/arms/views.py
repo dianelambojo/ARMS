@@ -39,3 +39,7 @@ class LoginIndexView(View):
 class RegisterIndexView(View):
 	def get(self, request):
 		return render(request, 'register.html')
+
+class AboutUsIndexView(View):
+	def get(self, request):
+		return render(request, 'aboutUsPage.html')		

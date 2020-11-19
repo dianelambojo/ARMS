@@ -197,7 +197,19 @@ a:active{
     border-bottom: 2px solid #F4CC3C;
     background: rgba(255,255,255,0.2);
 }
-
+/*--------------------------------------------------------------
+# Header BG
+--------------------------------------------------------------*/
+.triangle{
+  height:0;
+  width: 0;
+  border-top:400px solid #800000;
+  border-left: 700px solid transparent;
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: -1;
+}
 /*--------------------------------------------------------------
 # Footer
 --------------------------------------------------------------*/
@@ -209,9 +221,28 @@ a:active{
   bottom: 0;
 }
 /*--------------------------------------------------------------
+# About Us
+--------------------------------------------------------------*/
+.section{
+  position: absolute;
+  top: 100px;
+  left: 200px;
+  width:90%;
+  display: block;
+  margin: 80px auto;
+}
+.left-section{
+  width: 50%;
+  float: left;
+  padding-right: 50px;
+}
+.content{
+  text-align: justify;
+}
+/*--------------------------------------------------------------
 # Login
 --------------------------------------------------------------*/
-#body {
+.body {
   margin: 0;
   padding: 0;
   font-family: Sora;
@@ -360,34 +391,12 @@ form .txt_field{
   border-bottom: 2px solid #adadad;
   margin: 30px 0;
 }
-/* .skewed-bg {
-  background: #830024;
-  color: #FFF;
-  padding: 2em;
-  position: relative;
-  min-height:300px;
-  overflow:hidden;
-}
-.skewed-bg:after {
-content: '';
-position: absolute;
-bottom: -75%; left: 0; right: 0;
-height:100%;
-background:#FFF;
-transform: skew(0deg, -9deg);
-} */
-.triangle{
-  height:0;
-  width: 0;
-  border-top:400px solid #800000;
-  border-left: 700px solid transparent;
-  position: absolute;
-  top: 0;
-  right: 0;
-  z-index: -1;
-}
+/*--------------------------------------------------------------
+# Landing Page
+--------------------------------------------------------------*/
 .landingpage-body{
   position: absolute;
   top: 200px;
   left: 200px;
 }
+
