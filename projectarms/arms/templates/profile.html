@@ -18,6 +18,7 @@
   <script src='https://kit.fontawesome.com/a076d05399.js'></script>
  
 <link rel="stylesheet" href="{% static 'css/profile.css' %}">
+<link href="{% static 'css/style.css' %}" rel="stylesheet" >
 
 {% endblock headerinclude %}
 {% block content %}
@@ -25,32 +26,30 @@
     <body>
 		<div class="container">
 					<!--TopNav-->
-				
-							<nav class="navbar navbar-expand-lg">
-							  <div class="container">
-							    <a href="#" class="navbar-brand">
-							      <img src="{% static 'images/cit.jpg' %}" width="80" alt="" class="d-inline-block align-middle mr-2">
-							      <span class="text-uppercase font-weight-bold" style="color: black;">ARMS</span>
-							    </a>
-
-							    <button type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler"><span class="navbar-toggler-icon"></span></button>
-
-							    <div id="navbarSupportedContent" class="collapse navbar-collapse">
-							      	<ul class="navbar-nav ml-auto">
-										<li class="nav-item active"><a href='{% url "arms:homepage_view" %}' style="color: gold">Home</a></li>&nbsp;&nbsp;
-										<li class="nav-item active"><a href='#' style="color: gold">About Us</a></li>&nbsp;&nbsp;
-										<li class="nav-item active">
-											<div class="dropdown show">
-										   	 <a href='#' style="color: gold" lass="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Hi user</a>
-										   		<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-												    <a class="dropdown-item" href='{% url "arms:landingpage_view" %}'>Log Out</a>
-												</div>
-										   	</div>
-										</li>
-							      	</ul>
-							    </div>
-							  </div>
-							</nav>
+							<header>
+						        <nav class="navbar navbar-expand-lg">
+						            <div class="container">
+						              <a href="#" class="navbar-brand">
+						                <img src="{% static 'images/cit.jpg' %}" width="80" alt="" class="d-inline-block align-middle mr-2">
+						                <span class="text-uppercase font-weight-bold" style="color: black;">A R M S</span>
+						              </a>
+						              <div id="navbarSupportedContent" class="collapse navbar-collapse">
+						                <ul class="navbar-nav ml-auto">
+						                  <li class="nav-item active"><a href='{% url "arms:homepage_view" %}' class="nav-link_b">Home</a></li>
+						                  <li class="nav-item active"><a href='#' class="nav-link_b">About Us</a></li>
+						                  <li class="nav-item active">
+						                    <div class="dropdown">
+						                      <button class="dropbtn">Hi, User</button>
+						                      <div class="dropdown-content">
+						                        <a href='{% url "arms:landingpage_view" %}'>Log out</a>
+						                      </div>
+						                    </div>
+						                  </li>
+						                </ul>
+						              </div>
+						            </div>
+						          </nav>
+						    </header>
 						<div class="triangle"></div>
 						
 						<div class="col-lg-30"  style="background-color: whitesmoke">
