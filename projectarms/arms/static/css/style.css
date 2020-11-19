@@ -182,9 +182,7 @@ a:active{
   color: #800000;
   border-bottom: 2px solid #800000;
   background: rgba(255,255,255,0.2);
-
 }
-
 /* Show the dropdown menu on hover */
 .dropdown:hover .dropdown-content {
   display: block;
@@ -227,7 +225,6 @@ a:active{
   margin: 0;
   padding: 0;
   font-family: Sora;
-  background: white;
   overflow : hidden;
 }
 .login{
@@ -236,7 +233,6 @@ a:active{
   left: 50%;
   transform: translate(-50%, -50%);
   width: 600px;
-  background: white;
   border-radius: 10px;
 }
 .login-body{
@@ -256,11 +252,9 @@ a:active{
 }
 form .txt_field{
   position: relative;
-  border-bottom: 2px solid #adadad;
   margin: 30px 0;
 }
 .txt_field input{
-  width: 100px;
   padding: 0 5 px;
   height: 40px;
   font-size: 16px;
@@ -273,10 +267,7 @@ form .txt_field{
   top: -15px;
   left: 5px;
   color: #adadad;
-  /* transform: translateY(-50); */
   font-size: 16px;
-  /* pointer-events: none; */
-  /* transition: .5s; */
 }
 .txt_field span::before{
   content: '';
@@ -288,15 +279,6 @@ form .txt_field{
   background: #800000;
   transition: .5s;
 }
-/* .txt_field input:focus ~ label,
-.txt_field input:valid ~ label{
-  top: -5px;
-  color: #800000;
-}
-.txt_field input:focus ~ span::before,
-.txt_field input:valid ~ span::before{
-  width: 100%;;
-} */
 .pass{
   margin: 5px -5px 10px 5px;
   columns: #a6a6a6;
@@ -345,11 +327,10 @@ input[type="submit"]:hover{
 --------------------------------------------------------------*/
 .register{
   position : absolute;
-  top: 50%;
+  top: 55%;
   left: 50%;
   transform: translate(-50%, -50%);
   width: 600px;
-  background: white;
   border-radius: 10px;
 }
 .register-body{
@@ -357,20 +338,15 @@ input[type="submit"]:hover{
 }
 .register h1{
   text-align: center;
-  padding: 0 0 20px 0;
+  padding: 0 0 0 0;
   border-bottom: 1px solid silver;
   font-style: normal;
   font-weight: 750;
-  font-size: 2rem;
+  font-size: 28px;
 }
 .register form{
   padding: 0 40px;
   box-sizing: border=box;
-}
-form .txt_field{
-  position: relative;
-  border-bottom: 2px solid #adadad;
-  margin: 30px 0;
 }
 /*--------------------------------------------------------------
 # Landing Page
@@ -380,8 +356,17 @@ form .txt_field{
   top: 200px;
   left: 200px;
 }
-.landingimg{
+.compimg{
   position: absolute;
+  bottom: 1px;
+  right: 1px;
+  z-index: -1; 
+}
+.landing-section{
+  position: absolute;
+  display: block;
+  margin: 10px auto;
+  font-size: 15px;
 }
 /*--------------------------------------------------------------
 # About Us
@@ -401,3 +386,4 @@ form .txt_field{
 .content{
   text-align: justify;
 }
+
