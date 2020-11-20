@@ -13,15 +13,19 @@
 		</div>
 		<br>
 		<div class="left">
-			<div class="input-group md-form form-sm form-1 pl-0">
-				<div class="input-group-prepend">
-					<span class="input-group-text" id="basic-text1"><i class="fa fa-search" aria-hidden="true"></i></span>
-				</div>
-				<input class="width my-0 py-1" type="text" placeholder="Search title, author, year" id="searchBox">
+			<div class="input-group mb-3">
+			  	<input type="text" class="width" id="searchBox" placeholder="Search title, author, year">
+			  	<div class="input-group-append">
+			    	<button type="button" class="btn btn-mic" onclick="runSpeechRecognition()">
+	              	<i class="fa fa-lg fa-microphone"></i>
+	            	</button>
+			  	</div>
+			  	<div class="input-group-prepend">
+			    	<span class="input-group-text"><i class="fa fa-search"></i></span>
+			 	</div>
 
-				<!--<span id="filter-count"></span>-->
-				<div>&nbsp;
-					<button type="button" class="btn btn-secondary"><i class="fa fa-sort" aria-hidden="true"></i></button>
+				<div>&nbsp;&nbsp;&nbsp;
+					<button type="button" class="btn btn-sort"><i class="fa fa-sort" aria-hidden="true"></i></button>
 				</div>
 			</div>
 			<br>
@@ -191,7 +195,7 @@
 						</div>
 					</div>
 					<div class="modal-footer">
-						<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+						<button type="button" class="btn btn-close" data-dismiss="modal">Close</button>
 					</div>
 				</div>
 			</div>
@@ -210,10 +214,11 @@
 					<div class="modal-body">
 						<div class="container-fluid">
 							<div>
-								<select class="cite" id="citeStyle" name="citeStyle" required>
-									<option value="Cite 1"> Cite 1 </option>
-									<option value="Cite 2"> Cite 2 </option>
-									<option value="Cite 3"> Cite 3 </option>
+								<select class="cite" id="citeStyle" name="citeStyle">
+									<option value="American Psychological Association" selected="selected"> American Psychological Association </option>
+									<option value="Modern Language Association"> Modern Language Association </option>
+									<option value="Chicago Manual of Style"> Chicago Manual of Style </option>
+									<option value="Institute of Electrical and Electronics Engineers"> Institute of Electrical and Electronics Engineers </option>
 								</select>
 							</div><br>
 							<div>
@@ -222,29 +227,28 @@
 						</div> 
 					</div>
 					<div class="modal-footer">
-						<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-						<button type="button" class="btn btn-success" id="showToast" onclick="copyCitation()">Copy</button>
+						<button type="button" class="btn btn-close" data-dismiss="modal">Close</button>
+						<button type="button" class="btn btn-copy" id="showToast" onclick="copyCitation()">Copy</button>
 					</div>
 				</div>
 			</div>
 
 			<!-- TOAST -->
 			<div aria-live="polite" aria-atomic="true" style="position: relative; min-height: 200px;">
-			  	<!-- Position it -->
-			  	<div style="position: absolute; top: -200; right: 230;">
+  				<div class="toast" style="position: absolute; top: -200px; right: 180px;">
 					<div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
-					  <div class="toast-header">
-					    <strong class="mr-auto"><i class="fa fa-check" aria-hidden="true"></i> Copied</strong>
-					    <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
-					      <span aria-hidden="true">&times;</span>
-					    </button>
-					  </div>
-					  <div class="toast-body">
-					    Citation has been copied.
-					  </div>
-					</div> 
+					  	<div class="toast-header">
+					    	<strong class="mr-auto"><i class="fa fa-check" aria-hidden="true"></i>Copied</strong>
+					    	<button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+					      		<span aria-hidden="true">&times;</span>
+					    	</button>
+					  	</div>
+					  	<div class="toast-body">
+					    	Citation has been copied.
+					  	</div>
+					</div>
 				</div>
-			</div><!-- TOAST -->
+			</div> <!-- TOAST -->
 		</div> <!-- CITE Modal -->
 	</div>
 {% endblock content %}

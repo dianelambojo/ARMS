@@ -105,8 +105,14 @@ $(document).ready(function () {
               $(".btn-prev").hide();
               $(".slick-dots").hide();
 
+          
+          } /*else if(filter.length == 0){
+              $("#searched").val() = $(".slider").val();
+
+
+          }*/
           // Show the div item if the phrase matches 
-          } else {
+          else {
               $("#result").html("Results"+"<br>");
               $(this).show().appendTo("#searched");
               $(".slider").hide();
@@ -227,6 +233,9 @@ function runSpeechRecognition() {
                 $(this).fadeOut();
                 $(".text").hide();
                 $(".btn-next").hide();
+                $(".btn-prev").hide();
+                $(".slick-dots").hide();
+
             // Show the div item if the phrase matches 
             } else {
                 $("#result").html("Results"+"<br>");
