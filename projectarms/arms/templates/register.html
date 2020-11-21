@@ -6,6 +6,16 @@
             <div class= "register-body">
                 <h1>SIGN UP </h1>
                 <form method="post">
+                    <div class="radio_field row col-12">
+                        <div class="col-6 d-flex justify-content-center">
+                            <input class="mt-2 mr-1" type="radio" id="male" name="gender" value="male">
+                            <label for="male">Student</label>
+                        </div>
+                        <div class="col-6 d-flex justify-content-center">
+                            <input class="mt-2 mr-1" type="radio" id="female" name="gender" value="female">
+                                <label for="female">Faculty</label>
+                        </div>
+                    </div>
                     <div class ="row col-12">
                         <div class="txt_field col-sm-6">
                             <input type="text required">
@@ -54,7 +64,7 @@
                     <div class="txt_field">
                         <input type="text required">
                         <span></span>
-                        <label>UserID (School ID)</label>
+                        <label>UserID</label>
                     </div>
                     <div class="txt_field">
                         <input type="password" required>
