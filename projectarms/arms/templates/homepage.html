@@ -40,11 +40,16 @@
 				<ul class="list">
 					<div class="slider">
 						{% for book in books %}
-						<li>
-							<img class="thumbnail" src="{{ book.book_cover.url }}" alt="{{ book.book_title }}" title="{{ book.book_title}} {{ book.firstname }} {{ book.book_year }}" data-toggle="modal" data-target="#viewModal">
-						</li>
+							{% for author in authors %}
+								{% if author.book_author_id == book.book_author_id_id %}
+									<li>
+										<img class="thumbnail" src="{{ book.book_cover.url }}" alt="{{ book.book_title }}" title="{{ book.book_title}} {{ author.firstname }} {{ author.lastname }} {{ book.book_year }}" data-toggle="modal" data-target="#viewModal-{{ book.book_id }}">
+									</li>
+								{% endif %}
+							{% endfor %}
  						{% endfor %}
-					<!--<li>
+
+						<!-- <li>
 							<img class="thumbnail" src="{% static 'images/python1.jpg' %}" alt="Python Programming" title="Python Programming" data-toggle="modal" data-target="#viewModal">
 						</li>
 
@@ -70,7 +75,7 @@
 						
 						<li>
 							<img class="thumbnail" src="{% static 'images/research.jpg' %}" alt="Project Management Strategies for Complete Projects Case Study Report" title="Project Management Strategies for Complete Projects Case Study Report" data-toggle="modal" data-target="#viewModal">
-						</li> -->
+						</li>  -->
 					</div>
 				</ul>
 				<span class="text">Recommended</span>
@@ -80,7 +85,7 @@
 							<img class="thumbnail" src="{% static 'images/percy.png' %}" alt="The Son of Neptune" title="The Son of Neptune" data-toggle="modal" data-target="#viewModal">
 						</li>
 
-						<!-- <li>
+						<li>
 							<img class="thumbnail" src="{% static 'images/python1.jpg' %}" alt="Python Programming" title="Python Programming" data-toggle="modal" data-target="#viewModal">
 						</li>
 
@@ -106,7 +111,7 @@
 						
 						<li>
 							<img class="thumbnail" src="{% static 'images/research.jpg' %}" alt="Project Management Strategies for Complete Projects Case Study Report" title="Project Management Strategies for Complete Projects Case Study Report" data-toggle="modal" data-target="#viewModal">
-						</li> -->
+						</li>
 					</div>
 				</ul>
 				<span class="text">Popular</span>
@@ -116,7 +121,7 @@
 							<img class="thumbnail" src="{% static 'images/percy.png' %}" alt="The Son of Neptune" title="The Son of Neptune" data-toggle="modal" data-target="#viewModal">
 						</li>
 
-						<!-- <li>
+						<li>
 							<img class="thumbnail" src="{% static 'images/python1.jpg' %}" alt="Python Programming" title="Python Programming" data-toggle="modal" data-target="#viewModal">
 						</li>
 
@@ -142,7 +147,7 @@
 						
 						<li>
 							<img class="thumbnail" src="{% static 'images/research.jpg' %}" alt="Project Management Strategies for Complete Projects Case Study Report" title="Project Management Strategies for Complete Projects Case Study Report" data-toggle="modal" data-target="#viewModal">
-						</li> -->
+						</li>
 					</div>
 				</ul>
 			</div> <!-- Container -->
@@ -150,7 +155,8 @@
 
 
 		<!-- VIEW MODAL -->
-		<div class="modal fade" id="viewModal" tabindex="-1" role="dialog" aria-labelledby="ViewModalLabel" aria-hidden="true">
+		{% for book in books %}
+		<div class="modal fade" id="viewModal-{{ book.book_id }}" tabindex="-1" role="dialog" aria-labelledby="ViewModalLabel" aria-hidden="true">
 			<div class="modal-dialog" role="document">
 				<div class="modal-content">
 					<div class="modal-header">
@@ -169,30 +175,40 @@
 										<span class="count">26 People downloaded this book</span>
 									</div>
 									<div class="box">
-										<button type="button" class="btn btn-circ" onclick="openPDF()"><a href="{% static 'images/The Son of Neptune.pdf' %}" id="pdfFile" target="_blank"><i class="fa fa-book fa-sm" aria-hidden="true"></i></a></button>
-										<button type="button" class="btn btn-circ"><i class="fa fa-bookmark fa-sm" aria-hidden="true"></i></button>
-										<button type="button" class="btn btn-circ"><a href="{% static 'images/The Son of Neptune.pdf' %}" download><i class="fa fa-download fa-sm" aria-hidden="true"></i></a></button>
+										<button type="button" class="btn btn-circ" onclick="openPDF()">
+											<a href="{{ book.book_file }}" id="pdfFile" target="_blank"><i class="fa fa-book fa-sm" aria-hidden="true"></i></a>
+										</button>
+										<button type="button" class="btn btn-circ">
+											<a href="{{ book.book_file }}"><i class="fa fa-bookmark fa-sm" aria-hidden="true"></i></a>
+										</button>
+										<button type="button" class="btn btn-circ">
+											<a href="{{ book.book_file }}" download><i class="fa fa-download fa-sm" aria-hidden="true"></i></a>
+										</button>
 										<span class="label">Read</span>&nbsp;&nbsp;
 										<span class="label">Bookmark</span>
 										<span class="label">Download</span>
 									</div>
 							    </div>
 							    <div class="col">
-									<span class="author">John Doe</span>
+							    	{% for author in authors %}
+								    	{% if author.book_author_id == book.book_author_id_id %}
+											<span class="author"> {{ author.firstname }} {{ author.lastname }}</span>
+										{% endif %}
+									{% endfor %}
 									<div class="title">
-										Percy Jackson The Lost Hero
+										{{ book.book_title }}
 									</div>
 									<div class="year">
-										2010
+										{{ book.book_year }}
 									</div>
 									<div>
 										Sypnosis:
 										<div class="summary">
-											The story follows the adventures of amnesiac Percy Jackson, a demigod son of Poseidon, as he meets a camp of Roman demigods and goes to Alaska with his new friends Hazel Levesque and Frank Zhang to free the Greek god of death, Thanatos, and help save the world from Gaea, the earth goddess.
+											{{ book.book_summary }}
 										</div>
 									</div><br>
 									<div>
-										<button type="button" class="btn btn-cite" data-toggle="modal" data-target="#citeModal"> CITE </button>
+										<button type="button" class="btn btn-cite" data-toggle="modal" data-target="#citeModal-{{ book.book_id }}"> CITE </button>
 									</div>
 							    </div>
 						    </div> <!-- row -->
@@ -204,9 +220,10 @@
 				</div>
 			</div>
 		</div> <!-- VIEW Modal -->
+		
 
 		<!-- CITE MODAL -->
-		<div class="modal fade" id="citeModal" tabindex="-1" role="dialog" aria-labelledby="CiteModalLabel" aria-hidden="true">
+		<div class="modal fade" id="citeModal-{{ book.book_id }}" tabindex="-1" role="dialog" aria-labelledby="CiteModalLabel" aria-hidden="true">
 			<div class="modal-dialog" role="document">
 				<div class="modal-content">
 					<div class="modal-header">
@@ -254,5 +271,6 @@
 				</div>
 			</div> <!-- TOAST -->
 		</div> <!-- CITE Modal -->
+		{% endfor %}
 	</div>
 {% endblock content %}

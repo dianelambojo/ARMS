@@ -11,8 +11,8 @@ class ArmsAdminView(View):
 		books = Books.objects.all()
 		users = User.objects.all()
 		context={
-			'books' : Books.objects.all(),
-			'users' : User.objects.all()
+			'books' : books,
+			'users' : users,
 		}
 		return render(request,'admindashboard.html', context)
 
@@ -20,8 +20,10 @@ class ArmsAdminView(View):
 class HomepageView(View):
 	def get(self, request):
 		books = Books.objects.all()
+		authors = Author.objects.all()
 		context={
-			'books' : Books.objects.all(),
+			'books' : books,
+			'authors' : authors,
 		}
 		return render(request, 'homepage.html', context)
 

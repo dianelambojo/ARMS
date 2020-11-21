@@ -3,7 +3,7 @@ $(document).ready(function() {
   $('.slider').slick({
     dots: true,
     infinite: false,
-    speed: 600,
+    speed: 700,
     slidesToShow: 4,
     slidesToScroll: 1,
     nextArrow: '<button type="button" class="btn btn-next"><i class="fa fa-arrow-right" aria-hidden="true"></i></button>',

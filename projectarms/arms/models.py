@@ -65,7 +65,7 @@ class Books(models.Model):
 	book_tags = models.CharField(max_length = 100)
 	book_summary = models.CharField(max_length = 100)
 	book_category_no = models.ForeignKey(Category, on_delete=models.CASCADE)
-	book_info = models.CharField(max_length = 100)
+	# book_info = models.CharField(max_length = 100)
 	is_bookmarked = models.BooleanField()
 	is_downloaded = models.BooleanField()
 	is_read = models.BooleanField()
