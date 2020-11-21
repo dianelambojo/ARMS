@@ -14,7 +14,10 @@
 		<br>
 		<div class="left">
 			<div class="input-group mb-3">
-			  	<input type="text" class="width" id="searchBox" placeholder="Search title, author, year">
+				<form method="POST" enctype="multipart/form-data">
+					{% csrf_token %}
+			  		<input type="text" class="form-control" id="searchBox" name="searchBox" placeholder="Search title, author, year">
+			  	</form>
 			  	<div class="input-group-append">
 			    	<button type="button" class="btn btn-mic" onclick="runSpeechRecognition()">
 	              	<i class="fa fa-lg fa-microphone"></i>
@@ -30,17 +33,18 @@
 			</div>
 			<br>
 			<div class="container">
-				<span id="searched">
+				<span id="display">
 					<span id="result"></span>
 				</span>
 				<span class="text">New Releases</span>
 				<ul class="list">
 					<div class="slider">
+						{% for book in books %}
 						<li>
-							<img class="thumbnail" src="{% static 'images/percy.png' %}" alt="The Son of Neptune" title="The Son of Neptune 1990 Rick Riordan" data-toggle="modal" data-target="#viewModal">
+							<img class="thumbnail" src="{{ book.book_cover.url }}" alt="{{ book.book_title }}" title="{{ book.book_title}} {{ book.firstname }} {{ book.book_year }}" data-toggle="modal" data-target="#viewModal">
 						</li>
-
-						<li>
+ 						{% endfor %}
+					<!--<li>
 							<img class="thumbnail" src="{% static 'images/python1.jpg' %}" alt="Python Programming" title="Python Programming" data-toggle="modal" data-target="#viewModal">
 						</li>
 
@@ -66,7 +70,7 @@
 						
 						<li>
 							<img class="thumbnail" src="{% static 'images/research.jpg' %}" alt="Project Management Strategies for Complete Projects Case Study Report" title="Project Management Strategies for Complete Projects Case Study Report" data-toggle="modal" data-target="#viewModal">
-						</li>
+						</li> -->
 					</div>
 				</ul>
 				<span class="text">Recommended</span>
@@ -76,7 +80,7 @@
 							<img class="thumbnail" src="{% static 'images/percy.png' %}" alt="The Son of Neptune" title="The Son of Neptune" data-toggle="modal" data-target="#viewModal">
 						</li>
 
-						<li>
+						<!-- <li>
 							<img class="thumbnail" src="{% static 'images/python1.jpg' %}" alt="Python Programming" title="Python Programming" data-toggle="modal" data-target="#viewModal">
 						</li>
 
@@ -102,7 +106,7 @@
 						
 						<li>
 							<img class="thumbnail" src="{% static 'images/research.jpg' %}" alt="Project Management Strategies for Complete Projects Case Study Report" title="Project Management Strategies for Complete Projects Case Study Report" data-toggle="modal" data-target="#viewModal">
-						</li>
+						</li> -->
 					</div>
 				</ul>
 				<span class="text">Popular</span>
@@ -112,7 +116,7 @@
 							<img class="thumbnail" src="{% static 'images/percy.png' %}" alt="The Son of Neptune" title="The Son of Neptune" data-toggle="modal" data-target="#viewModal">
 						</li>
 
-						<li>
+						<!-- <li>
 							<img class="thumbnail" src="{% static 'images/python1.jpg' %}" alt="Python Programming" title="Python Programming" data-toggle="modal" data-target="#viewModal">
 						</li>
 
@@ -138,7 +142,7 @@
 						
 						<li>
 							<img class="thumbnail" src="{% static 'images/research.jpg' %}" alt="Project Management Strategies for Complete Projects Case Study Report" title="Project Management Strategies for Complete Projects Case Study Report" data-toggle="modal" data-target="#viewModal">
-						</li>
+						</li> -->
 					</div>
 				</ul>
 			</div> <!-- Container -->
@@ -159,7 +163,7 @@
 						<div class="container-fluid">
 						    <div class="row">
 						    	<div class="col">
-									<a href="{% static 'images/percy.png' %}"><img class="thumbnail2" style="margin-bottom: 5px;" src="{% static 'images/percy.png' %}" alt=""></a>
+									<a href="{{ book.book_cover.url }}"><img class="thumbnail2" style="margin-bottom: 5px;" src="{{ book.book_cover.url }}" alt="{{ book.book_title }}"></a>
 									<div>
 										<span class="count">25 People read this book</span><br>
 										<span class="count">26 People downloaded this book</span>

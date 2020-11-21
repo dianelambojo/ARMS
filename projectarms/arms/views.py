@@ -19,7 +19,11 @@ class ArmsAdminView(View):
 
 class HomepageView(View):
 	def get(self, request):
-		return render(request, 'homepage.html')
+		books = Books.objects.all()
+		context={
+			'books' : Books.objects.all(),
+		}
+		return render(request, 'homepage.html', context)
 
 	def post(self, request):
 		return render(request, 'homepage.html')

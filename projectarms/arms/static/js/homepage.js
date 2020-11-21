@@ -92,7 +92,7 @@ $(document).ready(function () {
       // Retrieve the input field text 
       var filter = $(this).val();
       //var count = 0;
-      var display = document.getElementById("searched");
+      var display = $("#display").val();
 
       // Loop through the captions div 
       $(".thumbnail").each(function(){
@@ -114,7 +114,7 @@ $(document).ready(function () {
           // Show the div item if the phrase matches 
           else {
               $("#result").html("Results"+"<br>");
-              $(this).show().appendTo("#searched");
+              $(this).show().appendTo("#display");
               $(".slider").hide();
               //$(this).show();
               //$(".text").show();
@@ -129,6 +129,9 @@ $(document).ready(function () {
       $("#filter-count").text("Number of Filter = "+count);*/
    });
 });
+
+
+
 
 
 /*function myFunction() {
@@ -223,7 +226,7 @@ function runSpeechRecognition() {
 
         var filter = $("#searchBox").val();
         //var count = 0;
-        var display = document.getElementById("searched");
+        var display = $('#display').val();
 
         // Loop through the captions div 
         $(".thumbnail").each(function(){
@@ -239,8 +242,9 @@ function runSpeechRecognition() {
             // Show the div item if the phrase matches 
             } else {
                 $("#result").html("Results"+"<br>");
-                $(this).show().appendTo("#searched");
-                
+                $(this).show().appendTo("#display");
+                $(".slider").hide();
+
                 //$(".text").show();
                 //$(".btn-next").show();
                 //count++;
