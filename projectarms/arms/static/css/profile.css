@@ -46,37 +46,6 @@ body {
 .topnav-right {
 	float: right;
 }
-/*Fa Icon*/
-.fa{
-	background:transparent;
-	border: transparent;
-}
-.fas{
-	background: w3-black w3-round;
-}
-/*Profile*/
-.row1 {
-	border-top-right-radius: 25px;
-	border-bottom-right-radius: 25px;
-	background: #831b1b;
-	padding: 30px; 
-	width: 300px;
-	height: 550px;  
-}
-.container-sm {
-	border-radius: 25px;
-	padding: 5px; 
-	width: 800px;
-	height: 500px;  
-}
-.col-lg-30 {
-	border-radius: 25px;
-	padding: 0px;  
-}
-
-.images {
-	border-radius: 50%;
-}
 /*Buttons*/
 .button{
 	background:transparent;
