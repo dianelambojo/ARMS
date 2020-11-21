@@ -195,6 +195,11 @@ a:active{
     border-bottom: 2px solid #F4CC3C;
     background: rgba(255,255,255,0.2);
 }
+
+*{
+  margin: 0;
+  padding: 0;
+}
 /*--------------------------------------------------------------
 # Header BG
 --------------------------------------------------------------*/
@@ -322,14 +327,15 @@ input[type="submit"]:hover{
   background: rgba(221, 221, 221, 0.5)!important;
   border-radius: 50px;
 }
-/*--------------------------------------------------------------
+/* --------------------------------------------------------------
 # Register
 --------------------------------------------------------------*/
 .register{
   position : absolute;
-  top: 55%;
+  top: 45%;
   left: 50%;
   transform: translate(-50%, -50%);
+  height: 490px;
   width: 600px;
   border-radius: 10px;
 }
@@ -356,7 +362,7 @@ input[type="submit"]:hover{
   top: 200px;
   left: 200px;
 }
-.compimg{
+.bookimg{
   position: absolute;
   bottom: 1px;
   right: 1px;
