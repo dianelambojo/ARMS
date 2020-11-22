@@ -92,7 +92,7 @@ $(document).ready(function () {
       // Retrieve the input field text 
       var filter = $(this).val();
       //var count = 0;
-      var display = $("#display").val();
+      var display = document.getElementById('display');
 
       // Loop through the captions div 
       $(".thumbnail").each(function(){
@@ -115,7 +115,7 @@ $(document).ready(function () {
           else {
               $("#result").html("Results"+"<br>");
               $(this).show().appendTo("#display");
-              $(".slider").hide();
+              $('.slider').hide();
               //$(this).show();
               //$(".text").show();
              // $(".btn-next").show();
@@ -181,12 +181,45 @@ $(document).ready(function(){
 });
 
 
-/*$(document).ready(function(){
-  $('#citeStyle').change(function(){
-    var style = $('#citeStyle :selected').text();
+$(document).ready(function(){
+  /*var mysql = require('mysql');
+
+  var con = mysql.createConnection({
+    host: "localhost",
+    user: "root",
+    password: "",
+    database: "arms_database"
+  });*/
+
+  var style = $("#citeStyle :selected").val(); 
+
+  if(style == "American Psychological Association"){
+    document.getElementById('text').value = style;
+  }
+
+  $('#citeStyle').change(function() {
+    var style = $("#citeStyle :selected").val(); 
+
+    if(style == "American Psychological Association"){
+      document.getElementById('text').value = style;
+
+      /*con.connect(function(err) {
+        if (err) throw err;
+        
+        con.query("SELECT * FROM books", function (err, result) {
+          if (err) throw err;
+          console.log(result);
+        });
+      });*/
+
+    }else if(style == "Modern Language Association"){
+      document.getElementById('text').value = style;
+      console.log(style);
+    }
   });
+
 });
-*/
+
 
 
 //Speech to Text feature

@@ -70,6 +70,11 @@ class Books(models.Model):
 	is_downloaded = models.BooleanField()
 	is_read = models.BooleanField()
 
+	#count of all downloads and reads
+	total_downloads = models.IntegerField()
+	total_reads = models.IntegerField()
+
+
 	class Meta:
 		db_table = "Books"
 
