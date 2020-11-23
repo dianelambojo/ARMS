@@ -5,7 +5,7 @@ from django.http import Http404
 from .forms import UserForm
 from .models import *
 
-import mysql.connector
+
 
 # Create your views here.
 
@@ -57,12 +57,12 @@ class HomepageView(View):
 class ProfileIndexView(View):
 	def get(self, request):
 		user = User.objects.all()
-
+		#print(user)
 		context = {
 			'users' : user
 		}
 
-		return render(request, 'profile.html')
+		return render(request, 'profile.html', context)
 
 class LandingPageIndexView(View):
 	def get(self, request):

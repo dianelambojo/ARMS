@@ -109,8 +109,11 @@
 						<div class="d-flex flex-row-reverse">
 							<div class="row1">
 								<div class="d-flex flex-row-reverse">
-									<button  type="button" data-toggle="modal" data-target="#ModalEdit" class='fa fa-edit'style='font-size:20px; color: white'></button>
-										<div class="modal fade" id="ModalEdit" role="dialog">
+									{% for user in users %}
+										
+										<button  type="button" data-toggle="modal" data-target="#ModalEdit-{{uer.user_id}}" class='fa fa-edit'style='font-size:20px; color: white'></button>
+
+										<div class="modal fade" id="ModalEdit-{{uer.user_id}}" role="dialog" aria-hidden="true">
 											<div class="modal-dialog">
 											<!-- Modal Edit-->  
 												<div class="modal-content">
@@ -118,69 +121,76 @@
 														<h4 class="modal-title">Profile Details</h4>
 													</div>
 													
-													<div class="modal-body" >
-														<div class = "row">
-															<form>
-																	<div class="form-group row">
-																		<label for="Name" class="col-sm-4 col-form-label"> First Name</label>
-																		 <div class="col-xs-2">
-																			<input type="text" class="form-control input-sm" name="firstname" placeholder="Name">
-																		</div>
-																	</div>
-
-																	<div class="form-group row">
-																		<label for="Name" class="col-sm-4 col-form-label"> Last Name</label>
-																		<div class="col-sm-8">
-																			<input type="text" class="form-control" name="lastname" placeholder="Name">
-																		</div>
-																	</div>
-
-																	<div class="form-group row">
-																		<label for="Email" class="col-sm-4 col-form-label">Email</label>
-																		<div class="col-sm-8">
-																			<input type="text" class="form-control" name="email" placeholder="Email" required="">
-																		</div>
-																	</div>
-
-																	<div class="form-group row">
-																		<label for="Birthdate" class="col-sm-4 col-form-label">Birthdate</label>
-																		<div class="col-sm-8">
-																			<input type="date" class="form-control"  name="birthdate" placeholder="Birthdate">
-																		</div>
-																	</div>
-
-																	<div class="form-group row">
-																		<label class="col-sm-5 form-check-label" for="exampleRadios1"> Gender</label>
-																			<div class="col-sm-3">
-																				<input class="form-check-input" type="radio" name="exampleRadios" name="gender"  value="option2" >
-																				<label class="form-check-label" for="exampleRadios2">Male</label>
-																			</div>
-
-																			<div class="col-sm-4">
-																				<input class="form-check-input" type="radio" name="exampleRadios" name="gender"  value="option3">
-																				<label class="form-check-label" for="exampleRadios3">Female </label>
-																			</div>
-																	</div>
-
-																	<div class="form-group row">
-																		<label for="ConfirminputPassword" class="col-sm-4 col-form-label">Password</label>
-																		<div class="col-sm-8">
-																			<input type="password" class="form-control" name="password" placeholder="Password" required="">
-																		</div>
-																	</div>
-
-																	<div class="form-group row">
-																		<label for="ConfirminputPassword" class="col-sm-4 col-form-label">Confirm Password</label>
-																		<div class="col-sm-8">
-																			<input type="password" class="form-control" name="confirmpassword" placeholder="Password" required="">
-																		</div>
-																	</div>
-																</form>				  		
+													<div class="modal-body" value = "{{user.user_id}}">
+														<div class = "row col-12">
+																<form method="POST">
+	                    											{% csrf_token %}
+												                    <div class ="row col-12">
+												                        <div class="txt_field col-sm-6">
+												                            <input type="text required" name="firstname" value = "{{user.firstname}}">
+												                            <span></span>
+												                            <label>First Name</label>
+												                        </div>
+												                        <div class="txt_field col-sm-6">
+												                            <input type="text required" name="lastname" value = "{{user.lastname}}">
+												                            <span></span>
+												                            <div class=" d-flex justify-content-center">
+												                                <label>Last Name</label>
+												                            </div>
+												                        </div>
+												                    </div>
+												                    
+												                    <div class="txt_field">
+												                        <div class="col-md-9">
+												                            <input type="date" name="birthdate" value = "{{user.birthdate}}">
+												                        </div>
+												                        <span></span>
+												                        <label>Birthdate</label>
+												                    </div>
+												                    <div class="txt_field">
+												                        <input type="text required" name="contact_number" value = "{{user.contact_number}}">
+												                        <span></span>
+												                        <label>Contact No.</label>
+												                    </div>
+												                    <div class="txt_field">
+												                        <input type="text required" name="email"  value = "{{user.email}}">
+												                        <span></span>
+												                        <label>Email</label>
+												                    </div>
+												                    <div class="txt_field">
+												                        <label>Gender</label>
+												                    </div>
+												                    <div class="radio_field row col-12">
+												                        <div class="col-6 d-flex justify-content-center">
+												                            <input class="mt-2 mr-1" type="radio" id="male" name="gender"  value = "{{user.gender}}">
+												                            <label for="male">Male</label>
+												                        </div>
+												                        <div class="col-6 d-flex justify-content-center">
+												                            <input class="mt-2 mr-1" type="radio" id="female" name="gender" value = "{{user.gender}}">
+												                                <label for="female">Female</label>
+												                        </div>
+												                    </div>
+												                    <div class="txt_field">
+												                        <input type="text required" name="user_id" value = "{{user.user_id}}">
+												                        <span></span>
+												                        <label>UserID</label>
+												                    </div>
+												                    <div class="txt_field">
+												                        <input type="password" name="password" value = "{{user.password}}"required>
+												                        <span></span>
+												                        <label>Password</label>
+												                    </div>
+												                    <div class="txt_field">
+												                        <input type="password" name="confirmpassword" value = "{{user.confirmpassword}}" required>
+												                        <span></span>
+												                        <label>Confirm Password</label>
+												                    </div>  
+												                </form>	  		
 															</div>
 														</div>
 
 														<div class="modal-footer">
-															<button type="button" class="btn btn-primary" data-dismiss="modal">Save</button>
+															<button type="button" class="btn" data-dismiss="modal">Update</button>
 															<button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
 														</div>
 													</div>				      
@@ -188,47 +198,49 @@
 											</div>
 										</div>
 
-									<div class="text-center">
-										<img  src="{% static 'images/prof.jpg' %}" width="80" height="75" class="rounded-circle">
+										<div class="text-center">
+											<img  src="{% static 'images/prof.jpg' %}" width="80" height="75" class="rounded-circle">
+											<br>
+											<br>
+											<div class="col-12" style="color: gold" > Jane Doe </div>
+											<br>
+
+											<div class="col-12">
+												<div class="row" class="botton">
+													<div class="col-4">
+														<div class="btn btn-warning"> 
+															<div class="fa fa-book" style="color:maroon"></div>
+														</div>
+														<div class="col-4" style="color: white">12</div>
+														<div class="col" style='font-size:14px; color: white'>Reads</div>
+													</div>
+
+													<div class="col-4">
+														<div class="btn btn-warning"> 
+															<div class="fa fa-bookmark" style="color:maroon"></div>
+														</div>
+														<div class="col-4" style="color: white">20</div>
+														<div class="row" style='font-size:14px; color: white'>Bookmarks</div>
+													</div>
+
+													<div class="col-4">
+														<div class="btn btn-warning"> 
+															<div class="fa fa-download" style="color:maroon"></div>
+														</div>
+														<div class="col-4" style="color: white">20</div>
+														<div class="row" style='font-size:14px; color: white'>Downloads</div>
+													</div>
+		  										</div>
+											</div>	
+										</div>
+
 										<br>
 										<br>
-										<div class="col-12" style="color: gold" > Jane Doe </div>
-										<br>
-
-										<div class="col-12">
-											<div class="row" class="botton">
-												<div class="col-4">
-													<div class="btn btn-warning"> 
-														<div class="fa fa-book" style="color:maroon"></div>
-													</div>
-													<div class="col-4" style="color: white">12</div>
-													<div class="col" style='font-size:14px; color: white'>Reads</div>
-												</div>
-
-												<div class="col-4">
-													<div class="btn btn-warning"> 
-														<div class="fa fa-bookmark" style="color:maroon"></div>
-													</div>
-													<div class="col-4" style="color: white">20</div>
-													<div class="row" style='font-size:14px; color: white'>Bookmarks</div>
-												</div>
-
-												<div class="col-4">
-													<div class="btn btn-warning"> 
-														<div class="fa fa-download" style="color:maroon"></div>
-													</div>
-													<div class="col-4" style="color: white">20</div>
-													<div class="row" style='font-size:14px; color: white'>Downloads</div>
-												</div>
-	  										</div>
-										</div>	
-									</div>
-
-									<br>
-									<br>
-									<div class="d-flex justify-content-center">&nbsp;&nbsp;
-										<button type="button" class="btn btn-warning" style="color:black">Add Work</button>
-									</div>
+										<div class="d-flex justify-content-center">&nbsp;&nbsp;
+											<button type="button" class="btn btn-warning" style="color:black">Add Work</button>
+										</div>
+									{% endfor %}
+								</div>
 							</div>						
 						</div>							
 					</div>
