@@ -5,7 +5,7 @@ from django.http import Http404
 from .forms import UserForm
 from .models import *
 
-import mysql.connector
+
 
 # Create your views here.
 
@@ -61,12 +61,12 @@ class PdfViewer(View):
 class ProfileIndexView(View):
 	def get(self, request):
 		user = User.objects.all()
-
+		#print(user)
 		context = {
 			'users' : user
 		}
 
-		return render(request, 'profile.html')
+		return render(request, 'profile.html', context)
 
 class LandingPageIndexView(View):
 	def get(self, request):
@@ -77,8 +77,11 @@ class LoginIndexView(View):
 		return render(request, 'login.html')
 
 class RegisterIndexView(View):
-	def get(self, request):
-		return render(request, 'register.html')
+	def get(self,request):
+		context={
+			'title': 'Registration',
+		}
+		return render(request, 'register.html', context)
 
 	def post(self, request):
 		form = UserForm(request.POST)
@@ -89,13 +92,20 @@ class RegisterIndexView(View):
 			firstname = request.POST.get("firstname")
 			lastname = request.POST.get("lastname")
 			birthdate = request.POST.get("birthdate")
+			email = request.POST.get("email")
 			gender = request.POST.get("gender")
 			contact_number = request.POST.get("contact_number")
 			password = request.POST.get("password")
 			confirmpassword = request.POST.get("confirmpassword")
 
+			user_type = request.POST.get("user_type")
+
 			form = User(user_id = user_id, firstname = firstname, lastname = lastname, birthdate = birthdate, gender = gender, contact_number = contact_number,
-						password = password, confirmpassword = confirmpassword)
+						password = password, confirmpassword = confirmpassword, user_type=user_type)
+			
+			if user_type: "student"
+			form = Student(student_id_id=user_id)
+
 			form.save()
 
 			return HttpResponse('Record saved!')			

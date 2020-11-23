@@ -206,20 +206,19 @@
             </thead>
 
             <tbody>
+              {% for user in users %}
               <tr>
-                <td> 1 </td>
-                <td>Diane</td>
-                <td>Lambojo</td>
-                <td>Female</td>
+                <td>{{user.user_id}}</td>
+                <td>{{user.firstname}}</td>
+                <td>{{user.lastname}}</td>
+                <td>{{user.gender}}</td>
                 <td>
-                  <button type="button" class="btn btn-modal" data-toggle="modal" data-target="#ViewModal1"> <span style="color: #800000"; class="fa fa-eye"></span> </button>
-                  <button type="button" class="btn btn-modal" data-toggle="modal" data-target="#DeleteModal1"><span style="color: #800000"; class="fa fa-trash"></span> </button>
+                  <button type="button" class="btn btn-modal" data-toggle="modal" data-target="#ViewModal1-{{user.user_id}}"> <span style="color: #800000"; class="fa fa-eye"></span> </button>
+                  <button type="button" class="btn btn-modal" data-toggle="modal" data-target="#DeleteModal1-{{user.user_id}}"><span style="color: #800000"; class="fa fa-trash"></span> </button>
                 </td>
               </tr>
-            </tbody>
-          </table>
     <!-- MODAL VIEW BOOK -->
-              <div class="modal fade" id="ViewModal1" tabindex="-1" role="dialog" aria-labelledby="ViewModalLabel1" aria-hidden="true">
+              <div class="modal fade" id="ViewModal1-{{user.user_id}}" tabindex="-1" role="dialog" aria-labelledby="ViewModalLabel1" aria-hidden="true">
                 <div class="modal-dialog " role="document">
                   <div class="modal-content">
                     <div class="modal-header">
@@ -233,14 +232,21 @@
                       <input type="text" name="userid" value ="" hidden>
                       <div class="modal-body">
                         <div class="form-row">
-                          <div class="form-group col-md-6">
+                          <div class="form-group col-md-12">
                             <label for="booktitle">User ID</label>
-                            <input type="text" class="form-control" id="userid" name="userid" value = "">
+                            <input type="text" class="form-control" id="userid" name="userid" value = "{{user.user_id}}">
                           </div>
+                        </div>
+                        <div class="form-row">
                           <div class="form-group col-md-6">
                             <label for="bookauthor">First name</label>
-                            <input type="text" class="form-control" id="fname" name="fname" value = "">
+                            <input type="text" class="form-control" id="fname" name="fname" value = "{{user.firstname}}">
                           </div>
+                          <div class="form-group col-md-6">
+                            <label for="bookauthor">Last name</label>
+                            <input type="text" class="form-control" id="lname" name="lname" value = "{{user.lastname}}">
+                          </div>
+                        </div>
                         </div>
                       </div>
                     </form>
@@ -248,7 +254,7 @@
                 </div>
               </div>
       <!-- Modal Delete -->
-              <div class="modal fade" id="DeleteModal1" tabindex="-1" role="dialog" aria-labelledby="DeleteModalLabel1" aria-hidden="true">
+              <div class="modal fade" id="DeleteModal1-{{user.user_id}}" tabindex="-1" role="dialog" aria-labelledby="DeleteModalLabel1" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                   <div class="modal-content">
                     <div class="modal-header">
@@ -271,6 +277,9 @@
                   </div>
                 </div>
               </div>
+              {% endfor %}
+            </tbody>
+          </table>
         </table>
       </div>
     </div>
