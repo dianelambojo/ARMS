@@ -5,10 +5,11 @@ from django.utils import timezone
 class User(models.Model):
 	user_id = models.CharField(primary_key=True, max_length=50)
 	password = models.CharField(max_length=100)
+	confirmpassword = models.CharField(max_length=100 , default="")
 	firstname = models.CharField(max_length = 100)
 	lastname = models.CharField(max_length = 100)
 	email = models.CharField(max_length = 100)
-	birthdate = models.DateField(default = timezone.now())
+	birthdate = models.DateField(default = timezone.now)
 
 	G_CHOICES = [('M','Male'),('F','Female')]
 	gender=models.CharField(max_length = 50, choices=G_CHOICES)
@@ -41,7 +42,7 @@ class Author(models.Model):
 	firstname = models.CharField(max_length = 100)
 	lastname = models.CharField(max_length = 100)
 	email = models.CharField(max_length = 100)
-	birthdate = models.DateField(default = timezone.now())
+	birthdate = models.DateField(default = timezone.now)
 	G_CHOICES = [('M','Male'),('F','Female')]
 	gender=models.CharField(max_length = 50, choices=G_CHOICES)
 
