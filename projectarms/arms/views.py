@@ -77,7 +77,7 @@ class RegisterIndexView(View):
 		context={
 			'title': 'Registration',
 		}
-		return render(request, 'arms/register.html', context)
+		return render(request, 'register.html', context)
 
 	def post(self, request):
 		form = UserForm(request.POST)
@@ -88,6 +88,7 @@ class RegisterIndexView(View):
 			firstname = request.POST.get("firstname")
 			lastname = request.POST.get("lastname")
 			birthdate = request.POST.get("birthdate")
+			email = request.POST.get("email")
 			gender = request.POST.get("gender")
 			contact_number = request.POST.get("contact_number")
 			password = request.POST.get("password")
