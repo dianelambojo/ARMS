@@ -90,8 +90,14 @@ class RegisterIndexView(View):
 			password = request.POST.get("password")
 			confirmpassword = request.POST.get("confirmpassword")
 
+			user_type = request.POST.get("user_type")
+
 			form = User(user_id = user_id, firstname = firstname, lastname = lastname, birthdate = birthdate, gender = gender, contact_number = contact_number,
-						password = password, confirmpassword = confirmpassword)
+						password = password, confirmpassword = confirmpassword, user_type=user_type)
+			
+			if user_type: "student"
+			form = Student(student_id_id=user_id)
+
 			form.save()
 
 			return HttpResponse('Record saved!')			
