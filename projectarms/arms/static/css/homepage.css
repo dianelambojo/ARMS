@@ -3,14 +3,6 @@
 	background-color: #FFFFFF;
 }
 
-.form-control{
-	width: 700px;
-	border: 1px solid #D3D3D3;
-	border-top-left-radius: 1.5rem;
-	border-bottom-left-radius: 1.5rem;
-	padding-left: 20px;
-}
-
 /* others */
 .left{
 	padding-left:5em;

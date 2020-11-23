@@ -14,10 +14,10 @@
 		<br>
 		<div class="left">
 			<div class="input-group mb-3">
-				<form method="POST" enctype="multipart/form-data">
-					{% csrf_token %}
-			  		<input type="text" class="form-control" id="searchBox" name="searchBox" placeholder="Search title, author, year">
-			  	</form>
+				<!-- <form method="POST" enctype="multipart/form-data">
+					{% csrf_token %} -->
+			  		<input type="text" style="width: 700px; border: 1px solid #D3D3D3; border-top-left-radius: 1.5rem; border-bottom-left-radius: 1.5rem; padding-left: 20px;" id="searchBox" name="searchBox" placeholder="Search title, author, year">
+			  	<!-- </form> -->
 			  	<div class="input-group-append">
 			    	<button type="button" class="btn btn-mic" onclick="runSpeechRecognition()">
 	              	<i class="fa fa-lg fa-microphone"></i>
@@ -171,8 +171,8 @@
 						    	<div class="col">
 									<a href="{{ book.book_cover.url }}"><img class="thumbnail2" style="margin-bottom: 5px;" src="{{ book.book_cover.url }}" alt="{{ book.book_title }}"></a>
 									<div>
-										<span class="count">25 People read this book</span><br>
-										<span class="count">26 People downloaded this book</span>
+										<span class="count">{{ book.total_reads }} People read this book</span><br>
+										<span class="count">{{ book.total_downloads }} People downloaded this book</span>
 									</div>
 									<div class="box">
 										<button type="button" class="btn btn-circ" onclick="openPDF()">
@@ -241,6 +241,7 @@
 									<option value="Chicago Manual of Style"> Chicago Manual of Style </option>
 									<option value="Institute of Electrical and Electronics Engineers"> Institute of Electrical and Electronics Engineers </option>
 								</select>
+								<input type="text" id="text" name="text" hidden>
 							</div><br>
 							<div>
 								<textarea class="textarea" id="citationText" name="citationText" readonly>Borman, W. C., Hanson, M.A., Oppler, S. H., Pulakos, E. D., & White, L. A. (1993). Role of early supervisory experience in supervisor performance. Journal of Applied Psychology, 78, 443-449. Retrieved October 23, 2000, from PsycARTICLES database.</textarea>
@@ -272,5 +273,6 @@
 			</div> <!-- TOAST -->
 		</div> <!-- CITE Modal -->
 		{% endfor %}
+
 	</div>
 {% endblock content %}

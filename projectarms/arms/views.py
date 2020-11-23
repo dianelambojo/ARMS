@@ -5,6 +5,8 @@ from django.http import Http404
 from .forms import UserForm
 from .models import *
 
+import mysql.connector
+
 # Create your views here.
 
 class ArmsAdminView(View):
@@ -27,9 +29,30 @@ class HomepageView(View):
 			'authors' : authors,
 		}
 		return render(request, 'homepage.html', context)
+		# return render(request, 'homepage.html')
 
 	def post(self, request):
+	# 	inputText = request.POST.get('searchBox')
+	# 	print(inputText)
+	# 	authors = Author.objects.all()
+	# 	conn = mysql.connector.connect(
+	# 		user="root", password="", host="127.0.0.1", database="arms_database")
+		
+	# 	cursor = conn.cursor()
+
+	# 	cursor.execute("SELECT * from Books WHERE book_title=%s",[inputText])
+	# 	books = cursor.fetchall()
+	# 	print(books)
+	# 	conn.close()
+
+	# 	context={
+	# 		'books' : books,
+	# 		'authors' : authors,
+	# 	}
+
+	# 	return render(request, 'homepage.html', context)
 		return render(request, 'homepage.html')
+
 
 class ProfileIndexView(View):
 	def get(self, request):
