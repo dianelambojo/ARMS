@@ -9,7 +9,7 @@
     {% if title %}
     <title>ARMS - {{ title }}</title>
     {% else %}
-    <title>ARMS</title>
+    <title>Archived of Reading Materials</title>
     {% endif %}
     <!-- Meta tags -->
     <meta charset="utf-8">
@@ -18,7 +18,7 @@
     <meta content="" name="keywords">
     
 
-    <!--All links here-->
+    <!--All CSS links here-->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css">
@@ -27,7 +27,8 @@
 
     <link rel="stylesheet" href="{% static 'css/homepage.css' %}">
     <link rel="stylesheet" href="{% static 'css/profile.css' %}">
-<link href="{% static 'css/style.css' %}" rel="stylesheet" >
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+   <!-- <link href="{% static 'css/style.css' %}" rel="stylesheet">-->
 </head>
 <body> 
     <header>
@@ -41,7 +42,7 @@
             <div id="navbarSupportedContent" class="collapse navbar-collapse">
                 <ul class="navbar-nav ml-auto">
                   <li class="nav-item active"><a href="{% url 'arms:homepage_view' %}" class="nav-link_b">Home</a></li>
-                  <li class="nav-item active"><a href='#' class="nav-link_b">About Us</a></li>
+                  <li class="nav-item active"><a href="#" class="nav-link_b">About Us</a></li>
                   <li class="nav-item active">
                     <div class="dropdown">
                       <button class="dropbtn">Hi, User</button>
@@ -60,32 +61,28 @@
     {% block content %}
 
     {% endblock content %}
-    <footer id="footer">
-        <div class="container d-md-flex py-4">
-          <div class="mr-md-auto text-center text-md-left">
+    <footer class="py-1 mt-auto">
+      <div class="container-fluid">
+        <div class="d-flex align-items-center justify-content-between small">
+          <div class="text-muted">
             <!--Audio-->
             <button type="button" class="btn btn-warning btn-circle" onclick="runSpeechRecognition()">
               <i class="fa fa-microphone" style="color:maroon"></i>
             </button>
           </div>
-          <!-- <div class="mr-md-auto text-center text-md-right">
-            <div class="copyright">
-              &copy; Copyright <strong><span>Archived of Reading Materials</span></strong>. All Rights Reserved
-            </div> -->
+          <div class="copyright">
+            &copy; Copyright <strong><span>Archived of Reading Materials</span></strong>. All Rights Reserved
           </div>
         </div>
-    </footer>
-
-    <!--All scripts here-->
+      </div>
+    </footer> <!-- end footer-->
+    <!--All JS scripts here-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.js"></script>
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 
-
     <script type="text/javascript" src="{% static 'js/homepage.js' %}"></script>
-	</body>
 </body>
 </html>

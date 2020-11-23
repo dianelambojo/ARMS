@@ -3,14 +3,6 @@
 	background-color: #FFFFFF;
 }
 
-.width{
-	width: 70%;
-	border: 1px solid #D3D3D3;
-	border-top-left-radius: 1.5rem;
-	border-bottom-left-radius: 1.5rem;
-	padding-left: 20px;
-}
-
 /* others */
 .left{
 	padding-left:5em;
@@ -354,14 +346,14 @@
 
 /* Upper Right Red Triangle*/
 .triangle{
-  height:0;
-  width: 0;
-  border-top:400px solid #800000;
-  border-left: 700px solid transparent;
-  position: absolute;
-  top: 0;
-  right: 0;
-  z-index: -1;
+	height:0;
+	width: 0;
+	border-top:400px solid #800000;
+	border-left: 700px solid transparent;
+	position: absolute;
+	top: 0;
+	right: 0;
+	z-index: -1;
 }
 
 .list{
@@ -372,4 +364,8 @@
 	font-weight: bold;
 	font-family: 'Times New Roman';
 	font-size: 20px;
+}
+
+#display{
+	padding: 5px;
 }

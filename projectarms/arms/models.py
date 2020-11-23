@@ -5,10 +5,11 @@ from django.utils import timezone
 class User(models.Model):
 	user_id = models.CharField(primary_key=True, max_length=50)
 	password = models.CharField(max_length=100)
+	confirmpassword = models.CharField(max_length=100 , default="")
 	firstname = models.CharField(max_length = 100)
 	lastname = models.CharField(max_length = 100)
 	email = models.CharField(max_length = 100)
-	birthdate = models.DateField(default = timezone.now())
+	birthdate = models.DateField(default = timezone.now)
 
 	G_CHOICES = [('M','Male'),('F','Female')]
 	gender=models.CharField(max_length = 50, choices=G_CHOICES)
@@ -41,7 +42,7 @@ class Author(models.Model):
 	firstname = models.CharField(max_length = 100)
 	lastname = models.CharField(max_length = 100)
 	email = models.CharField(max_length = 100)
-	birthdate = models.DateField(default = timezone.now())
+	birthdate = models.DateField(default = timezone.now)
 	G_CHOICES = [('M','Male'),('F','Female')]
 	gender=models.CharField(max_length = 50, choices=G_CHOICES)
 
@@ -59,12 +60,13 @@ class Books(models.Model):
 	book_id = models.CharField(primary_key=True, max_length=50)
 	book_title = models.CharField(max_length = 100)
 	book_author_id = models.ForeignKey(Author, on_delete=models.CASCADE)
-	book_cover = models.FileField(upload_to='media')
+	book_cover = models.ImageField(upload_to='media/')
+	book_file = models.FileField(upload_to='media/')
 	book_year = models.IntegerField()
 	book_tags = models.CharField(max_length = 100)
 	book_summary = models.CharField(max_length = 100)
 	book_category_no = models.ForeignKey(Category, on_delete=models.CASCADE)
-	book_info = models.CharField(max_length = 100)
+	# book_info = models.CharField(max_length = 100)
 	is_bookmarked = models.BooleanField()
 	is_downloaded = models.BooleanField()
 	is_read = models.BooleanField()

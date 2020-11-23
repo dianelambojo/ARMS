@@ -14,7 +14,10 @@
 		<br>
 		<div class="left">
 			<div class="input-group mb-3">
-			  	<input type="text" class="width" id="searchBox" placeholder="Search title, author, year">
+				<!-- <form method="POST" enctype="multipart/form-data">
+					{% csrf_token %} -->
+			  		<input type="text" style="width: 700px; border: 1px solid #D3D3D3; border-top-left-radius: 1.5rem; border-bottom-left-radius: 1.5rem; padding-left: 20px;" id="searchBox" name="searchBox" placeholder="Search title, author, year">
+			  	<!-- </form> -->
 			  	<div class="input-group-append">
 			    	<button type="button" class="btn btn-mic" onclick="runSpeechRecognition()">
 	              	<i class="fa fa-lg fa-microphone"></i>
@@ -30,17 +33,23 @@
 			</div>
 			<br>
 			<div class="container">
-				<span id="searched">
+				<span id="display">
 					<span id="result"></span>
 				</span>
 				<span class="text">New Releases</span>
 				<ul class="list">
 					<div class="slider">
-						<li>
-							<img class="thumbnail" src="{% static 'images/percy.png' %}" alt="The Son of Neptune" title="The Son of Neptune 1990 Rick Riordan" data-toggle="modal" data-target="#viewModal">
-						</li>
+						{% for book in books %}
+							{% for author in authors %}
+								{% if author.book_author_id == book.book_author_id_id %}
+									<li>
+										<img class="thumbnail" src="{{ book.book_cover.url }}" alt="{{ book.book_title }}" title="{{ book.book_title}} {{ author.firstname }} {{ author.lastname }} {{ book.book_year }}" data-toggle="modal" data-target="#viewModal-{{ book.book_id }}">
+									</li>
+								{% endif %}
+							{% endfor %}
+ 						{% endfor %}
 
-						<li>
+						<!-- <li>
 							<img class="thumbnail" src="{% static 'images/python1.jpg' %}" alt="Python Programming" title="Python Programming" data-toggle="modal" data-target="#viewModal">
 						</li>
 
@@ -66,7 +75,7 @@
 						
 						<li>
 							<img class="thumbnail" src="{% static 'images/research.jpg' %}" alt="Project Management Strategies for Complete Projects Case Study Report" title="Project Management Strategies for Complete Projects Case Study Report" data-toggle="modal" data-target="#viewModal">
-						</li>
+						</li>  -->
 					</div>
 				</ul>
 				<span class="text">Recommended</span>
@@ -146,7 +155,8 @@
 
 
 		<!-- VIEW MODAL -->
-		<div class="modal fade" id="viewModal" tabindex="-1" role="dialog" aria-labelledby="ViewModalLabel" aria-hidden="true">
+		{% for book in books %}
+		<div class="modal fade" id="viewModal-{{ book.book_id }}" tabindex="-1" role="dialog" aria-labelledby="ViewModalLabel" aria-hidden="true">
 			<div class="modal-dialog" role="document">
 				<div class="modal-content">
 					<div class="modal-header">
@@ -159,36 +169,46 @@
 						<div class="container-fluid">
 						    <div class="row">
 						    	<div class="col">
-									<a href="{% static 'images/percy.png' %}"><img class="thumbnail2" style="margin-bottom: 5px;" src="{% static 'images/percy.png' %}" alt=""></a>
+									<a href="{{ book.book_cover.url }}"><img class="thumbnail2" style="margin-bottom: 5px;" src="{{ book.book_cover.url }}" alt="{{ book.book_title }}"></a>
 									<div>
-										<span class="count">25 People read this book</span><br>
-										<span class="count">26 People downloaded this book</span>
+										<span class="count">{{ book.total_reads }} People read this book</span><br>
+										<span class="count">{{ book.total_downloads }} People downloaded this book</span>
 									</div>
 									<div class="box">
-										<button type="button" class="btn btn-circ" onclick="openPDF()"><a href="{% static 'images/The Son of Neptune.pdf' %}" id="pdfFile" target="_blank"><i class="fa fa-book fa-sm" aria-hidden="true"></i></a></button>
-										<button type="button" class="btn btn-circ"><i class="fa fa-bookmark fa-sm" aria-hidden="true"></i></button>
-										<button type="button" class="btn btn-circ"><a href="{% static 'images/The Son of Neptune.pdf' %}" download><i class="fa fa-download fa-sm" aria-hidden="true"></i></a></button>
+										<button type="button" class="btn btn-circ" onclick="openPDF()">
+											<a href="{{ book.book_file }}" id="pdfFile" target="_blank"><i class="fa fa-book fa-sm" aria-hidden="true"></i></a>
+										</button>
+										<button type="button" class="btn btn-circ">
+											<a href="{{ book.book_file }}"><i class="fa fa-bookmark fa-sm" aria-hidden="true"></i></a>
+										</button>
+										<button type="button" class="btn btn-circ">
+											<a href="{{ book.book_file }}" download><i class="fa fa-download fa-sm" aria-hidden="true"></i></a>
+										</button>
 										<span class="label">Read</span>&nbsp;&nbsp;
 										<span class="label">Bookmark</span>
 										<span class="label">Download</span>
 									</div>
 							    </div>
 							    <div class="col">
-									<span class="author">John Doe</span>
+							    	{% for author in authors %}
+								    	{% if author.book_author_id == book.book_author_id_id %}
+											<span class="author"> {{ author.firstname }} {{ author.lastname }}</span>
+										{% endif %}
+									{% endfor %}
 									<div class="title">
-										Percy Jackson The Lost Hero
+										{{ book.book_title }}
 									</div>
 									<div class="year">
-										2010
+										{{ book.book_year }}
 									</div>
 									<div>
 										Sypnosis:
 										<div class="summary">
-											The story follows the adventures of amnesiac Percy Jackson, a demigod son of Poseidon, as he meets a camp of Roman demigods and goes to Alaska with his new friends Hazel Levesque and Frank Zhang to free the Greek god of death, Thanatos, and help save the world from Gaea, the earth goddess.
+											{{ book.book_summary }}
 										</div>
 									</div><br>
 									<div>
-										<button type="button" class="btn btn-cite" data-toggle="modal" data-target="#citeModal"> CITE </button>
+										<button type="button" class="btn btn-cite" data-toggle="modal" data-target="#citeModal-{{ book.book_id }}"> CITE </button>
 									</div>
 							    </div>
 						    </div> <!-- row -->
@@ -200,9 +220,10 @@
 				</div>
 			</div>
 		</div> <!-- VIEW Modal -->
+		
 
 		<!-- CITE MODAL -->
-		<div class="modal fade" id="citeModal" tabindex="-1" role="dialog" aria-labelledby="CiteModalLabel" aria-hidden="true">
+		<div class="modal fade" id="citeModal-{{ book.book_id }}" tabindex="-1" role="dialog" aria-labelledby="CiteModalLabel" aria-hidden="true">
 			<div class="modal-dialog" role="document">
 				<div class="modal-content">
 					<div class="modal-header">
@@ -220,6 +241,7 @@
 									<option value="Chicago Manual of Style"> Chicago Manual of Style </option>
 									<option value="Institute of Electrical and Electronics Engineers"> Institute of Electrical and Electronics Engineers </option>
 								</select>
+								<input type="text" id="text" name="text" hidden>
 							</div><br>
 							<div>
 								<textarea class="textarea" id="citationText" name="citationText" readonly>Borman, W. C., Hanson, M.A., Oppler, S. H., Pulakos, E. D., & White, L. A. (1993). Role of early supervisory experience in supervisor performance. Journal of Applied Psychology, 78, 443-449. Retrieved October 23, 2000, from PsycARTICLES database.</textarea>
@@ -250,5 +272,7 @@
 				</div>
 			</div> <!-- TOAST -->
 		</div> <!-- CITE Modal -->
+		{% endfor %}
+
 	</div>
 {% endblock content %}

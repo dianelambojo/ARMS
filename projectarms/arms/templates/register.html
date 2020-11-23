@@ -7,7 +7,8 @@
                 {% csrf_token %}
                 <h1>SIGN UP </h1>
                 <form method="post">
-                    <div class="radio_field row col-12">
+                    {% csrf_token %}
+                    <!--<div class="radio_field row col-12">
                         <div class="col-6 d-flex justify-content-center">
                             <input class="mt-2 mr-1" type="radio" id="male" name="gender" value="male">
                             <label for="male">Student</label>
@@ -16,16 +17,20 @@
                             <input class="mt-2 mr-1" type="radio" id="female" name="gender" value="female">
                                 <label for="female">Faculty</label>
                         </div>
-                    </div>
+                    </div>-->
                     <div class ="row col-12">
                         <div class="txt_field col-sm-6">
+<<<<<<< HEAD
                             <input type="text" id="add-firstname" class="form-control" minlength="0" maxlength="50" name="add-fname"  required>
                             <input type="text required">
+=======
+                            <input type="text required" name="firstname">
+>>>>>>> c728571666b461a9641b91f0a6a8b2da7d3f106e
                             <span></span>
                             <label for="firstname"class="col-sm-3 control-label" >First Name</label>
                         </div>
                         <div class="txt_field col-sm-6">
-                            <input type="text required">
+                            <input type="text required" name="lastname">
                             <span></span>
                             <div class=" d-flex justify-content-center">
                                 <label>Last Name</label>
@@ -35,18 +40,18 @@
                     
                     <div class="txt_field">
                         <div class="col-md-9">
-                            <input type="date">
+                            <input type="date" name="birthdate">
                         </div>
                         <span></span>
                         <label>Birthdate</label>
                     </div>
                     <div class="txt_field">
-                        <input type="text required">
+                        <input type="text required" name="contact_number">
                         <span></span>
                         <label>Contact No.</label>
                     </div>
                     <div class="txt_field">
-                        <input type="text required">
+                        <input type="text required" name="email">
                         <span></span>
                         <label>Email</label>
                     </div>
@@ -64,22 +69,23 @@
                         </div>
                     </div>
                     <div class="txt_field">
-                        <input type="text required">
+                        <input type="text required" name="user_id">
                         <span></span>
                         <label>UserID</label>
                     </div>
                     <div class="txt_field">
-                        <input type="password" required>
+                        <input type="password" name="password" required>
                         <span></span>
                         <label>Password</label>
                     </div>
                     <div class="txt_field">
-                        <input type="password" required>
+                        <input type="password" name="confirmpassword" required>
                         <span></span>
                         <label>Confirm Password</label>
                     </div>
                     <!--checkbox agree to terms-->
                     <input type="submit" value="SIGN UP">
+                    
                 </form>
             </div>
         </div>
