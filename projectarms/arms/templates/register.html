@@ -4,6 +4,7 @@
     <div class ="register">
         <div class= "panel-transparent">
             <div class= "register-body">
+                {% csrf_token %}
                 <h1>SIGN UP </h1>
                 <form method="post">
                     <div class="radio_field row col-12">
@@ -18,9 +19,10 @@
                     </div>
                     <div class ="row col-12">
                         <div class="txt_field col-sm-6">
+                            <input type="text" id="add-firstname" class="form-control" minlength="0" maxlength="50" name="add-fname"  required>
                             <input type="text required">
                             <span></span>
-                            <label>First Name</label>
+                            <label for="firstname"class="col-sm-3 control-label" >First Name</label>
                         </div>
                         <div class="txt_field col-sm-6">
                             <input type="text required">

@@ -37,8 +37,32 @@ class LoginIndexView(View):
 		return render(request, 'login.html')
 
 class RegisterIndexView(View):
-	def get(self, request):
-		return render(request, 'register.html')
+	def get(self,request):
+		context={
+			'title': 'Registration',
+		}
+		return render(request, 'arms/register.html', context)
+
+	def post(self,request):
+		form = UserForm(request.POST,request.FILES)
+		if form.is_valid():
+			user_id = request.POST.get("add-userid")
+			password = request.POST.get("add-password")
+			firstname = request.POST.get("add-firstname")
+			lastname = request.POST.get("add-lastname")
+ 		  	email = request.POST.get("add-email")
+  			birthdate = request.POST.get("add-birthdate")
+  			contact_number =  request.POST.get("add-contact_number")
+
+			form = User(user_id=user_id ,password=password,firstname=firstname, lastname=lastname, email=email,
+        				birthdate=birthdate,contact_number=contact_number)
+				form.save()
+
+				return redirect('arms:index_view')			
+			else:
+				print(form.errors)
+				return HttpResponse('not valid')
+
 
 class AboutUsIndexView(View):
 	def get(self, request):
