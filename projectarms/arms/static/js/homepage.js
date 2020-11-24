@@ -97,7 +97,7 @@ $(document).ready(function () {
           else {
               $("#result").html("Results"+"<br>");
               $(this).show().appendTo("#display");
-              $('.slider').hide();
+
               //$(this).show();
               //$(".text").show();
              // $(".btn-next").show();

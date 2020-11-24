@@ -2,9 +2,9 @@ from django.shortcuts import render,redirect
 from django.views.generic import View
 from django.http import HttpResponse
 from django.http import Http404
-from .forms import UserForm
+from .forms import *
 from .models import *
-
+import re
 
 
 # Create your views here.
@@ -85,7 +85,6 @@ class RegisterIndexView(View):
 
 	def post(self, request):
 		form = UserForm(request.POST)
-
 		if form.is_valid():
 			
 			user_id = request.POST.get("user_id")
@@ -97,17 +96,41 @@ class RegisterIndexView(View):
 			contact_number = request.POST.get("contact_number")
 			password = request.POST.get("password")
 			confirmpassword = request.POST.get("confirmpassword")
-			user_type = request.POST.get("user_type")
+			# user_type = request.POST.get("user_type")
 
-			form = User(user_id = user_id, firstname = firstname, lastname = lastname, birthdate = birthdate, email=email, gender = gender, contact_number = contact_number,
-						password = password, confirmpassword = confirmpassword, user_type=user_type)
-			
-			#if user_type: "student"
-			#form = Student(student_id_id=user_id)
+			pattern_student = r'[0-9]{2}-[0-9]{4}-[0-9]{3}'
+			patter_emp = r'^[0-9]*$'
 
-			form.save()
+			if re.findall(pattern_student,string=user_id):
+				form = User(user_id = user_id, firstname = firstname, lastname = lastname, birthdate = birthdate, email=email, gender = gender, contact_number = contact_number,
+						password = password, confirmpassword = confirmpassword)
 
-			return HttpResponse('Record saved!')		
+				form.save()
+
+				form = StudentForm(request.POST)
+
+				form = Student(student_id = User.objects.get(user_id = user_id))
+
+				form.save()
+
+				return HttpResponse('Record saved!')
+
+			elif re.findall(patter_emp,string=user_id):
+				form = User(user_id = user_id, firstname = firstname, lastname = lastname, birthdate = birthdate, email=email, gender = gender, contact_number = contact_number,
+						password = password, confirmpassword = confirmpassword)
+
+				form.save()
+
+				form = EmployeeForm(request.POST)
+
+				form = Employee(employee_id = User.objects.get(user_id = user_id))
+
+				form.save()
+
+				return HttpResponse('Record saved!')
+
+			else:
+				return HttpResponse('wrong pattern')
 			
 		else: 
 			print(form.errors)	

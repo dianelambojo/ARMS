@@ -17,7 +17,7 @@ class User(models.Model):
 	contact_number =  models.CharField(max_length = 15)
 
 	USER_CHOICES = [('S','Student'),('E','Employee')]
-	user_type=models.CharField(max_length = 50, choices=USER_CHOICES)
+	# user_type=models.CharField(max_length = 50, choices=USER_CHOICES)
 
 	class Meta:
 		db_table = "User"
