@@ -109,10 +109,9 @@
 						<div class="d-flex flex-row-reverse">
 							<div class="row1">
 								<div class="d-flex flex-row-reverse">
-									{% for user in users %}
-										
+									
 										<button  type="button" data-toggle="modal" data-target="#ModalEdit-{{uer.user_id}}" class='fa fa-edit'style='font-size:20px; color: white'></button>
-
+									
 										<div class="modal fade" id="ModalEdit-{{uer.user_id}}" role="dialog" aria-hidden="true">
 											<div class="modal-dialog">
 											<!-- Modal Edit-->  
@@ -120,7 +119,7 @@
 													<div class="modal-header">
 														<h4 class="modal-title">Profile Details</h4>
 													</div>
-													
+												{% for user in users %}		
 													<div class="modal-body" value = "{{user.user_id}}">
 														<div class = "row col-12">
 																<form method="POST">
@@ -189,7 +188,7 @@
 												                </form>	  		
 															</div>
 														</div>
-
+												{% endfor %}
 														<div class="modal-footer">
 															<button type="button" class="btn" data-dismiss="modal">Update</button>
 															<button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
@@ -198,7 +197,7 @@
 												</div>
 											</div>
 										</div>
-
+									
 										<div class="text-center">
 											<img  src="{% static 'images/prof.jpg' %}" width="80" height="75" class="rounded-circle">
 											<br>
@@ -240,7 +239,7 @@
 										<div class="d-flex justify-content-center">&nbsp;&nbsp;
 											<button type="button" class="btn btn-warning" style="color:black">Add Work</button>
 										</div>
-									{% endfor %}
+									
 								</div>
 							</div>						
 						</div>							
