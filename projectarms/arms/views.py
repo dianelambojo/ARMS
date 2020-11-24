@@ -111,14 +111,7 @@ class RegisterIndexView(View):
 			
 		else: 
 			print(form.errors)	
-			return HttpResponse('not saved!')
-
-			return HttpResponse('Record saved!')
-			
-		else:
-			print(form.errors)
 			return HttpResponse('Not saved!')
-
 
 class AboutUsIndexView(View):
 	def get(self, request):
