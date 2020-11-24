@@ -16,7 +16,6 @@ urlpatterns = [
     path('register', views.RegisterIndexView.as_view(), name='register_view'),
     path('login', views.LoginIndexView.as_view(), name='login_view'),
     path('aboutUs', views.AboutUsIndexView.as_view(), name='aboutUs_view'),
-    path('pdfViewer', views.PdfViewer.as_view(), name='pdfViewer_view'),
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
