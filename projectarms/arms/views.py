@@ -79,7 +79,7 @@ class LoginIndexView(View):
 class RegisterIndexView(View):
 	def get(self,request):
 		context={
-			'title': 'Registration',
+			'title': 'Registration'
 		}
 		return render(request, 'register.html', context)
 
@@ -97,18 +97,20 @@ class RegisterIndexView(View):
 			contact_number = request.POST.get("contact_number")
 			password = request.POST.get("password")
 			confirmpassword = request.POST.get("confirmpassword")
-
 			user_type = request.POST.get("user_type")
 
 			form = User(user_id = user_id, firstname = firstname, lastname = lastname, birthdate = birthdate, gender = gender, contact_number = contact_number,
 						password = password, confirmpassword = confirmpassword, user_type=user_type)
 			
-			if user_type: "student"
-			form = Student(student_id_id=user_id)
+			#if user_type: "student"
+			#form = Student(student_id_id=user_id)
 
 			form.save()
-
-			return HttpResponse('Record saved!')			
+			return HttpResponse('Record saved!')		
+			
+		else: 
+			print(form.errors)	
+			return HttpResponse('not saved!')
 
 class AboutUsIndexView(View):
 	def get(self, request):

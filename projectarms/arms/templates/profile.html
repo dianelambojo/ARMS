@@ -125,12 +125,13 @@
 														<div class = "row col-12">
 																<form method="POST">
 	                    											{% csrf_token %}
-												                    <div class ="row col-12">
+												                    <div class="form-group row">
 												                        <div class="txt_field col-sm-6">
 												                            <input type="text required" name="firstname" value = "{{user.firstname}}">
 												                            <span></span>
 												                            <label>First Name</label>
 												                        </div>
+
 												                        <div class="txt_field col-sm-6">
 												                            <input type="text required" name="lastname" value = "{{user.lastname}}">
 												                            <span></span>
@@ -159,7 +160,7 @@
 												                    </div>
 												                    <div class="txt_field">
 												                        <label>Gender</label>
-												                    </div>
+												                     </div>
 												                    <div class="radio_field row col-12">
 												                        <div class="col-6 d-flex justify-content-center">
 												                            <input class="mt-2 mr-1" type="radio" id="male" name="gender"  value = "{{user.gender}}">
