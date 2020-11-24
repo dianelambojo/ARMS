@@ -22,14 +22,14 @@ class ArmsAdminView(View):
 
 class HomepageView(View):
 	def get(self, request):
-		books = Books.objects.all()
-		authors = Author.objects.all()
-		context={
-			'books' : books,
-			'authors' : authors,
-		}
-		return render(request, 'homepage.html', context)
-		# return render(request, 'homepage.html')
+		# books = Books.objects.all()
+		# authors = Author.objects.all()
+		# context={
+		# 	'books' : books,
+		# 	'authors' : authors,
+		# }
+		# return render(request, 'homepage.html', context)
+		return render(request, 'homepage.html')
 
 	def post(self, request):
 	# 	inputText = request.POST.get('searchBox')
@@ -53,6 +53,10 @@ class HomepageView(View):
 	# 	return render(request, 'homepage.html', context)
 		return render(request, 'homepage.html')
 
+#sample custom pdf viewer
+class PdfViewer(View):
+	def get(self, request):
+		return render(request, "pdfViewer.html")
 
 class ProfileIndexView(View):
 	def get(self, request):

@@ -16,7 +16,7 @@
 			<div class="input-group mb-3">
 				<!-- <form method="POST" enctype="multipart/form-data">
 					{% csrf_token %} -->
-			  		<input type="text" style="width: 700px; border: 1px solid #D3D3D3; border-top-left-radius: 1.5rem; border-bottom-left-radius: 1.5rem; padding-left: 20px;" id="searchBox" name="searchBox" placeholder="Search title, author, year">
+			  		<input type="text" style="width: 700px; height: 40px; border: 1px solid #D3D3D3; border-top-left-radius: 1.5rem; border-bottom-left-radius: 1.5rem; padding-left: 20px;" id="searchBox" name="searchBox" placeholder="Search title, author, year">
 			  	<!-- </form> -->
 			  	<div class="input-group-append">
 			    	<button type="button" class="btn btn-mic" onclick="runSpeechRecognition()">
@@ -39,17 +39,15 @@
 				<span class="text">New Releases</span>
 				<ul class="list">
 					<div class="slider">
-						{% for book in books %}
-							{% for author in authors %}
-								{% if author.book_author_id == book.book_author_id_id %}
-									<li>
-										<img class="thumbnail" src="{{ book.book_cover.url }}" alt="{{ book.book_title }}" title="{{ book.book_title}} {{ author.firstname }} {{ author.lastname }} {{ book.book_year }}" data-toggle="modal" data-target="#viewModal-{{ book.book_id }}">
-									</li>
-								{% endif %}
-							{% endfor %}
- 						{% endfor %}
+ 						<li>
+							<img class="thumbnail" src="{% static 'images/research.jpg' %}" alt="Project Management Strategies for Complete Projects Case Study Report" title="Project Management Strategies for Complete Projects Case Study Report" data-toggle="modal" data-target="#viewModal">
+						</li>
 
-						<!-- <li>
+ 						<li>
+							<img class="thumbnail" src="{% static 'images/percy.png' %}" alt="The Son of Neptune" title="The Son of Neptune" data-toggle="modal" data-target="#viewModal">
+						</li>
+
+						<li>
 							<img class="thumbnail" src="{% static 'images/python1.jpg' %}" alt="Python Programming" title="Python Programming" data-toggle="modal" data-target="#viewModal">
 						</li>
 
@@ -72,15 +70,17 @@
 						<li>
 							<img class="thumbnail" src="{% static 'images/joperd2.jpg' %}" alt="Joperd 2" title="Joperd 2" data-toggle="modal" data-target="#viewModal">
 						</li>
-						
-						<li>
-							<img class="thumbnail" src="{% static 'images/research.jpg' %}" alt="Project Management Strategies for Complete Projects Case Study Report" title="Project Management Strategies for Complete Projects Case Study Report" data-toggle="modal" data-target="#viewModal">
-						</li>  -->
+						 
 					</div>
 				</ul>
 				<span class="text">Recommended</span>
 				<ul class="list">
 					<div class="slider">
+
+						<li>
+							<img class="thumbnail" src="{% static 'images/research.jpg' %}" alt="Project Management Strategies for Complete Projects Case Study Report" title="Project Management Strategies for Complete Projects Case Study Report" data-toggle="modal" data-target="#viewModal">
+						</li>
+
 						<li>
 							<img class="thumbnail" src="{% static 'images/percy.png' %}" alt="The Son of Neptune" title="The Son of Neptune" data-toggle="modal" data-target="#viewModal">
 						</li>
@@ -108,15 +108,17 @@
 						<li>
 							<img class="thumbnail" src="{% static 'images/joperd2.jpg' %}" alt="Joperd 2" title="Joperd 2" data-toggle="modal" data-target="#viewModal">
 						</li>
-						
-						<li>
-							<img class="thumbnail" src="{% static 'images/research.jpg' %}" alt="Project Management Strategies for Complete Projects Case Study Report" title="Project Management Strategies for Complete Projects Case Study Report" data-toggle="modal" data-target="#viewModal">
-						</li>
+
 					</div>
 				</ul>
 				<span class="text">Popular</span>
 				<ul class="list">
 					<div class="slider">
+
+						<li>
+							<img class="thumbnail" src="{% static 'images/research.jpg' %}" alt="Project Management Strategies for Complete Projects Case Study Report" title="Project Management Strategies for Complete Projects Case Study Report" data-toggle="modal" data-target="#viewModal">
+						</li>
+
 						<li>
 							<img class="thumbnail" src="{% static 'images/percy.png' %}" alt="The Son of Neptune" title="The Son of Neptune" data-toggle="modal" data-target="#viewModal">
 						</li>
@@ -145,9 +147,6 @@
 							<img class="thumbnail" src="{% static 'images/joperd2.jpg' %}" alt="Joperd 2" title="Joperd 2" data-toggle="modal" data-target="#viewModal">
 						</li>
 						
-						<li>
-							<img class="thumbnail" src="{% static 'images/research.jpg' %}" alt="Project Management Strategies for Complete Projects Case Study Report" title="Project Management Strategies for Complete Projects Case Study Report" data-toggle="modal" data-target="#viewModal">
-						</li>
 					</div>
 				</ul>
 			</div> <!-- Container -->
@@ -155,8 +154,7 @@
 
 
 		<!-- VIEW MODAL -->
-		{% for book in books %}
-		<div class="modal fade" id="viewModal-{{ book.book_id }}" tabindex="-1" role="dialog" aria-labelledby="ViewModalLabel" aria-hidden="true">
+		<div class="modal fade" id="viewModal" tabindex="-1" role="dialog" aria-labelledby="ViewModalLabel" aria-hidden="true">
 			<div class="modal-dialog" role="document">
 				<div class="modal-content">
 					<div class="modal-header">
@@ -169,46 +167,37 @@
 						<div class="container-fluid">
 						    <div class="row">
 						    	<div class="col">
-									<a href="{{ book.book_cover.url }}"><img class="thumbnail2" style="margin-bottom: 5px;" src="{{ book.book_cover.url }}" alt="{{ book.book_title }}"></a>
+						    		<a href="{% static 'images/research.jpg' %}"><img class="thumbnail2" style="margin-bottom: 5px;" src="{% static 'images/research.jpg' %}" alt=""></a>
 									<div>
-										<span class="count">{{ book.total_reads }} People read this book</span><br>
-										<span class="count">{{ book.total_downloads }} People downloaded this book</span>
+										<span class="count"> 0 People read this book</span><br>
+										<span class="count"> 0 People downloaded this book</span>
 									</div>
 									<div class="box">
-										<button type="button" class="btn btn-circ" onclick="openPDF()">
-											<a href="{{ book.book_file }}" id="pdfFile" target="_blank"><i class="fa fa-book fa-sm" aria-hidden="true"></i></a>
-										</button>
-										<button type="button" class="btn btn-circ">
-											<a href="{{ book.book_file }}"><i class="fa fa-bookmark fa-sm" aria-hidden="true"></i></a>
-										</button>
-										<button type="button" class="btn btn-circ">
-											<a href="{{ book.book_file }}" download><i class="fa fa-download fa-sm" aria-hidden="true"></i></a>
-										</button>
+										<button type="button" class="btn btn-circ" onclick="openPDF()"><a href="{% static 'images/Project Management.pdf' %}" id="pdfFile" target="_blank"><i class="fa fa-book fa-sm" aria-hidden="true"></i></a></button>
+										<button type="button" class="btn btn-circ"><i class="fa fa-bookmark fa-sm" aria-hidden="true"></i></button>
+										<button type="button" class="btn btn-circ"><a href="{% static 'images/Project Management.pdf' %}" download><i class="fa fa-download fa-sm" aria-hidden="true"></i></a></button>
 										<span class="label">Read</span>&nbsp;&nbsp;
 										<span class="label">Bookmark</span>
 										<span class="label">Download</span>
 									</div>
 							    </div>
 							    <div class="col">
-							    	{% for author in authors %}
-								    	{% if author.book_author_id == book.book_author_id_id %}
-											<span class="author"> {{ author.firstname }} {{ author.lastname }}</span>
-										{% endif %}
-									{% endfor %}
+							    	<span class="author">Author</span>
+							    	&nbsp;&nbsp;<span><i class="fa fa-volume-up" aria-hidden="true" style="color: maroon;"></i></span>
 									<div class="title">
-										{{ book.book_title }}
+										Project Management Strategies for Complex Projects Case Study Report
 									</div>
 									<div class="year">
-										{{ book.book_year }}
+										Year
 									</div>
 									<div>
 										Sypnosis:
 										<div class="summary">
-											{{ book.book_summary }}
+											Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
 										</div>
 									</div><br>
 									<div>
-										<button type="button" class="btn btn-cite" data-toggle="modal" data-target="#citeModal-{{ book.book_id }}"> CITE </button>
+										<button type="button" class="btn btn-cite" data-toggle="modal" data-target="#citeModal"> CITE </button>
 									</div>
 							    </div>
 						    </div> <!-- row -->
@@ -223,7 +212,7 @@
 		
 
 		<!-- CITE MODAL -->
-		<div class="modal fade" id="citeModal-{{ book.book_id }}" tabindex="-1" role="dialog" aria-labelledby="CiteModalLabel" aria-hidden="true">
+		<div class="modal fade" id="citeModal" tabindex="-1" role="dialog" aria-labelledby="CiteModalLabel" aria-hidden="true">
 			<div class="modal-dialog" role="document">
 				<div class="modal-content">
 					<div class="modal-header">
@@ -244,7 +233,7 @@
 								<input type="text" id="text" name="text" hidden>
 							</div><br>
 							<div>
-								<textarea class="textarea" id="citationText" name="citationText" readonly>Borman, W. C., Hanson, M.A., Oppler, S. H., Pulakos, E. D., & White, L. A. (1993). Role of early supervisory experience in supervisor performance. Journal of Applied Psychology, 78, 443-449. Retrieved October 23, 2000, from PsycARTICLES database.</textarea>
+								<textarea class="textarea" id="citationText" name="citationText" readonly>Sample Text: Borman, W. C., Hanson, M.A., Oppler, S. H., Pulakos, E. D., & White, L. A. (1993). Role of early supervisory experience in supervisor performance. Journal of Applied Psychology, 78, 443-449. Retrieved October 23, 2000, from PsycARTICLES database.</textarea>
 							</div>
 						</div> 
 					</div>
@@ -272,7 +261,6 @@
 				</div>
 			</div> <!-- TOAST -->
 		</div> <!-- CITE Modal -->
-		{% endfor %}
 
 	</div>
 {% endblock content %}
