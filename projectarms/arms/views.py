@@ -96,15 +96,18 @@ class RegisterIndexView(View):
 
 			user_type = request.POST.get("user_type")
 
-			form = User(user_id = user_id, firstname = firstname, lastname = lastname, birthdate = birthdate, gender = gender, contact_number = contact_number,
+			form = User(user_id = user_id, firstname = firstname, lastname = lastname, birthdate = birthdate, email=email, gender = gender, contact_number = contact_number,
 						password = password, confirmpassword = confirmpassword, user_type=user_type)
 			
-			if user_type: "student"
-			form = Student(student_id_id=user_id)
+			#if user_type: "student"
+			#form = Student(student_id_id=user_id)
 
 			form.save()
-
-			return HttpResponse('Record saved!')			
+			return HttpResponse('Record saved!')
+			
+		else:
+			print(form.errors)
+			return HttpResponse('Not saved!')
 
 class AboutUsIndexView(View):
 	def get(self, request):
