@@ -233,20 +233,44 @@
                       <div class="modal-body">
                         <div class="form-row">
                           <div class="form-group col-md-12">
-                            <label for="booktitle">User ID</label>
+                            <label for="userid">User ID</label>
                             <input type="text" class="form-control" id="userid" name="userid" value = "{{user.user_id}}">
                           </div>
                         </div>
                         <div class="form-row">
                           <div class="form-group col-md-6">
-                            <label for="bookauthor">First name</label>
+                            <label for="fname">First name</label>
                             <input type="text" class="form-control" id="fname" name="fname" value = "{{user.firstname}}">
                           </div>
                           <div class="form-group col-md-6">
-                            <label for="bookauthor">Last name</label>
+                            <label for="lname">Last name</label>
                             <input type="text" class="form-control" id="lname" name="lname" value = "{{user.lastname}}">
                           </div>
                         </div>
+                        <div class="form-row">
+                          <div class="form-group col-md-6">
+                            <label for="birthdate">Birthdate</label>
+                            <input type="text" class="form-control" id="birthdate" name="birthdate" value = "{{user.birthdate}}">
+                          </div>
+                          <div class="form-group col-md-6">
+                            <label for="email">Email</label>
+                            <input type="text" class="form-control" id="email" name="email" value = "{{user.email}}">
+                          </div>
+                        </div>
+                        <div class="form-row">
+                          <div class="form-group col-md-6">
+                            <label for="gender">Gender</label>
+                            <input type="text" class="form-control" id="gender" name="gender" value = "{{user.gender}}">
+                          </div>
+                          <div class="form-group col-md-6">
+                            <label for="contact_number">Contact Number</label>
+                            <input type="text" class="form-control" id="contact_number" name="contact_number" value = "{{user.contact_number}}">
+                          </div>
+                        </div>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-dismiss="modal">CANCEL</button>
+                          <button type="submit"  id="btnUpdate" name="btnUpdate" class="btn btn-primary">UPDATE</button>
                         </div>
                       </div>
                     </form>
