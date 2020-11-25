@@ -68,6 +68,9 @@ class ProfileIndexView(View):
 
 		return render(request, 'profile.html', context)
 
+	def post(self,request):
+		return render(request, 'addbook.html')	
+
 class LandingPageIndexView(View):
 	def get(self, request):
 		return render(request, 'landingpage.html')
@@ -138,4 +141,9 @@ class RegisterIndexView(View):
 
 class AboutUsIndexView(View):
 	def get(self, request):
-		return render(request, 'aboutUsPage.html')		
+		return render(request, 'aboutUsPage.html')
+
+class AddBookIndexView(View):
+	def get(self, request):
+		return render(request, 'addbook.html')
+		
