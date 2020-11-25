@@ -263,29 +263,27 @@ function runSpeechRecognition() {
 
     mainInput.setAttribute('type', 'text');
     mainInput.classList.add('main-input');
-    mainInput.addEventListener('input', function () {
-        let enteredTags = mainInput.value.split(',');
-        if (enteredTags.length > 1) {
-            enteredTags.forEach(function (t) {
-                let filteredTag = filterTag(t);
-                if (filteredTag.length > 0)
-                    addTag(filteredTag);
-            });
-            mainInput.value = '';
-        }
-    });
+ 
 
     mainInput.addEventListener('keydown', function (e) {
         let keyCode = e.which || e.keyCode;
-        if (keyCode === 8 && mainInput.value.length === 0 && tags.length > 0) {
+        if (keyCode === 8 && mainInput.value.length === 0 && tags.length >= 0) {
             removeTag(tags.length - 1);
         }
+
+       if (keyCode === 13 && mainInput.value.length >= 0 && tags.length >= 0) {
+             addTag(mainInput.value);
+             mainInput.value ="";
+        }
+
+
     });
 
     el.appendChild(mainInput);
     el.appendChild(hiddenInput);
 
-    addTag('Academic');
+    
+     
 
     function addTag (text) {
         let tag = {
@@ -329,4 +327,3 @@ function runSpeechRecognition() {
         return tag.replace(/[^\w -]/g, '').trim().replace(/\W+/g, '-');
     }
 });
-
