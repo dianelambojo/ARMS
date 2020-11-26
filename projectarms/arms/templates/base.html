@@ -1,81 +1,73 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="utf-8">
-    <meta content="width=device-width, initial-scale=1.0" name="viewport">
-
-    {% if title %}
-    <title>ARMS - {{ title }}</title>
-    {% else %}
-    <title>ARMS</title>
-    {% endif %}
-    <!-- Meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta content="" name="description">
-    <meta content="" name="keywords">
-    
-
-    <!--All links here-->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous" rel="stylesheet" >
-    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
-    <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js" crossorigin="anonymous" rel="stylesheet" type="text/css" ></script>
-    <link href="https://cdn.datatables.net/v/bs4/jszip-2.5.0/dt-1.10.21/b-1.6.3/b-html5-1.6.3/datatables.min.css"/>
-    <link href="{% static 'css/style.css' %}" rel="stylesheet" >
-</head>
-<body> 
-    <header>
-        <nav class="navbar navbar-expand-lg">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>ARMS</title>
+        <!-- Favicon-->
+        <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico" />
+        <!-- Font Awesome icons (free version)-->
+        <script src="https://use.fontawesome.com/releases/v5.15.1/js/all.js" crossorigin="anonymous"></script>
+        <!-- Google fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Merriweather+Sans:400,700" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic" rel="stylesheet" type="text/css" />
+        <!-- Third party plugin CSS-->
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css" rel="stylesheet" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link rel="stylesheet" href="{% static 'css/homepage.css' %}">
+    <link rel="stylesheet" href="{% static 'css/profile.css' %}">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    </head>
+    <body id="page-top">
+        <!-- Navigation-->
+        <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
             <div class="container">
-              <a href="#" class="navbar-brand">
-                <img src="{% static 'images/cit.jpg' %}" width="80" alt="" class="d-inline-block align-middle mr-2">
-                <span class="text-uppercase font-weight-bold" style="color: black;">A R M S</span>
-              </a>
-              <div id="navbarSupportedContent" class="collapse navbar-collapse">
-                <ul class="navbar-nav ml-auto">
-                  <li class="nav-item active"><a href='{% url "arms:landingpage_view" %}' class="nav-link_b">Home</a></li>
-                  <li class="nav-item active"><a href='{% url "arms:aboutUs_view" %}' class="nav-link_b">About Us</a></li>
-                  <li class="nav-item active"><a href='{% url "arms:login_view" %}' class="nav-link_a">LOGIN</a></li>
-                </ul>
-              </div>
+          <img src="{% static 'images/cit1.png' %}" width="80">
+          <img src="{% static 'images/logo5.png' %}" width="100">
+          <a class="navbar-brand js-scroll-trigger text-center" href="#page-top">  Archived of Reading Materials </a>
+                <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ml-auto my-2 my-lg-0">
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#page-top">Home</a></li>
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href='{% url "arms:profile_view" %}'>Profile</a></li>
+                    </ul>
+                </div>
             </div>
-          </nav>
-    </header>
-    <div class="triangle"></div>
-    {% block content %}
+        </nav>
+        <!-- Masthead-->
+        <header class="masthead">
+            <div class="container h-100">
+                <div class="row h-100 align-items-center justify-content-center text-center">
+                    <div class="col-lg-10 align-self-end">
+                        <h2 class="text-uppercase text-white font-weight-bold">Welcome to Archived of Reading Materials</h2>
+                        <hr class="divider my-4" />
+                    </div>
+                    <div class="col-lg-8 align-self-baseline">
+                        <a class="btn btn-primary btn-xl js-scroll-trigger" href="#homepage">Click here to browse books</a>
+                    </div>
+                </div>
+            </div>
+        </header>
+        
+        
+         {% block content %}
 
     {% endblock content %}
-    <!-- <footer id="footer">
-        <div class="container d-md-flex py-4">
-          <div class="mr-md-auto text-center text-md-left">
-            <a type="button" class="btn btn-warning btn-circle">
-              <i class="fas fa-microphone-alt"  style="color:maroon"></i>
-            </a>
-          </div>
-          <div class="mr-md-auto text-center text-md-right">
-            <div class="copyright">
-              &copy; Copyright <strong><span>Archived of Reading Materials</span></strong>. All Rights Reserved
-            </div>
-          </div>
-        </div>
-    </footer> -->
-
-    <!--All scripts here-->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s" crossorigin="anonymous"></script>
-    <script type="text/javascript" src="{% static 'js/scripts.js' %}"></script>
-    <script>
-    $(document).ready(function() {
-    $('#table1').DataTable(
-        fixedHeader=true,
-    );
-    });
-    </script>
-	</body>
-</body>
+        <!-- Footer-->
+        <footer class="bg-light py-5">
+            <div class="container"><div class="small text-center text-muted">Copyright © 2020 - Archived of Reading Materials</div></div>
+        </footer>
+        <!-- Bootstrap core JS-->
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Third party plugin JS-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script>
+        <!-- Core theme JS-->
+        <script type="text/javascript" src="{% static 'js/homepage.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/script.js' %}"></script>
+    </body>
 </html>

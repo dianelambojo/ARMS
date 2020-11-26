@@ -1,4 +1,4 @@
-{% extends "base_1.1.html" %}
+{% extends "base.html" %}
 <!-- Author: Garcia
 	Date: 2020
 	Description: Homepage HTML Code
@@ -6,11 +6,9 @@
 
 {% block content %}
 	{% load static %}
+	<br>
+	<section class="page-section" id="homepage">
 	<div class="container">
-		<div style="text-align: center;">
-			 <img src="{% static 'images/pic.jpg' %}" height="250px" width="85%" alt="">
-			 <div class="centered">Online Resources</div>
-		</div>
 		<br>
 		<div class="left">
 			<div class="input-group mb-3">
@@ -261,6 +259,6 @@
 				</div>
 			</div> <!-- TOAST -->
 		</div> <!-- CITE Modal -->
-
 	</div>
+</section>
 {% endblock content %}
