@@ -2,7 +2,7 @@
 # Base Button (BASAHA ANG COMMENT FOR GUIDANCE)
 xoxo: zar; HAHAHA
 --------------------------------------------------------------*/
-/*for button save, view, okay, yes, book(dashboard)*/
+/*for button save, view, okay, yes, book(dashboard), log in, sign up*/
 .btn-view-save{
   background-color: #F8c400; /*gold*/
   border: none;
@@ -32,6 +32,9 @@ xoxo: zar; HAHAHA
 
 /*--------------------------------------------------------------
 #Dashboard
+
+1. Remove hover blue for button user and books
+2. Change color for the micrphone. 
 --------------------------------------------------------------*/
 .input-group.md-form.form-sm.form-1 input{
   border: 1px solid #bdbdbd;
