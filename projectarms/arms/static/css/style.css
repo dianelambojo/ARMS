@@ -1,5 +1,40 @@
 /*--------------------------------------------------------------
+# Base Button (BASAHA ANG COMMENT FOR GUIDANCE)
+xoxo: zar; HAHAHA
+--------------------------------------------------------------*/
+/*for button save, view, okay, yes, book(dashboard), log in, sign up*/
+.btn-view-save{
+  background-color: #F8c400; /*gold*/
+  border: none;
+  border-radius: 5px;
+  color: white; 
+  padding: 12px 16px;
+  font-size: 16px; 
+}
+/*for delete , cancel, no, user (dashboard)*/
+.btn-cancel{
+  background-color: #8C383E; /*maroon*/
+  border: none; 
+  border-radius: 5px;
+  color: white;
+  padding: 12px 16px; 
+  font-size: 16px;
+ }
+/*for read, bookmark, download, microphone*/
+.btn-RBD{
+  background-color: #F8c400; 
+  border: none; 
+  border-radius: 5px;
+  width: 40px;
+  padding: 10px; 
+  font-size: 16px;
+}
+
+/*--------------------------------------------------------------
 #Dashboard
+
+1. Remove hover blue for button user and books
+2. Change color for the micrphone. 
 --------------------------------------------------------------*/
 .input-group.md-form.form-sm.form-1 input{
   border: 1px solid #bdbdbd;
