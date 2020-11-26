@@ -145,5 +145,43 @@ class AboutUsIndexView(View):
 
 class AddBookIndexView(View):
 	def get(self, request):
+		#queryset
+		booksQS = Books.objects.all()
+		print(booksQS)
+		#printing all items in books
+		for item in booksQS:
+			print("\t[Book ID: ",item.book_id,"]")
+			print("\t[Title: ",item.book_title,"]")
+			print("\t[Book Author ID: ",item.book_author_id,"]")
+			printf("\t[Book Cover: ",item.book_cover,"]")
+			printf("\t[File: ",item.book_file,"]")
+			printf("\t[Year: ",item.book_year,"]")
+			printf("\t[Tags: ",item.book_tags,"]")
+			printf("\t[Summary: ",item.book_summary,"]")
+			printf("\t[Category: ",item.book_category_no,"]")
+			printf("----------------------------------------\n")
+
+			context={
+			'books' : booksQS
+			}
 		return render(request, 'addbook.html')
-		
+
+	def post(self, request):
+		form = BooksForm(request.POST, request.FILES)
+		if form.is_valid():
+			book_id = request.POST.get('book_id')
+			book_title = request.POST.get('book_title')
+			book_author_id = request.POST.get('book_author_id')
+			book_cover = request.FILES['book_cover']
+			book_file = request.FILES['book_file']
+			book_year = request.POST.get('book_year')
+			book_tags = request.POST.get('book_tags')
+			book_summary = request.POST.get('book_summary')
+			book_category_no = request.POST.get('book_category_no')
+			form = Books(book_id = book_id, book_title = book_title, book_author_id = book_author_id, book_cover = book_cover,
+				book_file = book_file, book_year = book_year, book_tags = book_tags, book_summary = book_summary, book_category_no = book_category_no)
+			form.save()
+			return HttpResponse('Medicine Saved!')
+		else:
+			print(form.errors)
+			return HttpResponse('Not Valid')

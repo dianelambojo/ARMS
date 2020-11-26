@@ -18,3 +18,9 @@ class EmployeeForm(forms.ModelForm):
 	class Meta:
 		model = Employee
 		fields = ('employee_id',)
+
+class BooksForm(forms.ModelForm):
+
+	class Meta:
+		model = Books
+		fields=('book_id',)
