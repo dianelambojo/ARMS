@@ -1,24 +1,13 @@
 {% extends "base_1.1.html" %}
 {% load static %}
 {% block content %}
-
     <div class ="register">
-        <div class= "panel-transparent">
+       <div class= "panel-transparent">
             <div class= "register-body">
                 {% csrf_token %}
                 <h1>SIGN UP </h1>
                 <form method="post">
                     {% csrf_token %}
-                    <!-- <div class="radio_field row col-12">
-                        <div class="col-6 d-flex justify-content-center">
-                            <input class="mt-2 mr-1" type="radio" id="student" name="user_type" value="student">
-                            <label for="student">Student</label>
-                        </div>
-                        <div class="col-6 d-flex justify-content-center">
-                            <input class="mt-2 mr-1" type="radio" id="employee" name="user_type" value="employee">
-                                <label for="employee">Employee</label>
-                        </div>
-                    </div> -->
                     <div class ="row col-12">
                         <div class="txt_field col-sm-6">
                             <input type="text required" name="firstname">
@@ -82,10 +71,9 @@
                         <label>Confirm Password</label>
                     </div>
                     <!--checkbox agree to terms-->
-                    <input type="submit" value="SIGN UP">
-                    
+                   <input type="submit" value="SIGN UP">
                 </form>
             </div>
-        </div>
+        </div>     
     </div>
 {% endblock content %}

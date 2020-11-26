@@ -18,6 +18,8 @@
         <link href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css" rel="stylesheet" />
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="{% static 'css/styles.css' %}" rel="stylesheet" >
+        <link href="{% static 'css/style.css' %}" rel="stylesheet" >
+
     </head>
     <body id="page-top">
         <!-- Navigation-->
@@ -45,7 +47,40 @@
                         <hr class="divider my-4" />
                     </div>
                     <div class="col-lg-8 align-self-baseline">
-                        <a class="btn btn-primary btn-xl js-scroll-trigger" href='{% url "arms:login_view" %}'>LOG IN HERE</a>
+                        <a class="btn btn-primary btn-xl js-scroll-trigger" data-toggle="modal" data-target="#ModalLogin">LOG IN HERE</a>
+                            <div class="modal fade" id="ModalLogin" role="dialog" aria-hidden="true">
+                                <div class="modal-middle">
+                                    <div class="modal-center">    
+                                        <div class="modal-body">
+                                            <div class ="login">
+                                                <div class= "panel-transparent">
+                                                    <div class= "login-body">
+                                                        <br>
+                                                        <h2>LOGIN</h2>
+                                                        <form method="post">
+                                                            <div class="txt_field">
+                                                                <input type="text" required>
+                                                                <span></span>
+                                                                <label>Username</label>
+                                                            </div>
+                                                            <div class="txt_field">
+                                                                <input type="password" required>
+                                                                <span></span>
+                                                                <label>Password</label>
+                                                            </div>
+                                                            <!-- <div class="pass">Forgot Password?</div> -->
+                                                            <input type="submit" value="LOGIN">
+                                                            <div class="signup_link">
+                                                                Not a member? <a href='{% url "arms:register_view" %}'> Signup</a>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                     </div>
                 </div>
             </div>
