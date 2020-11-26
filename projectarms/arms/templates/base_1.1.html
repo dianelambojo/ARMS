@@ -24,65 +24,59 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.css">
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
-
+    <!-- Favicon-->
+        <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico" />
+        <!-- Font Awesome icons (free version)-->
+        <script src="https://use.fontawesome.com/releases/v5.15.1/js/all.js" crossorigin="anonymous"></script>
+        <!-- Google fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Merriweather+Sans:400,700" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic" rel="stylesheet" type="text/css" />
+        <!-- Third party plugin CSS-->
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="{% static 'css/homepage.css' %}">
     <link rel="stylesheet" href="{% static 'css/profile.css' %}">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
-   <!-- <link href="{% static 'css/style.css' %}" rel="stylesheet">-->
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 </head>
 <body> 
     <header>
-        <nav class="navbar navbar-expand-lg">
-          <div class="container">
-            <a href="#" class="navbar-brand">
-              <img src="{% static 'images/cit.jpg' %}" width="80" alt="" class="d-inline-block align-middle mr-2">
-              <span class="text-uppercase font-weight-bold" style="color: black;">A R M S</span>
-            </a>
-
-            <div id="navbarSupportedContent" class="collapse navbar-collapse">
-                <ul class="navbar-nav ml-auto">
-                  <li class="nav-item active"><a href="{% url 'arms:homepage_view' %}" class="nav-link_b">Home</a></li>
-                  <li class="nav-item active"><a href="#" class="nav-link_b">About Us</a></li>
-                  <li class="nav-item active">
-                    <div class="dropdown">
-                      <button class="dropbtn">Hi, User</button>
-                      <div class="dropdown-content">
-                        <a href="{% url 'arms:profile_view' %}">Profile</a>
-                        <a href="{% url 'arms:landingpage_view' %}">Log out</a>
-                      </div>
-                    </div>
-                  </li>
-                </ul>
-              </div>
-          </div>
+        <nav class="navbar navbar-expand-lg navbar-light" id="mainNav">
+            <div class="container">
+          <img src="{% static 'images/cit1.png' %}" width="80">
+          <img src="{% static 'images/logo5.png' %}" width="100">
+          <a class="navbar-brand">  Archived of Reading Materials </a>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ml-auto my-2 my-lg-0">
+                        <li class="nav-item"><a class="nav-link" href='{% url "arms:landingpage_view" %}'>Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href='{% url "arms:profile_view" %}'>Profile</a></li>
+                    </ul>
+                </div>
+            </div>
         </nav>
+
     </header>
-    <div class="triangle"></div>
+
     {% block content %}
 
     {% endblock content %}
-    <footer class="py-1 mt-auto">
-      <div class="container-fluid">
-        <div class="d-flex align-items-center justify-content-between small">
-          <div class="text-muted">
-            <!--Audio-->
-            <button type="button" class="btn-RBD" onclick="runSpeechRecognition()">
-              <i class="fa fa-microphone" style="color:maroon"></i>
-            </button>
-          </div>
-          <div class="copyright">
-            &copy; Copyright <strong><span>Archived of Reading Materials</span></strong>. All Rights Reserved
-          </div>
-        </div>
-      </div>
-    </footer> <!-- end footer-->
+    <footer class="bg-light py-5">
+            <div class="container"><div class="small text-center text-muted">Copyright © 2020 - Archived of Reading Materials</div></div>
+        </footer>
+    <!-- end footer-->
     <!--All JS scripts here-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.js"></script>
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+     <!-- Bootstrap core JS-->
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Third party plugin JS-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script>
 
     <script type="text/javascript" src="{% static 'js/homepage.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/script.js' %}"></script>
 </body>
 </html>
