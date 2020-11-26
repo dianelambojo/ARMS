@@ -10,26 +10,27 @@
  * Copyright 2011-2020 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  */
-
 .modal:before { 
-            content: ''; 
-            display: inline-block; 
-            height: 100%; 
-            vertical-align: middle; 
+  content: ''; 
+  display: inline-block; 
+  height: 100%; 
+  vertical-align: middle; 
 } 
           
 .modal-middle { 
-            display: inline-block; 
-            vertical-align: middle; 
+  
+  vertical-align: middle; 
+  display: inline-block; 
+  vertical-align: middle; 
 } 
           
 .modal .modal-center { 
-            padding: 20px 20px 20px 20px; 
-            -webkit-animation-name: modal-animation; 
-            -webkit-animation-duration: 0.5s; 
-            animation-name: modal-animation; 
-            animation-duration: 0.5s; 
-} 
+  padding: 20px 20px 20px 20px; 
+  -webkit-animation-name: modal-animation; 
+  -webkit-animation-duration: 0.5s; 
+  animation-name: modal-animation; 
+  animation-duration: 0.5s; 
+}
 
 :root {
   --blue: #007bff;
