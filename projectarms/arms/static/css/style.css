@@ -29,47 +29,6 @@ xoxo: zar; HAHAHA
   padding: 10px; 
   font-size: 16px;
 }
-
-.profile-pic {
-    max-width: 100px;
-    max-height: 100px;
-    display: block;
-}
-.file-upload {
-    display: none;
-}
-.circle {
-    border-radius: 100px !important;
-    overflow: hidden;
-    border-radius: 50%;
-    min-width: 50%;
-    position: absolute;
-    top: 60px;
-    left: 110px;
-}
-img {
-    max-width: 100%;
-    height: auto;
-}
-.p-image {
-  position: absolute;
-  top: 140px;
-  left: 150px;
-  color: #666666;
-  transition: all .3s cubic-bezier(.175, .885, .32, 1.275);
-}
-.p-image:hover {
-  transition: all .3s cubic-bezier(.175, .885, .32, 1.275);
-}
-.upload-button {
-  font-size: 1.2em;
-}
-
-.upload-button:hover {
-  transition: all .3s cubic-bezier(.175, .885, .32, 1.275);
-  color: #999;
-}
-
 /*--------------------------------------------------------------
 #Dashboard
 
@@ -557,7 +516,7 @@ input[type="submit"]:hover{
   text-align: justify;
 }
 /*--------------------------------------------------------------
-# Profile
+# Profile Page
 --------------------------------------------------------------*/
 /*Fa Icon*/
 .fa{
@@ -567,14 +526,18 @@ input[type="submit"]:hover{
 .fas{
   background: w3-black w3-round;
 }
-/*Profile*/
+/*Profile Page*/
 .row1 {
   border-top-right-radius: 25px;
   border-bottom-right-radius: 25px;
-  background: #831b1b;
+  background: #8C383E;
   padding: 30px; 
   width: 300px;
   height: 550px;  
+}
+.tab{
+  border-top-left-radius: 25px;
+  border-bottom-left-radius: 25px;
 }
 .container-sm {
   border-radius: 25px;
@@ -589,6 +552,42 @@ input[type="submit"]:hover{
 
 .images {
   border-radius: 50%;
+}
+/*---------Profile Picture CSS-------*/
+.profile-pic {
+    max-width: 100px;
+    max-height: 100px;
+    display: block;
+}
+.file-upload {
+    display: none;
+}
+.circle {
+    border-radius: 100px !important;
+    overflow: hidden;
+    border-radius: 50%;
+    min-width: 50%;
+    position: absolute;
+}
+img {
+    max-width: 100%;
+    height: auto;
+}
+.p-image {
+  position: absolute;
+  color: #666666;
+  transition: all .3s cubic-bezier(.175, .885, .32, 1.275);
+}
+.p-image:hover {
+  transition: all .3s cubic-bezier(.175, .885, .32, 1.275);
+}
+.upload-button {
+  font-size: 1.2em;
+}
+
+.upload-button:hover {
+  transition: all .3s cubic-bezier(.175, .885, .32, 1.275);
+  color: #999;
 }
 
 /*--------------------------------------------------------------

@@ -3,112 +3,90 @@
 {% block content %}
 <br>
 <div class="container">
-	<div class="col-lg-30"  style="background-color: whitesmoke" class="container-fluid">
 		<div class="row">
-			<div class="col">
-				<div class="row">
-					<div class="justify-content-sm-end">
-					&nbsp;
-					&nbsp;
-						<div  class="col  ml-xl-5">
-							<a class="font-weight-bold" style="color: black">Recent read Books:</a>
-						</div>
-						<br>
-						<div class="col ml-xl-5">
-							<img src="{% static 'images/bc.PNG' %}" width="100" height="150">
-						</div>
-					</div>	
-					<div class="row">
-						<div class="row">
-							<div class="col">
-							<br>
-							<br>
-							<br>
-							<br>
-							<a class="font-weight-light"  style="color: black">Jane Doe</a>
-							<br>
-							<a class="font-weight-bold" style="color: black"> Modern Achitecture </a>
-							<br>
-							 
-							<!--Modal View-->
-							<button type="button"class="btn-view-save" data-toggle="modal" data-target="#myModal"><i class="fa fa-eye"></i>&nbsp;View Details</button>
-								<div class="modal fade" id="myModal" role="dialog">
-									<div class="modal-dialog">
-									<!-- Modal content-->      
-										<div class="modal-content">
-											<div class="modal-header">
-												<h4 class="modal-title">Book Details</h4>
-											</div>
+			<div class="col tab" style="background-color: whitesmoke">
+				<table class="table">
+				    <br>
+				    <thead> 
+				    	<tr>
+				           <th scope="col">Book Cover</th>
+				           <th scope="col">Book Author</th>
+				           <th scope="col">Book Title</th>
+				           <th scope="col">Action</th>
+				    	</tr>
+				    </thead>
+				    <tbody>
+				        {% for book in books %}
+				         	<tr>
+				                <th scope="row"> {{book.id}} </th>
+				                <td>{{book.book_title}}</td>
+				                <td>{{book.book_year}}</td>
+				                <td>
+				                  <button type="button" class="btn btn-view-save" data-toggle="modal" data-target="#ViewModal-{{book.id}}"> <i class="fa fa-eye"></i>View</button>
+				                  <button type="button" class="btn btn-modal" data-toggle="modal" data-target="#DeleteModal-{{book.id}}"><i class="fa fa-trash"></i>Delete</button>
+				                </td>
+				           </tr>
 
-											<div class="modal-body">
-												<div class="container-fluid">
-													<div class="row">
-
-														<div class="col">
-															<img class="thumbnail" src="{% static 'images/bc.png' %}" width="100" height="150" alt="">
-																<div>
-																	<button type="button" class="btn btn-circ"><i class="fa fa-book" aria-hidden="true"></i></button>
-																	<button type="button" class="btn btn-circ"><i class="fa fa-bookmark" aria-hidden="true"></i></button>
-																	<button type="button" class="btn btn-circ"><i class="fa fa-download" aria-hidden="true"></i></button>
-																</div>
-														</div>
-
-														<div class="col">
-															<span class="author">John Doe</span>
-															<div class="title"> Modern Achitecture</div>
-															<div class="year">Lorem ipsum</div>
-															<br>
-															<div>
-															Sypnosis:
-																<div class="summary" style="text-align: justify;">
-																Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-																</div>
-															</div>
-														</div>
-
-													</div>
-												</div>
-											</div>
-
-											<div class="modal-footer">
-												<button type="button" class="btn-cancel" data-dismiss="modal">Close</button>
-											</div>
-
-										</div>
-									</div>
-								</div> 
-								<!--Modal Delete-->
-								<button type="button"class="btn-cancel" data-toggle="modal" data-target="#ModalDelete"><i class="fa fa-trash"></i>&nbsp;Delete</button>
-									<div class="modal fade" id="ModalDelete" role="dialog" class="container-fluid">
-										<div class="modal-dialog">
-										<!-- Modal Delete-->      
-											<div class="modal-content">
-												<div class="modal-header">
-													<h4 class="modal-title">Book Delete</h4>
-												</div>
-
-												<div class="modal-body">
-													<p>Are you sure you want to delete this?</p>
-												</div>
-
-												<div class="modal-footer">
-													<button type="button" class="btn-view-save">YES</button>
-													<button type="button" class="btn-cancel" data-dismiss="modal">NO</button>
-												</div>
-											</div>
-										</div>
-									</div>
-									<!--Audio-->
-									<a type="button" class="btn-view-save">
-										<i class="fa fa-volume-up" style="color:maroon"></i>
-									</a>
-							</div>
-						</div>
-					</div>
-					<div class="col" class="container-fluid"></div> 
-					<div class="col">
+				    <!-- MODAL VIEW BOOK -->
+				            <div class="modal fade" id="ViewModal-{{book.id}}" tabindex="-1" role="dialog" aria-labelledby="ViewModalLabel" aria-hidden="true">
+				                <div class="modal-dialog " role="document">
+				                  <div class="modal-content">
+				                    <div class="modal-header">
+				                      <h6 class="modal-title" id="ViewModalLabel">BOOK INFORMATION</h6>
+				                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				                        <span aria-hidden="true">&times;</span>
+				                      </button>
+				                    </div>
+				                    <form id="updateForm" method="post">
+				                      {% csrf_token %}
+				                      <input type="text" name="bookid" value ="{{book.id}}" hidden>
+				                      <div class="modal-body">
+				                        <div class="form-row">
+				                          <div class="form-group col-md-6">
+				                            <label for="booktitle">Book Title</label>
+				                            <input type="text" class="form-control" id="booktitle" name="booktitle" value = "{{book.book_title}}">
+				                          </div>
+				                          <div class="form-group col-md-6">
+				                            <label for="bookyear">Year</label>
+				                            <input type="text" class="form-control" id="bookyear" name="bookyear" value = "{{book.book_year}}">
+				                          </div>
+				                        </div>
+				                      </div>
+				                    </form>
+				                  </div>
+				                </div>
+				            </div>
+				    <!-- Modal Delete -->
+				            <div class="modal fade" id="DeleteModal-{{book.id}}" tabindex="-1" role="dialog" aria-labelledby="DeleteModalLabel" aria-hidden="true">
+				                <div class="modal-dialog" role="document">
+				                  <div class="modal-content">
+				                    <div class="modal-header">
+				                      <h5 class="modal-title" id="DeleteModalLabel">DELETE RECORD</h5>
+				                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				                        <span aria-hidden="true">&times;</span>
+				                         </button>
+				                       </div>
+				                       <form id="deleteForm" method="post" >
+				                        {% csrf_token %} 
+				                        <div class="modal-body">
+				                          <input type="text" name="bookid" value = {{book.id}} hidden>
+				                        Are you sure you want to delete this record?
+				                      </div>
+				                      <div class="modal-footer">
+				                         <button type="submit" id = "btnDelete" name = "btnDelete" class="btn btn-view-save">YES</button>
+				                        <button type="button" class="btn btn-cancel" data-dismiss="modal">NO</button>
+				                      </div>
+				                    </form>
+				                  </div>
+				                </div>
+				            </div>
+				        {% endfor %}
+				    </tbody>
+				</table>
+			</div>
+					<!--<div class="col-all" style="background-color: maroon;">-->
 						<div class="d-flex flex-row-reverse">
-							<div class="row1" class="container-fluid">
+							<div class="row1">
 								<div class="d-flex flex-row-reverse">
 									
 										<button  type="button" data-toggle="modal" data-target="#ModalEdit-{{uer.user_id}}" class='fa fa-edit'style='font-size:20px; color: white'></button>
@@ -200,14 +178,14 @@
 										</div>
 									
 										<div class="text-center">
-											<div class="small-12 medium-2 large-2 columns">
-												<div class="circle">
-												       <!-- User Profile Image -->
+											<div class="small-12 medium-2 large-4 columns">
+												<div class="circle ">
+												     <!-- User Profile Image -->
 												     <img class="profile-pic rounded-circle" alt="100x100" src="https://mdbootstrap.com/img/Photos/Avatars/img%20(30).jpg" data-holder-rendered="true">
 												       <!-- Default Image -->
 												       <!-- <i class="fa fa-user fa-5x"></i> -->
 												</div>
-												 <div class="p-image">
+												 <div class="p-image" style="align-self: left;">
 												   	<i class="fa fa-camera upload-button"></i>
 												    <input class="file-upload" type="file" accept="image/*"/>
 												</div>
@@ -268,6 +246,5 @@
 				</div>
 			</div>
 		</div>
-	</div>
 </div>
 {% endblock content %}
