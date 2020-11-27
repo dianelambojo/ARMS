@@ -5349,7 +5349,7 @@ a.close.disabled {
 .toast-body {
   padding: 0.75rem;
 }
-
+/*-----------Modal Setting--------------*/
 .modal-open {
   overflow: hidden;
 }
@@ -5380,11 +5380,6 @@ a.close.disabled {
   transition: transform 0.3s ease-out;
   transform: translate(0px, -50px);
 }
-/*@media (prefers-reduced-motion: reduce) {
-  .modal.fade .modal-dialog {
-    transition: none;
-  }
-}*/
 .modal.show .modal-dialog {
   transform: none;
 }
@@ -5416,7 +5411,6 @@ a.close.disabled {
   height: -webkit-min-content;
   height: -moz-min-content;
   height: min-content;
-  content: "";
 }
 .modal-dialog-centered.modal-dialog-scrollable {
   flex-direction: center;
@@ -5432,8 +5426,6 @@ a.close.disabled {
 
 .modal-content {
   position: relative;
-/*  display: flex;
-  flex-direction: column;*/
   width: 150%;
   pointer-events: auto;
   background-color: #fff;
@@ -5453,15 +5445,15 @@ a.close.disabled {
   background-color: #000;
 }
 .modal-backdrop.fade {
-  opacity: 0;
+  opacity: 10px;
 }
 .modal-backdrop.show {
   opacity: 0.5;
 }
 
 .modal-header {
-  display: flex;
-  align-items: flex-start;
+ /* display: flex;
+  align-items: flex-start;*/
   justify-content: space-between;
   padding: 1rem 1rem;
   border-bottom: 1px solid #dee2e6;
@@ -5474,8 +5466,6 @@ a.close.disabled {
    border-top-left-radius: 15px;
   border-top-right-radius: 15px;
 }
-}
-
 .modal-title {
   margin-bottom: 0;
   line-height: 1.5;
@@ -5486,7 +5476,6 @@ a.close.disabled {
   flex: 1 1 auto;
   padding: 1rem;
 }
-
 .modal-footer {
   display: flex;
   flex-wrap: wrap;
@@ -5500,7 +5489,6 @@ a.close.disabled {
 .modal-footer > * {
   margin: 0.25rem;
 }
-
 .modal-scrollbar-measure {
   position: absolute;
   top: -9999px;
@@ -5531,13 +5519,12 @@ a.close.disabled {
     height: -moz-min-content;
     height: min-content;
   }
-
   .modal-sm {
     max-width: 300px;
   }
 }
 @media (min-width: 992px) {
-  .modal-lg,
+.modal-lg,
 .modal-xl {
     max-width: 800px;
   }
@@ -5546,7 +5533,7 @@ a.close.disabled {
   .modal-xl {
     max-width: 1140px;
   }
-}
+/*----------End of Modal------------*/
 .tooltip {
   position: absolute;
   z-index: 1070;
