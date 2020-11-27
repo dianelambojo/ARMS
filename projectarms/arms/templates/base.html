@@ -1,3 +1,5 @@
+<!-- FOR HOMEPAGE -->
+
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
@@ -18,7 +20,6 @@
         <link href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css" rel="stylesheet" />
         <!-- Core theme CSS (includes Bootstrap)-->
         <link rel="stylesheet" href="{% static 'css/homepage.css' %}">
-    <link rel="stylesheet" href="{% static 'css/profile.css' %}">
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
     </head>
     <body id="page-top">
@@ -32,7 +33,17 @@
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ml-auto my-2 my-lg-0">
                         <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#page-top">Home</a></li>
-                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href='{% url "arms:profile_view" %}'>Profile</a></li>
+                        <li class="nav-item">
+                          <div class="dropdown show">
+                            <a class="btn dropbtn btn-sm dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              Hi, User
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                              <a class="dropdown-item" href='{% url "arms:profile_view" %}'>Profile</a>
+                              <a class="dropdown-item" href="#">Log out</a>
+                            </div>
+                          </div>
+                        </li>
                     </ul>
                 </div>
             </div>
