@@ -263,7 +263,7 @@ a:active{
 # Login
 --------------------------------------------------------------*/
 .body {
-  margin: 0;
+  margin: 100px;
   padding: 0;
   font-family: Sora;
   overflow : hidden;
