@@ -153,13 +153,13 @@ class AddBookIndexView(View):
 			print("\t[Book ID: ",item.book_id,"]")
 			print("\t[Title: ",item.book_title,"]")
 			print("\t[Book Author ID: ",item.book_author_id,"]")
-			printf("\t[Book Cover: ",item.book_cover,"]")
-			printf("\t[File: ",item.book_file,"]")
-			printf("\t[Year: ",item.book_year,"]")
-			printf("\t[Tags: ",item.book_tags,"]")
-			printf("\t[Summary: ",item.book_summary,"]")
-			printf("\t[Category: ",item.book_category_no,"]")
-			printf("----------------------------------------\n")
+			print("\t[Book Cover: ",item.book_cover,"]")
+			print("\t[File: ",item.book_file,"]")
+			print("\t[Year: ",item.book_year,"]")
+			print("\t[Tags: ",item.book_tags,"]")
+			print("\t[Summary: ",item.book_summary,"]")
+			print("\t[Category: ",item.book_category_no,"]")
+			print("----------------------------------------\n")
 
 			context={
 			'books' : booksQS

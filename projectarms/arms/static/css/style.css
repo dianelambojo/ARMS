@@ -338,15 +338,11 @@ a:active{
 /*--------------------------------------------------------------
 # Footer
 --------------------------------------------------------------*/
-/*-- #footer {
-  color: #800000;
-  font-size: 14px;
+#footer {
   background: white;
-  bottom: 0;
-  position: fixed;
-  left: 0;
-  bottom: 0; 
-} */
+  /* position: absolute; */
+  /* bottom: 0;  */
+}
 /*--------------------------------------------------------------
 # Login
 --------------------------------------------------------------*/
@@ -454,11 +450,11 @@ input[type="submit"]:hover{
 # Register
 --------------------------------------------------------------*/
 .register{
-  position : absolute;
-  top: 45%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  height: 100px;
+  /* position : absolute; */
+  top: 600px;
+  /* left: 50%; */
+  /* transform: translate(-50%, -50%); */
+  /* height: 100px; */
   width: 600px;
   border-radius: 10px;
 }
