@@ -30,6 +30,46 @@ xoxo: zar; HAHAHA
   font-size: 16px;
 }
 
+.profile-pic {
+    max-width: 100px;
+    max-height: 100px;
+    display: block;
+}
+.file-upload {
+    display: none;
+}
+.circle {
+    border-radius: 100px !important;
+    overflow: hidden;
+    border-radius: 50%;
+    min-width: 50%;
+    position: absolute;
+    top: 60px;
+    left: 110px;
+}
+img {
+    max-width: 100%;
+    height: auto;
+}
+.p-image {
+  position: absolute;
+  top: 140px;
+  left: 150px;
+  color: #666666;
+  transition: all .3s cubic-bezier(.175, .885, .32, 1.275);
+}
+.p-image:hover {
+  transition: all .3s cubic-bezier(.175, .885, .32, 1.275);
+}
+.upload-button {
+  font-size: 1.2em;
+}
+
+.upload-button:hover {
+  transition: all .3s cubic-bezier(.175, .885, .32, 1.275);
+  color: #999;
+}
+
 /*--------------------------------------------------------------
 #Dashboard
 

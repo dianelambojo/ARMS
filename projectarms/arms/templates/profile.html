@@ -200,10 +200,26 @@
 										</div>
 									
 										<div class="text-center">
-											<img  src="{% static 'images/prof.jpg' %}" width="80" height="75" class="rounded-circle">
+											<div class="small-12 medium-2 large-2 columns">
+												<div class="circle">
+												       <!-- User Profile Image -->
+												     <img class="profile-pic rounded-circle" alt="100x100" src="https://mdbootstrap.com/img/Photos/Avatars/img%20(30).jpg" data-holder-rendered="true">
+												       <!-- Default Image -->
+												       <!-- <i class="fa fa-user fa-5x"></i> -->
+												</div>
+												 <div class="p-image">
+												   	<i class="fa fa-camera upload-button"></i>
+												    <input class="file-upload" type="file" accept="image/*"/>
+												</div>
+											</div>
+											<br>
+											<br>	  
 											<br>
 											<br>
-											<div class="col-12" style="color: gold" > Jane Doe </div>
+											<br>
+											{% for user in users %}	
+												<span class="col-12" style="color: gold" value = "{{user.firstname}}+{{user.lastname}}"> </span>
+											{% endfor %}
 											<br>
 
 											<div class="col-12">
