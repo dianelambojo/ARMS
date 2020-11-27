@@ -3,7 +3,7 @@
 {% block content %}
 <br>
 <div class="container">
-	<div class="col-lg-30"  style="background-color: whitesmoke">
+	<div class="col-lg-30"  style="background-color: whitesmoke" class="container-fluid">
 		<div class="row">
 			<div class="col">
 				<div class="row">
@@ -79,7 +79,7 @@
 								</div> 
 								<!--Modal Delete-->
 								<button type="button"class="btn-cancel" data-toggle="modal" data-target="#ModalDelete"><i class="fa fa-trash"></i>&nbsp;Delete</button>
-									<div class="modal fade" id="ModalDelete" role="dialog">
+									<div class="modal fade" id="ModalDelete" role="dialog" class="container-fluid">
 										<div class="modal-dialog">
 										<!-- Modal Delete-->      
 											<div class="modal-content">
@@ -105,10 +105,10 @@
 							</div>
 						</div>
 					</div>
-					<div class="col"></div> 
+					<div class="col" class="container-fluid"></div> 
 					<div class="col">
 						<div class="d-flex flex-row-reverse">
-							<div class="row1">
+							<div class="row1" class="container-fluid">
 								<div class="d-flex flex-row-reverse">
 									
 										<button  type="button" data-toggle="modal" data-target="#ModalEdit-{{uer.user_id}}" class='fa fa-edit'style='font-size:20px; color: white'></button>

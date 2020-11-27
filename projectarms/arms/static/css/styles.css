@@ -10,27 +10,6 @@
  * Copyright 2011-2020 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  */
-.modal:before { 
-  content: ''; 
-  display: inline-block; 
-  height: 100%; 
-  vertical-align: middle; 
-} 
-          
-.modal-middle { 
-  
-  vertical-align: middle; 
-  display: inline-block; 
-  vertical-align: middle; 
-} 
-          
-.modal .modal-center { 
-  padding: 20px 20px 20px 20px; 
-  -webkit-animation-name: modal-animation; 
-  -webkit-animation-duration: 0.5s; 
-  animation-name: modal-animation; 
-  animation-duration: 0.5s; 
-}
 
 :root {
   --blue: #007bff;
@@ -5381,38 +5360,37 @@ a.close.disabled {
 
 .modal {
   position: fixed;
-  top: 0;
+  top: 300px;
   left: 0;
   z-index: 1050;
   display: none;
   width: 100%;
-  height: 100%;
+  height: 200%;
   overflow: hidden;
   outline: 0;
 }
 
 .modal-dialog {
   position: relative;
-  width: auto;
+  width: 300px;
   margin: 0.5rem;
   pointer-events: none;
 }
 .modal.fade .modal-dialog {
   transition: transform 0.3s ease-out;
-  transform: translate(0, -50px);
+  transform: translate(0px, -50px);
 }
-@media (prefers-reduced-motion: reduce) {
+/*@media (prefers-reduced-motion: reduce) {
   .modal.fade .modal-dialog {
     transition: none;
   }
-}
+}*/
 .modal.show .modal-dialog {
   transform: none;
 }
 .modal.modal-static .modal-dialog {
   transform: scale(1.02);
 }
-
 .modal-dialog-scrollable {
   display: flex;
   max-height: calc(100% - 1rem);
@@ -5428,7 +5406,6 @@ a.close.disabled {
 .modal-dialog-scrollable .modal-body {
   overflow-y: auto;
 }
-
 .modal-dialog-centered {
   display: flex;
   align-items: center;
