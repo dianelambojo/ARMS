@@ -12,27 +12,7 @@
  */
 
 /* FOR BASE.HTML */
-.modal:before { 
-  content: ''; 
-  display: inline-block; 
-  height: 100%; 
-  vertical-align: middle; 
-} 
-          
-.modal-middle { 
-  
-  vertical-align: middle; 
-  display: inline-block; 
-  vertical-align: middle; 
-} 
-          
-.modal .modal-center { 
-  padding: 20px 20px 20px 20px; 
-  -webkit-animation-name: modal-animation; 
-  -webkit-animation-duration: 0.5s; 
-  animation-name: modal-animation; 
-  animation-duration: 0.5s; 
-}
+
 /*for button save, view, okay, yes, book(dashboard), log in, sign up*/
 .btn-view-save{
   background-color: #F8c400; /*gold*/
@@ -5508,11 +5488,10 @@ a.close.disabled {
   overflow-x: hidden;
   overflow-y: auto;
 }
-
 .modal {
   position: fixed;
-  top: 100px;
-  left: 500px;
+  top: 300px;
+  left: 600px;
   z-index: 1050;
   display: none;
   width: 100%;
@@ -5574,9 +5553,8 @@ a.close.disabled {
 .modal-dialog-centered.modal-dialog-scrollable::before {
   content: none;
 }
-
 .modal-content {
-  position: relative;
+  position:flex;
   width: 150%;
   pointer-events: auto;
   background-color: #fff;
@@ -5603,8 +5581,8 @@ a.close.disabled {
 }
 
 .modal-header {
- /* display: flex;
-  align-items: flex-start;*/
+  display: flex;
+  align-items: flex-start;
   justify-content: space-between;
   padding: 1rem 1rem;
   border-bottom: 1px solid #dee2e6;
@@ -5613,7 +5591,7 @@ a.close.disabled {
 }
 .modal-header .close {
   padding: 1rem 1rem;
-  /*margin: -1rem -1rem -1rem auto;*/
+  margin: -1rem -1rem -1rem auto;
    border-top-left-radius: 15px;
   border-top-right-radius: 15px;
 }
@@ -5621,9 +5599,8 @@ a.close.disabled {
   margin-bottom: 0;
   line-height: 1.5;
 }
-
 .modal-body {
-  position: relative;
+  position: relative;+
   flex: 1 1 auto;
   padding: 1rem;
 }
