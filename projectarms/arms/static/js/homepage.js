@@ -306,6 +306,7 @@ function runSpeechRecognition() {
         el.insertBefore(tag.element, mainInput);
 
         refreshTags();
+        //run
     }
 
     function removeTag (index) {

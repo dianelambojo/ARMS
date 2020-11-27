@@ -181,7 +181,7 @@ class AddBookIndexView(View):
 			form = Books(book_id = book_id, book_title = book_title, book_author_id = book_author_id, book_cover = book_cover,
 				book_file = book_file, book_year = book_year, book_tags = book_tags, book_summary = book_summary, book_category_no = book_category_no)
 			form.save()
-			return HttpResponse('Medicine Saved!')
+			return HttpResponse('Book Saved!')
 		else:
 			print(form.errors)
 			return HttpResponse('Not Valid')

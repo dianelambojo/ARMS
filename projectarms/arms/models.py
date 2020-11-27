@@ -65,7 +65,7 @@ class Books(models.Model):
 	book_author_id = models.ForeignKey(Author, on_delete=models.CASCADE)
 	book_cover = models.ImageField(upload_to='media/')
 	book_file = models.FileField(upload_to='media/')
-	book_year = models.IntegerField()
+	book_year = models.DateField(default = timezone.now)
 	book_tags = models.CharField(max_length = 100)
 	book_summary = models.CharField(max_length = 100)
 	book_category_no = models.ForeignKey(Category, on_delete=models.CASCADE)
