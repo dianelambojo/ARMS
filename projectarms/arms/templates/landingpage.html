@@ -52,12 +52,13 @@
                                 <div class="modal-dialog" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h1 class="modal-title">Log In</h1>
+                                            <h4 class="modal-title">Log In</h4>
                                         </div>
-                                        <div class ="login">     
+                                        <div class ="login">    
                                            <div class= "panel-transparent">
                                                 <div class= "login-body">
                                                     <form method="post">
+                                                        <h3 class="modal-title">Log In</h3> 
                                                         <div class="txt_field">
                                                             <input type="text" required>
                                                             <span></span>
@@ -69,6 +70,7 @@
                                                             <label>Password</label>
                                                         </div>
                                                         <!-- <div class="pass">Forgot Password?</div> -->
+                                                        <button type="button" class="btn-cancel" data-dismiss="modal">CANCEL</button>
                                                         <input type="submit" value="LOGIN">
                                                         <div class="signup_link">
                                                             Not a member? <a href='{% url "arms:register_view" %}'> Signup</a>
