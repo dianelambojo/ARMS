@@ -568,6 +568,7 @@ input[type="submit"]:hover{
     border-radius: 50%;
     min-width: 50%;
     position: absolute;
+    left: 1125px;
 }
 img {
     max-width: 100%;
@@ -575,8 +576,11 @@ img {
 }
 .p-image {
   position: absolute;
-  color: #666666;
+  color: white;
   transition: all .3s cubic-bezier(.175, .885, .32, 1.275);
+  top: 300px;
+  left: 1165px;
+  opacity: 0.85;
 }
 .p-image:hover {
   transition: all .3s cubic-bezier(.175, .885, .32, 1.275);
