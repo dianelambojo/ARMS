@@ -98,6 +98,47 @@
 													<div class="modal-header">
 														<h4 class="modal-title">Profile Details</h4>
 													</div>
+													<br>
+													<div class="row">
+														<label for="FistName" class="col-sm-6 col-form-label">First Name</label>
+														<div class="col-sm-5">
+															<input type="text" class="form-control" id="FistName" name="" placeholder="First Name">
+															<br>
+														</div>
+													</div>
+													<div class="row">														<label for="LastName" class="col-sm-6 col-form-label">Last Name</label>
+														<div class="col-sm-5">
+															<input type="text" class="form-control" id="LastName" name="" placeholder="Last Name">
+															<br>
+														</div>
+													</div>
+													<div class="row">														<label for="Email" class="col-sm-6 col-form-label">E-Mail</label>
+														<div class="col-sm-5">
+															<input type="text" class="form-control" id="Email" name="" placeholder="E-Mail">
+															<br>
+														</div>
+													</div>
+													<div class="row">														<label for="Birthdate" class="col-sm-6 col-form-label">Birthdate</label>
+														<div class="col-sm-5">
+															<input type="date" class="form-control" id="Birthdaye" name="" placeholder="Birthdate">
+															<br>
+														</div>
+													</div>
+													<div class="row">														<label for="Birthdate" class="col-sm-6 col-form-label">Gender</label>
+														<div class="radio_field row col-5">
+									                        <div class="col-6 d-flex justify-content-center">
+									                            <input class="mt-2 mr-1" type="radio" id="male" name="gender" value="male">
+									                            <label for="male">Male</label>
+									                        </div>
+									                        <div class="col-6 d-flex justify-content-center">
+									                            <input class="mt-2 mr-1" type="radio" id="female" name="gender" value="female">
+									                                <label for="female">Female</label>
+									                        </div>
+									                        <br>
+									                    </div>
+													</div>
+
+													
 												{% for user in users %}		
 													<div class="modal-body" value = "{{user.user_id}}">
 														<div class = "row col-12">

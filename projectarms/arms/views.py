@@ -178,8 +178,9 @@ class AddBookIndexView(View):
 			book_tags = request.POST.get('book_tags')
 			book_summary = request.POST.get('book_summary')
 			book_category_no = request.POST.get('book_category_no')
+			book_info = request.POST.get('book_info')
 			form = Books(book_id = book_id, book_title = book_title, book_author_id = book_author_id, book_cover = book_cover,
-				book_file = book_file, book_year = book_year, book_tags = book_tags, book_summary = book_summary, book_category_no = book_category_no)
+				book_file = book_file, book_year = book_year, book_tags = book_tags, book_summary = book_summary, book_category_no = book_category_no, book_info = book_info)
 			form.save()
 			return HttpResponse('Book Saved!')
 		else:

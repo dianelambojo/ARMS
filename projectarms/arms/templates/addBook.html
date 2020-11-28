@@ -13,9 +13,9 @@
 					&nbsp;
 					&nbsp;
 						<div  class="col  ml-xl-5">
-							<p><b>Book Details</b></p>
+							<h4>Book Details</h4>
 						</div>
-
+						<br>
 						<form method="POST" autocomplete="off" enctype="multipart/form-data">
 							{% csrf_token %}
 							<div  class="col  ml-xl-5">	
@@ -32,38 +32,38 @@
 										</div>
 									</div>
 
-									<!--<div class="form-group row">
+									<div class="form-group row">
 										<label for="Author" class="col-sm-4 col-form-label">Author</label>
 										<div class="col-sm-8">
 											<input type="text" class="form-control" id="Author" name="book_author_id" placeholder="Book Author" required="">
 										</div>
-									</div>-->
-
+									</div>
+									
 									<div class="form-group row">
 										<label for="Year" class="col-sm-4 col-form-label">Year Published</label>
 										<div class="col-sm-8">
-											<input type="date" name="book_year" class="form-control" id="Year" placeholder="Book Published">
+											<input type="date" name="book_year" class="form-control" id="Year" placeholder="Book Published" required>
 										</div>
 									</div>
 
 									<div class="form-group row">
 										<label class="col-sm-4 form-check-label" for="Summary"> Summary</label>
 										<div class="col-sm-8">
-											<textarea placeholder="Book Summary" name="book_summary"class="form-control" id="Summary"  cols="50" rows='5' ></textarea>
+											<textarea placeholder="Book Summary" name="book_summary"class="form-control" id="Summary"  cols="50" rows='5' required></textarea>
 										</div>
 									</div>
 
 									<div class="form-group row">
 										<label class="col-sm-4 form-check-label" for="Info">Information</label>
 										<div class="col-sm-8">
-											<input type='text' class="form-control" id="Info" placeholder="Book Information">
+											<input type='text' class="form-control" name="book_info" id="Info" placeholder="Book Information">
 										</div>
 									</div>
 
 									<div class="form-group row">
 										 <label for="Category" class="col-sm-4 form-check-label">Category</label>
 										 <div class="col-sm-8">
-							    			<select class="form-control" id="Category">
+							    			<select class="form-control" id="Category" required>
 							    			<option value="" name="book_category_no" disabled selected>Select Book Category</option>
 										      <option>Research</option>
 										      <option>Journal</option>
@@ -76,7 +76,7 @@
 
 									<div class="form-group row">
 										 <label for="tags" class="col-sm-4 form-check-label">Book Tags</label>
-							            <div class="tags-input col-sm-7" name="book_tags" data-name="tags-input" id="tags" placeholder="Enter Tags"></div>
+							            <div class="tags-input col-sm-7" name="book_tags" data-name="tags-input" id="tags" placeholder="Enter Tags" required></div>
 							        
 							        <script src="{% static 'js/homepage.js' %}"></script>
 									</div>
