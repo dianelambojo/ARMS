@@ -32,7 +32,7 @@ def loginPage(request):
 
 		if user is not None:
 			login(request, user)
-			return redirect('arms:homepage_view')#redirect homepage not working
+			return redirect('arms:homepage_view')
 		else:
 			messages.info(request, 'Username OR password is incorrect')
 			

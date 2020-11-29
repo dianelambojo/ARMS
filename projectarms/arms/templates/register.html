@@ -1,109 +1,70 @@
 {% extends "base_1.1.html" %}
 {% load static %}
 {% block content %}
-
+<!-- 
 <h3>Register</h3>
 <form method="POST" action="">
-    {% csrf_token %}
-    {{form.username.label}}
-    {{form.username}}
-    
-    {{form.email.label}}
-    {{form.email}}
+	{% csrf_token %}
+	{{form.username.label}}
+	{{form.username}}
+	
+	{{form.email.label}}
+	{{form.email}}
 
-    {{form.password1.label}}
-    {{form.password1}}
+	{{form.password1.label}}
+	{{form.password1}}
 
-    {{form.password2.label}}
-    {{form.password2}}
+	{{form.password2.label}}
+	{{form.password2}}
 
-    <input type="submit" name="Create User">
-    {{form.errors}}
-    <div class="signup_link">
-        Already have an acc? <a href='{% url "arms:login_view" %}'> Sign in</a>
-    </div>
-</form>
+	<input type="submit" name="Create User">
+	{{form.errors}}
+	<div class="signup_link">
+		Already have an acc? <a href='{% url "arms:login_view" %}'> Sign in</a>
+	</div>
+</form> -->
 
 
-<!-- <div class = "d-flex justify-content-center">
-    <div class ="register mt-4 mb-4" >
-       <div class= "panel-transparent">
-            <div class= "register-body">
-                {% csrf_token %}
-                <h1>SIGN UP </h1>
-                <form method="post">
-                    {% csrf_token %}
-                    <div class ="row col-12">
-                        <div class="txt_field col-sm-6">
-                            <input type="text required" name="firstname">
-                            <span></span>
-                            <div class=" d-flex justify-content-center">
-                                <label>First Name</label>
-                            </div>
-                        </div>
-                        <div class="txt_field col-sm-6">
-                            <input type="text required" name="lastname">
-                            <span></span>
-                            <div class=" d-flex justify-content-center">
-                                <label>Last Name</label>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="txt_field">
-                        <div class="col-md-9">
-                            <input type="date" name="birthdate">
-                        </div>
-                        <span></span>
-                        <label>Birthdate</label>
-                    </div>
-                    <div class="txt_field">
-                        <input type="text required" name="contact_number">
-                        <span></span>
-                        <label>Contact No.</label>
-                    </div>
-                    <div class="txt_field">
-                        <input type="text required" name="email">
-                        <span></span>
-                        <label>Email</label>
-                    </div>
-                    <div class="txt_field">
-                        <label>Gender</label>
-                    </div>
-                    <div class="radio_field row col-12">
-                        <div class="col-6 d-flex justify-content-center">
-                            <input class="mt-2 mr-1" type="radio" id="male" name="gender" value="male">
-                            <label for="male">Male</label>
-                        </div>
-                        <div class="col-6 d-flex justify-content-center">
-                            <input class="mt-2 mr-1" type="radio" id="female" name="gender" value="female">
-                                <label for="female">Female</label>
-                        </div>
-                    </div>
-                    <div class="txt_field">
-                        <input type="text required" name="user_id">
-                        <span></span>
-                        <label>UserID</label>
-                    </div>
-                    <div class="txt_field">
-                        <input type="password" name="password" required>
-                        <span></span>
-                        <label>Password</label>
-                    </div>
-                    <div class="txt_field">
-                        <input type="password" name="confirmpassword" required>
-                        <span></span>
-                        <label>Confirm Password</label>
-                    </div>
-                    checkbox agree to terms
-                    <div class="d-flex justify-content-center">
-                       <input type="submit" value="SIGN UP">
-                       &nbsp;&nbsp;
-                       <button type="button" class="btn-cancel"  href='{% url "arms:landingpage_view" %}'>Cancel</button>
-                    </div>
-                </form>
-            </div>
-        </div>     
-    </div>
-</div> -->
+<div class = "d-flex justify-content-center">
+	<div class ="register mt-4 mb-4" >
+	   <div class= "panel-transparent">
+			<div class= "register-body">
+				<h1>SIGN UP </h1>
+				<form method="POST" action="">
+					{% csrf_token %}
+					<div class="txt_field">
+						{{form.username}}
+						<span></span>
+						<label>Username</label>
+					</div>
+					<div class="txt_field">
+						{{form.email}}
+						<span></span>
+						<label>Email</label>
+					</div>
+					<div class="txt_field">
+						{{form.password1}}
+						<span></span>
+						<label>Password</label>
+					</div>
+					<div class="txt_field">
+						{{form.password2}}
+						<span></span>
+						<label>Confirm Password</label>
+					</div>
+					<div class="signup_link">
+						Already have an acc? <a href='{% url "arms:login_view" %}'> Sign in</a>
+						&nbsp;&nbsp;
+					</div>
+					<div class="d-flex justify-content-center">
+						<input type="submit" name="Create User">
+						<button type="button" class="btn-cancel"  href='{% url "arms:landingpage_view" %}'>Cancel</button>
+						{{form.errors}}
+						
+					</div>
+				</form>
+			</div>
+		</div>     
+	</div>
+</div>
 {% endblock content %}
