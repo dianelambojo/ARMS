@@ -12,6 +12,15 @@ from django.contrib.auth import authenticate, login, logout
 
 # Create your views here.
 
+
+# 1 Makemigrations
+# 2 Migrate
+# 3 Createsuperuser for django admin
+# 4 Go to register page 
+# 5 Fill out details, password dpat tarong kay mo error sya
+# 6 Check django admin if nasuod sya
+# 7 Login, pero dle pa sya mo redirect sa page
+
 def loginPage(request):
 	if request.method == 'POST':
 		username = request.POST.get('username')
@@ -21,7 +30,7 @@ def loginPage(request):
 
 		if user is not None:
 			login(request, user)
-			return redirect('homepage_view')
+			return redirect('homepage_view')#redirect homepage not working
 		else:
 			messages.info(request, 'Username OR password is incorrect')
 			
