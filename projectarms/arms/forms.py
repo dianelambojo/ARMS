@@ -1,26 +1,16 @@
+from django.forms import ModelForm
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
 from django import forms
-from .models import *
 
-class UserForm(forms.ModelForm):
-
+class CreateUserForm(UserCreationForm):
 	class Meta:
 		model = User
-		fields = ('password','firstname')
+		fields = ['username', 'email', 'password1', 'password2']
 
-class StudentForm(forms.ModelForm):
 
-	class Meta:
-		model = Student
-		fields = ('student_id',)
+# class BooksForm(forms.ModelForm):
 
-class EmployeeForm(forms.ModelForm):
-
-	class Meta:
-		model = Employee
-		fields = ('employee_id',)
-
-class BooksForm(forms.ModelForm):
-
-	class Meta:
-		model = Books
-		fields=('book_id',)
+# 	class Meta:
+# 		model = Books
+# 		fields=('book_id',)

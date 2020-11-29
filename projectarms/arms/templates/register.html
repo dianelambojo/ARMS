@@ -1,7 +1,31 @@
 {% extends "base_1.1.html" %}
 {% load static %}
 {% block content %}
-<div class = "d-flex justify-content-center">
+
+<h3>Register</h3>
+<form method="POST" action="">
+    {% csrf_token %}
+    {{form.username.label}}
+    {{form.username}}
+    
+    {{form.email.label}}
+    {{form.email}}
+
+    {{form.password1.label}}
+    {{form.password1}}
+
+    {{form.password2.label}}
+    {{form.password2}}
+
+    <input type="submit" name="Create User">
+    {{form.errors}}
+    <div class="signup_link">
+        Already have an acc? <a href='{% url "arms:login_view" %}'> Sign in</a>
+    </div>
+</form>
+
+
+<!-- <div class = "d-flex justify-content-center">
     <div class ="register mt-4 mb-4" >
        <div class= "panel-transparent">
             <div class= "register-body">
@@ -71,7 +95,7 @@
                         <span></span>
                         <label>Confirm Password</label>
                     </div>
-                    <!--checkbox agree to terms-->
+                    checkbox agree to terms
                     <div class="d-flex justify-content-center">
                        <input type="submit" value="SIGN UP">
                        &nbsp;&nbsp;
@@ -81,5 +105,5 @@
             </div>
         </div>     
     </div>
-</div>
+</div> -->
 {% endblock content %}

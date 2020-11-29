@@ -1,24 +1,27 @@
 {% extends "base_1.1.html" %}
 {% load static}
 {% block content %}
-
    <div class ="login">
         <div class= "panel-transparent">
             <div class= "login-body">
                 <h1>LOGIN</h1>
-                <form method="post">
+                <form method="POST" action="">
+                    {% csrf_token %}
                     <div class="txt_field">
-                        <input type="text" required>
+                        <input type="text" name="username" >
                         <span></span>
                         <label>Username</label>
                     </div>
                     <div class="txt_field">
-                        <input type="password" required>
+                        <input type="password" name="password">
                         <span></span>
                         <label>Password</label>
                     </div>
-                    <!-- <div class="pass">Forgot Password?</div> -->
+                    <div class="pass">Forgot Password?</div>
                     <input type="submit" value="LOGIN">
+                    {% for message in messages %}
+                        <p id="messages">{{message}}</p>
+                    {% endfor %}
                     <div class="signup_link">
                         Not a member? <a href='{% url "arms:register_view" %}'> Signup</a>
                     </div>

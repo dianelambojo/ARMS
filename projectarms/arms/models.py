@@ -3,42 +3,13 @@ from django.utils import timezone
 # Create your models here.
 
 class User(models.Model):
-	user_id = models.CharField(primary_key=True, max_length=50)
-	password = models.CharField(max_length=100)
-	confirmpassword = models.CharField(max_length=100 , default="")
-	firstname = models.CharField(max_length = 100)
-	lastname = models.CharField(max_length = 100)
-	email = models.CharField(max_length = 100)
-	birthdate = models.DateField(default = timezone.now)
+	name = models.CharField(max_length=200, null=True)
+	phone = models.CharField(max_length=200, null=True)
+	email = models.CharField(max_length=200, null=True)
+	date_created = models.DateTimeField(auto_now_add=True, null=True)
 
-	G_CHOICES = [('M','Male'),('F','Female')]
-	gender=models.CharField(max_length = 50, choices=G_CHOICES)
-
-	contact_number =  models.CharField(max_length = 15)
-
-	USER_CHOICES = [('S','Student'),('E','Employee')]
-	# user_type=models.CharField(max_length = 50, choices=USER_CHOICES)
-
-	class Meta:
-		db_table = "User"
-
-class Student(models.Model):
-	student_id = models.ForeignKey(User, on_delete=models.CASCADE)
-
-	class Meta:
-		db_table = "Student"
-
-class Employee(models.Model):
-	employee_id =  models.ForeignKey(User, on_delete=models.CASCADE)
-
-	class Meta:
-		db_table = "Employee"
-
-class Administrator(models.Model):
-	admin_id = models.CharField(primary_key=True, max_length=50)
-
-	class Meta:
-		db_table = "Administrator"
+	def __str__(self):
+		return self.name
 
 class Author(models.Model):
 	book_author_id = models.CharField(primary_key=True, max_length=50)

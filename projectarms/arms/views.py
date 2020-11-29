@@ -5,9 +5,49 @@ from django.http import Http404
 from .forms import *
 from .models import *
 import re
-
+from django.contrib.auth.forms import UserCreationForm
+from .forms import CreateUserForm
+from django.contrib import messages
+from django.contrib.auth import authenticate, login, logout
 
 # Create your views here.
+
+def loginPage(request):
+	if request.method == 'POST':
+		username = request.POST.get('username')
+		password = request.POST.get('password')
+
+		user = authenticate(request, username=username, password=password)
+
+		if user is not None:
+			login(request, user)
+			return redirect('homepage_view')
+		else:
+			messages.info(request, 'Username OR password is incorrect')
+			
+	context = {} 
+	return render(request,'login.html',context)
+
+def logoutUser(request):
+	logout(request )
+	return redirect ('login_view')
+
+
+def registerPage(request):
+	form = CreateUserForm()
+	
+	if request.method == 'POST':
+		form = CreateUserForm(data=request.POST)
+		print(form.is_valid())
+		print(form.errors)
+		if form.is_valid():
+			form.save()
+			user = form.cleaned_data.get('username')
+			messages.success(request,'Account was created for '+user)
+
+	context = {'form':form}
+	return render(request,'register.html',context)
+
 
 class ArmsAdminView(View):
 	def get(self, request):
@@ -75,69 +115,6 @@ class LandingPageIndexView(View):
 	def get(self, request):
 		return render(request, 'landingpage.html')
 
-class LoginIndexView(View):
-	def get(self, request):
-		return render(request, 'login.html')
-
-class RegisterIndexView(View):
-	def get(self,request):
-		context={
-			'title': 'Registration'
-		}
-		return render(request, 'register.html', context)
-
-	def post(self, request):
-		form = UserForm(request.POST)
-		if form.is_valid():
-			
-			user_id = request.POST.get("user_id")
-			firstname = request.POST.get("firstname")
-			lastname = request.POST.get("lastname")
-			birthdate = request.POST.get("birthdate")
-			email = request.POST.get("email")
-			gender = request.POST.get("gender")
-			contact_number = request.POST.get("contact_number")
-			password = request.POST.get("password")
-			confirmpassword = request.POST.get("confirmpassword")
-			# user_type = request.POST.get("user_type")
-
-			pattern_student = r'[0-9]{2}-[0-9]{4}-[0-9]{3}'
-			patter_emp = r'^[0-9]*$'
-
-			if re.findall(pattern_student,string=user_id):
-				form = User(user_id = user_id, firstname = firstname, lastname = lastname, birthdate = birthdate, email=email, gender = gender, contact_number = contact_number,
-						password = password, confirmpassword = confirmpassword)
-
-				form.save()
-
-				form = StudentForm(request.POST)
-
-				form = Student(student_id = User.objects.get(user_id = user_id))
-
-				form.save()
-
-				return HttpResponse('Record saved!')
-
-			elif re.findall(patter_emp,string=user_id):
-				form = User(user_id = user_id, firstname = firstname, lastname = lastname, birthdate = birthdate, email=email, gender = gender, contact_number = contact_number,
-						password = password, confirmpassword = confirmpassword)
-
-				form.save()
-
-				form = EmployeeForm(request.POST)
-
-				form = Employee(employee_id = User.objects.get(user_id = user_id))
-
-				form.save()
-
-				return HttpResponse('Record saved!')
-
-			else:
-				return HttpResponse('wrong pattern')
-			
-		else: 
-			print(form.errors)	
-			return HttpResponse('Not saved!')
 
 class AboutUsIndexView(View):
 	def get(self, request):
@@ -166,23 +143,23 @@ class AddBookIndexView(View):
 			}
 		return render(request, 'addbook.html')
 
-	def post(self, request):
-		form = BooksForm(request.POST, request.FILES)
-		if form.is_valid():
-			book_id = request.POST.get('book_id')
-			book_title = request.POST.get('book_title')
-			book_author_id = request.POST.get('book_author_id')
-			book_cover = request.FILES['book_cover']
-			book_file = request.FILES['book_file']
-			book_year = request.POST.get('book_year')
-			book_tags = request.POST.get('book_tags')
-			book_summary = request.POST.get('book_summary')
-			book_category_no = request.POST.get('book_category_no')
-			book_info = request.POST.get('book_info')
-			form = Books(book_id = book_id, book_title = book_title, book_author_id = book_author_id, book_cover = book_cover,
-				book_file = book_file, book_year = book_year, book_tags = book_tags, book_summary = book_summary, book_category_no = book_category_no, book_info = book_info)
-			form.save()
-			return HttpResponse('Book Saved!')
-		else:
-			print(form.errors)
-			return HttpResponse('Not Valid')
+	# def post(self, request):
+	# 	form = BooksForm(request.POST, request.FILES)
+	# 	if form.is_valid():
+	# 		book_id = request.POST.get('book_id')
+	# 		book_title = request.POST.get('book_title')
+	# 		book_author_id = request.POST.get('book_author_id')
+	# 		book_cover = request.FILES['book_cover']
+	# 		book_file = request.FILES['book_file']
+	# 		book_year = request.POST.get('book_year')
+	# 		book_tags = request.POST.get('book_tags')
+	# 		book_summary = request.POST.get('book_summary')
+	# 		book_category_no = request.POST.get('book_category_no')
+	# 		book_info = request.POST.get('book_info')
+	# 		form = Books(book_id = book_id, book_title = book_title, book_author_id = book_author_id, book_cover = book_cover,
+	# 			book_file = book_file, book_year = book_year, book_tags = book_tags, book_summary = book_summary, book_category_no = book_category_no, book_info = book_info)
+	# 		form.save()
+	# 		return HttpResponse('Book Saved!')
+	# 	else:
+	# 		print(form.errors)
+	# 		return HttpResponse('Not Valid')
