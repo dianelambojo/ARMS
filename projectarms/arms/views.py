@@ -40,8 +40,8 @@ def loginPage(request):
 	return render(request,'login.html',context)
 
 def logoutUser(request):
-	logout(request )
-	return redirect ('login_view')
+	logout(request)
+	return redirect('arms:login_view')
 
 
 def registerPage(request):
