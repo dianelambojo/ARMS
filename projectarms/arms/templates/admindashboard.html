@@ -140,8 +140,8 @@
               <tr>
                 <th>User ID</th>
                 <th>First name</th>
-                <th>Last name</th>
-                <th>Gender</th>
+                <th>Phone</th>
+                <th>Email</th>
                 <th>Action</th>
               </tr>
             </thead>
@@ -149,17 +149,17 @@
             <tbody>
               {% for user in users %}
               <tr>
-                <td>{{user.user_id}}</td>
-                <td>{{user.firstname}}</td>
-                <td>{{user.lastname}}</td>
-                <td>{{user.gender}}</td>
+                <td>{{user.id}}</td>
+                <td>{{user.name}}</td>
+                <td>{{user.phone}}</td>
+                <td>{{user.email}}</td>
                 <td>
-                  <button type="button" class="btn btn-view-save" data-toggle="modal" data-target="#ViewModal1-{{user.user_id}}"><i class="fa fa-eye"></i>&nbsp;View</button>
-                  <button type="button" class="btn btn-cancel" data-toggle="modal" data-target="#DeleteModal1-{{user.user_id}}"><i class="fa fa-trash"></i>&nbsp; Delete</button>
+                  <button type="button" class="btn btn-view-save" data-toggle="modal" data-target="#ViewModal1-{{user.id}}"><i class="fa fa-eye"></i>&nbsp;View</button>
+                  <button type="button" class="btn btn-cancel" data-toggle="modal" data-target="#DeleteModal1-{{user.id}}"><i class="fa fa-trash"></i>&nbsp; Delete</button>
                 </td>
               </tr>
     <!-- MODAL VIEW BOOK -->
-              <div class="modal fade" id="ViewModal1-{{user.user_id}}" tabindex="-1" role="dialog" aria-labelledby="ViewModalLabel1" aria-hidden="true">
+              <div class="modal fade" id="ViewModal1-{{user.id}}" tabindex="-1" role="dialog" aria-labelledby="ViewModalLabel1" aria-hidden="true">
                 <div class="modal-dialog " role="document">
                   <div class="modal-center">
                   <div class="modal-content">
@@ -176,37 +176,23 @@
                         <div class="form-row">
                           <div class="form-group col-md-12">
                             <label for="userid">User ID</label>
-                            <input type="text" class="form-control" id="userid" name="userid" value = "{{user.user_id}}">
+                            <input type="text" class="form-control" id="userid" name="userid" value = "{{user.id}}">
                           </div>
                         </div>
                         <div class="form-row">
                           <div class="form-group col-md-6">
-                            <label for="fname">First name</label>
-                            <input type="text" class="form-control" id="fname" name="fname" value = "{{user.firstname}}">
+                            <label for="fname">Name</label>
+                            <input type="text" class="form-control" id="fname" name="fname" value = "{{user.name}}">
                           </div>
                           <div class="form-group col-md-6">
-                            <label for="lname">Last name</label>
-                            <input type="text" class="form-control" id="lname" name="lname" value = "{{user.lastname}}">
-                          </div>
-                        </div>
-                        <div class="form-row">
-                          <div class="form-group col-md-6">
-                            <label for="birthdate">Birthdate</label>
-                            <input type="text" class="form-control" id="birthdate" name="birthdate" value = "{{user.birthdate}}">
-                          </div>
-                          <div class="form-group col-md-6">
-                            <label for="email">Email</label>
-                            <input type="text" class="form-control" id="email" name="email" value = "{{user.email}}">
+                            <label for="lname">Phone</label>
+                            <input type="text" class="form-control" id="lname" name="lname" value = "{{user.phone}}">
                           </div>
                         </div>
                         <div class="form-row">
                           <div class="form-group col-md-6">
-                            <label for="gender">Gender</label>
-                            <input type="text" class="form-control" id="gender" name="gender" value = "{{user.gender}}">
-                          </div>
-                          <div class="form-group col-md-6">
-                            <label for="contact_number">Contact Number</label>
-                            <input type="text" class="form-control" id="contact_number" name="contact_number" value = "{{user.contact_number}}">
+                            <label for="birthdate">Email</label>
+                            <input type="text" class="form-control" id="birthdate" name="birthdate" value = "{{user.email}}">
                           </div>
                         </div>
                         </div>
@@ -220,7 +206,7 @@
                 </div>
               </div>
       <!-- Modal Delete -->
-              <div class="modal fade" id="DeleteModal1-{{user.user_id}}" tabindex="-1" role="dialog" aria-labelledby="DeleteModalLabel1" aria-hidden="true">
+              <div class="modal fade" id="DeleteModal1-{{user.id}}" tabindex="-1" role="dialog" aria-labelledby="DeleteModalLabel1" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                   <div class="modal-content">
                     <div class="modal-header">
@@ -232,7 +218,7 @@
                        <form id="deleteForm" method="post" >
                         {% csrf_token %} 
                         <div class="modal-body">
-                          <input type="text" name="bookid" value = {{user.user_id}} hidden>
+                          <input type="text" name="bookid" value = {{user.id}} hidden>
                         Are you sure you want to delete this record?
                       </div>
                       <div class="modal-footer">
