@@ -76,11 +76,12 @@ img {
  }
 /*for read, bookmark, download, microphone*/
 .btn-RBD{
-  background-color: #F8c400; 
+  background-color: #F8C400; 
   border: none; 
   border-radius: 5px;
   width: 40px;
   padding: 10px; 
+  margin-right: 15px;
   font-size: 16px;
 }
 /*--------------------------------------------------------------
@@ -2637,27 +2638,27 @@ fieldset:disabled a.btn {
 }
 
 .btn-secondary {
-  color: #fff;
-  background-color: #ffdf16;
+  color: white;
+  background-color: #696969;
 }
 .btn-secondary:hover {
-  color: #ffdf16;
-  background-color: #ebebeb;
+  color: white;
+  background-color: #545454;
 }
 .btn-secondary:focus, .btn-secondary.focus {
-  color: #fff;
-  background-color: #ffdf16;
+  color: white;
+  background-color: #545454;
 }
 .btn-secondary.disabled, .btn-secondary:disabled {
-  color: #ffdf16;
-  background-color: #ebebeb;
+  color: white;
+  background-color: #545454;
 }
 .btn-secondary:not(:disabled):not(.disabled):active, .btn-secondary:not(:disabled):not(.disabled).active, .show > .btn-secondary.dropdown-toggle {
-  color: #fff;
-  background-color: #ffdf16;
+   color: white;
+  background-color: #545454;
 }
 .btn-secondary:not(:disabled):not(.disabled):active:focus, .btn-secondary:not(:disabled):not(.disabled).active:focus, .show > .btn-secondary.dropdown-toggle:focus {
-  background-color: #ffdf16;
+  background-color: #545454;
 }
 
 .btn-success {
@@ -10336,5 +10337,342 @@ header.base h1 {
   display: inline-block;
 }
 
+/* search input-group */
+.input-group-text{
+  background-color: #DCDCDC;
+}
+
+/* others */
+.left{
+  padding-left:5em;
+}
+
+.centered {
+  position: absolute;
+  top: 35%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-weight: bold;
+  font-size: 35px;
+  color: #FFFFFF;
+  text-transform: uppercase;
+}
+
+/* Label */
+.text{
+  font-weight: bold;
+  font-family: 'Times New Roman';
+  font-size: 20px;
+}
+
+/* Images */
+.thumbnail{
+  cursor: pointer;
+  border: 2px solid black;
+  width: 190px;
+  height: 190px;
+  margin-right: 15px;
+}
+
+.thumbnail:hover{
+  opacity: 2;
+}
+
+.thumbnail2{
+  cursor: pointer;
+  border: 2px solid black;
+  width: 180px;
+  height: 180px;
+  margin-right: 15px;
+}
+
+.thumbnail2:hover{
+  opacity: 1;
+}
+
+/* Book Slider */
+.slider {
+  width: 850px;
+  height: 250px;
+  text-align: center;
+}
+
+.slider div {
+  margin-bottom: 1px;
+  padding-bottom: 1px;
+  margin-top: 5px;
+  padding-top: 1px;
+}
+
+.slick-slide {
+  opacity: 1;
+  width: 10px;
+}
+
+.slick-dots{
+  top: 200px;
+}
+
+.slick-disabled {
+    opacity: 0;
+    pointer-events:none;
+}
+
+/* Modal Book Details */
+.summary{
+  font-size: 12px;
+  text-align: justify;
+  text-indent: 50px;
+}
+
+.author{
+  font-size: 11px;
+  color: #A9A9A9;
+}
+
+.title{
+  font-size: 13px;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: black;
+}
+
+.year{
+  font-size: 10px;
+  color: #A9A9A9;
+  margin-bottom: 10px;
+}
+
+.fa-bookmark, .fa-download, .fa-book{
+  color: #800000;
+}
+
+.count{
+  font-size: 10px;
+}
+
+.label{
+  font-size: 10px;
+  margin-right:1px;
+  margin-left: 10px;
+}
+
+/* Button box */
+.box{
+  margin-top: 5px;
+  border: 1px solid #D3D3D3;
+  width: 90%;
+  height: 70px;
+  padding-top: 3px;
+  padding-right: 3px;
+  padding-left: 3px;
+  padding-bottom: 3px;
+}
+
+/* Buttons */
+.btn-secondary{
+  border-radius: 50%;
+}
+
+.btn-cite{
+  border: none;
+  background-color: white;
+  font-size: 13px;
+  color: blue;
+  text-decoration: underline;
+  font-family: 'Times New Roman';
+  padding: 0px;
+}
+
+.btn-next{
+  background-color: #800000;
+  color: #FFFFFF;
+  position: absolute;
+    z-index: 1000;
+    top: 30%;
+    right: -60px;
+    border-radius: 50%;
+}
+
+.btn-next:hover{
+  /*background-color: #800000;*/
+  color: #F4CC3C;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+.btn-prev{
+  background-color: #800000;
+  color: #FFFFFF;
+  position: absolute;
+    z-index: 1000;
+    top: 30%;
+    left: -60px;
+    border-radius: 50%;
+}
+
+.btn-prev:hover{
+  /*background-color: #800000;*/
+  color: #F4CC3C;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+.btn-mic{
+  border: 1px solid #D3D3D3;
+  background-color: white;
+  border-radius: 1.5rem;
+}
+
+.btn-close{
+  background-color: #800000;
+  color: white;
+}
+
+/*.btn-copy:hover{
+  color: white;
+}
+
+.btn-copy{
+  background-color: #F4CC3C;
+  color: white;
+}*/
+
+/* citation choices */
+.cite{
+  height: 30px;
+  width: 400px; 
+  text-align: right;
+  font-size: 13px;
+  font-family: 'Times New Roman';
+}
+
+/* textarea */
+.textarea{
+  height: 130px;
+  width: 400px;
+  resize: none; 
+  font-size: 13px;
+  font-family: 'Times New Roman';
+}
+
+/* Toast check icon*/
+.fa-check{
+  color: #008000;
+}
+
+.fa-microphone{
+  color: maroon;
+}
+
+.list{
+  margin-bottom: -30px;
+}
+
+#result{
+  font-weight: bold;
+  font-family: 'Times New Roman';
+  font-size: 20px;
+}
+
+#display{
+  padding: 5px;
+}
 
 
+.sidenav {
+  width: 130px;
+  position:absolute;
+  z-index: 1;
+  top: 135%;
+  left: 10px;
+  background: white;
+  overflow-x: hidden;
+  padding: 8px 0;
+}
+
+/*homepage.html*/
+.sidenav2 {
+  width: 130px;
+  position:absolute;
+  z-index: 1;
+  top: 160%;
+  left: 10px;
+  background: white;
+  overflow-x: hidden;
+  padding: 8px 0;
+}
+
+.sidenav a , .sidenav2 a{
+  padding: 6px 8px 6px 16px;
+  text-decoration: none;
+  font-size: 15px;
+  color: #2196F3;
+  display: block;
+}
+
+.sidenav a:hover, .sidenav2 a:hover {
+  color: #064579;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+  .sidenav2 {padding-top: 15px;}
+  .sidenav2 a {font-size: 18px;}
+}
+
+/*results.html*/
+.sidenav-results {
+  width: 130px;
+  position:absolute;
+  z-index: 1;
+  top: 30%;
+  left: 10px;
+  background: white;
+  overflow-x: hidden;
+  padding: 8px 0;
+}
+
+.sidenav4 {
+  width: 130px;
+  position:absolute;
+  z-index: 1;
+  top: 53%;
+  left: 10px;
+  background: white;
+  overflow-x: hidden;
+  padding: 8px 0;
+}
+
+.sidenav-results a , .sidenav4 a{
+  padding: 6px 8px 6px 16px;
+  text-decoration: none;
+  font-size: 15px;
+  color: #2196F3;
+  display: block;
+}
+
+.sidenav-results a:hover, .sidenav4 a:hover {
+  color: #064579;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav-results {padding-top: 15px;}
+  .sidenav-results a {font-size: 18px;}
+  .sidenav4 {padding-top: 15px;}
+  .sidenav4 a {font-size: 18px;}
+}
+
+.modal {
+   position: absolute;
+   top: 10px;
+   right: 0;
+   bottom: 0;
+   left: 500px;
+   z-index: 10040;
+   overflow: auto;
+   overflow-y: auto;
+}

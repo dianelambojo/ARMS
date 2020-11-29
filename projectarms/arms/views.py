@@ -9,6 +9,8 @@ from django.contrib.auth.forms import UserCreationForm
 from .forms import CreateUserForm
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
+from django.db.models import Q
+import datetime
 
 # Create your views here.
 
@@ -30,7 +32,7 @@ def loginPage(request):
 
 		if user is not None:
 			login(request, user)
-			return redirect('homepage_view')#redirect homepage not working
+			return redirect('arms:homepage_view')#redirect homepage not working
 		else:
 			messages.info(request, 'Username OR password is incorrect')
 			
@@ -71,41 +73,177 @@ class ArmsAdminView(View):
 
 class HomepageView(View):
 	def get(self, request):
-		# books = Books.objects.all()
-		# authors = Author.objects.all()
-		# context={
-		# 	'books' : books,
-		# 	'authors' : authors,
-		# }
-		# return render(request, 'homepage.html', context)
-		return render(request, 'homepage.html')
+		if request.method == 'GET':
+			search = request.GET.get('search')
+			if search:
+				# if the user tries to search using the authors first or last name
+				# if the author is found then it will proceed to search for the book that was written by the author
+				# allBook = Books.objects.all()
+				authors = Author.objects.filter(Q(firstname__icontains=search) | Q(lastname__icontains=search))
+				for author in authors:
+					# for a in allBook:
+					# 	if author.book_author_id == a.book_author_id_id:
+					books = Books.objects.filter(book_author_id=author.book_author_id)
+					context={
+						'search' : search,
+						'books' : books,
+						'authors' : authors,
+					}
+					return render(request, 'results.html', context)
+						# else:
+						# 	context = {
+						# 		'search' : search
+						# 	}
+						# 	return render(request, 'results.html', context)
+						
+				# if the user tries to search using the book title or year 
+				books = Books.objects.filter(Q(book_title__icontains=search) | Q(book_year__icontains=search))
+				authors = authors = Author.objects.all()
+				context={
+					'search' : search,
+					'books' : books,
+					'authors' : authors,
+				}
 
-	def post(self, request):
-	# 	inputText = request.POST.get('searchBox')
-	# 	print(inputText)
-	# 	authors = Author.objects.all()
-	# 	conn = mysql.connector.connect(
-	# 		user="root", password="", host="127.0.0.1", database="arms_database")
-		
-	# 	cursor = conn.cursor()
+				return render(request, 'results.html', context)
 
-	# 	cursor.execute("SELECT * from Books WHERE book_title=%s",[inputText])
-	# 	books = cursor.fetchall()
-	# 	print(books)
-	# 	conn.close()
+			#By category searched of all books
+			searched = request.GET.get('searched')
+			if searched == 'research':
+				authors = authors = Author.objects.all()
+				books = Books.objects.all()
+				research = Category.objects.filter(Q(book_category = searched))
+				for r in research:
+					books = Books.objects.filter(book_category_no_id=r.book_category_no)
+					context={
+						'authors' : authors,
+						'books' : books,
+						'search' : 'Research Studies',
+					}
+					return render(request, 'results.html', context)
 
-	# 	context={
-	# 		'books' : books,
-	# 		'authors' : authors,
-	# 	}
+				return render(request, 'results.html', {'search' : 'Research Studies'})	
+			if searched == 'journals':
+				authors = authors = Author.objects.all()
+				books = Books.objects.all()
+				journals = Category.objects.filter(Q(book_category = searched))
+				for j in journals:
+					books = Books.objects.filter(book_category_no_id=j.book_category_no)
+					context={
+						'authors' : authors,
+						'books' : books,
+						'search' : 'Journals',
+					}
+					return render(request, 'results.html', context)
 
-	# 	return render(request, 'homepage.html', context)
-		return render(request, 'homepage.html')
+				return render(request, 'results.html', {'search' : 'Journals'})	
+			if searched == 'filipiniana':
+				books = Books.objects.all()
+				authors = authors = Author.objects.all()
+				filipiniana = Category.objects.filter(Q(book_category = searched))
+				for f in filipiniana:
+					books = Books.objects.filter(book_category_no_id=f.book_category_no)
+					context={
+						'authors' : authors,
+						'books' : books,
+						'search' : 'Filipiniana',
+					}
+					return render(request, 'results.html', context)
 
-#sample custom pdf viewer
-class PdfViewer(View):
-	def get(self, request):
-		return render(request, "pdfViewer.html")
+				return render(request, 'results.html', {'search' : 'Filipiniana'})	
+			if searched == 'engineering':
+				books = Books.objects.all()
+				authors = authors = Author.objects.all()
+				filipiniana = Category.objects.filter(Q(book_category = searched))
+				for f in filipiniana:
+					books = Books.objects.filter(book_category_no_id=f.book_category_no)
+					context={
+						'authors' : authors,
+						'books' : books,
+						'search' : 'Engineering',
+					}
+					return render(request, 'results.html', context)
+
+				return render(request, 'results.html', {'search' : 'Engineering'})	
+			if searched == 'computerscience':
+				books = Books.objects.all()
+				authors = authors = Author.objects.all()
+				filipiniana = Category.objects.filter(Q(book_category = searched))
+				for f in filipiniana:
+					books = Books.objects.filter(book_category_no_id=f.book_category_no)
+					context={
+						'authors' : authors,
+						'books' : books,
+						'search' : 'Computer Science',
+					}
+					return render(request, 'results.html', context)
+
+				return render(request, 'results.html', {'search' : 'Computer Science'})	
+			if searched == 'informationtechnology':
+				books = Books.objects.all()
+				authors = authors = Author.objects.all()
+				filipiniana = Category.objects.filter(Q(book_category = searched))
+				for f in filipiniana:
+					books = Books.objects.filter(book_category_no_id=f.book_category_no)
+					context={
+						'authors' : authors,
+						'books' : books,
+						'search' : 'Information Technology',
+					}
+					return render(request, 'results.html', context)
+
+				return render(request, 'results.html', {'search' : 'Information Technology'})	
+			if searched == 'business':
+				books = Books.objects.all()
+				authors = authors = Author.objects.all()
+				filipiniana = Category.objects.filter(Q(book_category = searched))
+				for f in filipiniana:
+					books = Books.objects.filter(book_category_no_id=f.book_category_no)
+					context={
+						'authors' : authors,
+						'books' : books,
+						'search' : 'Business',
+					}
+					return render(request, 'results.html', context)
+
+				return render(request, 'results.html', {'search' : 'Business'})	
+			if searched == 'architecture':
+				books = Books.objects.all()
+				authors = authors = Author.objects.all()
+				filipiniana = Category.objects.filter(Q(book_category = searched))
+				for f in filipiniana:
+					books = Books.objects.filter(book_category_no_id=f.book_category_no)
+					context={
+						'authors' : authors,
+						'books' : books,
+						'search' : 'Architecture',
+					}
+					return render(request, 'results.html', context)
+
+				return render(request, 'results.html', {'search' : 'Architecture'})	
+			#if not search/searched
+			else: 	
+				# new releases within the month of the year (more or less)
+				today = datetime.date.today()
+				books = Books.objects.filter(date_added__year=today.year, date_added__month=today.month)
+				print(books)
+				authors = Author.objects.all()
+				context={
+					'books' : books,
+					'authors' : authors,
+				}
+				return render(request, 'homepage.html', context)
+		#if request.method != GET else
+		else:
+			today = datetime.date.today()
+			books = Books.objects.filter(date_added__year=today.year, date_added__month=today.month)
+			print(books)
+			authors = Author.objects.all()
+			context={
+				'books' : books,
+				'authors' : authors,
+			}
+			return render(request, 'homepage.html')
 
 class ProfileIndexView(View):
 	def get(self, request):

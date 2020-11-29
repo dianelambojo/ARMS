@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "baseResult.html" %}
 <!-- Author: Garcia
 	Date: 2020
 	Description: Homepage HTML Code
@@ -11,7 +11,7 @@
 		<div class="left">
 			<div class="input-group mb-3">
 				<!-- if method is GET no need to put csrf_token unlike POST method -->
-				<form method="GET" action='' enctype="multipart/form-data">
+				<form method="GET" enctype="multipart/form-data">
 			  		<input type="text" style="width: 700px; height: 40px; border: 1px solid #D3D3D3; border-top-left-radius: 1.5rem; border-bottom-left-radius: 1.5rem; padding-left: 20px;" id="search" name="search" placeholder="Search title, author, year">
 			  	</form>
 			  	<div class="input-group-append">
@@ -29,7 +29,7 @@
 			</div>
 			<br>
 			<div class="container">
-				<div class="sidenav">
+				<div class="sidenav-results">
 				  	CATEGORY
 					<form method="GET" action='' enctype="multipart/form-data">
 						<a name="searched" href="{% url 'arms:homepage_view' %}?searched=research">Research</a>
@@ -37,7 +37,7 @@
 						<a name="searched" href="{% url 'arms:homepage_view' %}?searched=filipiniana">Filipiniana</a>
 					</form>
 				</div>
-				<div class="sidenav2">
+				<div class="sidenav4">
 				  	ACADEMIC BOOKS
 				  	<form method="GET" action='' enctype="multipart/form-data">
 						<a name="searched" href="{% url 'arms:homepage_view' %}?searched=engineering">Engineering</a>
@@ -47,36 +47,20 @@
 						<a name="searched" href="{% url 'arms:homepage_view' %}?searched=architecture">Architecture</a>
 					</form>
 				</div>
-				<!-- <span id="display">
-					<span id="result"></span>
-					
-				</span> -->
-				<span class="text">New Releases</span>
-				<ul class="list">
-					<div class="slider">
-					{% for book in books %}
+				<span class="text">Results for {{ search }}</span>
+				<div>
+				{% for book in books %}
+					{% if book %}
 						{% for author in authors %}
 							{% if author.book_author_id == book.book_author_id_id %}
-								<li>
-									<img class="thumbnail" src="{{ book.book_cover.url }}" alt="{{ book.book_title }}" title="{{ book.book_title}} {{ author.firstname }} {{ author.lastname }} {{ book.book_year }}" data-toggle="modal" data-target="#viewModal-{{ book.book_id }}">
-								</li>
+								<img class="thumbnail" src="{{ book.book_cover.url }}" alt="{{ book.book_title }}" title="{{ book.book_title}} {{ author.firstname }} {{ author.lastname }} {{ book.book_year }}" data-toggle="modal" data-target="#viewModal-{{ book.book_id }}">
 							{% endif %}
 						{% endfor %}
-					{% endfor %}
-					</div>
-				</ul>
-				<span class="text">Recommended</span>
-				<ul class="list">
-					<div class="slider">
-
-					</div>
-				</ul>
-				<span class="text">Popular</span>
-				<ul class="list">
-					<div class="slider">
-						
-					</div>
-				</ul>
+					{% else %}
+						<span>No results found</span>
+					{% endif %}
+				{% endfor %}
+				</div>
 			</div> <!-- Container -->
 		</div> <!-- Left -->
 
@@ -126,7 +110,7 @@
 										{{ book.book_title }}
 									</div>
 									<div class="year">
-										{{ book.book_year }}
+										{{ book.book_year | date:"Y" }}
 									</div>
 									<div>
 										Sypnosis:
@@ -168,10 +152,10 @@
 									<option value="Chicago"> Chicago Manual of Style </option>
 									<option value="IEEE"> Institute of Electrical and Electronics Engineers </option>
 								</select>
+								<input type="text" id="text" name="text" hidden>
 							</div><br>
 							<div>
-								<textarea class="textarea" id="citationText" name="citationText" readonly></textarea>
-								
+								<textarea class="textarea" id="citationText" name="citationText" readonly>Sample Text: Borman, W. C., Hanson, M.A., Oppler, S. H., Pulakos, E. D., & White, L. A. (1993). Role of early supervisory experience in supervisor performance. Journal of Applied Psychology, 78, 443-449. Retrieved October 23, 2000, from PsycARTICLES database.</textarea>
 							</div>
 						</div> 
 					</div>
@@ -183,7 +167,7 @@
 			</div>
 
 			<!-- TOAST -->
-			<div class="toast" role="alert" aria-live="assertive" aria-atomic="true" style="float: right">
+			<div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
 			  	<div class="toast-header">
 			    	<strong class="mr-auto"><i class="fa fa-check" aria-hidden="true"></i>Copied</strong>
 			    	<button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
@@ -193,7 +177,7 @@
 			  	<div class="toast-body">
 			    	Citation has been copied.
 			  	</div>
-			</div> <!-- TOAST -->
+			</div><!-- TOAST -->
 		</div> <!-- CITE Modal -->
 		{% endfor %}
 	</div>
