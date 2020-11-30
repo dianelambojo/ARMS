@@ -53,12 +53,13 @@ def registerPage(request):
 	
 	if request.method == 'POST':
 		form = CreateUserForm(data=request.POST)
-		print(form.is_valid())
-		print(form.errors)
+		# print(form.is_valid())
+		# print(form.errors)
 		if form.is_valid():
 			form.save()
 			user = form.cleaned_data.get('username')
 			messages.success(request,'Account was created for '+user)
+			return redirect('arms:login_view')
 
 	context = {'form':form}
 	return render(request,'register.html',context)
