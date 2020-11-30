@@ -4,7 +4,6 @@ from django.http import HttpResponse
 from django.http import Http404
 from .forms import *
 from .models import *
-import re
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from .forms import CreateUserForm
@@ -286,9 +285,14 @@ class HomepageView(View):
 class ProfileIndexView(View):
 	def get(self, request):
 		user = User.objects.all()
+		books = Books.objects.all()
+		authors = Author.objects.all()
 		#print(user)
 		context = {
-			'users' : user
+			'users' : user,
+			'books' : books,
+			'authors' : authors,
+			
 		}
 
 		return render(request, 'profile.html', context)
@@ -305,6 +309,15 @@ class ProfileIndexView(View):
 
 				print(update_user)
 				return HttpResponse('Update saved!')
+
+			elif 'btnDelete' in reuquest.POST
+				print('delete button clicked')
+				sid = request.POST.get("book_id")
+				book = books.objects.filter(book_id=sid).delete()
+				author = author.objects.filter(book_author_id=sid).delete()
+				print('record deleted')
+
+				return HttpResponse('Deleted!')
 
 		return render(request, 'profile.html')
 
