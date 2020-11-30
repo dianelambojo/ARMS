@@ -46,6 +46,8 @@ class Books(models.Model):
 	is_downloaded = models.BooleanField()
 	is_read = models.BooleanField()
 
+	is_deleted= models.BooleanField(default=False)
+	
 	class Meta:
 		db_table = "Books"
 
