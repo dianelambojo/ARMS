@@ -33,6 +33,7 @@ def loginPage(request):
 
 		if user is not None:
 			login(request, user)
+			request.session['username'] = username
 			return redirect('arms:homepage_view')
 		else:
 			messages.info(request, 'Username OR password is incorrect')
@@ -236,14 +237,14 @@ class HomepageView(View):
 				return render(request, 'homepage.html', context)
 		#if request.method != GET else
 		else:
-			today = datetime.date.today()
-			books = Books.objects.filter(date_added__year=today.year, date_added__month=today.month)
-			print(books)
-			authors = Author.objects.all()
-			context={
-				'books' : books,
-				'authors' : authors,
-			}
+			# today = datetime.date.today()
+			# books = Books.objects.filter(date_added__year=today.year, date_added__month=today.month)
+			# print(books)
+			# authors = Author.objects.all()
+			# context={
+			# 	'books' : books,
+			# 	'authors' : authors,
+			# }
 			return render(request, 'homepage.html')
 
 class ProfileIndexView(View):
