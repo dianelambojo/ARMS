@@ -1,27 +1,87 @@
-{% extends "base_1.1.html" %}
 {% load static %}
-{% block content %}
-    <div class="container d-flex flex-sm-column justify-content-between py-1">
-      <div class="row text-center py-6 align-content-between flex-wrap">
-        <hr>
-        <div class="col-lg-3 d-flex justify-content-center align-items-center">
-          <a class="text-uppercase font-weight-bold" style="color: black; font-size: 25px; text-decoration: underline;">DASHBOARD
-          </a>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    {% if title %}
+    <title>ARMS - {{ title }}</title>
+    {% else %}
+    <title>Archived of Reading Materials</title>
+    {% endif %}
+    <!-- Meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta content="" name="description">
+    <meta content="" name="keywords">
+    
+
+    <!--All CSS links here-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.css">
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+    <!-- Favicon-->
+        <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico" />
+        <!-- Font Awesome icons (free version)-->
+        <script src="https://use.fontawesome.com/releases/v5.15.1/js/all.js" crossorigin="anonymous"></script>
+        <!-- Google fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Merriweather+Sans:400,700" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic" rel="stylesheet" type="text/css" />
+        <!-- Third party plugin CSS-->
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css" rel="stylesheet" />
+   
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+
+</head>
+<body> 
+  <header>
+    <nav class="navbar navbar-expand-lg navbar-light" id="mainNav">
+      <div class="container-fluid h-100">
+        <img src="{% static 'images/cit1.png' %}" width="80">
+        <img src="{% static 'images/logo5.png' %}" width="100">
+        <a class="navbar-brand">  Archived of Reading Materials </a>
+
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto my-2 my-lg-0">
+            <li class="nav-item"><a class="nav-link" href='{% url "arms:homepage_view" %}'>Home</a></li>
+            <li class="nav-item">
+              <div class="dropdown show">
+                            <a class="btn dropbtn btn-sm dropdown-toggle font-weight-bold" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="position:relative; z-index:1; top:-4px; right:-10px; padding:0px;">
+                            Hi, {{ username }}
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                              <a class="dropdown-item" href='{% url "arms:logout_view" %}'>Log out</a>
+                            </div>
+                          </div>
+            </li>
+          </ul>
         </div>
-        <div class="col-lg-3">
-        </div>
-        <div class="col-lg-6 d-flex justify-content-center align-items-center">
-          <ul class="nav nav-pills justify-content-center" id="pills-tab" role="tablist">
+      </div>
+    </nav>
+  </header>
+<nav class="navbar navbar-expand-lg navbar-dark" id="mainNav2" class="container-fluid">
+      <div class="container">
+        <a class="navbar-brand text-uppercase font-weight-bold" style="color: white; font-size: 25px;"> DASHBOARD </a>
+        
+
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="nav nav-pills ml-auto my-2 my-lg-0" id="pills-tab" role="tablist">
             <li class="nav-item pill-books">
               <a class="btn btn-view-save" id="pills-books-tab" data-toggle="pill" href="#pills-books" role="tab" aria-controls="pills-books" aria-selected="true">Books</a>
             </li>
             <li class="nav-item pill-users">
-              <a  class="btn btn-cancel" id="pills-users-tab" data-toggle="pill" href="#pills-users" role="tab" aria-controls="pills-users" aria-selected="false">Users</a>
+              <a  class="btn btn-view-save" id="pills-users-tab" data-toggle="pill" href="#pills-users" role="tab" aria-controls="pills-users" aria-selected="false">Users</a>
             </li>
           </ul>
-        </div> 
-      </div> 
-    </div>
+        </div>
+      </div>
+    </nav>
+{% block content %}
    
     <div class="tab-content" id="pills-tabContent">
       <div class="tab-pane fade show active" id="pills-books" role="tabpanel" aria-labelledby="pills-books-tab"> <br>
@@ -42,7 +102,7 @@
             </li>
           </ul> -->
           <br>
-            <p align="right"><button type="button" class="btn btn-view-save" data-toggle="modal" data-target="#addBook_Modal"> <span style="color: #ffffff" class="fa fa-plus"> </span> ADD BOOK</button></p>
+            <p align="right"><a type = "button" class="btn btn-view-save" href="{% url 'arms:addBook_view' %}"> <span style="color: #ffffff" class="fa fa-plus"> </span>ADD BOOK</a></p>
             <thead>
               <tr>
                 <th scope="col">Book ID</th>
@@ -73,7 +133,7 @@
                         <span aria-hidden="true">&times;</span>
                       </button>
                     </div>
-                    <form id="updateForm" method="post">
+                    <form id="updateFormBook" method="post">
                       {% csrf_token %}
                       <input type="text" name="bookid" value ="{{book.id}}" hidden>
                       <div class="modal-body">
@@ -88,6 +148,10 @@
                           </div>
                         </div>
                       </div>
+                      <div class="modal-footer">
+                          <button type="submit"  id="btnUpdateUser" name="btnUpdate" class="btn btn-view-save">UPDATE</button>
+                          <button type="button" class="btn btn-cancel" data-dismiss="modal">CANCEL</button>
+                        </div>
                     </form>
                   </div>
                 </div>
@@ -102,14 +166,14 @@
                         <span aria-hidden="true">&times;</span>
                          </button>
                        </div>
-                       <form id="deleteForm" method="post" >
+                       <form id="deleteFormBook" method="post" >
                         {% csrf_token %} 
                         <div class="modal-body">
                           <input type="text" name="bookid" value = {{book.id}} hidden>
                         Are you sure you want to delete this record?
                       </div>
                       <div class="modal-footer">
-                         <button type="submit" id = "btnDelete" name = "btnDelete" class="btn btn-view-save">YES</button>
+                         <button type="submit" id = "btnDeleteBook" name = "btnDelete" class="btn btn-view-save">YES</button>
                         <button type="button" class="btn btn-cancel" data-dismiss="modal">NO</button>
                       </div>
                     </form>
@@ -124,7 +188,7 @@
     <!-- user table -->
     <div class="tab-pane fade" id="pills-users" role="tabpanel" aria-labelledby="pills-users-tab"> <br>
       <div class="content">
-          <table class="table"> 
+          <table class="table" id="usertable"> 
             <div class="input-group md-form form-sm form-1 pl-0">
               <div class="input-group-prepend">
                 <span class="input-group-text" id="basic-text1"><i class="fa fa-search" aria-hidden="true"></i></span>
@@ -139,8 +203,8 @@
             <thead>
               <tr>
                 <th>User ID</th>
-                <th>First name</th>
-                <th>Phone</th>
+                <th>Username</th>
+                <th>Name</th>
                 <th>Email</th>
                 <th>Action</th>
               </tr>
@@ -150,8 +214,8 @@
               {% for user in users %}
               <tr>
                 <td>{{user.id}}</td>
-                <td>{{user.name}}</td>
-                <td>{{user.phone}}</td>
+                <td>{{user.username}}</td>
+                <td>{{user.first_name}} {{user.last_name}}</td>
                 <td>{{user.email}}</td>
                 <td>
                   <button type="button" class="btn btn-view-save" data-toggle="modal" data-target="#ViewModal1-{{user.id}}"><i class="fa fa-eye"></i>&nbsp;View</button>
@@ -169,39 +233,44 @@
                         <span aria-hidden="true">&times;</span>
                       </button>
                     </div>
-                    <form id="updateForm" method="post">
+                    <form id="updateFormUser" method="post">
                       {% csrf_token %}
                       <input type="text" name="userid" value ="" hidden>
                       <div class="modal-body">
                         <div class="form-row">
-                          <div class="form-group col-md-12">
+                          <div class="form-group col-md-6">
                             <label for="userid">User ID</label>
-                            <input type="text" class="form-control" id="userid" name="userid" value = "{{user.id}}">
+                            <input type="text" class="form-control" id="userid" name="userid" value = "{{user.id}}" readonly>
+                          </div>
+                          <div class="form-group col-md-6">
+                            <label for="lname">Username</label>
+                            <input type="text" class="form-control" id="username" name="username" value = "{{user.username}}">
                           </div>
                         </div>
                         <div class="form-row">
                           <div class="form-group col-md-6">
-                            <label for="fname">Name</label>
-                            <input type="text" class="form-control" id="fname" name="fname" value = "{{user.name}}">
+                            <label for="lname">Firstname</label>
+                            <input type="text" class="form-control" id="firstname" name="firstname" value = "{{user.first_name}}">
                           </div>
                           <div class="form-group col-md-6">
-                            <label for="lname">Phone</label>
-                            <input type="text" class="form-control" id="lname" name="lname" value = "{{user.phone}}">
+                            <label for="fname">Lastname</label>
+                            <input type="text" class="form-control" id="Lastname" name="lastname" value = "{{user.last_name}}">
                           </div>
                         </div>
                         <div class="form-row">
                           <div class="form-group col-md-6">
                             <label for="birthdate">Email</label>
-                            <input type="text" class="form-control" id="birthdate" name="birthdate" value = "{{user.email}}">
+                            <input type="text" class="form-control" id="email" name="email" value = "{{user.email}}">
                           </div>
                         </div>
                         </div>
                         <div class="modal-footer">
-                          <button type="submit"  id="btnUpdate" name="btnUpdate" class="btn btn-view-save">UPDATE</button>
+                          <button type="submit"  id="btnUpdateUser" name="btnUpdate" class="btn btn-view-save">UPDATE</button>
                           <button type="button" class="btn btn-cancel" data-dismiss="modal">CANCEL</button>
                         </div>
-                      </div>
-                    </form>
+                      </form>
+                    </div>
+                    
                   </div>
                 </div>
               </div>
@@ -215,7 +284,7 @@
                         <span aria-hidden="true">&times;</span>
                          </button>
                        </div>
-                       <form id="deleteForm" method="post" >
+                       <form id="deleteFormUser" method="post" >
                         {% csrf_token %} 
                         <div class="modal-body">
                           <input type="text" name="bookid" value = {{user.id}} hidden>
@@ -223,7 +292,7 @@
                       </div>
                       <div class="modal-footer">
                         <button type="button" class="btn-cancel" data-dismiss="modal">NO</button>
-                        <button type="submit" id = "btnDelete" name = "btnDelete" class="btn-view-save">YES</button>
+                        <button type="submit" id = "btnDeleteUser" name = "btnDelete" class="btn-view-save">YES</button>
                       </div>
                     </form>
                   </div>
@@ -236,68 +305,32 @@
       </div>
     </div>
 
-                                   <div class="modal fade" id="addBook_Modal" role="dialog">
-                                  <div class="modal-dialog">
-                                                
-                                   
-                                  <div class="modal-content">
-                                    <div class="modal-header">
-                                          <h4 class="modal-title" style="color: white">Add Book</h4>
-                                        </div>
-
-                                       <div class="modal-body">
-                                      <div class = "row">
-                                        <div class="col-1"> </div>
-                                          <form>
-                                            <div class="form-group row">
-                                              <label for="Title" class="col-sm-4 col-form-label">Title</label>
-                                              <div class="col-sm-8">
-                                                <input type="text" class="form-control" id="Title" placeholder="Book Title" required="">
-                                               </div>
-                                            </div>
-
-                                            <div class="form-group row">
-                                              <label for="Author" class="col-sm-4 col-form-label">Author</label>
-                                               <div class="col-sm-8">
-                                               <input type="text" class="form-control" id="Author" placeholder="Book Author" required="">
-                                               </div>
-                                            </div>
-
-                                            <div class="form-group row">
-                                               <label for="Year" class="col-sm-4 col-form-label">Year Published</label>
-                                              <div class="col-sm-8">
-                                               <input type="date" class="form-control" id="Year" placeholder="Date Published">
-                                              </div>
-                                            </div>
-
-                                            <div class="form-group row">
-                                               <label for="Sypnosis" class="col-sm-4 col-form-label">Sypnosis</label>
-                                              <div class="col-sm-8">
-                                               <textarea id="Sypnosis" rows='3' cols='20'></textarea>
-                                              </div>
-                                            </div>
-                                            
-                                            <label>Select an image: </label><br>
-                                            <input type="file" name="img1"><br><br>
-
-                                            <label>Upload your File: </label><br>
-                                            <input type="file" name="img2">
-                                            
-                                          </form>
-                                                      
-                                      </div>
-                                    </div>
-
-                            <div class="modal-footer">
-                              <button type="button" class="btn-view-save" data-dismiss="modal">Save</button>
-                               <button type="button" class="btn-cancel" data-dismiss="modal">Cancel</button>
-                            </div>
-                                  </div>
-                                  <br>
-                                  <br>
+                                
                            
                                  
       </div>
     </div> 
 
 {% endblock content %}
+    <footer class="bg-light py-5" id="footer">
+            <div class="container"><div class="small text-center text-muted">Copyright © 2020 - Archived of Reading Materials</div></div>
+    </footer>
+    <!-- end footer-->
+    <!-- Bootstrap core JS-->
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Third party plugin JS-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script>
+
+    <script type="text/javascript" src="{% static 'js/homepage.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/script.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/scripts.js' %}"></script>
+   <script>
+        $(document).ready( function () {
+        $('#usertable').DataTable();
+        $('#booktable').DataTable();
+         });
+     </script>
+</body>
+</html>

@@ -117,61 +117,81 @@ a:active{
 
 /* nav pills book  & users */
 .nav-pills .pill-books .nav-link:not(.active) {
-  border-radius: 1.5rem;
-    background-color: #7d2d2d;
+   background-color: #F8c400; /*gold*/
+  border: none;
+  border-radius: 5px;
+  color: white; 
+  padding: 12px 16px;
+  font-size: 16px; 
 }
 
 .nav-pills .pill-users .nav-link:not(.active) {
-  border-radius: 1.5rem;
-    background-color: #7d2d2d;
+ background-color: #F8c400; /*gold*/
+  border: none;
+  border-radius: 5px;
+  color: white; 
+  padding: 12px 16px;
+  font-size: 16px; 
 }
 
 .nav-pills .pill-addbook .nav-link:not(.active) {
-  border-radius: 1.5rem;
+  border-radius: 5px;
     background-color: #7d2d2d;
 }
 
 /* active (faded) */
 .nav-pills .pill-books .nav-link {
-  border-radius: 1.5rem;
-    background-color: #F4CC3C;
-    color: white;
-    font-weight: bold;
+  background-color: #F8c400; /*gold*/
+  border: none;
+  border-radius: 5px;
+  color: white; 
+  padding: 12px 16px;
+  font-size: 16px; 
 }
 
 .nav-pills .pill-users .nav-link {
-  border-radius: 1.5rem;
-    background-color: #F4CC3C;
-    color:white;
-    font-weight: bold;
+  background-color: #F8c400; /*gold*/
+  border: none;
+  border-radius: 5px;
+  color: white; 
+  padding: 12px 16px;
+  font-size: 16px; 
 }
 
 .nav-pills .pill-addbook .nav-link {
-  border-radius: 1.5rem;
-    background-color: #F4CC3C;
-    color:white;
-    font-weight: bold;
+ background-color: #F8c400; /*gold*/
+  border: none;
+  border-radius: 5px;
+  color: white; 
+  padding: 12px 16px;
+  font-size: 16px; 
 }
 
  /* hover */
 .nav-pills .pill-books .nav-link:hover{
-  border-radius: 1.5rem;
-    background-color: #F4CC3C;
-    color: white;
-    font-weight: bold;
+ background-color: #F8c400; /*gold*/
+  border: none;
+  border-radius: 5px;
+  color: white; 
+  padding: 12px 16px;
+  font-size: 16px; 
 }
 
 .nav-pills .pill-users .nav-link:hover {
-  border-radius: 1.5rem;
-    background-color: #F4CC3C;
-    color:white;
-    font-weight: bold;
+  background-color: #F8c400; /*gold*/
+  border: none;
+  border-radius: 5px;
+  color: white; 
+  padding: 12px 16px;
+  font-size: 16px; 
 }
 .nav-pills .pill-addbook .nav-link:hover {
-  border-radius: 1.5rem;
-    background-color: #F4CC3C;
-    color:white;
-    font-weight: bold;
+ background-color: #F8c400; /*gold*/
+  border: none;
+  border-radius: 5px;
+  color: white; 
+  padding: 12px 16px;
+  font-size: 16px; 
 }
 
 /* Dropdown Button */

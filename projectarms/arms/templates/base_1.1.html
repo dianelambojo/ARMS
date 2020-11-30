@@ -51,8 +51,8 @@
             <li class="nav-item"><a class="nav-link" href='{% url "arms:homepage_view" %}'>Home</a></li>
             <li class="nav-item">
               <div class="dropdown show">
-                            <a class="btn dropbtn btn-sm dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                              Hi, User
+                            <a class="btn dropbtn btn-sm dropdown-toggle font-weight-bold" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="position:relative; z-index:1; top:-4px; right:-10px; padding:0px;">
+                            Hi, {{ username }}
                             </a>
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                               <a class="dropdown-item" href='{% url "arms:profile_view" %}'>Profile</a>
