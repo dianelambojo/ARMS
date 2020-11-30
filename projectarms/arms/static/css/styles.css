@@ -10344,7 +10344,7 @@ header.base h1 {
 
 /* others */
 .left{
-  padding-left:5em;
+  padding-left: -200px;
 }
 
 .centered {
@@ -10490,7 +10490,7 @@ header.base h1 {
   position: absolute;
     z-index: 1000;
     top: 30%;
-    right: -60px;
+    right: -55px;
     border-radius: 50%;
 }
 
@@ -10581,20 +10581,19 @@ header.base h1 {
   padding: 5px;
 }
 
-
+/*homepage.html*/
 .sidenav {
   width: 130px;
   position:absolute;
   z-index: 1;
   top: 135%;
-  left: 10px;
+  right: 150px;
   background: white;
-  overflow-x: hidden;
+  /*overflow-x: hidden;*/
   padding: 8px 0;
 }
 
-/*homepage.html*/
-.sidenav2 {
+/*.sidenav2 {
   width: 130px;
   position:absolute;
   z-index: 1;
@@ -10603,25 +10602,23 @@ header.base h1 {
   background: white;
   overflow-x: hidden;
   padding: 8px 0;
-}
+}*/
 
-.sidenav a , .sidenav2 a{
+.sidenav a{
   padding: 6px 8px 6px 16px;
   text-decoration: none;
-  font-size: 15px;
-  color: #2196F3;
+  font-size: 13px;
+  color: #000000;
   display: block;
 }
 
-.sidenav a:hover, .sidenav2 a:hover {
+.sidenav a:hover {
   color: #064579;
 }
 
 @media screen and (max-height: 450px) {
   .sidenav {padding-top: 15px;}
-  .sidenav a {font-size: 18px;}
-  .sidenav2 {padding-top: 15px;}
-  .sidenav2 a {font-size: 18px;}
+  .sidenav a {font-size: 13px;}
 }
 
 /*results.html*/
@@ -10630,13 +10627,13 @@ header.base h1 {
   position:absolute;
   z-index: 1;
   top: 30%;
-  left: 10px;
+  right: 170px;
   background: white;
-  overflow-x: hidden;
+  /*overflow-x: hidden;*/
   padding: 8px 0;
 }
 
-.sidenav4 {
+/*.sidenav4 {
   width: 130px;
   position:absolute;
   z-index: 1;
@@ -10645,25 +10642,23 @@ header.base h1 {
   background: white;
   overflow-x: hidden;
   padding: 8px 0;
-}
+}*/
 
-.sidenav-results a , .sidenav4 a{
+.sidenav-results a{
   padding: 6px 8px 6px 16px;
   text-decoration: none;
-  font-size: 15px;
-  color: #2196F3;
+  font-size: 13px;
+  color: #000000;
   display: block;
 }
 
-.sidenav-results a:hover, .sidenav4 a:hover {
+.sidenav-results a:hover {
   color: #064579;
 }
 
 @media screen and (max-height: 450px) {
   .sidenav-results {padding-top: 15px;}
-  .sidenav-results a {font-size: 18px;}
-  .sidenav4 {padding-top: 15px;}
-  .sidenav4 a {font-size: 18px;}
+  .sidenav-results a {font-size: 13px;}
 }
 
 .modal {
@@ -10675,4 +10670,35 @@ header.base h1 {
    z-index: 10040;
    overflow: auto;
    overflow-y: auto;
+}
+
+.order-container{
+    border-style: groove;
+    position: absolute;
+    z-index: 1;
+    right: -100px;
+    top: 5px;
+    height: 350px;
+    width: 200px;
+}
+.order-header{
+    text-align: left;
+    border-style: outset;
+    border: 1px solid #DCDCDC;
+    padding: 5px;
+    height: 40px;
+    background: #DCDCDC;
+}
+.order-header p{
+    margin:0 ;
+}
+
+.parent {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.child {
+  flex: 0 0 21%; /* explanation below */
+  margin: 5px;
 }

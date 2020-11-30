@@ -30,14 +30,28 @@
 			<br>
 			<div class="container">
 				<div class="sidenav-results">
-				  	CATEGORY
-					<form method="GET" action='' enctype="multipart/form-data">
-						<a name="searched" href="{% url 'arms:homepage_view' %}?searched=research">Research</a>
-						<a name="searched" href="{% url 'arms:homepage_view' %}?searched=journals">Journals</a>
-						<a name="searched" href="{% url 'arms:homepage_view' %}?searched=filipiniana">Filipiniana</a>
-					</form>
+				  	<div class="order-container">
+						<div class="order-header">
+				  			<span style="font-weight: bold; padding: 5px;">Category</span>
+				  		</div>
+				  		<div class="order-list">
+						<form method="GET" action='' enctype="multipart/form-data">
+							<a name="searched" href="{% url 'arms:homepage_view' %}?searched=research">Research</a>
+							<a name="searched" href="{% url 'arms:homepage_view' %}?searched=journals">Journals</a>
+							<a name="searched" href="{% url 'arms:homepage_view' %}?searched=filipiniana">Filipiniana</a>
+							<span style="font-weight: bold; font-size: 13px; padding: 13px;">ACADEMIC BOOKS</span>
+							<ul>
+								<li><a name="searched" href="{% url 'arms:homepage_view' %}?searched=engineering">Engineering</a></li>
+								<li><a name="searched" href="{% url 'arms:homepage_view' %}?searched=computerscience">Computer Science</a></li>
+								<li><a name="searched" href="{% url 'arms:homepage_view' %}?searched=informationtechnology">Information Technology</a></li>
+								<li><a name="searched" href="{% url 'arms:homepage_view' %}?searched=business">Business</a></li>
+								<li><a name="searched" href="{% url 'arms:homepage_view' %}?searched=architecture">Architecture</a></li>
+							</ul>
+						</form>
+						</div>
+					</div>
 				</div>
-				<div class="sidenav4">
+				<!-- <div class="sidenav4">
 				  	ACADEMIC BOOKS
 				  	<form method="GET" action='' enctype="multipart/form-data">
 						<a name="searched" href="{% url 'arms:homepage_view' %}?searched=engineering">Engineering</a>
@@ -46,21 +60,27 @@
 						<a name="searched" href="{% url 'arms:homepage_view' %}?searched=business">Business</a>
 						<a name="searched" href="{% url 'arms:homepage_view' %}?searched=architecture">Architecture</a>
 					</form>
-				</div>
+				</div> -->
 				<span class="text">Results for {{ search }}</span>
 				<div>
 				{% for book in books %}
-					{% if book %}
-						{% for author in authors %}
-							{% if author.book_author_id == book.book_author_id_id %}
+					{% for author in authors %}
+						{% if author.book_author_id == book.book_author_id_id %}
+						<div class="parent">
+							<div class="child">
 								<img class="thumbnail" src="{{ book.book_cover.url }}" alt="{{ book.book_title }}" title="{{ book.book_title}} {{ author.firstname }} {{ author.lastname }} {{ book.book_year }}" data-toggle="modal" data-target="#viewModal-{{ book.book_id }}">
-							{% endif %}
-						{% endfor %}
-					{% else %}
-						<span>No results found</span>
-					{% endif %}
+							</div>
+						</div>
+						{% endif %}
+					{% endfor %}
 				{% endfor %}
 				</div>
+				<!-- {% if books.has_previous %}
+					<a href="#">Prev</a>
+				{% endif %}
+				{% if books.has_next %}
+					<a href="#">Next</a>
+				{% endif %} -->
 			</div> <!-- Container -->
 		</div> <!-- Left -->
 

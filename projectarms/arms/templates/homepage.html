@@ -30,15 +30,29 @@
 			<br>
 			<div class="container">
 				<div class="sidenav">
-				  	CATEGORY
-					<form method="GET" action='' enctype="multipart/form-data">
-						<a name="searched" href="{% url 'arms:homepage_view' %}?searched=research">Research</a>
-						<a name="searched" href="{% url 'arms:homepage_view' %}?searched=journals">Journals</a>
-						<a name="searched" href="{% url 'arms:homepage_view' %}?searched=filipiniana">Filipiniana</a>
-					</form>
-				</div>
+					<div class="order-container">
+						<div class="order-header">
+				  			<span style="font-weight: bold; padding: 5px;">Category</span>
+				  		</div>
+				  		<div class="order-list">
+						<form method="GET" action='' enctype="multipart/form-data">
+							<a name="searched" href="{% url 'arms:homepage_view' %}?searched=research">Research</a>
+							<a name="searched" href="{% url 'arms:homepage_view' %}?searched=journals">Journals</a>
+							<a name="searched" href="{% url 'arms:homepage_view' %}?searched=filipiniana">Filipiniana</a>
+							<span style="font-weight: bold; font-size: 13px; padding: 13px;">ACADEMIC BOOKS</span>
+							<ul>
+								<li><a name="searched" href="{% url 'arms:homepage_view' %}?searched=engineering">Engineering</a></li>
+								<li><a name="searched" href="{% url 'arms:homepage_view' %}?searched=computerscience">Computer Science</a></li>
+								<li><a name="searched" href="{% url 'arms:homepage_view' %}?searched=informationtechnology">Information Technology</a></li>
+								<li><a name="searched" href="{% url 'arms:homepage_view' %}?searched=business">Business</a></li>
+								<li><a name="searched" href="{% url 'arms:homepage_view' %}?searched=architecture">Architecture</a></li>
+							</ul>
+						</form>
+						</div>
+					</div>
+				</div><!-- 
 				<div class="sidenav2">
-				  	ACADEMIC BOOKS
+				  	<b>ACADEMIC BOOKS</b>
 				  	<form method="GET" action='' enctype="multipart/form-data">
 						<a name="searched" href="{% url 'arms:homepage_view' %}?searched=engineering">Engineering</a>
 						<a name="searched" href="{% url 'arms:homepage_view' %}?searched=computerscience">Computer Science</a>
@@ -46,7 +60,7 @@
 						<a name="searched" href="{% url 'arms:homepage_view' %}?searched=business">Business</a>
 						<a name="searched" href="{% url 'arms:homepage_view' %}?searched=architecture">Architecture</a>
 					</form>
-				</div>
+				</div> -->
 				<!-- <span id="display">
 					<span id="result"></span>
 					
