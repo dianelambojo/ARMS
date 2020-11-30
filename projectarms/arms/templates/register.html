@@ -62,6 +62,9 @@
 						<span></span>
 						<label>Confirm Password</label>
 					</div>
+					<div>
+						{{form.errors}}
+					</div>
 					<div class="signup_link">
 						Already have an acc? <a href='{% url "arms:login_view" %}'> Sign in</a>
 						&nbsp;&nbsp;
@@ -69,7 +72,7 @@
 					<div class="d-flex justify-content-center">
 						<input type="submit" name="Create User">
 						<button type="button" class="btn-cancel"  href='{% url "arms:landingpage_view" %}'>Cancel</button>
-						{{form.errors}}
+						
 						
 					</div>
 				</form>

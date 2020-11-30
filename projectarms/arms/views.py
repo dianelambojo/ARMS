@@ -306,7 +306,7 @@ class ProfileIndexView(View):
 				last_name = request.POST.get("lastname")
 				email = request.POST.get("email")
 				
-				update_user = User.objects.filter(id = sid).update(username=username,first_name=firstname,last_name=lastname,email=email)
+				update_user = User.objects.filter(id = sid).update(username=username,first_name=first_name,last_name=last_name,email=email)
 				
 				print(update_user)
 				print('profile updated')
