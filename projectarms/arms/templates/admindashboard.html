@@ -243,29 +243,29 @@
                             <input type="text" class="form-control" id="userid" name="userid" value = "{{user.id}}" readonly>
                           </div>
                           <div class="form-group col-md-6">
-                            <label for="lname">Username</label>
+                            <label for="username">Username</label>
                             <input type="text" class="form-control" id="username" name="username" value = "{{user.username}}">
                           </div>
                         </div>
                         <div class="form-row">
                           <div class="form-group col-md-6">
-                            <label for="lname">Firstname</label>
+                            <label for="firstname">Firstname</label>
                             <input type="text" class="form-control" id="firstname" name="firstname" value = "{{user.first_name}}">
                           </div>
                           <div class="form-group col-md-6">
-                            <label for="fname">Lastname</label>
-                            <input type="text" class="form-control" id="Lastname" name="lastname" value = "{{user.last_name}}">
+                            <label for="lastname">Lastname</label>
+                            <input type="text" class="form-control" id="lastname" name="lastname" value = "{{user.last_name}}">
                           </div>
                         </div>
                         <div class="form-row">
                           <div class="form-group col-md-6">
-                            <label for="birthdate">Email</label>
+                            <label for="email">Email</label>
                             <input type="text" class="form-control" id="email" name="email" value = "{{user.email}}">
                           </div>
                         </div>
                         </div>
                         <div class="modal-footer">
-                          <button type="submit"  id="btnUpdateUser" name="btnUpdate" class="btn btn-view-save">UPDATE</button>
+                          <button type="submit"  id="btnUpdateUser" name="btnUpdateUser" class="btn btn-view-save">UPDATE</button>
                           <button type="button" class="btn btn-cancel" data-dismiss="modal">CANCEL</button>
                         </div>
                       </form>
@@ -287,12 +287,12 @@
                        <form id="deleteFormUser" method="post" >
                         {% csrf_token %} 
                         <div class="modal-body">
-                          <input type="text" name="bookid" value = {{user.id}} hidden>
+                          <input type="text" name="userid" value = {{user.id}} hidden>
                         Are you sure you want to delete this record?
                       </div>
                       <div class="modal-footer">
                         <button type="button" class="btn-cancel" data-dismiss="modal">NO</button>
-                        <button type="submit" id = "btnDeleteUser" name = "btnDelete" class="btn-view-save">YES</button>
+                        <button type="submit" id = "btnDeleteUser" name = "btnDeleteUser" class="btn-view-save">YES</button>
                       </div>
                     </form>
                   </div>
