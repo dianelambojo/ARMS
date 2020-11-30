@@ -29,9 +29,19 @@
 	<div class ="register mt-4 mb-4" >
 	   <div class= "panel-transparent">
 			<div class= "register-body">
-				<h1>SIGN UP </h1>
+				<h1>SIGN UP</h1>
 				<form method="POST" action="">
 					{% csrf_token %}
+					<div class="txt_field">
+						{{form.first_name}}
+						<span></span>
+						<label>First Name</label>
+					</div>
+					<div class="txt_field">
+						{{form.last_name}}
+						<span></span>
+						<label>Last Name</label>
+					</div>
 					<div class="txt_field">
 						{{form.username}}
 						<span></span>

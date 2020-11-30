@@ -43,7 +43,6 @@ def logoutUser(request):
 	logout(request)
 	return redirect('arms:login_view')
 
-
 def registerPage(request):
 	form = CreateUserForm()
 	
