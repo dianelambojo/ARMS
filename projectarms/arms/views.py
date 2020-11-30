@@ -32,9 +32,13 @@ def loginPage(request):
 		user = authenticate(request, username=username, password=password)
 
 		if user is not None:
-			login(request, user)
-			request.session['username'] = username
-			return redirect('arms:homepage_view')
+			if request.user.is_superuser:
+				login(request, user)
+				return redirect('arms:arms_admin_view')
+			else:
+				login(request, user)
+				request.session['username'] = username
+				return redirect('arms:homepage_view')
 		else:
 			messages.info(request, 'Username OR password is incorrect')
 			
