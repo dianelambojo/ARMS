@@ -6,6 +6,7 @@ from .forms import *
 from .models import *
 import re
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
 from .forms import CreateUserForm
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
@@ -254,6 +255,21 @@ class ProfileIndexView(View):
 		}
 
 		return render(request, 'profile.html', context)
+
+	def post(self, request):
+		if request.method == 'POST':
+			if 'btnUpdate' in request.POST:
+				print('Update profile button clicked')
+				sid = request.POST.get("user-id")
+				username = request.POST.get("user-username")
+				email = request.POST.get("user-email")
+				password = request.POST.get("user-password")
+				update_user =  User.objects.filter(auth_user_id = sid).update(name = username, email = email)
+
+				print(update_user)
+				return HttpResponse('Update saved!')
+
+		return render(request, 'profile.html')
 
 	def post(self,request):
 		return render(request, 'addbook.html')	

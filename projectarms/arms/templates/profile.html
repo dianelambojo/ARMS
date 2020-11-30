@@ -89,9 +89,9 @@
 							<div class="row1">
 								<div class="d-flex flex-row-reverse">
 									
-										<button  type="button" data-toggle="modal" data-target="#ModalEdit-{{uer.user_id}}" class='fa fa-edit'style='font-size:20px; color: white'></button>
-									
-										<div class="modal fade" id="ModalEdit-{{uer.user_id}}" role="dialog" aria-hidden="true">
+										<button  type="button" data-toggle="modal" data-target="#ModalEdit-{{user.id}}" class='fa fa-edit'style='font-size:20px; color: white'></button>
+									{% for user in users %}	
+										<div class="modal fade" id="ModalEdit-{{user.id}}" role="dialog" aria-hidden="true">
 											<div class="modal-dialog">
 											<!-- Modal Edit-->  
 												<div class="modal-content">
@@ -99,124 +99,44 @@
 														<h4 class="modal-title">Profile Details</h4>
 													</div>
 													<br>
-													<div class="row">
-														<label for="FistName" class="col-sm-6 col-form-label">First Name</label>
-														<div class="col-sm-5">
-															<input type="text" class="form-control" id="FistName" name="" placeholder="First Name">
-															<br>
-														</div>
-													</div>
-													<div class="row">														<label for="LastName" class="col-sm-6 col-form-label">Last Name</label>
-														<div class="col-sm-5">
-															<input type="text" class="form-control" id="LastName" name="" placeholder="Last Name">
-															<br>
-														</div>
-													</div>
-													<div class="row">														<label for="Email" class="col-sm-6 col-form-label">E-Mail</label>
-														<div class="col-sm-5">
-															<input type="text" class="form-control" id="Email" name="" placeholder="E-Mail">
-															<br>
-														</div>
-													</div>
-													<div class="row">														<label for="Birthdate" class="col-sm-6 col-form-label">Birthdate</label>
-														<div class="col-sm-5">
-															<input type="date" class="form-control" id="Birthdaye" name="" placeholder="Birthdate">
-															<br>
-														</div>
-													</div>
-													<div class="row">														<label for="Birthdate" class="col-sm-6 col-form-label">Gender</label>
-														<div class="radio_field row col-5">
-									                        <div class="col-6 d-flex justify-content-center">
-									                            <input class="mt-2 mr-1" type="radio" id="male" name="gender" value="male">
-									                            <label for="male">Male</label>
-									                        </div>
-									                        <div class="col-6 d-flex justify-content-center">
-									                            <input class="mt-2 mr-1" type="radio" id="female" name="gender" value="female">
-									                                <label for="female">Female</label>
-									                        </div>
-									                        <br>
-									                    </div>
-													</div>
-
 													
-												{% for user in users %}		
-													<div class="modal-body" value = "{{user.user_id}}">
-														<div class = "row col-12">
-																<form method="POST">
+													<div class="modal-body" value = "{{user.id}}">
+														<input type="text" name="user-id" value = {{user.id}} hidden>
+														<div class = "col-12">
+																<form id="updateForm" method="POST">
 	                    											{% csrf_token %}
-												                    <div class="form-group row">
-												                        <div class="txt_field col-sm-6">
-												                            <input type="text required" name="firstname" value = "{{user.firstname}}">
+												                    <!--<div class="txt_field">-->
+												                        <div class="txt_field">
+												                            <input type="text required" name="user-username" value = "{{user.username}}">
 												                            <span></span>
 												                            <label>First Name</label>
-												                        </div>
-
-												                        <div class="txt_field col-sm-6">
-												                            <input type="text required" name="lastname" value = "{{user.lastname}}">
-												                            <span></span>
-												                            <div class=" d-flex justify-content-center">
-												                                <label>Last Name</label>
-												                            </div>
-												                        </div>
-												                    </div>
-												                    
-												                    <div class="txt_field">
+												                       </div>
+												                   <div class="txt_field">
 												                        <div class="col-md-9">
-												                            <input type="date" name="birthdate" value = "{{user.birthdate}}">
+												                            <input type="type" name="user-email" value = "{{user.email}}">
 												                        </div>
-												                        <span></span>
-												                        <label>Birthdate</label>
-												                    </div>
-												                    <div class="txt_field">
-												                        <input type="text required" name="contact_number" value = "{{user.contact_number}}">
-												                        <span></span>
-												                        <label>Contact No.</label>
-												                    </div>
-												                    <div class="txt_field">
-												                        <input type="text required" name="email"  value = "{{user.email}}">
 												                        <span></span>
 												                        <label>Email</label>
 												                    </div>
 												                    <div class="txt_field">
-												                        <label>Gender</label>
-												                     </div>
-												                    <div class="radio_field row col-12">
-												                        <div class="col-6 d-flex justify-content-center">
-												                            <input class="mt-2 mr-1" type="radio" id="male" name="gender"  value = "{{user.gender}}">
-												                            <label for="male">Male</label>
-												                        </div>
-												                        <div class="col-6 d-flex justify-content-center">
-												                            <input class="mt-2 mr-1" type="radio" id="female" name="gender" value = "{{user.gender}}">
-												                                <label for="female">Female</label>
-												                        </div>
-												                    </div>
-												                    <div class="txt_field">
-												                        <input type="text required" name="user_id" value = "{{user.user_id}}">
-												                        <span></span>
-												                        <label>UserID</label>
-												                    </div>
-												                    <div class="txt_field">
-												                        <input type="password" name="password" value = "{{user.password}}"required>
+												                        <input type="text required" name="user-password" value = "{{user.password}}">
 												                        <span></span>
 												                        <label>Password</label>
 												                    </div>
-												                    <div class="txt_field">
-												                        <input type="password" name="confirmpassword" value = "{{user.confirmpassword}}" required>
-												                        <span></span>
-												                        <label>Confirm Password</label>
-												                    </div>  
 												                </form>	  		
 															</div>
 														</div>
-												{% endfor %}
+											
 														<div class="modal-footer">
-															<button type="button" class="btn-view-save" data-dismiss="modal">Update</button>
+															<button type="submit" class="btn-view-save" id="btnUpdate" name="btnUpdate" data-dismiss="modal">Update</button>
 															<button type="button" class="btn-cancel" data-dismiss="modal">Cancel</button>
 														</div>
 													</div>				      
 												</div>
 											</div>
+										{% endfor %}	
 										</div>
+									
 									
 										<div class="text-center">
 											<div class="small-12 medium-2 large-4 columns">
@@ -236,9 +156,9 @@
 											<br>
 											<br>
 											<br>
-											{% for user in users %}	
+											
 												<span class="col-12" style="color: gold" value = "{{user.firstname}}+{{user.lastname}}"> </span>
-											{% endfor %}
+											
 											<br>
 
 											<div class="col-12">
@@ -278,7 +198,6 @@
 												<button type="submit" class="btn-view-save">Add Book</button>
 											</form>
 										</div>
-									
 								</div>
 							</div>						
 						</div>							
