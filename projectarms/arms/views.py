@@ -4,13 +4,14 @@ from django.http import HttpResponse
 from django.http import Http404
 from .forms import *
 from .models import *
-import re
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
 from .forms import CreateUserForm
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.db.models import Q
 import datetime
+from django.core.paginator import Paginator, EmptyPage
 
 # Create your views here.
 
@@ -32,7 +33,11 @@ def loginPage(request):
 
 		if user is not None:
 			login(request, user)
-			return redirect('arms:homepage_view')
+			request.session['username'] = username
+			if request.user.is_superuser:
+				return redirect('arms:arms_admin_view')
+			else:
+				return redirect('arms:homepage_view')
 		else:
 			messages.info(request, 'Username OR password is incorrect')
 			
@@ -69,6 +74,30 @@ class ArmsAdminView(View):
 		}
 		return render(request,'admindashboard.html', context)
 
+	def post(self, request):
+		if request.method == 'POST':	
+			if 'btnUpdateUser' in request.POST:	
+				print('update profile button clicked')
+				userid = request.POST.get("userid")
+				username = request.POST.get("username")			
+				firstname = request.POST.get("firstname")
+				lastname = request.POST.get("lastname")
+				email = request.POST.get("email")
+				
+				update_user = User.objects.filter(id = userid)
+				update_user.update(username=username,first_name=firstname,last_name=lastname,email=email)
+				
+				print(update_user)
+				print('profile updated')
+
+			elif 'btnDeleteUser' in request.POST:	
+				print('delete button clicked')
+				userid = request.POST.get("userid")
+				delete_user = User.objects.filter(id=userid)
+				delete_user.delete()
+				print('record deleted')
+
+		return redirect('arms:arms_admin_view')
 
 class HomepageView(View):
 	def get(self, request):
@@ -83,9 +112,17 @@ class HomepageView(View):
 					# for a in allBook:
 					# 	if author.book_author_id == a.book_author_id_id:
 					books = Books.objects.filter(book_author_id=author.book_author_id)
+
+					p = Paginator(books,20)
+					page_num = request.GET.get('page', 1)
+					try:
+						page = p.page(page_num)
+					except:
+						page = p.page(1)
+
 					context={
 						'search' : search,
-						'books' : books,
+						'books' : page,
 						'authors' : authors,
 					}
 					return render(request, 'results.html', context)
@@ -234,25 +271,54 @@ class HomepageView(View):
 				return render(request, 'homepage.html', context)
 		#if request.method != GET else
 		else:
-			today = datetime.date.today()
-			books = Books.objects.filter(date_added__year=today.year, date_added__month=today.month)
-			print(books)
-			authors = Author.objects.all()
-			context={
-				'books' : books,
-				'authors' : authors,
-			}
-			return render(request, 'homepage.html')
+			# today = datetime.date.today()
+			# books = Books.objects.filter(date_added__year=today.year, date_added__month=today.month)
+			# print(books)
+			# authors = Author.objects.all()
+			# context={
+			# 	'books' : books,
+			# 	'authors' : authors,
+			# }
+			return render(request, 'homepage.html')			
 
 class ProfileIndexView(View):
 	def get(self, request):
 		user = User.objects.all()
+		books = Books.objects.all()
+		authors = Author.objects.all()
 		#print(user)
 		context = {
-			'users' : user
+			'users' : user,
+			'books' : books,
+			'authors' : authors,
+			
 		}
 
 		return render(request, 'profile.html', context)
+
+	def post(self, request):
+		if request.method == 'POST':
+			if 'btnUpdate' in request.POST:
+				print('update profile button clicked')
+				sid = request.POST.get("user-id")
+				username = request.POST.get("username")			
+				first_name = request.POST.get("firstname")
+				last_name = request.POST.get("lastname")
+				email = request.POST.get("email")
+				
+				update_user = User.objects.filter(id = sid).update(username=username,first_name=firstname,last_name=lastname,email=email)
+				
+				print(update_user)
+				print('profile updated')
+
+			elif 'btnDelete' in request.POST:	
+				print('delete button clicked')
+				sid = request.POST.get("book-id")
+				book = Books.objects.filter(book_id = sid).delete()
+				author = Author.objects.filter(book_author_id = sid).delete()
+				print('record deleted')
+
+		return render(request, 'profile.html')
 
 	def post(self,request):
 		return render(request, 'addbook.html')	

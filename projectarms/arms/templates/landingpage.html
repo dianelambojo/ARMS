@@ -58,6 +58,7 @@
                                            <div class= "panel-transparent">
                                                 <div class= "login-body">
                                                     <form method="post">
+                                                        {% csrf_token %}
                                                         <h3 class="modal-title">Log In</h3> 
                                                         <div class="txt_field">
                                                             <input type="text" required>
