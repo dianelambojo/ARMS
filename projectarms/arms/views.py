@@ -301,13 +301,13 @@ class ProfileIndexView(View):
 		if request.method == 'POST':
 			if 'btnUpdate' in request.POST:
 				print('update profile button clicked')
-				id = request.POST.get("user-id")
+				sid = request.POST.get("user-id")
 				username = request.POST.get("username")			
 				first_name = request.POST.get("firstname")
 				last_name = request.POST.get("lastname")
 				email = request.POST.get("email")
 				
-				update_user = User.objects.filter(id = userid).update(username=username,first_name=firstname,last_name=lastname,email=email)
+				update_user = User.objects.filter(id = sid).update(username=username,first_name=firstname,last_name=lastname,email=email)
 				
 				print(update_user)
 				print('profile updated')
