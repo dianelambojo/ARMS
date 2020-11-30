@@ -32,12 +32,11 @@ def loginPage(request):
 		user = authenticate(request, username=username, password=password)
 
 		if user is not None:
+			login(request, user)
+			request.session['username'] = username
 			if request.user.is_superuser:
-				login(request, user)
 				return redirect('arms:arms_admin_view')
 			else:
-				login(request, user)
-				request.session['username'] = username
 				return redirect('arms:homepage_view')
 		else:
 			messages.info(request, 'Username OR password is incorrect')
@@ -76,6 +75,28 @@ class ArmsAdminView(View):
 		}
 		return render(request,'admindashboard.html', context)
 
+	def post(self, request):
+		if request.method == 'POST':	
+			if 'btnUpdateUser' in request.POST:	
+				print('update profile button clicked')
+				id = request.POST.get("userid")
+				username = request.POST.get("username")			
+				first_name = request.POST.get("firstname")
+				last_name = request.POST.get("lastname")
+				email = request.POST.get("email")
+				
+				update_user = User.objects.filter(id = userid).update(username=username,first_name=firstname,last_name=lastname,email=email)
+				
+				print(update_user)
+				print('profile updated')
+
+			elif 'btnDeleteUser' in request.POST:	
+				print('delete button clicked')
+				userid = request.POST.get("userid")
+				userr = Person.objects.filter(id = userid).delete()
+				print('record deleted')
+
+		return redirect('arms:arms_admin_view')
 
 class HomepageView(View):
 	def get(self, request):
