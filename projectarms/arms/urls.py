@@ -16,7 +16,7 @@ urlpatterns = [
     path('landingpage/', views.LandingPageIndexView.as_view(), name='landingpage_view'),
     path('register/', views.registerPage, name='register_view'),
     path('login/', views.loginPage, name='login_view'),
-    path('logout/', views.logout, name='logout_view'),
+    path('logout/', views.logoutPage, name='logout_view'),
     path('aboutUs/', views.AboutUsIndexView.as_view(), name='aboutUs_view'),
     path('addbook/', views.AddBookIndexView.as_view(), name='addBook_view'),
 ]

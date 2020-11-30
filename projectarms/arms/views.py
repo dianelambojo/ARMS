@@ -44,9 +44,9 @@ def loginPage(request):
 	context = {} 
 	return render(request,'login.html',context)
 
-def logoutUser(request):
+def logoutPage(request):
 	logout(request)
-	return redirect('arms:login_view')
+	return redirect('arms:landingpage_view')
 
 def registerPage(request):
 	form = CreateUserForm()
