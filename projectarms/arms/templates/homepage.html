@@ -69,13 +69,17 @@
 				<ul class="list">
 					<div class="slider">
 					{% for book in books %}
-						{% for author in authors %}
+						{% if book.is_deleted == 0 %}
+						<li>
+							<img class="thumbnail" src="{{ book.book_cover.url }}" alt="{{ book.book_title }}" data-toggle="modal" data-target="#viewModal-{{ book.book_id }}">
+						</li>		
+						{% endif %}				<!-- {% for author in authors %}
 							{% if author.book_author_id == book.book_author_id_id %}
 								<li>
 									<img class="thumbnail" src="{{ book.book_cover.url }}" alt="{{ book.book_title }}" title="{{ book.book_title}} {{ author.firstname }} {{ author.lastname }} {{ book.book_year }}" data-toggle="modal" data-target="#viewModal-{{ book.book_id }}">
 								</li>
 							{% endif %}
-						{% endfor %}
+						{% endfor %} -->
 					{% endfor %}
 					</div>
 				</ul>

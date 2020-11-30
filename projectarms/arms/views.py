@@ -64,7 +64,6 @@ def registerPage(request):
 	context = {'form':form}
 	return render(request,'register.html',context)
 
-
 class ArmsAdminView(View):
 	def get(self, request):
 		books = Books.objects.all()
@@ -135,7 +134,7 @@ class HomepageView(View):
 						
 				# if the user tries to search using the book title or year 
 				books = Books.objects.filter(Q(book_title__icontains=search) | Q(book_year__icontains=search))
-				authors = authors = Author.objects.all()
+				authors = Author.objects.all()
 				context={
 					'search' : search,
 					'books' : books,
@@ -147,7 +146,7 @@ class HomepageView(View):
 			#By category searched of all books
 			searched = request.GET.get('searched')
 			if searched == 'research':
-				authors = authors = Author.objects.all()
+				authors = Author.objects.all()
 				books = Books.objects.all()
 				research = Category.objects.filter(Q(book_category = searched))
 				for r in research:
@@ -161,7 +160,7 @@ class HomepageView(View):
 
 				return render(request, 'results.html', {'search' : 'Research Studies'})	
 			if searched == 'journals':
-				authors = authors = Author.objects.all()
+				authors = Author.objects.all()
 				books = Books.objects.all()
 				journals = Category.objects.filter(Q(book_category = searched))
 				for j in journals:
@@ -176,7 +175,7 @@ class HomepageView(View):
 				return render(request, 'results.html', {'search' : 'Journals'})	
 			if searched == 'filipiniana':
 				books = Books.objects.all()
-				authors = authors = Author.objects.all()
+				authors = Author.objects.all()
 				filipiniana = Category.objects.filter(Q(book_category = searched))
 				for f in filipiniana:
 					books = Books.objects.filter(book_category_no_id=f.book_category_no)
@@ -190,7 +189,7 @@ class HomepageView(View):
 				return render(request, 'results.html', {'search' : 'Filipiniana'})	
 			if searched == 'engineering':
 				books = Books.objects.all()
-				authors = authors = Author.objects.all()
+				authors = Author.objects.all()
 				filipiniana = Category.objects.filter(Q(book_category = searched))
 				for f in filipiniana:
 					books = Books.objects.filter(book_category_no_id=f.book_category_no)
@@ -204,7 +203,7 @@ class HomepageView(View):
 				return render(request, 'results.html', {'search' : 'Engineering'})	
 			if searched == 'computerscience':
 				books = Books.objects.all()
-				authors = authors = Author.objects.all()
+				authors = Author.objects.all()
 				filipiniana = Category.objects.filter(Q(book_category = searched))
 				for f in filipiniana:
 					books = Books.objects.filter(book_category_no_id=f.book_category_no)
@@ -218,7 +217,7 @@ class HomepageView(View):
 				return render(request, 'results.html', {'search' : 'Computer Science'})	
 			if searched == 'informationtechnology':
 				books = Books.objects.all()
-				authors = authors = Author.objects.all()
+				authors = Author.objects.all()
 				filipiniana = Category.objects.filter(Q(book_category = searched))
 				for f in filipiniana:
 					books = Books.objects.filter(book_category_no_id=f.book_category_no)
@@ -232,7 +231,7 @@ class HomepageView(View):
 				return render(request, 'results.html', {'search' : 'Information Technology'})	
 			if searched == 'business':
 				books = Books.objects.all()
-				authors = authors = Author.objects.all()
+				authors = Author.objects.all()
 				filipiniana = Category.objects.filter(Q(book_category = searched))
 				for f in filipiniana:
 					books = Books.objects.filter(book_category_no_id=f.book_category_no)
@@ -246,7 +245,7 @@ class HomepageView(View):
 				return render(request, 'results.html', {'search' : 'Business'})	
 			if searched == 'architecture':
 				books = Books.objects.all()
-				authors = authors = Author.objects.all()
+				authors = Author.objects.all()
 				filipiniana = Category.objects.filter(Q(book_category = searched))
 				for f in filipiniana:
 					books = Books.objects.filter(book_category_no_id=f.book_category_no)
@@ -299,15 +298,25 @@ class ProfileIndexView(View):
 
 	def post(self, request):
 		if request.method == 'POST':
+			print('hello')
 			if 'btnUpdate' in request.POST:
 				print('update profile button clicked')
+<<<<<<< Updated upstream
 				sid = request.POST.get("user-id")
+=======
+				idnum = request.POST.get("user-id")
+				print(idnum)
+>>>>>>> Stashed changes
 				username = request.POST.get("username")			
 				first_name = request.POST.get("firstname")
 				last_name = request.POST.get("lastname")
 				email = request.POST.get("email")
 				
+<<<<<<< Updated upstream
 				update_user = User.objects.filter(id = sid).update(username=username,first_name=first_name,last_name=last_name,email=email)
+=======
+				update_user = User.objects.filter(id = idnum).update(username=username,first_name=first_name,last_name=last_name,email=email)
+>>>>>>> Stashed changes
 				
 				print(update_user)
 				print('profile updated')
@@ -315,14 +324,17 @@ class ProfileIndexView(View):
 			elif 'btnDelete' in request.POST:	
 				print('delete button clicked')
 				sid = request.POST.get("book-id")
-				book = Books.objects.filter(book_id = sid).delete()
-				author = Author.objects.filter(book_author_id = sid).delete()
+				print(sid)
+				# book = Books.objects.filter(book_id = sid).delete()
+				book = Books.objects.filter(book_id = sid).update(is_deleted=1)
+				# author = Author.objects.filter(book_author_id = sid).delete()
+				# form = Books.objects.filter(book_id = sid)
 				print('record deleted')
 
 		return render(request, 'profile.html')
-
-	def post(self,request):
-		return render(request, 'addbook.html')	
+		# return HttpResponse('not ok')
+	# def post(self,request):
+	# 	return render(request, 'addbook.html')	
 
 class LandingPageIndexView(View):
 	def get(self, request):

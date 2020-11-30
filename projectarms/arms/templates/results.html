@@ -62,25 +62,26 @@
 					</form>
 				</div> -->
 				<span class="text">Results for {{ search }}</span>
-				<div>
 				{% for book in books %}
-					{% for author in authors %}
-						{% if author.book_author_id == book.book_author_id_id %}
-						<div class="parent">
-							<div class="child">
-								<img class="thumbnail" src="{{ book.book_cover.url }}" alt="{{ book.book_title }}" title="{{ book.book_title}} {{ author.firstname }} {{ author.lastname }} {{ book.book_year }}" data-toggle="modal" data-target="#viewModal-{{ book.book_id }}">
-							</div>
-						</div>
-						{% endif %}
-					{% endfor %}
+					{% if book.is_deleted == 0 %}
+					<div class="parent">
+						<!-- {% for author in authors %}
+							{% if author.book_author_id == book.book_author_id_id %} -->
+								<div class="child">
+									<img class="thumbnail" src="{{ book.book_cover.url }}" alt="{{ book.book_title }}" data-toggle="modal" data-target="#viewModal-{{ book.book_id }}">
+								</div>
+							<!-- {% endif %}
+						{% endfor %} -->
+					</div>
+					{% endif %}
 				{% endfor %}
-				</div>
-				<!-- {% if books.has_previous %}
-					<a href="#">Prev</a>
+				{% if books.has_previous %}
+					<a name="search" href="{% url 'arms:homepage_view' %}?search={{search}}&page={{ books.previous_page_number }}">Prev</a>
 				{% endif %}
 				{% if books.has_next %}
-					<a href="#">Next</a>
-				{% endif %} -->
+					<a name="search" href="{% url 'arms:homepage_view' %}?search={{search}}&page={{ books.next_page_number }}">Next</a>
+				{% endif %}
+
 			</div> <!-- Container -->
 		</div> <!-- Left -->
 
