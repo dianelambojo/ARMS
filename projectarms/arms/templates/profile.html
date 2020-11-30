@@ -102,7 +102,7 @@
 						                       <form id="deleteForm" method="post" >
 						                        {% csrf_token %} 
 						                        <div class="modal-body">
-						                          <input type="text" name="bookid" value = {{book.book_id}} hidden>
+						                          <input type="text" name="book-id" value = {{book.book_id}} hidden>
 						                        Are you sure you want to delete this record?
 						                      </div>
 						                      <div class="modal-footer">
@@ -139,20 +139,30 @@
 																<form id="updateForm" method="POST">
 	                    											{% csrf_token %}
 												                    <!--<div class="txt_field">-->
-												                        <div class="txt_field">
-												                            <input type="text required" name="user-username" value = "{{user.username}}">
-												                            <span></span>
-												                            <label>First Name</label>
-												                       </div>
+												                    <div class="txt_field">
+												                        <input type="text required" name="firstname" value = "{{user.firstname}}">
+												                        <span></span>
+												                        <label>Firstname</label>
+												                   </div>
+												                   <div class="txt_field">
+												                        <input type="text required" name="lastname" value = "{{user.lastname}}">
+												                        <span></span>
+												                        <label>Lastname</label>
+												                   </div>
+												                    <div class="txt_field">
+												                        <input type="text required" name="username" value = "{{user.username}}">
+												                        <span></span>
+												                        <label>Username</label>
+												                   </div>
 												                   <div class="txt_field">
 												                        <div class="col-md-9">
-												                            <input type="type" name="user-email" value = "{{user.email}}">
+												                            <input type="type" name="email" value = "{{user.email}}">
 												                        </div>
 												                        <span></span>
 												                        <label>Email</label>
 												                    </div>
 												                    <div class="txt_field">
-												                        <input type="text required" name="user-password" value = "{{user.password}}">
+												                        <input type="text required" name="password" value = "{{user.password}}">
 												                        <span></span>
 												                        <label>Password</label>
 												                    </div>

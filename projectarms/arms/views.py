@@ -298,24 +298,24 @@ class ProfileIndexView(View):
 	def post(self, request):
 		if request.method == 'POST':
 			if 'btnUpdate' in request.POST:
-				print('Update profile button clicked')
-				sid = request.POST.get("user-id")
-				username = request.POST.get("user-username")
-				email = request.POST.get("user-email")
-				password = request.POST.get("user-password")
-				update_user =  User.objects.filter(auth_user_id = sid).update(name = username, email = email)
-
+				print('update profile button clicked')
+				id = request.POST.get("user-id")
+				username = request.POST.get("username")			
+				first_name = request.POST.get("firstname")
+				last_name = request.POST.get("lastname")
+				email = request.POST.get("email")
+				
+				update_user = User.objects.filter(id = userid).update(username=username,first_name=firstname,last_name=lastname,email=email)
+				
 				print(update_user)
-				return HttpResponse('Update saved!')
+				print('profile updated')
 
-			elif 'btnDelete' in reuquest.POST
+			elif 'btnDelete' in request.POST:	
 				print('delete button clicked')
-				sid = request.POST.get("book_id")
-				book = books.objects.filter(book_id=sid).delete()
-				author = author.objects.filter(book_author_id=sid).delete()
+				sid = request.POST.get("book-id")
+				book = Books.objects.filter(book_id = sid).delete()
+				author = Author.objects.filter(book_author_id = sid).delete()
 				print('record deleted')
-
-				return HttpResponse('Deleted!')
 
 		return render(request, 'profile.html')
 
