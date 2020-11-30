@@ -12,6 +12,7 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.db.models import Q
 import datetime
+from django.core.paginator import Paginator, EmptyPage
 
 # Create your views here.
 
@@ -74,7 +75,7 @@ class ArmsAdminView(View):
 			'users' : users,
 		}
 		return render(request,'admindashboard.html', context)
-
+		
 	def post(self, request):
 		if request.method == 'POST':	
 			if 'btnUpdateUser' in request.POST:	
@@ -111,9 +112,17 @@ class HomepageView(View):
 					# for a in allBook:
 					# 	if author.book_author_id == a.book_author_id_id:
 					books = Books.objects.filter(book_author_id=author.book_author_id)
+
+					p = Paginator(books,20)
+					page_num = request.GET.get('page', 1)
+					try:
+						page = p.page(page_num)
+					except:
+						page = p.page(1)
+
 					context={
 						'search' : search,
-						'books' : books,
+						'books' : page,
 						'authors' : authors,
 					}
 					return render(request, 'results.html', context)
@@ -270,7 +279,7 @@ class HomepageView(View):
 			# 	'books' : books,
 			# 	'authors' : authors,
 			# }
-			return render(request, 'homepage.html')
+			return render(request, 'homepage.html')			
 
 class ProfileIndexView(View):
 	def get(self, request):
