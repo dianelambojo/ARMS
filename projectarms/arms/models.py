@@ -8,11 +8,14 @@ class User(models.Model):
 	email = models.CharField(max_length=200, null=True)
 	date_created = models.DateTimeField(auto_now_add=True, null=True)
 
+	profile_pic = models.ImageField(upload_to='media/')
+
 	def __str__(self):
 		return self.name
 
 class Author(models.Model):
-	book_author_id = models.CharField(primary_key=True, max_length=50)
+	# book_author_id = models.CharField(primary_key=True, max_length=50)
+	book_author_id = models.AutoField(primary_key=True)
 	firstname = models.CharField(max_length = 100)
 	lastname = models.CharField(max_length = 100)
 	email = models.CharField(max_length = 100)
@@ -24,14 +27,16 @@ class Author(models.Model):
 		db_table = "Author"
 
 class Category(models.Model):
-	book_category_no = models.CharField(primary_key=True, max_length=50)
+	# book_category_no = models.CharField(primary_key=True, max_length=50)
+	book_category_no = models.AutoField(primary_key=True)
 	book_category = models.CharField(max_length=100)
 
 	class Meta:
 		db_table = "Category"
 
 class Books(models.Model):
-	book_id = models.CharField(primary_key=True, max_length=50)
+	# book_id = models.CharField(primary_key=True, max_length=50)
+	book_id = models.AutoField(primary_key=True)
 	book_title = models.CharField(max_length = 100)
 	book_author_id = models.ForeignKey(Author, on_delete=models.CASCADE)
 	book_cover = models.ImageField(upload_to='media/')

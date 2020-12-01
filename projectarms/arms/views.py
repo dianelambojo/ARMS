@@ -12,7 +12,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.db.models import Q
 import datetime
 from django.core.paginator import Paginator, EmptyPage
-
+from itertools import chain
 # Create your views here.
 
 
@@ -368,22 +368,65 @@ class AddBookIndexView(View):
 	 	# book_author_id = Author.objects.get('book_author_id')
 	 	# book_category_no = Author.objects.get('book_category_no_id')
 	 	if form.is_valid():
-	 		book_id = request.POST.get('book_id')
-	 		book_title = request.POST.get('book_title')
+	 		# book_id = request.POST.get('book_id')
 	 		#book_author_id = request.POST.get('book_author_id')
-	 		book_author_id = Author.objects.get('book_author_id')
+	 		
+	 		book_category = request.POST.get('book_category')
+	 		
+	 		firstname = request.POST.get('Firstname')
+	 		lastname = request.POST.get('Lastname')
+	 		author = Author.objects.filter(Q(firstname__icontains = firstname) & Q(lastname__icontains = lastname))
+	 		if author:
+	 			print(author)
+	 			# author_id = author.book_author_id
+	 			# print(author_id)
+	 			# form = Books(book_author_id=author_id)
+	 		else:
+	 			# Author.objects.create(
+	 			# 	firstname = firstname, 
+	 			# 	lastname = lastname
+	 			# )
+	 			form = AuthorForm(firstname= firstname, lastname=lastname)
+	 			form.save()
 	 		#book_author_id = Author.objects.filter(book_author_id=book_author_id)
-	 		book_cover = request.FILES['book_cover']
-	 		book_file = request.FILES['book_file']
-	 		book_year = request.POST.get('book_year')
-	 		book_tags = request.POST.get('book_tags')
-	 		book_summary = request.POST.get('book_summary')
-	 		book_category_no0 = request.POST.get('book_category_no')
-	 		book_info = request.POST.get('book_info')
-	 		form = Books(book_id = book_id, book_title = book_title, book_author_id = book_author_id, book_cover = book_cover,
-	 			book_file = book_file, book_year = book_year, book_tags = book_tags, book_summary = book_summary, book_category_no = book_category_no, book_info = book_info)
-	 		form.save()
-	 		return HttpResponse('Book Saved!')
+	 		
+	 		category = Category.objects.filter(Q(book_category__icontains = book_category))
+	 		if category:
+	 			print(category)
+	 		else:
+	 			# Category.objects.create(
+	 			# 	book_category = book_category
+	 			# )
+	 			form = CategoryForm(book_category= book_category)
+	 			form.save()
+
+ 			author = Author.objects.filter(Q(firstname__icontains = firstname) & Q(lastname__icontains = lastname))
+ 			# print(author.book_author_id)
+ 			category = Category.objects.filter(Q(book_category__icontains = book_category))
+ 			# print(category.book_category_no)
+
+ 			# x = chain(author, category)
+ 			for a in author:
+ 				print(a.book_author_id)
+ 				for c in category:
+ 					print(c.book_category_no)
+ 					book_title = request.POST.get('book_title')
+			 		book_cover = request.FILES.get('book_cover')
+			 		book_file = request.FILES.get('book_file')
+			 		book_year = request.POST.get('book_year')
+			 		book_tags = request.POST.get('book_tags')
+			 		book_summary = request.POST.get('book_summary')
+			 		# book_info = request.POST.get('book_info')
+			 		form = Books(book_title = book_title, book_author_id = Author.objects.get(book_author_id = a.book_author_id), book_cover = book_cover,
+			 			book_file = book_file, book_year = book_year, book_summary = book_summary, book_category_no = Category.objects.get(book_category_no = c.book_category_no),
+			 			is_bookmarked = 0, is_downloaded = 0, is_read = 0, is_deleted = 0)
+
+			 		# form = Books(book_id = book_id, book_title = book_title, book_author_id = book_author_id, book_cover = book_cover,
+			 			# book_file = book_file, book_year = book_year, book_tags = book_tags, book_summary = book_summary, book_category_no = book_category_no, book_info = book_info)
+			 		form.save()
+			 		return HttpResponse('Book Saved!')
+		 	# else:
+		 	# 	return HttpResponse('Not Saved!')
 	 	else:
 	 		print(form.errors)
 	 		return HttpResponse('Not Valid')

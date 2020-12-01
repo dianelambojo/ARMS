@@ -236,10 +236,10 @@
 										<br>
 										<br>
 										<div class="d-flex justify-content-center">&nbsp;&nbsp;
-											<form method="POST">
-												{% csrf_token %}
-												<button type="submit" class="btn-view-save">Add Book</button>
-											</form>
+											<!-- <form method="POST">
+												{% csrf_token %} -->
+												<button type="button" class="btn-view-save"><a href="{% url 'arms:addBook_view' %}">Add Book</a></button>
+											<!-- </form> -->
 										</div>
 								</div>
 							</div>						
