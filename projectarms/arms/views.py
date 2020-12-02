@@ -33,6 +33,7 @@ def loginPage(request):
 
 		if user is not None:
 			login(request, user)
+			# pass the name of the user to the base.html navbar
 			request.session['username'] = username
 			if request.user.is_superuser:
 				return redirect('arms:arms_admin_view')
@@ -63,6 +64,40 @@ def registerPage(request):
 
 	context = {'form':form}
 	return render(request,'register.html',context)
+
+#By category searched of all books function
+def category_search(request, searched):
+	arr = ['research','journal','filipiniana','engineering','computerscience','informationtechnology','business','architecture']
+	length = len(arr)
+	i=0
+	searched = searched
+	while i<length:
+		if searched == arr[i]:
+			ctgy = Category.objects.get(book_category = searched)
+			# for c in ctgy:
+			books = Books.objects.filter(Q(book_category_no_id=ctgy.book_category_no))
+			authors = Author.objects.all()
+			context={
+				'authors' : authors,
+				# 'books' : books,
+				'books' : pageResults(request, books),
+				'search' : searched,
+			}
+			return render(request, 'results.html', context)
+		else:
+			i+=1
+
+	return render(request, 'results.html', {'search' : searched})	
+
+def pageResults(request, x):
+	p = Paginator(x,20)
+	page_num = request.GET.get('page', 1)
+	try:
+		page = p.page(page_num)
+	except:
+		page = p.page(1)
+
+	return page
 
 class ArmsAdminView(View):
 	def get(self, request):
@@ -106,160 +141,48 @@ class HomepageView(View):
 			if search:
 				# if the user tries to search using the authors first or last name
 				# if the author is found then it will proceed to search for the book that was written by the author
-				# allBook = Books.objects.all()
 				authors = Author.objects.filter(Q(firstname__icontains=search) | Q(lastname__icontains=search))
 				for author in authors:
-					# for a in allBook:
-					# 	if author.book_author_id == a.book_author_id_id:
 					books = Books.objects.filter(book_author_id=author.book_author_id)
 
-					p = Paginator(books,20)
-					page_num = request.GET.get('page', 1)
-					try:
-						page = p.page(page_num)
-					except:
-						page = p.page(1)
+					# p = Paginator(books,20)
+					# page_num = request.GET.get('page', 1)
+					# try:
+					# 	page = p.page(page_num)
+					# except:
+					# 	page = p.page(1)
 
 					context={
 						'search' : search,
-						'books' : page,
+						# 'books' : page,
+						'books' : pageResults(request, books),
 						'authors' : authors,
 					}
 					return render(request, 'results.html', context)
-						# else:
-						# 	context = {
-						# 		'search' : search
-						# 	}
-						# 	return render(request, 'results.html', context)
-						
 				# if the user tries to search using the book title or year 
 				books = Books.objects.filter(Q(book_title__icontains=search) | Q(book_year__icontains=search))
-				authors = Author.objects.all()
-				context={
-					'search' : search,
-					'books' : books,
-					'authors' : authors,
-				}
+				for book in books:
+					authors = Author.objects.filter(Q(book_author_id=book.book_author_id_id))
+					context={
+						'search' : search,
+						# 'books' : books,
+						'books' : pageResults(request, books),
+						'authors' : authors,
+					}
 
-				return render(request, 'results.html', context)
+					return render(request, 'results.html', context)
 
-			#By category searched of all books
+				return render(request, 'results.html', {'search' : search})	
+
+			#call search by category function 
 			searched = request.GET.get('searched')
-			if searched == 'research':
-				authors = Author.objects.all()
-				books = Books.objects.all()
-				research = Category.objects.filter(Q(book_category = searched))
-				for r in research:
-					books = Books.objects.filter(book_category_no_id=r.book_category_no)
-					context={
-						'authors' : authors,
-						'books' : books,
-						'search' : 'Research Studies',
-					}
-					return render(request, 'results.html', context)
+			if searched is not None:
+				return category_search(request, searched)
 
-				return render(request, 'results.html', {'search' : 'Research Studies'})	
-			if searched == 'journals':
-				authors = Author.objects.all()
-				books = Books.objects.all()
-				journals = Category.objects.filter(Q(book_category = searched))
-				for j in journals:
-					books = Books.objects.filter(book_category_no_id=j.book_category_no)
-					context={
-						'authors' : authors,
-						'books' : books,
-						'search' : 'Journals',
-					}
-					return render(request, 'results.html', context)
-
-				return render(request, 'results.html', {'search' : 'Journals'})	
-			if searched == 'filipiniana':
-				books = Books.objects.all()
-				authors = Author.objects.all()
-				filipiniana = Category.objects.filter(Q(book_category = searched))
-				for f in filipiniana:
-					books = Books.objects.filter(book_category_no_id=f.book_category_no)
-					context={
-						'authors' : authors,
-						'books' : books,
-						'search' : 'Filipiniana',
-					}
-					return render(request, 'results.html', context)
-
-				return render(request, 'results.html', {'search' : 'Filipiniana'})	
-			if searched == 'engineering':
-				books = Books.objects.all()
-				authors = Author.objects.all()
-				filipiniana = Category.objects.filter(Q(book_category = searched))
-				for f in filipiniana:
-					books = Books.objects.filter(book_category_no_id=f.book_category_no)
-					context={
-						'authors' : authors,
-						'books' : books,
-						'search' : 'Engineering',
-					}
-					return render(request, 'results.html', context)
-
-				return render(request, 'results.html', {'search' : 'Engineering'})	
-			if searched == 'computerscience':
-				books = Books.objects.all()
-				authors = Author.objects.all()
-				filipiniana = Category.objects.filter(Q(book_category = searched))
-				for f in filipiniana:
-					books = Books.objects.filter(book_category_no_id=f.book_category_no)
-					context={
-						'authors' : authors,
-						'books' : books,
-						'search' : 'Computer Science',
-					}
-					return render(request, 'results.html', context)
-
-				return render(request, 'results.html', {'search' : 'Computer Science'})	
-			if searched == 'informationtechnology':
-				books = Books.objects.all()
-				authors = Author.objects.all()
-				filipiniana = Category.objects.filter(Q(book_category = searched))
-				for f in filipiniana:
-					books = Books.objects.filter(book_category_no_id=f.book_category_no)
-					context={
-						'authors' : authors,
-						'books' : books,
-						'search' : 'Information Technology',
-					}
-					return render(request, 'results.html', context)
-
-				return render(request, 'results.html', {'search' : 'Information Technology'})	
-			if searched == 'business':
-				books = Books.objects.all()
-				authors = Author.objects.all()
-				filipiniana = Category.objects.filter(Q(book_category = searched))
-				for f in filipiniana:
-					books = Books.objects.filter(book_category_no_id=f.book_category_no)
-					context={
-						'authors' : authors,
-						'books' : books,
-						'search' : 'Business',
-					}
-					return render(request, 'results.html', context)
-
-				return render(request, 'results.html', {'search' : 'Business'})	
-			if searched == 'architecture':
-				books = Books.objects.all()
-				authors = Author.objects.all()
-				filipiniana = Category.objects.filter(Q(book_category = searched))
-				for f in filipiniana:
-					books = Books.objects.filter(book_category_no_id=f.book_category_no)
-					context={
-						'authors' : authors,
-						'books' : books,
-						'search' : 'Architecture',
-					}
-					return render(request, 'results.html', context)
-
-				return render(request, 'results.html', {'search' : 'Architecture'})	
+			
 			#if not search/searched
 			else: 	
-				# new releases within the month of the year (more or less)
+				# new releases within the month of the year (more or less): days is disregarded
 				today = datetime.date.today()
 				books = Books.objects.filter(date_added__year=today.year, date_added__month=today.month)
 				print(books)
@@ -271,14 +194,6 @@ class HomepageView(View):
 				return render(request, 'homepage.html', context)
 		#if request.method != GET else
 		else:
-			# today = datetime.date.today()
-			# books = Books.objects.filter(date_added__year=today.year, date_added__month=today.month)
-			# print(books)
-			# authors = Author.objects.all()
-			# context={
-			# 	'books' : books,
-			# 	'authors' : authors,
-			# }
 			return render(request, 'homepage.html')			
 
 class ProfileIndexView(View):

@@ -12,7 +12,7 @@
 			<div class="input-group mb-3">
 				<!-- if method is GET no need to put csrf_token unlike POST method -->
 				<form method="GET" enctype="multipart/form-data">
-			  		<input type="text" style="width: 700px; height: 40px; border: 1px solid #D3D3D3; border-top-left-radius: 1.5rem; border-bottom-left-radius: 1.5rem; padding-left: 20px;" id="search" name="search" placeholder="Search title, author, year">
+			  		<input type="text" style="width: 700px; height: 40px; border: 1px solid #D3D3D3; border-top-left-radius: 1.5rem; border-bottom-left-radius: 1.5rem; padding-left: 20px;" id="search" name="search" placeholder="Search title, author, year" value="{{search}}">
 			  	</form>
 			  	<div class="input-group-append">
 			    	<button type="button" class="btn btn-mic" onclick="runSpeechRecognition()">
@@ -37,7 +37,7 @@
 				  		<div class="order-list">
 						<form method="GET" action='' enctype="multipart/form-data">
 							<a name="searched" href="{% url 'arms:homepage_view' %}?searched=research">Research</a>
-							<a name="searched" href="{% url 'arms:homepage_view' %}?searched=journals">Journals</a>
+							<a name="searched" href="{% url 'arms:homepage_view' %}?searched=journal">Journals</a>
 							<a name="searched" href="{% url 'arms:homepage_view' %}?searched=filipiniana">Filipiniana</a>
 							<span style="font-weight: bold; font-size: 13px; padding: 13px;">ACADEMIC BOOKS</span>
 							<ul>
