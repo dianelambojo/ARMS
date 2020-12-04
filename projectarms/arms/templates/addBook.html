@@ -33,13 +33,7 @@
 										</div>
 									</div>
 
-									<div class="form-group row">
-										<label for="Author" class="col-sm-4 col-form-label">Author</label>
-										<div class="col-sm-8">
-											<input type="text" class="form-control" id="Firstname" name="Firstname" placeholder="Firstname" required="">
-											<input type="text" class="form-control" id="Lastname" name="Lastname" placeholder="Lastname" required="">
-										</div>
-									</div>
+									
 									
 									<div class="form-group row">
 										<label for="Year" class="col-sm-4 col-form-label">Year Published</label>
@@ -67,14 +61,14 @@
 										 <div class="col-sm-8">
 							    			<select class="form-control" name="book_category" required>
 							    			  <option value="">Select Book Category</option>
-										      <option value="Research">Research</option>
-										      <option value="Journal">Journal</option>
-										      <option value="Filipiniana">Filipiniana</option>
-										      <option value="Engineering">Engineering</option>
-										      <option value="Computer Science">Computer Science</option>
-										      <option value="Information Technology">Information Technology</option>
-										      <option value="Business">Business</option>
-										      <option value="Architecture">Architecture</option>
+										      <option value="Research">1. Research</option>
+										      <option value="Journal">2. Journal</option>
+										      <option value="Filipiniana">3. Filipiniana</option>
+										      <option value="Engineering">4. Engineering</option>
+										      <option value="Computer Science">5. Computer Science</option>
+										      <option value="Information Technology">6. Information Technology</option>
+										      <option value="Business">7. Business</option>
+										      <option value="Architecture">8. Architecture</option>
 							    			</select>
 							    		</div>
 									</div>
@@ -86,45 +80,30 @@
 							        	<script src="{% static 'js/homepage.js' %}"></script>
 									</div>
 
-					<br><br>
-					<!-- <form> -->
-					  <label for="img">Select Cover Image:</label>
-					  <input type="file" id="img" name="book_cover" accept="image/*"  required>
-					<!-- </form> -->
-					<br>
-					<label for="ConfirminputPassword">File Upload</label>
-					<input type="file" name="book_file"  id="CoverImage" required="">
 
-					
-			
-			<br><br>
-			<div style="text-align: center">
-				<button type="submit" class="btn-view-save">Add Book</button>
-				<button type="button" class="btn-cancel" data-dismiss="modal">Cancel</button>
-			</div>
-
-
-						</div>
-					</form>	
-					</div>
-				</div>
-
-				<!-- Author Details -->
-				<!-- 
+					<!-- Author Details --> 
 					<hr>
+					<div class="row">
+					<div class="col-sm-10">
 						<div  class="col  ml-xl-5">
 							<h4>Author Details</h4>
 							<br>
 						</div>
-					<div>
 						<form method="POST" autocomplete="off" enctype="multipart/form-data">
 							<div  class="col  ml-xl-5">	
 								<div class="form-group row">
-										<label for="AuthorName" class="col-sm-4 col-form-label">Name</label>
-										<div class="col-sm-8">
-											<input type="text" class="form-control" id="AuthorName" name="" placeholder="Author Name" required>
+										<label for="Author" class="col-sm-4 col-form-label">Author</label>
+										<div class="col-sm-4">
+											<div class="row">
+												<input type="text" class="form-control" id="Firstname" name="Firstname" placeholder="Firstname" required="">
+											</div>
 										</div>
-								</div>
+										<div class="col-sm-4">
+											<div class="row">
+												<input type="text" class="form-control" id="Lastname" name="Lastname" placeholder="Lastname" required="">
+											</div>
+										</div>
+									</div>
 								<div class="form-group row">
 										<label for="Email" class="col-sm-4 col-form-label">E-mail</label>
 										<div class="col-sm-8">
@@ -139,7 +118,33 @@
 								</div>
 							</div>
 						</form>
-					</div> -->
+					</div>
+				</div> 
+
+			<!--File Uploads-->
+			<br><br>
+			<div>		
+			<label for="img">Select Cover Image:</label>
+			 <input type="file" id="img" name="book_cover" accept="image/*"  required>
+					
+			<br>
+			<label for="ConfirminputPassword">File Upload</label>
+			<input type="file" name="book_file"  id="CoverImage" required="">
+			</div>		
+			
+			<br><br>
+			<div style="text-align:center">
+				<button type="submit" class="btn-view-save">Add Book</button>
+				<button type="button" class="btn-cancel" data-dismiss="modal">Cancel</button>
+			</div>
+
+
+						</div>
+					</form>	
+					</div>
+				</div>
+
+			
 
 			</div>
 		</div>
