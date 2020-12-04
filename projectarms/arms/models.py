@@ -16,7 +16,7 @@ class User(models.Model):
 class Author(models.Model):
 	# book_author_id = models.CharField(primary_key=True, max_length=50)
 	book_author_id = models.AutoField(primary_key=True)
-	firstname = models.CharField(max_length = 100)
+	firstname = models.CharField(max_length = 100, null=True)
 	lastname = models.CharField(max_length = 100)
 	email = models.CharField(max_length = 100)
 	birthdate = models.DateField(default = timezone.now)
