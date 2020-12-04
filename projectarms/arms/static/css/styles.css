@@ -10589,22 +10589,20 @@ header.base h1 {
   top: 135%;
   right: 150px;
   background: white;
-  /*overflow-x: hidden;*/
   padding: 8px 0;
 }
 
-/*.sidenav2 {
-  width: 130px;
+.sidenav2 {
   position:absolute;
   z-index: 1;
-  top: 160%;
-  left: 10px;
+  top: 185%;
+  right: 150px;
   background: white;
-  overflow-x: hidden;
+  width: 130px;
   padding: 8px 0;
-}*/
+}
 
-.sidenav a{
+.sidenav a, .sidenav2 a{
   padding: 6px 8px 6px 16px;
   text-decoration: none;
   font-size: 13px;
@@ -10612,13 +10610,15 @@ header.base h1 {
   display: block;
 }
 
-.sidenav a:hover {
+.sidenav a:hover, .sidenav2 a:hover {
   color: #064579;
 }
 
 @media screen and (max-height: 450px) {
   .sidenav {padding-top: 15px;}
   .sidenav a {font-size: 13px;}
+  .sidenav2 {padding-top: 15px;}
+  .sidenav2 a {font-size: 13px;}
 }
 
 /*results.html*/
@@ -10633,18 +10633,17 @@ header.base h1 {
   padding: 8px 0;
 }
 
-/*.sidenav4 {
-  width: 130px;
+.sidenav4 {
   position:absolute;
   z-index: 1;
-  top: 53%;
-  left: 10px;
+  top: 80%;
+  right: 170px;
   background: white;
-  overflow-x: hidden;
+  width: 130px;
   padding: 8px 0;
-}*/
+}
 
-.sidenav-results a{
+.sidenav-results a, .sidenav4 a{
   padding: 6px 8px 6px 16px;
   text-decoration: none;
   font-size: 13px;
@@ -10652,13 +10651,15 @@ header.base h1 {
   display: block;
 }
 
-.sidenav-results a:hover {
+.sidenav-results a:hover, .sidenav4 a:hover {
   color: #064579;
 }
 
 @media screen and (max-height: 450px) {
   .sidenav-results {padding-top: 15px;}
   .sidenav-results a {font-size: 13px;}
+  .sidenav4 {padding-top: 15px;}
+  .sidenav4 a {font-size: 13px;}
 }
 
 .modal {
@@ -10678,7 +10679,7 @@ header.base h1 {
     z-index: 1;
     right: -100px;
     top: 5px;
-    height: 350px;
+    height: 300px;
     width: 200px;
 }
 .order-header{

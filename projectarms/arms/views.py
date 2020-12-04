@@ -65,30 +65,7 @@ def registerPage(request):
 	context = {'form':form}
 	return render(request,'register.html',context)
 
-#By category searched of all books function
-def category_search(request, searched):
-	arr = ['research','journal','filipiniana','engineering','computerscience','informationtechnology','business','architecture']
-	length = len(arr)
-	i=0
-	searched = searched
-	while i<length:
-		if searched == arr[i]:
-			ctgy = Category.objects.get(book_category = searched)
-			# for c in ctgy:
-			books = Books.objects.filter(Q(book_category_no_id=ctgy.book_category_no))
-			authors = Author.objects.all()
-			context={
-				'authors' : authors,
-				# 'books' : books,
-				'books' : pageResults(request, books),
-				'search' : searched,
-			}
-			return render(request, 'results.html', context)
-		else:
-			i+=1
-
-	return render(request, 'results.html', {'search' : searched})	
-
+# pagination 
 def pageResults(request, x):
 	p = Paginator(x,20)
 	page_num = request.GET.get('page', 1)
@@ -98,6 +75,103 @@ def pageResults(request, x):
 		page = p.page(1)
 
 	return page
+
+#By category searched of all books function
+def category_search(request, searched):
+	arr = ['Research','Journal','Filipiniana','Engineering','ComputerScience','InformationTechnology','Business','Architecture']
+	length = len(arr)
+	i=0
+	searched = searched
+	while i<length:
+		if searched == arr[i]:
+			ctgy = Category.objects.get(book_category = searched)
+			# for c in ctgy:
+			books = Books.objects.filter(Q(book_category_no_id=ctgy.book_category_no))
+			authors = Author.objects.all()
+			category = Category.objects.all()
+			context={
+				'authors' : authors,
+				# 'books' : books,
+				'books' : pageResults(request, books),
+				'search' : searched,
+				'category' : category,
+			}
+			return render(request, 'results.html', context)
+		else:
+			i+=1
+
+	return render(request, 'results.html', {'search' : searched})	
+
+def author_category_search(request, searched, param):
+	searched = searched
+	param = param
+	authors = Author.objects.filter(Q(firstname__icontains=searched) & Q(lastname__icontains=param))
+	for author in authors:
+		books = Books.objects.filter(book_author_id=author.book_author_id)
+		category = Category.objects.all()
+		x = Author.objects.all()
+		context={
+			'search' : searched + ' ' + param,
+			# 'books' : page,
+			'books' : pageResults(request, books),
+			'authors' : x,
+			'category' : category,
+		}
+		return render(request, 'results.html', context)
+
+	# return category_search(request, searched)
+	return render(request, 'results.html', {'search' : searched + ' ' + param})
+
+def author_search(request, search):
+	search = search 
+	category = Category.objects.all()
+	x = Author.objects.all()
+	authors = Author.objects.filter(Q(firstname__icontains=search) | Q(lastname__icontains=search))
+	for author in authors:
+		# if the author is found then it will proceed to search for the book that was written by the author
+		books = Books.objects.filter(book_author_id=author.book_author_id)		
+		# p = Paginator(books,20)
+		# page_num = request.GET.get('page', 1)
+		# try:
+		# 	page = p.page(page_num)
+		# except:
+		# 	page = p.page(1)
+
+		context={
+			'search' : search,
+			# 'books' : page,
+			'books' : pageResults(request, books),
+			'authors' : x,
+			'category' : category,
+		}
+		return render(request, 'results.html', context)
+
+	context={
+		'search' : search,
+		'authors' : x,
+		'category' : category,
+	}
+	return render(request, 'results.html', context)
+
+def bookTitle_search(request,search):
+	search = search
+	books = Books.objects.filter(Q(book_title__icontains=search) | Q(book_year__icontains=search))
+	for book in books:
+		# authors = Author.objects.filter(Q(book_author_id=book.book_author_id_id))
+		category = Category.objects.all()
+		authors = Author.objects.all()
+		context={
+			'search' : search,
+			# 'books' : books,
+			'books' : pageResults(request, books),
+			'authors' : authors,
+			'category' : category,
+		}
+
+		return render(request, 'results.html', context)
+
+	# if the user tries to search using the authors first or last name
+	return author_search(request, search) 
 
 class ArmsAdminView(View):
 	def get(self, request):
@@ -139,57 +213,31 @@ class HomepageView(View):
 		if request.method == 'GET':
 			search = request.GET.get('search')
 			if search:
-				# if the user tries to search using the authors first or last name
-				# if the author is found then it will proceed to search for the book that was written by the author
-				authors = Author.objects.filter(Q(firstname__icontains=search) | Q(lastname__icontains=search))
-				for author in authors:
-					books = Books.objects.filter(book_author_id=author.book_author_id)
-
-					# p = Paginator(books,20)
-					# page_num = request.GET.get('page', 1)
-					# try:
-					# 	page = p.page(page_num)
-					# except:
-					# 	page = p.page(1)
-
-					context={
-						'search' : search,
-						# 'books' : page,
-						'books' : pageResults(request, books),
-						'authors' : authors,
-					}
-					return render(request, 'results.html', context)
 				# if the user tries to search using the book title or year 
-				books = Books.objects.filter(Q(book_title__icontains=search) | Q(book_year__icontains=search))
-				for book in books:
-					authors = Author.objects.filter(Q(book_author_id=book.book_author_id_id))
-					context={
-						'search' : search,
-						# 'books' : books,
-						'books' : pageResults(request, books),
-						'authors' : authors,
-					}
-
-					return render(request, 'results.html', context)
-
-				return render(request, 'results.html', {'search' : search})	
-
+				return bookTitle_search(request,search)
+			
 			#call search by category function 
 			searched = request.GET.get('searched')
+			print(searched)
+			param = request.GET.get('param')
 			if searched is not None:
-				return category_search(request, searched)
+				if param is not None:
+					return author_category_search(request, searched, param)
+				else:
+					return category_search(request, searched)
 
-			
 			#if not search/searched
-			else: 	
+			else:
 				# new releases within the month of the year (more or less): days is disregarded
 				today = datetime.date.today()
 				books = Books.objects.filter(date_added__year=today.year, date_added__month=today.month)
 				print(books)
 				authors = Author.objects.all()
+				category = Category.objects.all()
 				context={
 					'books' : books,
 					'authors' : authors,
+					'category' : category,
 				}
 				return render(request, 'homepage.html', context)
 		#if request.method != GET else

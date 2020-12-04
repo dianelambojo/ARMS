@@ -1,7 +1,7 @@
 {% extends "baseResult.html" %}
 <!-- Author: Garcia
 	Date: 2020
-	Description: Homepage HTML Code
+	Description: Homepage Results HTML Code
 -->
 
 {% block content %}
@@ -34,33 +34,29 @@
 						<div class="order-header">
 				  			<span style="font-weight: bold; padding: 5px;">Category</span>
 				  		</div>
-				  		<div class="order-list">
+				  		<div class="order-list" style="overflow-y: scroll">
 						<form method="GET" action='' enctype="multipart/form-data">
-							<a name="searched" href="{% url 'arms:homepage_view' %}?searched=research">Research</a>
-							<a name="searched" href="{% url 'arms:homepage_view' %}?searched=journal">Journals</a>
-							<a name="searched" href="{% url 'arms:homepage_view' %}?searched=filipiniana">Filipiniana</a>
-							<span style="font-weight: bold; font-size: 13px; padding: 13px;">ACADEMIC BOOKS</span>
-							<ul>
-								<li><a name="searched" href="{% url 'arms:homepage_view' %}?searched=engineering">Engineering</a></li>
-								<li><a name="searched" href="{% url 'arms:homepage_view' %}?searched=computerscience">Computer Science</a></li>
-								<li><a name="searched" href="{% url 'arms:homepage_view' %}?searched=informationtechnology">Information Technology</a></li>
-								<li><a name="searched" href="{% url 'arms:homepage_view' %}?searched=business">Business</a></li>
-								<li><a name="searched" href="{% url 'arms:homepage_view' %}?searched=architecture">Architecture</a></li>
-							</ul>
+							{% for c in category %}
+								<a name="searched" href="{% url 'arms:homepage_view' %}?searched={{ c.book_category }}">{{ c.book_category }}</a>
+							{% endfor %}
 						</form>
 						</div>
 					</div>
 				</div>
-				<!-- <div class="sidenav4">
-				  	ACADEMIC BOOKS
-				  	<form method="GET" action='' enctype="multipart/form-data">
-						<a name="searched" href="{% url 'arms:homepage_view' %}?searched=engineering">Engineering</a>
-						<a name="searched" href="{% url 'arms:homepage_view' %}?searched=computerscience">Computer Science</a>
-						<a name="searched" href="{% url 'arms:homepage_view' %}?searched=informationtechnology">Information Technology</a>
-						<a name="searched" href="{% url 'arms:homepage_view' %}?searched=business">Business</a>
-						<a name="searched" href="{% url 'arms:homepage_view' %}?searched=architecture">Architecture</a>
-					</form>
-				</div> -->
+				<div class="sidenav4">
+					<div class="order-container">
+						<div class="order-header">
+				  			<span style="font-weight: bold; padding: 5px;">Author</span>
+				  		</div>
+				  		<div class="order-list" style="overflow-y: scroll">
+						<form method="GET" action='' enctype="multipart/form-data">
+							{% for a in authors %}
+								<a name="searched" href="{% url 'arms:homepage_view' %}?searched={{ a.firstname }}&param={{ a.lastname }}">{{ a.firstname }} {{ a.lastname }}</a>
+							{% endfor %}
+						</form>
+						</div>
+					</div>
+				</div>
 				<span class="text">Results for {{ search }}</span>
 				{% for book in books %}
 					{% if book.is_deleted == 0 %}
