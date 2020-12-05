@@ -294,6 +294,27 @@ class LandingPageIndexView(View):
 	def get(self, request):
 		return render(request, 'landingpage.html')
 
+	def post(self,request):
+		# if request.method == 'POST':
+			username = request.POST.get('username')
+			password = request.POST.get('password')
+
+			user = authenticate(request, username=username, password=password)
+
+			if user is not None:
+				login(request, user)
+				# pass the name of the user to the base.html navbar
+				request.session['username'] = username
+				if request.user.is_superuser:
+					return redirect('arms:arms_admin_view')
+				else:
+					return redirect('arms:homepage_view')
+			else:
+				messages.info(request, 'Username OR password is incorrect')
+				
+			context = {} 
+			return render(request,'homepage.html',context)
+
 
 class AboutUsIndexView(View):
 	def get(self, request):
