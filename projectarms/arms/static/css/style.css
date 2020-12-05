@@ -535,13 +535,12 @@ input[type="submit"]:hover{
 # Profile Page
 --------------------------------------------------------------*/
 /*Fa Icon*/
-.fa{
+.fa-color{
   background:transparent;
   border: transparent;
+  color:  #8C383E;
 }
-.fas{
-  background: w3-black w3-round;
-}
+
 /*Profile Page*/
 .row1 {
   border-top-right-radius: 25px;

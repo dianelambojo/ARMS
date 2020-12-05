@@ -286,7 +286,6 @@ class ProfileIndexView(View):
 				print('record deleted')
 
 		return render(request, 'profile.html')
-		# return HttpResponse('not ok')
 	# def post(self,request):
 	# 	return render(request, 'addbook.html')	
 
