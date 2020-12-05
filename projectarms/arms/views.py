@@ -13,6 +13,7 @@ from django.db.models import Q
 import datetime
 from django.core.paginator import Paginator, EmptyPage
 from itertools import chain
+
 # Create your views here.
 
 
@@ -24,6 +25,7 @@ from itertools import chain
 # 6 Check django admin if nasuod sya
 # 7 Login, pero dle pa sya mo redirect sa page
 
+#Pede nani idelete if dle gamiton ang login.html
 def loginPage(request):
 	if request.method == 'POST':
 		username = request.POST.get('username')
