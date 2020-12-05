@@ -349,7 +349,7 @@ class AddBookIndexView(View):
 	 			# 	firstname = firstname, 
 	 			# 	lastname = lastname
 	 			# )
-	 			form = AuthorForm(firstname= firstname, lastname=lastname)
+	 			form = AuthorForm(firstname=firstname, lastname=lastname)
 	 			form.save()
 	 		#book_author_id = Author.objects.filter(book_author_id=book_author_id)
 	 		
