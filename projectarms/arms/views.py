@@ -10,6 +10,7 @@ from .forms import CreateUserForm
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.db.models import Q
+from django.db.models import Count
 import datetime
 from django.core.paginator import Paginator, EmptyPage
 from itertools import chain
@@ -250,12 +251,14 @@ class ProfileIndexView(View):
 	def get(self, request):
 		user = User.objects.all()
 		books = Books.objects.all()
+		bookRead = Books.objects.all()
 		authors = Author.objects.all()
 		#print(user)
 		context = {
 			'users' : user,
 			'books' : books,
 			'authors' : authors,
+			'bookRead' : bookRead,
 			
 		}
 
@@ -285,7 +288,9 @@ class ProfileIndexView(View):
 				book = Books.objects.filter(book_id = sid).update(is_deleted=1)
 				# author = Author.objects.filter(book_author_id = sid).delete()
 				# form = Books.objects.filter(book_id = sid)
-				print('record deleted')
+				print('record deleted')	
+
+
 
 		return render(request, 'profile.html')
 	# def post(self,request):

@@ -16,6 +16,7 @@
 				    	</tr>
 				    </thead>
 				    <tbody>
+				    	<h4 style="font-weight: bold;">Recent Read Books: </h4>
 				        {% for book in books %}
 							{% if book.is_read == 1 %}
 					        	<tr>
@@ -208,29 +209,35 @@
 
 											<div class="col-12">
 												<div class="row" class="botton">
-													<div class="col-4">
-														<div class="btn-RBD"> 
-															<div class="fa fa-book" style="color: maroon"></div>
+													
+														<div class="col-4">
+															<div class="btn-RBD"> 
+																<div class="fa fa-book" style="color: maroon"></div>
+															</div>
+															{% for bookRead in bookRead %}
+																<!--{% if bookRead.is_read == 1 %}-->
+																	<div class="col-4" type="count" style="color: white" >{{ bookRead }}</div>
+																{% endif%}
+															{% endfor %}
+															<div class="col" style='font-size:14px; color: white'>Reads</div>
 														</div>
-														<div class="col-4" style="color: white" >12</div>
-														<div class="col" style='font-size:14px; color: white'>Reads</div>
-													</div>
 
-													<div class="col-4">
-														<div class="btn-RBD"> 
-															<div class="fa fa-bookmark" style="color:maroon"></div>
+														<div class="col-4">
+															<div class="btn-RBD"> 
+																<div class="fa fa-bookmark" style="color:maroon"></div>
+															</div>
+															<div class="col-4" style="color: white">20</div>
+															<div class="row" style='font-size:14px; color: white'>Bookmarks</div>
 														</div>
-														<div class="col-4" style="color: white">20</div>
-														<div class="row" style='font-size:14px; color: white'>Bookmarks</div>
-													</div>
 
-													<div class="col-4">
-														<div class="btn-RBD"> 
-															<div class="fa fa-download" style="color:maroon"></div>
+														<div class="col-4">
+															<div class="btn-RBD"> 
+																<div class="fa fa-download" style="color:maroon"></div>
+															</div>
+															<div class="col-4" style="color: white">20</div>
+															<div class="row" style='font-size:14px; color: white'>Downloads</div>
 														</div>
-														<div class="col-4" style="color: white">20</div>
-														<div class="row" style='font-size:14px; color: white'>Downloads</div>
-													</div>
+													
 		  										</div>
 											</div>	
 										</div>
