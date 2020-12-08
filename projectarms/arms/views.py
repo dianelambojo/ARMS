@@ -363,8 +363,9 @@ class AddBookIndexView(View):
 	 		
 	 		book_category = request.POST.get('book_category')
 	 		
-	 		firstname = request.POST.get('Firstname')
-	 		lastname = request.POST.get('Lastname')
+	 		firstname = request.POST.get('firstname')
+	 		lastname = request.POST.get('lastname')
+	 		birthdate = request.POST.get('birthdate')
 	 		author = Author.objects.filter(Q(firstname__icontains = firstname) & Q(lastname__icontains = lastname))
 	 		if author:
 	 			print(author)
@@ -406,7 +407,7 @@ class AddBookIndexView(View):
 			 		book_year = request.POST.get('book_year')
 			 		book_tags = request.POST.get('book_tags')
 			 		book_summary = request.POST.get('book_summary')
-			 		# book_info = request.POST.get('book_info')
+			 		book_info = request.POST.get('book_info')
 			 		form = Books(book_title = book_title, book_author_id = Author.objects.get(book_author_id = a.book_author_id), book_cover = book_cover,
 			 			book_file = book_file, book_year = book_year, book_summary = book_summary, book_category_no = Category.objects.get(book_category_no = c.book_category_no),
 			 			is_bookmarked = 0, is_downloaded = 0, is_read = 0, is_deleted = 0)
