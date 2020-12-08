@@ -32,18 +32,20 @@
             </thead>
             <tbody>
               {% for book in books %}
+                {% for author in authors %}
+                {% for category in category %}
               <tr>
-                <th scope="row"> {{book.id}} </th>
+                <th scope="row"> {{book.book_id}} </th>
                 <td>{{book.book_title}}</td>
                 <td>{{book.book_year}}</td>
                 <td>
-                  <button type="button" class="btn btn-view-save" data-toggle="modal" data-target="#ViewModal-{{book.id}}"> <i class="fa fa-eye"></i>View</button>
-                  <button type="button" class="btn btn-modal" data-toggle="modal" data-target="#DeleteModal-{{book.id}}"><i class="fa fa-trash"></i>Delete</button>
+                  <button type="button" class="btn btn-view-save" data-toggle="modal" data-target="#ViewModal-{{book.book_id}}"> <i class="fa fa-eye"></i>View</button>
+                  <button type="button" class="btn btn-cancel" data-toggle="modal" data-target="#DeleteModal-{{book.book_id}}"><i class="fa fa-trash"></i>Delete</button>
                 </td>
               </tr>
 
     <!-- MODAL VIEW BOOK -->
-              <div class="modal fade" id="ViewModal-{{book.id}}" tabindex="-1" role="dialog" aria-labelledby="ViewModalLabel" aria-hidden="true">
+              <div class="modal fade" id="ViewModal-{{book.book_id}}" tabindex="-1" role="dialog" aria-labelledby="ViewModalLabel" aria-hidden="true">
                 <div class="modal-dialog " role="document">
                   <div class="modal-content">
                     <div class="modal-header">
@@ -54,21 +56,86 @@
                     </div>
                     <form id="updateFormBook" method="post">
                       {% csrf_token %}
-                      <input type="text" name="bookid" value ="{{book.id}}" hidden>
                       <div class="modal-body">
                         <div class="form-row">
                           <div class="form-group col-md-6">
+                            <label for="bookcover">Book Cover</label>
+                                {% if book.book_cover.url is not null %}
+                                  <img src="{{ book.book_cover.url }}" width="100%" height="100%" style="border-radius: 8px; border: 1px solid gray; padding: 4px;" >
+                                {% else %}
+                                  <img src="{% static 'images/prof.jpg' %}"><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                {% endif %}
+                          </div>
+                        </div>
+                        <div class="form-row">
+                          <div class="form-group col-md-4">
+                            <label for="bookid">Book ID</label>
+                            <input type="text" class="form-control" id="booktitle" name="bookid" value = "{{book.book_id}}" readonly>
+                          </div>
+                          <div class="form-group col-md-4">
                             <label for="booktitle">Book Title</label>
                             <input type="text" class="form-control" id="booktitle" name="booktitle" value = "{{book.book_title}}">
                           </div>
-                          <div class="form-group col-md-6">
-                            <label for="bookyear">Year</label>
+                              <div class="form-group col-md-4">
+                            <label for="bookyear">Year Published</label>
                             <input type="text" class="form-control" id="bookyear" name="bookyear" value = "{{book.book_year}}">
+                          </div>
+                        </div>
+                        <div class="form-row">
+                          <div class="form-group col-md-12">
+                            <label for="booksummary">Summary</label>
+                            <input type="textarea" class="form-control" id="booksummary" name="booksummary" value = "{{book.book_summary}}">
+                          </div>
+                        </div>
+                        <div class="form-row">
+                          <div class="form-group col-md-6">
+                            <label for="bookcategoryno">Category Number</label>
+                            <input type="textarea" class="form-control" id="bookcategoryno" name="bookcategoryno" value = "{{category.book_category_no}}" readonly>
+                          </div>
+                          <div class="form-group col-md-6">
+                            <label for="bookcategory">Category</label>
+                            <input type="textarea" class="form-control" id="bookcategory" name="bookcategory" value = "{{category.book_category}}">
+                          </div>
+                        </div>
+                        <div class="form-row">
+                          <div class="form-group col-md-12">
+                            <label for="booktags"> Tags</label>
+                            <input type="textarea" class="form-control" id="booktags" name="booktags" value = "{{book.book_tags}}">
+                          </div>
+                        </div>
+                        <hr>
+                        <label> Author's Details </label>
+                        <div class="form-row">
+                          <div class="form-group col-md-4">
+                            <label for="authorid">Author ID</label>
+                            <input type="text" class="form-control" id="authorid" name="authorid" value = "{{author.book_author_id}}" readonly>
+                          </div>
+                          <div class="form-group col-md-4">
+                            <label for="authorfname">Firstname</label>
+                            <input type="text" class="form-control" id="authorfname" name="authorfname" value = "{{author.firstname}}">
+                          </div>
+                          <div class="form-group col-md-4">
+                            <label for="authorlname">Lastname</label>
+                            <input type="text" class="form-control" id="authorlname" name="authorlname" value = "{{author.lastname}}">
+                          </div>
+                        </div>
+                        <div class="form-row">
+                          <div class="form-group col-md-4">
+                            <label for="authoremail">Email</label>
+                            <input type="text" class="form-control" id="authoremail" name="authoremail" value = "{{author.email}}">
+                          </div>
+                          <div class="form-group col-md-4">
+                            <label for="authorbdate">Birthdate</label>
+                            <input type="text" class="form-control" id="authorbdate" name="authorbdate" value = "{{author.birthdate}}">
+                          </div>
+                          <div class="form-group col-md-4">
+                            <label for="authorgender">Gender</label>
+                            <input type="text" class="form-control" id="authorgender" name="authorgender" value = "{{author.gender}}">
                           </div>
                         </div>
                       </div>
                       <div class="modal-footer">
-                          <button type="submit"  id="btnUpdateUser" name="btnUpdate" class="btn btn-view-save">UPDATE</button>
+                          <button type="submit"  id="btnUpdateBook" name="btnUpdateBook" class="btn btn-view-save">UPDATE</button>
                           <button type="button" class="btn btn-cancel" data-dismiss="modal">CANCEL</button>
                         </div>
                     </form>
@@ -76,7 +143,7 @@
                 </div>
               </div>
     <!-- Modal Delete -->
-              <div class="modal fade" id="DeleteModal-{{book.id}}" tabindex="-1" role="dialog" aria-labelledby="DeleteModalLabel" aria-hidden="true">
+              <div class="modal fade" id="DeleteModal-{{book.book_id}}" tabindex="-1" role="dialog" aria-labelledby="DeleteModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                   <div class="modal-content">
                     <div class="modal-header">
@@ -88,11 +155,11 @@
                        <form id="deleteFormBook" method="post" >
                         {% csrf_token %} 
                         <div class="modal-body">
-                          <input type="text" name="bookid" value = {{book.id}} hidden>
+                          <input type="text" name="bookid" value = {{book.book_id}} hidden>
                         Are you sure you want to delete this record?
                       </div>
                       <div class="modal-footer">
-                         <button type="submit" id = "btnDeleteBook" name = "btnDelete" class="btn btn-view-save">YES</button>
+                         <button type="submit" id = "btnDeleteBook" name = "btnDeleteBook" class="btn btn-view-save">YES</button>
                         <button type="button" class="btn btn-cancel" data-dismiss="modal">NO</button>
                       </div>
                     </form>
@@ -100,10 +167,12 @@
                 </div>
               </div>
             {% endfor %}
-          </tbody>
-        </table>
-      </div>
-    </div>
+          {% endfor %}
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
     <!-- user table -->
     <div class="tab-pane fade" id="pills-users" role="tabpanel" aria-labelledby="pills-users-tab"> <br>
       <div class="content">
@@ -224,32 +293,58 @@
       </div>
     </div>
 
-                                
+  <div class="tab-pane fade" id="pills-charts" role="tabpanel" aria-labelledby="pills-charts-tab"> <br>
+      <div class="content">                               
                            
-                                 
+                    <div id="layoutSidenav_content">
+                <main>
+                    <div class="container-fluid">
+                        <h1 class="mt-4">SAMPLE CHARTS ONLY</h1>
+                        <ol class="breadcrumb mb-4">
+                            <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
+                            <li class="breadcrumb-item active">Charts</li>
+                        </ol>
+                        <div class="card mb-4">
+                            <div class="card-body">
+                                Chart.js is a third party plugin that is used to generate the charts in this template. The charts below have been customized - for further customization options, please visit the official
+                                <a target="_blank" href="https://www.chartjs.org/docs/latest/">Chart.js documentation</a>
+                                .
+                            </div>
+                        </div>
+                        <div class="card mb-4">
+                            <div class="card-header">
+                                <i class="fas fa-chart-area mr-1"></i>
+                                Area Chart Example
+                            </div>
+                            <div class="card-body"><canvas id="myAreaChart" width="100%" height="30"></canvas></div>
+                            <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="card mb-4">
+                                    <div class="card-header">
+                                        <i class="fas fa-chart-bar mr-1"></i>
+                                        Bar Chart Example
+                                    </div>
+                                    <div class="card-body"><canvas id="myChart" width="100%" height="50"></canvas></div>
+                                    <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="card mb-4">
+                                    <div class="card-header">
+                                        <i class="fas fa-chart-pie mr-1"></i>
+                                        Pie Chart Example
+                                    </div>
+                                    <div class="card-body"><canvas id="myPieChart" width="100%" height="50"></canvas></div>
+                                    <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </main>
+              </div>
+            </div>             
       </div>
-    </div> 
 
 {% endblock content %}
-    <footer class="bg-light py-5" id="footer">
-            <div class="container"><div class="small text-center text-muted">Copyright © 2020 - Archived of Reading Materials</div></div>
-    </footer>
-    <!-- end footer-->
-    <!-- Bootstrap core JS-->
-        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"></script>
-        <!-- Third party plugin JS-->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script>
-
-    <script type="text/javascript" src="{% static 'js/homepage.js' %}"></script>
-    <script type="text/javascript" src="{% static 'js/script.js' %}"></script>
-    <script type="text/javascript" src="{% static 'js/scripts.js' %}"></script>
-   <script>
-        $(document).ready( function () {
-        $('#usertable').DataTable();
-        $('#booktable').DataTable();
-         });
-     </script>
-</body>
-</html>

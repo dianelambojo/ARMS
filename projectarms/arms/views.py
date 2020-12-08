@@ -180,16 +180,20 @@ class ArmsAdminView(View):
 	def get(self, request):
 		books = Books.objects.all()
 		users = User.objects.all()
+		authors = Author.objects.all()
+		category = Category.objects.all()
 		context={
 			'books' : books,
 			'users' : users,
+			'authors' : authors,
+			'category' : category,
 		}
 		return render(request,'admindashboard.html', context)
 
 	def post(self, request):
 		if request.method == 'POST':	
 			if 'btnUpdateUser' in request.POST:	
-				print('update profile button clicked')
+				print('update user profile button clicked')
 				userid = request.POST.get("userid")
 				username = request.POST.get("username")			
 				firstname = request.POST.get("firstname")
@@ -203,13 +207,49 @@ class ArmsAdminView(View):
 				print('profile updated')
 
 			elif 'btnDeleteUser' in request.POST:	
-				print('delete button clicked')
+				print('delete user button clicked')
 				userid = request.POST.get("userid")
 				delete_user = User.objects.filter(id=userid)
 				delete_user.delete()
 				print('record deleted')
 
+			elif 'btnUpdateBook' in request.POST:	
+				print('update book button clicked')
+				bookid = request.POST.get("bookid")
+				booktitle = request.POST.get("booktitle")
+				bookyear = request.POST.get("bookyear")
+				booksummary = request.POST.get("booksummary")
+				booktags = request.POST.get("booktags")
+
+				bookcategoryno = request.POST.get("bookcategoryno")
+				bookcategory = request.POST.get("bookcategory")
+
+				authorid = request.POST.get("authorid")
+				authorfname = request.POST.get("authorfname")
+				authorlname = request.POST.get("authorlname")
+				authoremail = request.POST.get("authoremail")
+				authorbdate = request.POST.get("authorbdate")
+				authorgender = request.POST.get("authorgender")
+
+				update_book = Books.objects.filter(book_id = bookid)
+				update_book.update(book_title = booktitle, book_year=bookyear, book_summary=booksummary, book_tags=booktags)
+
+				update_category = Category.objects.filter(book_category_no=bookcategoryno)
+				update_category.update(book_category=bookcategory)
+
+				update_author = Author.objects.filter(book_author_id=authorid)
+				update_author.update(firstname=authorfname, lastname=authorlname, email=authoremail, birthdate=authorbdate, gender=authorgender)
+
+			elif 'btnDeleteBook' in request.POST:	
+				print('delete book button clicked')
+				bookid = request.POST.get("bookid")
+
+				delete_book = Books.objects.filter(book_id=bookid)
+				delete_book.update(is_deleted=True)
+				print('record deleted')
+
 		return redirect('arms:arms_admin_view')
+
 
 class HomepageView(View):
 	def get(self, request):
