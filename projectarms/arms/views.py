@@ -17,44 +17,9 @@ from django.db.models import Count
 from django.core.paginator import Paginator, EmptyPage
 from django.contrib.admin.views.decorators import staff_member_required
 from django.contrib.auth.decorators import login_required
-# Create your views here.
-# 1 Makemigrations
-# 2 Migrate
-# 3 Createsuperuser for django admin
-# 4 Go to register page 
-# 5 Fill out details, password dpat tarong kay mo error sya
-# 6 Check django admin if nasuod sya
-# 7 Login, pero dle pa sya mo redirect sa page
-
-#Pede nani idelete if dle gamiton ang login.html
-def loginPage(request):
-	if request.method == 'POST':
-		username = request.POST.get('username')
-		password = request.POST.get('password')
-
-		user = authenticate(request, username=username, password=password)
-
-		if user is not None:
-			login(request, user)
-			# pass the name of the user to the base.html navbar
-			request.session['username'] = username
-			if request.user.is_superuser:
-				return redirect('arms:arms_admin_view')
-			else:
-				return redirect('arms:homepage_view')
-		else:
-			messages.info(request, 'Username OR password is incorrect')
-			
-	context = {} 
-	return render(request,'login.html',context)
-
-def logoutPage(request):
-	logout(request)
-	return redirect('arms:landingpage_view')
 
 def registerPage(request):
 	form = CreateUserForm()
-	
 	if request.method == 'POST':
 		form = CreateUserForm(data=request.POST)
 		# print(form.is_valid())
@@ -67,9 +32,11 @@ def registerPage(request):
 
 	context = {'form':form}
 	return render(request,'register.html',context)
+def logoutPage(request):
+	logout(request)
+	return redirect('arms:landingpage_view')
 
 # pagination 
-
 def pageResults(request, x):
 	p = Paginator(x,20)
 	page_num = request.GET.get('page', 1)
