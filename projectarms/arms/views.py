@@ -16,6 +16,38 @@ from django.db.models import Q
 from django.db.models import Count
 from django.core.paginator import Paginator, EmptyPage
 
+
+# Create your views here.
+# 1 Makemigrations
+# 2 Migrate
+# 3 Createsuperuser for django admin
+# 4 Go to register page 
+# 5 Fill out details, password dpat tarong kay mo error sya
+# 6 Check django admin if nasuod sya
+# 7 Login, pero dle pa sya mo redirect sa page
+
+#Pede nani idelete if dle gamiton ang login.html
+def loginPage(request):
+	if request.method == 'POST':
+		username = request.POST.get('username')
+		password = request.POST.get('password')
+
+		user = authenticate(request, username=username, password=password)
+
+		if user is not None:
+			login(request, user)
+			# pass the name of the user to the base.html navbar
+			request.session['username'] = username
+			if request.user.is_superuser:
+				return redirect('arms:arms_admin_view')
+			else:
+				return redirect('arms:homepage_view')
+		else:
+			messages.info(request, 'Username OR password is incorrect')
+			
+	context = {} 
+	return render(request,'login.html',context)
+
 def logoutPage(request):
 	logout(request)
 	return redirect('arms:landingpage_view')
@@ -151,12 +183,12 @@ def count (request):
 			#is_read += 1
 	#return is_read
 
-	readBooks = Books.objects.filter(is_read= '1').count()
+readBooks = Books.objects.filter(is_read= '1').count()
 
-	context = {
-		'readBooks': readBooks
-	}
-	print(readBooks)
+context = {
+	'readBooks': readBooks
+}
+print(readBooks)
 
 
 class ArmsAdminView(View):
