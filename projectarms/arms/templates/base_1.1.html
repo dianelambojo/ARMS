@@ -26,6 +26,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.css">
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
     <!-- Favicon-->
         <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico" />
         <!-- Font Awesome icons (free version)-->
@@ -75,15 +76,13 @@
 
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="nav nav-pills ml-auto my-2 my-lg-0" id="pills-tab" role="tablist">
-            <li class="nav-item pill-books">
-              <a class="btn btn-view-save" id="pills-books-tab" data-toggle="pill" href="#pills-books" role="tab" aria-controls="pills-books" aria-selected="true">Books</a>
-            </li>
-            <li class="nav-item pill-users">
-              <a  class="btn btn-view-save" id="pills-users-tab" data-toggle="pill" href="#pills-users" role="tab" aria-controls="pills-users" aria-selected="false">Users</a>
-            </li>
             <li class="nav-item pill-charts">
-              <a  class="btn btn-view-save" id="pills-charts-tab" data-toggle="pill" href="#pills-charts" role="tab" aria-controls="pills-charts" aria-selected="false">Activity Charts</a>
+              <a  class="btn btn-sm btn-view-save" id="pills-charts-tab" data-toggle="pill" href="#pills-charts" role="tab" aria-controls="pills-charts" aria-selected="true">Charts</a>
             </li>
+            <li class="nav-item pill-tables">
+              <a class="btn btn-sm btn-view-save" id="pills-table-tab" data-toggle="pill" href="#pills-tables" role="tab" aria-controls="pills-tables" aria-selected="false">Tables</a>
+            </li>
+            
           </ul>
         </div>
       </div>
@@ -141,13 +140,22 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+        <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
+        <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
 
     <script type="text/javascript" src="{% static 'js/homepage.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/script.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/scripts.js' %}"></script>
 
     <script type="text/javascript" src="{% static 'js/chart.js' %}"></script>
+    <script>
+      
+      $(document).ready(function() {
+  $('#booktable').DataTable();
+  $('#usertable').DataTable();
+});
+    </script>
 
 </body>
 </html>

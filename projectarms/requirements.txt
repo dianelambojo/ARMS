@@ -1,0 +1,27 @@
+appdirs==1.4.4
+asgiref==3.2.10
+astroid==2.4.2
+colorama==0.4.3
+comtypes==1.1.7
+distlib==0.3.1
+Django==3.1.1
+filelock==3.0.12
+isort==5.5.0
+lazy-object-proxy==1.4.3
+mccabe==0.6.1
+mysql-connector-python==8.0.22
+mysqlclient @ file:///C:/Users/isabelle/Downloads/mysqlclient-1.4.6-cp38-cp38-win32.whl
+Pillow==8.0.1
+protobuf==3.14.0
+pylint==2.6.0
+pypiwin32==223
+pyttsx3==2.90
+pytz==2020.1
+pywin32==300
+six==1.15.0
+SpeechRecognition==3.8.1
+sqlparse==0.3.1
+toml==0.10.1
+virtualenv==20.0.31
+wrapt==1.12.1
+xlrd==1.2.0

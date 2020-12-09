@@ -118,7 +118,7 @@ a:active{
 }
 
 /* nav pills book  & users */
-.nav-pills .pill-books .nav-link:not(.active) {
+.nav-pills .pill-tables .nav-link:not(.active) {
    background-color: #F8c400; /*gold*/
   border: none;
   border-radius: 5px;
@@ -147,7 +147,7 @@ a:active{
 }
 
 /* active (faded) */
-.nav-pills .pill-books .nav-link {
+.nav-pills .pill-tables .nav-link {
   background-color: #ebebeb; /*gold*/
   border: none;
   border-radius: 5px;
@@ -176,7 +176,7 @@ a:active{
 
 
  /* hover */
-.nav-pills .pill-books .nav-link:hover{
+.nav-pills .pill-tables .nav-link:hover{
  background-color: #ebebeb; /*gold*/
   border: none;
   border-radius: 5px;

@@ -10,7 +10,7 @@ var ctx = document.getElementById("myAreaChart");
 var myLineChart = new Chart(ctx, {
   type: 'line',
   data: {
-    labels: ["Mar 1", "Mar 2", "Mar 3", "Mar 4", "Mar 5", "Mar 6", "Mar 7", "Mar 8", "Mar 9", "Mar 10", "Mar 11", "Mar 12", "Mar 13"],
+    labels: ["Dec 1", "Dec 2", "Dec 3", "Dec 4", "Dec 5", "Dec 6", "Dec 7", "Dec 8", "Dec 9", "Dec 10", "Dec 11", "Dec 12"],
     datasets: [{
       label: "Sessions",
       lineTension: 0.3,
@@ -23,7 +23,7 @@ var myLineChart = new Chart(ctx, {
       pointHoverBackgroundColor: "rgba(2,117,216,1)",
       pointHitRadius: 50,
       pointBorderWidth: 2,
-      data: [10000, 30162, 26263, 18394, 18287, 28682, 31274, 33259, 25849, 24159, 32651, 31984, 38451],
+      data: [10000, 30162, 26263, 18394, 18287, 28682, 31274, 33259, 25849, 24159, 32651, 31984],
     }],
   },
   options: {
@@ -101,13 +101,15 @@ var ctx = document.getElementById("myPieChart");
 var myPieChart = new Chart(ctx, {
   type: 'pie',
   data: {
-    labels: ["Blue", "Red", "Yellow", "Green"],
+    labels: ["User", "Books"],
     datasets: [{
-      data: [12.21, 15.58, 11.25, 8.32],
-      backgroundColor: ['#007bff', '#dc3545', '#ffc107', '#28a745'],
+      data: [Totalbooks, Totalusers],
+      backgroundColor: ['#007bff', '#dc3545'],
     }],
   },
 });
+
+
 
 
 })(jQuery); // End of use strict
