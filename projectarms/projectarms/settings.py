@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'arms'
+    'arms',
+    'import_export',
 ]
 
 MIDDLEWARE = [
@@ -126,6 +127,7 @@ USE_L10N = False
 
 USE_TZ = True
 
+IMPORT_EXPORT_USE_TRANSACTIONS = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/

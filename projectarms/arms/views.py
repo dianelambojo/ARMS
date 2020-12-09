@@ -17,6 +17,45 @@ from django.db.models import Count
 from django.core.paginator import Paginator, EmptyPage
 from django.contrib.admin.views.decorators import staff_member_required
 from django.contrib.auth.decorators import login_required
+import pyttsx3
+import speech_recognition as sr 
+import xlrd
+import mysql.connector
+
+# Create your views here.
+# 1 Makemigrations
+# 2 Migrate
+# 3 Createsuperuser for django admin
+# 4 Go to register page 
+# 5 Fill out details, password dpat tarong kay mo error sya
+# 6 Check django admin if nasuod sya
+# 7 Login, pero dle pa sya mo redirect sa page
+
+#Pede nani idelete if dle gamiton ang login.html
+def loginPage(request):
+	if request.method == 'POST':
+		username = request.POST.get('username')
+		password = request.POST.get('password')
+
+		user = authenticate(request, username=username, password=password)
+
+		if user is not None:
+			login(request, user)
+			# pass the name of the user to the base.html navbar
+			request.session['username'] = username
+			if request.user.is_superuser:
+				return redirect('arms:arms_admin_view')
+			else:
+				return redirect('arms:homepage_view')
+		else:
+			messages.info(request, 'Username OR password is incorrect')
+			
+	context = {} 
+	return render(request,'login.html',context)
+
+def logoutPage(request):
+	logout(request)
+	return redirect('arms:landingpage_view')
 
 def registerPage(request):
 	form = CreateUserForm()
@@ -101,13 +140,6 @@ def author_search(request, search):
 	for author in authors:
 		# if the author is found then it will proceed to search for the book that was written by the author
 		books = Books.objects.filter(book_author_id=author.book_author_id)		
-		# p = Paginator(books,20)
-		# page_num = request.GET.get('page', 1)
-		# try:
-		# 	page = p.page(page_num)
-		# except:
-		# 	page = p.page(1)
-
 		context={
 			'search' : search,
 			# 'books' : page,
@@ -157,6 +189,98 @@ def count (request):
 		'readBooks': readBooks
 	}
 	print(readBooks)
+
+def speak(audio): 
+      
+    engine = pyttsx3.init() 
+    # current value of engine property
+    voices = engine.getProperty('voices') 
+      
+    # [0] = Male voice
+    # [1] = Female voice 
+    engine.setProperty('voice', voices[0].id) 
+      
+    # Method for the speaking of the the assistant 
+    engine.say(audio)   
+      
+    # Blocks while processing all the currently 
+    # queued commands 
+    engine.runAndWait()
+
+
+def Take_query(request): 
+  
+    # calling the Hello function for  
+    # making it more interactive 
+    Hello(request) 
+      
+    #continous loop for the query unless terminated ['bye']
+    while(True): 
+          
+        # taking the query and making it into 
+        # lower case so that most of the times  
+        # query matches and we get the perfect  
+        # output 
+        query = takeCommand(request).lower() 
+        if "hey walter" in query: 
+            Hello(request)
+
+        elif "search" in query:
+        	speak("For searching of reading materials, you could directly say the book title, author or year.")
+
+        elif "thank you" in query: 
+            speak("My pleasure. Call me if you need anything.") 
+            return redirect('arms:homepage_view')
+
+        elif query:
+        	search = query
+        	speak("here are the results for" + search)
+        	return bookTitle_search(request,search)
+
+        # print('take_query')
+        # return redirect('arms:homepage_view')
+          
+def takeCommand(request): 
+  
+    r = sr.Recognizer() 
+  
+    # from the speech_Recognition module  
+    # we will use the Microphone module 
+    # for listening the command 
+    with sr.Microphone() as source: 
+        print('Listening') 
+          
+        # seconds of non-speaking audio before  
+        # a phrase is considered complete 
+        r.adjust_for_ambient_noise(source, duration=0.2)
+        audio = r.listen(source) 
+          
+        # Now we will be using the try and catch 
+        # method so that if sound is recognized  
+        # it is good else we will have exception  
+        # handling 
+        try: 
+            print("Recognizing") 
+              
+            # for Listening the command in indian 
+            # english we can also use 'hi-In'  
+            # for hindi recognizing 
+            Query = r.recognize_google(audio, language='en') 
+            print("the command is printed=", Query) 
+              
+        except Exception as e: 
+            print(e) 
+            speak("Say that again sir")
+            return Take_query(request) 
+            # return "None"
+          
+        return Query
+
+def Hello(request): 
+    # This function is for when the assistant  
+    # is called it will say hello and then  
+    # take query 
+    speak("Hi, I am Walter , your library assistant. How may I help you?")
 
 
 class ArmsAdminView(View):
@@ -267,9 +391,13 @@ class HomepageView(View):
 					'category' : category,
 				}
 				return render(request, 'homepage.html', context)
-		#if request.method != GET else
-		else:
-			return render(request, 'homepage.html')			
+		return render(request, 'homepage.html')	
+
+	def post(self,request):
+		if request.method == "POST":
+			if 'mic' in request.POST:
+				Take_query(request)
+
 
 class ProfileIndexView(View):
 	def get(self, request):
@@ -329,6 +457,7 @@ class LandingPageIndexView(View):
 			password = request.POST.get('password')
 
 			user = authenticate(request, username=username, password=password)
+			print(user)
 
 			if user is not None:
 				login(request, user)
@@ -341,8 +470,8 @@ class LandingPageIndexView(View):
 			else:
 				messages.info(request, 'Username OR password is incorrect')
 				
-			context = {} 
-			return render(request,'homepage.html',context)
+			# context = {} 
+			return render(request, 'landingpage.html')
 
 
 class AboutUsIndexView(View):

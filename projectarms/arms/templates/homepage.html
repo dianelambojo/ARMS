@@ -15,9 +15,12 @@
 			  		<input type="text" style="width: 700px; height: 40px; border: 1px solid #D3D3D3; border-top-left-radius: 1.5rem; border-bottom-left-radius: 1.5rem; padding-left: 20px;" id="search" name="search" placeholder="Search title, author, year" value="{{search}}">
 			  	</form>
 			  	<div class="input-group-append">
-			    	<button type="button" class="btn btn-mic" onclick="runSpeechRecognition()">
-	              	<i class="fa fa-lg fa-microphone"></i>
-	            	</button>
+				  	<form method="POST">
+				  		{% csrf_token %}
+				    	<button class="btn btn-mic" name="mic" style="border-radius: 1px; height: 40px;">
+		              	<i class="fa fa-lg fa-microphone"></i>
+		            	</button>
+		            </form>	
 			  	</div>
 			  	<div class="input-group-prepend">
 			    	<span class="input-group-text"><i class="fa fa-search"></i></span>
