@@ -15,8 +15,8 @@ from django.contrib.auth import authenticate, login, logout
 from django.db.models import Q
 from django.db.models import Count
 from django.core.paginator import Paginator, EmptyPage
-
-
+from django.contrib.admin.views.decorators import staff_member_required
+from django.contrib.auth.decorators import login_required
 # Create your views here.
 # 1 Makemigrations
 # 2 Migrate
@@ -63,12 +63,13 @@ def registerPage(request):
 			form.save()
 			user = form.cleaned_data.get('username')
 			messages.success(request,'Account was created for '+user)
-			return redirect('arms:login_view')
+			return redirect('arms:landingpage_view')
 
 	context = {'form':form}
 	return render(request,'register.html',context)
 
 # pagination 
+
 def pageResults(request, x):
 	p = Paginator(x,20)
 	page_num = request.GET.get('page', 1)
@@ -183,15 +184,16 @@ def count (request):
 			#is_read += 1
 	#return is_read
 
-readBooks = Books.objects.filter(is_read= '1').count()
+	readBooks = Books.objects.filter(is_read= '1').count()
 
-context = {
-	'readBooks': readBooks
-}
-print(readBooks)
+	context = {
+		'readBooks': readBooks
+	}
+	print(readBooks)
 
 
 class ArmsAdminView(View):
+	@staff_member_required(redirect_field_name='next', login_url='arms:landingpage_view')#If the user is logged in,is a staff member (User.is_staff=True),and is active (User.is_active=True),execute the view normally.
 	def get(self, request):
 		books = Books.objects.all()
 		users = User.objects.all()
@@ -204,7 +206,8 @@ class ArmsAdminView(View):
 			'category' : category,
 		}
 		return render(request,'admindashboard.html', context)
-
+		
+	@staff_member_required(redirect_field_name='next', login_url='arms:landingpage_view')
 	def post(self, request):
 		if request.method == 'POST':	
 			if 'btnUpdateUser' in request.POST:	
@@ -343,11 +346,10 @@ class ProfileIndexView(View):
 				# form = Books.objects.filter(book_id = sid)
 				print('record deleted')	
 
-		
-
 		return render(request, 'profile.html')
-	def post(self,request):
-		message_count = User.objects.filter(username='username').count()
+
+	# def post(self,request):
+	# 	message_count = User.objects.filter(username='username').count()
 	# 	return render(request, 'addbook.html')	
 
 class LandingPageIndexView(View):
