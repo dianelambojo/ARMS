@@ -1,23 +1,23 @@
+import datetime
+from .forms import *
+from .models import *
+from .forms import CreateUserForm
+from .models import Books
+from itertools import chain
 from django.shortcuts import render,redirect
 from django.views.generic import View
 from django.http import HttpResponse
 from django.http import Http404
-from .forms import *
-from .models import *
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
-from .forms import CreateUserForm
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.db.models import Q
 from django.db.models import Count
-import datetime
 from django.core.paginator import Paginator, EmptyPage
-from itertools import chain
+
 
 # Create your views here.
-
-
 # 1 Makemigrations
 # 2 Migrate
 # 3 Createsuperuser for django admin
@@ -176,6 +176,21 @@ def bookTitle_search(request,search):
 	# if the user tries to search using the authors first or last name
 	return author_search(request, search) 
 
+def count (request):
+	#is_read = 0
+	#for read in range(len(readBooks)):
+		#if readBooks[read] == to_find:
+			#is_read += 1
+	#return is_read
+
+readBooks = Books.objects.filter(is_read= '1').count()
+
+context = {
+	'readBooks': readBooks
+}
+print(readBooks)
+
+
 class ArmsAdminView(View):
 	def get(self, request):
 		books = Books.objects.all()
@@ -234,7 +249,6 @@ class HomepageView(View):
 				# new releases within the month of the year (more or less): days is disregarded
 				today = datetime.date.today()
 				books = Books.objects.filter(date_added__year=today.year, date_added__month=today.month)
-				print(books)
 				authors = Author.objects.all()
 				category = Category.objects.all()
 				context={
@@ -251,15 +265,13 @@ class ProfileIndexView(View):
 	def get(self, request):
 		user = User.objects.all()
 		books = Books.objects.all()
-		bookRead = Books.objects.all()
+		#bookRead = Books.objects.filterr(is_read= '1', book_id = '1').count()
 		authors = Author.objects.all()
-		#print(user)
 		context = {
 			'users' : user,
 			'books' : books,
 			'authors' : authors,
-			'bookRead' : bookRead,
-			
+			#'bookRead' : bookRead
 		}
 
 		return render(request, 'profile.html', context)
@@ -277,6 +289,7 @@ class ProfileIndexView(View):
 
 				update_user = User.objects.filter(id = sid).update(username=username,first_name=first_name,last_name=last_name,email=email)
 
+
 				print(update_user)
 				print('profile updated')
 
@@ -290,10 +303,11 @@ class ProfileIndexView(View):
 				# form = Books.objects.filter(book_id = sid)
 				print('record deleted')	
 
-
+		
 
 		return render(request, 'profile.html')
-	# def post(self,request):
+	def post(self,request):
+		message_count = User.objects.filter(username='username').count()
 	# 	return render(request, 'addbook.html')	
 
 class LandingPageIndexView(View):
@@ -378,6 +392,7 @@ class AddBookIndexView(View):
 	 			# )
 	 			form = AuthorForm(firstname=firstname, lastname=lastname)
 	 			form.save()
+
 	 		#book_author_id = Author.objects.filter(book_author_id=book_author_id)
 	 		
 	 		category = Category.objects.filter(Q(book_category__icontains = book_category))
