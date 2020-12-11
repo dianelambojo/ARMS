@@ -407,13 +407,11 @@ class ProfileIndexView(View):
 	def get(self, request):
 		user = User.objects.all()
 		books = Books.objects.all()
-		#bookRead = Books.objects.filterr(is_read= '1', book_id = '1').count()
 		authors = Author.objects.all()
 		context = {
 			'users' : user,
 			'books' : books,
 			'authors' : authors,
-			#'bookRead' : bookRead
 		}
 
 		return render(request, 'profile.html', context)
@@ -444,8 +442,7 @@ class ProfileIndexView(View):
 				# author = Author.objects.filter(book_author_id = sid).delete()
 				# form = Books.objects.filter(book_id = sid)
 				print('record deleted')	
-
-		return render(request, 'profile.html')
+		return redirect('arms:profile_view')
 
 	# def post(self,request):
 	# 	message_count = User.objects.filter(username='username').count()

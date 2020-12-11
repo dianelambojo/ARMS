@@ -10,7 +10,7 @@
 				    <thead> 
 				    	<tr>
 				           <th scope="col">Book Cover</th>
-				           <th scope="col">Book Author</th>
+				           <!--<th scope="col">Book Author</th>-->
 				           <th scope="col">Book Title</th>
 				           <th scope="col">Action</th>
 				    	</tr>
@@ -20,14 +20,11 @@
 				        {% for book in books %}
 							{% if book.is_read == 1 %}
 					        	<tr>
-					        		<td>{{book.book_cover}}</td>
-						                {% for author in authors %}
-											{% if author.book_author_id == book.book_author_id_id %}
-						                		<td> {{ author.firstname }} {{ author.lastname }}</td>
-						                	{% endif %}
-						                {% endfor %}
-						             <td>{{book.book_title}}</td>
-						            
+					        		<td>{{ book.book_cover }}</td>
+									<!--{% if author.book_author_id == book.book_author_id_id %}
+										<td> {{ author.firstname }} {{ author.lastname }}</td>
+									{% endif %}-->
+					        		<td>{{ book.book_title }}</td>
 					                <td>
 					                  <button type="button" class="btn btn-view-save" data-toggle="modal" data-target="#ViewModal-{{book.book_id}}"><i class="fa fa-eye"></i>View</button>
 					                  <button type="button" class="btn btn-cancel" data-toggle="modal" data-target="#DeleteModal-{{book.book_id}}"><i class="fa fa-trash"></i>Delete</button>
@@ -46,12 +43,8 @@
 											    <div class="row">
 											    	<div class="col">
 											    		<a href="{{ book.book_cover.url }}"><img class="thumbnail2" style="margin-bottom: 5px;" src="{{ book.book_cover.url }}" alt="{{ book.book_title }}"></a>
-														<div>
-															<span class="count"> 0 People read this book</span><br>
-															<span class="count"> 0 People downloaded this book</span>
-														</div>
-
-															<button type="button" class="btn btn-RBD" onclick="openPDF()">
+	
+															<!--<button type="button" class="btn btn-RBD" onclick="openPDF()">
 																<a href="{{ book.book_file }}" id="pdfFile" target="_blank"><i class="fa fa-book fa-sm" aria-hidden="true" style="color: maroon"></i></a>
 															</button>
 															<button type="button" class="btn btn-RBD">
@@ -62,12 +55,12 @@
 															</button>
 															<span class="label">Read</span> 
 															<span class="label">Bookmark</span> 
-															<span class="label">Download</span>
+															<span class="label">Download</span>-->
 												    </div>
 												    <div class="col">
 												    	{% for author in authors %}
-													    	{% if author.book_author_id == book.book_author_id_id %}
-																<span class="author"> {{ author.firstname }} {{ author.lastname }}</span>
+													    	{% if author.book_author_id == book.book_author_id_id %}-->
+																<span class="author"> {{ author.author_firstname }} {{ author.author_lastname }}</span>
 															{% endif %}
 														{% endfor %}
 														<div class="title">
