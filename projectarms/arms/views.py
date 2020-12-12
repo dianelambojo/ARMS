@@ -2,25 +2,22 @@ import datetime
 from .forms import *
 from .models import *
 from .forms import CreateUserForm
-from .models import Books
 from itertools import chain
 from django.shortcuts import render,redirect
 from django.views.generic import View
-from django.http import HttpResponse
-from django.http import Http404
+from django.http import HttpResponse, Http404
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
-from django.db.models import Q
-from django.db.models import Count
+from django.db.models import Q, Count
 from django.core.paginator import Paginator, EmptyPage
 from django.contrib.admin.views.decorators import staff_member_required
 from django.contrib.auth.decorators import login_required
 import pyttsx3
 import speech_recognition as sr 
-import xlrd
-import mysql.connector
+# import xlrd
+# import mysql.connector
 
 # Create your views here.
 # 1 Makemigrations
@@ -95,8 +92,9 @@ def category_search(request, searched):
 	while i<length:
 		if searched == arr[i]:
 			ctgy = Category.objects.get(book_category = searched)
+			print(ctgy)
 			# for c in ctgy:
-			books = Books.objects.filter(Q(book_category_no_id=ctgy.book_category_no))
+			books = Books.objects.filter(Q(book_category_id=ctgy.book_category_no))
 			authors = Author.objects.all()
 			category = Category.objects.all()
 			context={
@@ -121,16 +119,15 @@ def author_category_search(request, searched, param):
 		category = Category.objects.all()
 		x = Author.objects.all()
 		context={
-			'search' : searched + ' ' + param,
-			# 'books' : page,
+			'search' : searched + ' ' + param + "'s Works",
 			'books' : pageResults(request, books),
 			'authors' : x,
 			'category' : category,
 		}
 		return render(request, 'results.html', context)
-
-	# return category_search(request, searched)
-	return render(request, 'results.html', {'search' : searched + ' ' + param})
+	else:
+		# return category_search(request, searched)
+		return render(request, 'results.html', {'search' : searched + ' ' + param + "'s Works"})
 
 def author_search(request, search):
 	search = search 
@@ -142,7 +139,6 @@ def author_search(request, search):
 		books = Books.objects.filter(book_author_id=author.book_author_id)		
 		context={
 			'search' : search,
-			# 'books' : page,
 			'books' : pageResults(request, books),
 			'authors' : x,
 			'category' : category,
@@ -156,25 +152,29 @@ def author_search(request, search):
 	}
 	return render(request, 'results.html', context)
 
-def bookTitle_search(request,search):
+def trial(request):
+	return render(request,'results.html')
+
+def bookTitle_search(request, search):
+	print(search)
 	search = search
 	books = Books.objects.filter(Q(book_title__icontains=search) | Q(book_year__icontains=search))
-	for book in books:
-		# authors = Author.objects.filter(Q(book_author_id=book.book_author_id_id))
+	if books:
+		print('it got in')
+		print(books)
 		category = Category.objects.all()
 		authors = Author.objects.all()
 		context={
 			'search' : search,
-			# 'books' : books,
 			'books' : pageResults(request, books),
 			'authors' : authors,
 			'category' : category,
 		}
-
 		return render(request, 'results.html', context)
 
-	# if the user tries to search using the authors first or last name
-	return author_search(request, search) 
+	else:
+		# if the user tries to search using the authors first or last name
+		return author_search(request, search) 
 
 def count (request):
 	#is_read = 0
@@ -208,79 +208,62 @@ def speak(audio):
     engine.runAndWait()
 
 
-def Take_query(request): 
-  
-    # calling the Hello function for  
-    # making it more interactive 
-    Hello(request) 
-      
-    #continous loop for the query unless terminated ['bye']
-    while(True): 
+# def Take_query(request): 
+#     while(True): 
+#         query = takeCommand(request)
+#         query.lower()
+#         if "hey walter" in query: 
+#             Hello(request)
+
+#         elif "search" in query:
+#         	speak("For searching of reading materials, you could directly say the book title, author or year.")
+
+#         elif "thank you" in query: 
+#             speak("My pleasure. Call me if you need anything.") 
+#             break
+
+#         elif query:
+#         	search = query
+#         	speak("here are the results for" + search)
+#         	return bookTitle_search(request, search)
+
+#         return redirect('arms:homepage_view')
           
-        # taking the query and making it into 
-        # lower case so that most of the times  
-        # query matches and we get the perfect  
-        # output 
-        query = takeCommand(request).lower() 
-        if "hey walter" in query: 
-            Hello(request)
-
-        elif "search" in query:
-        	speak("For searching of reading materials, you could directly say the book title, author or year.")
-
-        elif "thank you" in query: 
-            speak("My pleasure. Call me if you need anything.") 
-            return redirect('arms:homepage_view')
-
-        elif query:
-        	search = query
-        	speak("here are the results for" + search)
-        	return bookTitle_search(request,search)
-
-        # print('take_query')
-        # return redirect('arms:homepage_view')
-          
-def takeCommand(request): 
-  
+def takeCommand(request, search):
     r = sr.Recognizer() 
-  
-    # from the speech_Recognition module  
-    # we will use the Microphone module 
-    # for listening the command 
+
     with sr.Microphone() as source: 
-        print('Listening') 
+        print('Listening')
           
-        # seconds of non-speaking audio before  
-        # a phrase is considered complete 
-        r.adjust_for_ambient_noise(source, duration=0.2)
-        audio = r.listen(source) 
-          
-        # Now we will be using the try and catch 
-        # method so that if sound is recognized  
-        # it is good else we will have exception  
-        # handling 
+        r.adjust_for_ambient_noise(source, duration=0.1)
+        audio = r.listen(source)
         try: 
-            print("Recognizing") 
-              
-            # for Listening the command in indian 
-            # english we can also use 'hi-In'  
-            # for hindi recognizing 
+            print("Recognizing")
             Query = r.recognize_google(audio, language='en') 
-            print("the command is printed=", Query) 
-              
+            print("the command is printed=", Query)
+            while (True):
+            	if "hey walter" in Query:
+            		Hello()
+            		continue
+            	elif "search" in Query:
+            		speak("What would you like to search?")
+            		continue
+            	elif "thank you" in Query:
+            		speak("My pleasure. Call me if you need help.")
+            		break
+            	elif Query:
+            		search = Query
+            		speak("Here are the results for" + search)
+            		return bookTitle_search(request, search)
+            		break	
+
         except Exception as e: 
             print(e) 
-            speak("Say that again sir")
-            return Take_query(request) 
-            # return "None"
-          
-        return Query
+            speak("I'm sorry, I didn't get that. Please say it again.")
+            takeCommand(request)
 
 def Hello(request): 
-    # This function is for when the assistant  
-    # is called it will say hello and then  
-    # take query 
-    speak("Hi, I am Walter , your library assistant. How may I help you?")
+    speak("Hi, I am Walter , your library assistant. What do you want to search?")
 
 
 class ArmsAdminView(View):
@@ -374,7 +357,6 @@ class HomepageView(View):
 			
 			#call search by category function 
 			searched = request.GET.get('searched')
-			print(searched)
 			param = request.GET.get('param')
 			if searched is not None:
 				if param is not None:
@@ -395,12 +377,15 @@ class HomepageView(View):
 					'category' : category,
 				}
 				return render(request, 'homepage.html', context)
-		return render(request, 'homepage.html')	
+		else:
+			return render(request, 'homepage.html')	
 
 	def post(self,request):
 		if request.method == "POST":
 			if 'mic' in request.POST:
-				Take_query(request)
+				search = request.POST.get('text')
+				Hello(request)
+				takeCommand(request,search)
 
 
 class ProfileIndexView(View):
@@ -499,80 +484,58 @@ class AddBookIndexView(View):
 			print("\t[Year: ",item.book_year,"]")
 			print("\t[Tags: ",item.book_tags,"]")
 			print("\t[Summary: ",item.book_summary,"]")
-			print("\t[Category: ",item.book_category_no,"]")
+			print("\t[Category: ",item.book_category_id,"]")
 			print("----------------------------------------\n")
 
 			context={
 			'books' : booksQS
 			}
-		return render(request, 'addbook.html')
+		return render(request, 'addBook.html')
 
 	def post(self, request):
-	 	form = BooksForm(request.POST, request.FILES)
-	 	# book_author_id = Author.objects.get('book_author_id')
-	 	# book_category_no = Author.objects.get('book_category_no_id')
-	 	if form.is_valid():
-	 		# book_id = request.POST.get('book_id')
-	 		#book_author_id = request.POST.get('book_author_id')
-	 		
-	 		book_category = request.POST.get('book_category')
-	 		
-	 		firstname = request.POST.get('firstname')
-	 		lastname = request.POST.get('lastname')
+		form = AuthorForm(request.POST, request.FILES)
+		if form.is_valid():
+	 		bookcategory = request.POST.get('book_category')
+	 		print(bookcategory)
+	 		first_name = request.POST.get('firstname')
+	 		last_name = request.POST.get('lastname')
+	 		email = request.POST.get('email')
 	 		birthdate = request.POST.get('birthdate')
-	 		author = Author.objects.filter(Q(firstname__icontains = firstname) & Q(lastname__icontains = lastname))
+	 		author = Author.objects.filter(Q(firstname__icontains = first_name) & Q(lastname__icontains = last_name))
 	 		if author:
-	 			print(author)
-	 			# author_id = author.book_author_id
-	 			# print(author_id)
-	 			# form = Books(book_author_id=author_id)
+	 			print('.')
 	 		else:
-	 			# Author.objects.create(
-	 			# 	firstname = firstname, 
-	 			# 	lastname = lastname
-	 			# )
-	 			form = AuthorForm(firstname=firstname, lastname=lastname)
+	 			form = Author(firstname = first_name, lastname = last_name, birthdate = birthdate, email = email)
 	 			form.save()
 
-	 		#book_author_id = Author.objects.filter(book_author_id=book_author_id)
-	 		
-	 		category = Category.objects.filter(Q(book_category__icontains = book_category))
+	 		category = Category.objects.filter(Q(book_category__icontains = bookcategory))
 	 		if category:
-	 			print(category)
+	 			print(',')
 	 		else:
-	 			# Category.objects.create(
-	 			# 	book_category = book_category
-	 			# )
-	 			form = CategoryForm(book_category= book_category)
+	 			# form = CategoryForm(request.POST)
+	 			form = Category(book_category = bookcategory)
 	 			form.save()
 
- 			author = Author.objects.filter(Q(firstname__icontains = firstname) & Q(lastname__icontains = lastname))
- 			# print(author.book_author_id)
- 			category = Category.objects.filter(Q(book_category__icontains = book_category))
- 			# print(category.book_category_no)
+ 			# author = Author.objects.filter(Q(firstname__icontains = firstname) & Q(lastname__icontains = lastname))
+ 			# category = Category.objects.filter(Q(book_category__icontains = book_category))
 
- 			# x = chain(author, category)
  			for a in author:
- 				print(a.book_author_id)
  				for c in category:
- 					print(c.book_category_no)
- 					book_title = request.POST.get('book_title')
-			 		book_cover = request.FILES.get('book_cover')
-			 		book_file = request.FILES.get('book_file')
-			 		book_year = request.POST.get('book_year')
-			 		book_tags = request.POST.get('book_tags')
-			 		book_summary = request.POST.get('book_summary')
-			 		book_info = request.POST.get('book_info')
-			 		form = Books(book_title = book_title, book_author_id = Author.objects.get(book_author_id = a.book_author_id), book_cover = book_cover,
-			 			book_file = book_file, book_year = book_year, book_summary = book_summary, book_category_no = Category.objects.get(book_category_no = c.book_category_no),
+ 					bookTitle = request.POST.get('book_title')
+			 		bookCover = request.FILES.get('book_cover')
+			 		bookFile = request.FILES.get('book_file')
+			 		bookYear = request.POST.get('book_year')
+			 		bookTags = request.POST.getlist('book_tags')
+			 		print(bookTags)
+			 		bookSummary = request.POST.get('book_summary')
+			 		bookInfo = request.POST.get('book_info')
+			 		
+			 		form = Books(book_title = bookTitle, book_author = Author.objects.get(book_author_id = a.book_author_id), book_cover = bookCover, book_tags = bookTags,
+			 			book_file = bookFile, book_year = bookYear, book_summary = bookSummary, book_category = Category.objects.get(book_category_no = c.book_category_no),
 			 			is_bookmarked = 0, is_downloaded = 0, is_read = 0, is_deleted = 0)
-
-			 		# form = Books(book_id = book_id, book_title = book_title, book_author_id = book_author_id, book_cover = book_cover,
-			 			# book_file = book_file, book_year = book_year, book_tags = book_tags, book_summary = book_summary, book_category_no = book_category_no, book_info = book_info)
 			 		form.save()
-			 		return HttpResponse('Book Saved!')
-		 	# else:
-		 	# 	return HttpResponse('Not Saved!')
-	 	else:
+			 		messages.success(request,'Book Added')
+			 		return redirect('arms:addBook_view')
+		else:
 	 		print(form.errors)
 	 		return HttpResponse('Not Valid')

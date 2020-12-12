@@ -11,7 +11,6 @@ urlpatterns = [
     #TEST URL
     path('dashboard/', views.ArmsAdminView.as_view(), name="arms_admin_view"),
     path('homepage/', views.HomepageView.as_view(), name="homepage_view"),
-    # path('homepage/results/', views.displayResult, name="homepage_results_view"),
     path('profile/', views.ProfileIndexView.as_view(), name='profile_view'),
     path('landingpage/', views.LandingPageIndexView.as_view(), name='landingpage_view'),
     path('register/', views.registerPage, name='register_view'),

@@ -17,7 +17,7 @@
 			  	<div class="input-group-append">
 				    <form method="POST">
 				  		{% csrf_token %}
-				    	<button class="btn btn-mic" name="mic">
+				    	<button class="btn btn-mic" name="mic" style="border-radius: 1px; height: 40px;">
 		              	<i class="fa fa-lg fa-microphone"></i>
 		            	</button>
 		            </form>	
@@ -60,17 +60,13 @@
 						</div>
 					</div>
 				</div>
-				<span class="text">Results for {{ search }}</span>
+				<span class="text">Results for {{ search }}</span><br>
 				{% for book in books %}
 					{% if book.is_deleted == 0 %}
 					<div class="parent">
-						<!-- {% for author in authors %}
-							{% if author.book_author_id == book.book_author_id_id %} -->
-								<div class="child">
-									<img class="thumbnail" src="{{ book.book_cover.url }}" alt="{{ book.book_title }}" data-toggle="modal" data-target="#viewModal-{{ book.book_id }}">
-								</div>
-							<!-- {% endif %}
-						{% endfor %} -->
+						<div class="child">
+							<img class="thumbnail" src="{{ book.book_cover.url }}" alt="{{ book.book_title }}" data-toggle="modal" data-target="#viewModal-{{ book.book_id }}">
+						</div>
 					</div>
 					{% endif %}
 				{% endfor %}
@@ -107,13 +103,13 @@
 									</div>
 
 										<button type="button" class="btn btn-RBD" onclick="openPDF()">
-											<a href="{{ book.book_file }}" id="pdfFile" target="_blank"><i class="fa fa-book fa-sm" aria-hidden="true"></i></a>
+											<a href="{{ book.book_file.url }}" id="pdfFile" target="_blank"><i class="fa fa-book fa-sm" aria-hidden="true"></i></a>
 										</button>
 										<button type="button" class="btn btn-RBD">
-											<a href="{{ book.book_file }}"><i class="fa fa-bookmark fa-sm" aria-hidden="true"></i></a>
+											<a href="{{ book.book_file.url }}"><i class="fa fa-bookmark fa-sm" aria-hidden="true"></i></a>
 										</button>
 										<button type="button" class="btn btn-RBD">
-											<a href="{{ book.book_file }}" download><i class="fa fa-download fa-sm" aria-hidden="true"></i></a>
+											<a href="{{ book.book_file.url }}" download><i class="fa fa-download fa-sm" aria-hidden="true"></i></a>
 										</button>
 										<span class="label">Read</span> 
 										<span class="label">Bookmark</span> 
@@ -122,7 +118,7 @@
 							    </div>
 							    <div class="col">
 							    	{% for author in authors %}
-								    	{% if author.book_author_id == book.book_author_id_id %}
+								    	{% if author.book_author_id == book.book_author_id %}
 											<span class="author"> {{ author.firstname }} {{ author.lastname }}</span>
 										{% endif %}
 									{% endfor %}

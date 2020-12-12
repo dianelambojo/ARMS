@@ -13,14 +13,14 @@ class AuthorForm(forms.ModelForm):
 
  	class Meta:
  		model = Author
- 		fields=('firstname','lastname')
+ 		fields=('firstname','lastname','birthdate','email')
 
 class BooksForm(forms.ModelForm):
 
  	class Meta:
  		model = Books
- 		fields=('book_title','book_cover','book_file')
-
+ 		fields = ('book_title','book_author','book_cover','book_file','book_year','book_tags','book_summary','book_category',)
+ 		# fields = '__all__'
 
 class CategoryForm(forms.ModelForm):
 
