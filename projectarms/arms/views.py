@@ -198,7 +198,7 @@ def speak(audio):
       
     # [0] = Male voice
     # [1] = Female voice 
-    engine.setProperty('voice', voices[0].id) 
+    engine.setProperty('voice', voices[1].id) 
       
     # Method for the speaking of the the assistant 
     engine.say(audio)   
@@ -208,63 +208,47 @@ def speak(audio):
     engine.runAndWait()
 
 
-# def Take_query(request): 
-#     while(True): 
-#         query = takeCommand(request)
-#         query.lower()
-#         if "hey walter" in query: 
-#             Hello(request)
+def Take_query(request): 
+    while(True): 
+        query = takeCommand(request).lower()
 
-#         elif "search" in query:
-#         	speak("For searching of reading materials, you could directly say the book title, author or year.")
+        if "hey walter" in query: 
+            Hello(request)
 
-#         elif "thank you" in query: 
-#             speak("My pleasure. Call me if you need anything.") 
-#             break
+        elif "search" in query:
+        	speak("For searching of reading materials, you could directly say the book title, author or year.")
 
-#         elif query:
-#         	search = query
-#         	speak("here are the results for" + search)
-#         	return bookTitle_search(request, search)
+        elif "thank you" in query: 
+            speak("My pleasure. Call me if you need anything.") 
+            break
 
-#         return redirect('arms:homepage_view')
+        elif query:
+        	search = query
+        	speak("here are the results for" + search)
+        	return bookTitle_search(request, search)
           
-def takeCommand(request, search):
+def takeCommand(request):
     r = sr.Recognizer() 
 
     with sr.Microphone() as source: 
         print('Listening')
           
-        r.adjust_for_ambient_noise(source, duration=0.1)
+        r.adjust_for_ambient_noise(source, duration=0.2)
         audio = r.listen(source)
         try: 
             print("Recognizing")
             Query = r.recognize_google(audio, language='en') 
             print("the command is printed=", Query)
-            while (True):
-            	if "hey walter" in Query:
-            		Hello()
-            		continue
-            	elif "search" in Query:
-            		speak("What would you like to search?")
-            		continue
-            	elif "thank you" in Query:
-            		speak("My pleasure. Call me if you need help.")
-            		break
-            	elif Query:
-            		search = Query
-            		speak("Here are the results for" + search)
-            		return bookTitle_search(request, search)
-            		break	
 
         except Exception as e: 
             print(e) 
             speak("I'm sorry, I didn't get that. Please say it again.")
             takeCommand(request)
 
+        return Query
+
 def Hello(request): 
     speak("Hi, I am Walter , your library assistant. What do you want to search?")
-
 
 class ArmsAdminView(View):
 	#@staff_member_required(redirect_field_name='next', login_url='arms:landingpage_view')#If the user is logged in,is a staff member (User.is_staff=True),and is active (User.is_active=True),execute the view normally.
@@ -383,9 +367,8 @@ class HomepageView(View):
 	def post(self,request):
 		if request.method == "POST":
 			if 'mic' in request.POST:
-				search = request.POST.get('text')
 				Hello(request)
-				takeCommand(request,search)
+				return Take_query(request)
 
 
 class ProfileIndexView(View):
