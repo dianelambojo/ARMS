@@ -8,9 +8,9 @@
 				<table class="table">
 				    <br>
 				    <thead> 
-				    	<tr>
+				    	<tr >
 				           <th scope="col">Book Cover</th>
-				           <!--<th scope="col">Book Author</th>-->
+				           <th scope="col">Book Author</th>
 				           <th scope="col">Book Title</th>
 				           <th scope="col">Action</th>
 				    	</tr>
@@ -21,9 +21,11 @@
 							{% if book.is_read == 1 %}
 					        	<tr>
 					        		<td>{{ book.book_cover }}</td>
-									<!--{% if author.book_author_id == book.book_author_id_id %}
-										<td> {{ author.firstname }} {{ author.lastname }}</td>
-									{% endif %}-->
+									{% for author in authors %}
+										{% if author.book_author_id == book.book_author_id%}
+											<td> {{ author.firstname }} {{ author.lastname }}</td>
+										{% endif %}
+									{% endfor %}
 					        		<td>{{ book.book_title }}</td>
 					                <td>
 					                  <button type="button" class="btn btn-view-save" data-toggle="modal" data-target="#ViewModal-{{book.book_id}}"><i class="fa fa-eye"></i>View</button>
@@ -59,16 +61,17 @@
 												    </div>
 												    <div class="col">
 												    	{% for author in authors %}
-													    	{% if author.book_author_id == book.book_author_id_id %}-->
-																<span class="author"> {{ author.author_firstname }} {{ author.author_lastname }}</span>
+													    	{% if author.book_author_id == book.book_author_id %}
+																<span class="author">Author: &nbsp;{{ author.firstname }} {{ author.lastname }}</span>
 															{% endif %}
 														{% endfor %}
 														<div class="title">
-															{{ book.book_title }}
+															Title: &nbsp;{{ book.book_title }}
 														</div>
 														<div class="year">
-															{{ book.book_year }}
+															Date: &nbsp;{{ book.book_year }}
 														</div>
+														<br>
 														<div>
 															Sypnosis:
 															<div class="summary">
@@ -119,6 +122,7 @@
 								<div class="d-flex flex-row-reverse">
 									
 										<button  type="button" data-toggle="modal" data-target="#ModalEdit-{{user.id}}" class='fa fa-edit'style='font-size:20px; color: white'></button>
+
 									{% for user in users %}	
 										<div class="modal fade" id="ModalEdit-{{user.id}}" role="dialog" aria-hidden="true">
 											<div class="modal-dialog">
