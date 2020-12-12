@@ -3,7 +3,15 @@
 {% block content %}
 <head>
 	<link rel="stylesheet" href="{% static 'css/tags.css' %}">
-	</head>
+	<script type="text/javascript">
+		function addInput(){
+		  console.log('hi')
+		  var newInput = '<input type="text" name="book_tags"/>';
+		  document.getElementById('demo').innerHTML += newInput;  
+		}
+
+	</script>
+</head>
 <div class="container">
 	<div class="col-lg-30"  style="background-color: whitesmoke">
 		<div class="row">
@@ -74,10 +82,12 @@
 									</div>
 
 									<div class="form-group row">
-										 <label for="tags" class="col-sm-4 form-check-label">Book Tags</label>
-							            <div class="tags-input col-sm-7" name="book_tags" data-name="tags-input" id="tags" placeholder="Enter Tags" required></div>
-							        
-							        	<script src="{% static 'js/homepage.js' %}"></script>
+										<label for="tags" class="col-sm-4 form-check-label">Book Tags</label>
+							            <!-- <div class="tags-input col-sm-7" name="book_tags" data-name="tags-input" id="tags" placeholder="Enter Tags" required></div> -->
+							        	<input type="type" name="book_tags">
+							            <div id="demo"></div>
+							            <button type="button" id="add" class="btn btn-primary" onclick="addInput()"> ADD </button>
+							            
 									</div>
 
 
@@ -89,35 +99,35 @@
 							<h4>Author Details</h4>
 							<br>
 						</div>
-						<form method="POST" autocomplete="off" enctype="multipart/form-data">
+						<!-- <form method="POST" autocomplete="off" enctype="multipart/form-data"> -->
 							<div  class="col  ml-xl-5">	
 								<div class="form-group row">
 										<label for="Author" class="col-sm-4 col-form-label">Author</label>
 										<div class="col-sm-4">
 											<div class="row">
-												<input type="text" class="form-control" id="firstname" name="Firstname" placeholder="Firstname" required="">
+												<input type="text" class="form-control" id="firstname" name="firstname" placeholder="Firstname" required="">
 											</div>
 										</div>
 										<div class="col-sm-4">
 											<div class="row">
-												<input type="text" class="form-control" id="lastname" name="Lastname" placeholder="Lastname" required="">
+												<input type="text" class="form-control" id="lastname" name="lastname" placeholder="Lastname" required="">
 											</div>
 										</div>
 									</div>
 								<div class="form-group row">
 										<label for="Email" class="col-sm-4 col-form-label">E-mail</label>
 										<div class="col-sm-8">
-											<input type="text" class="form-control" id="email" name="" placeholder="E-mail" required>
+											<input type="text" class="form-control" id="email" name="email" placeholder="E-mail" required>
 										</div>
 								</div>
 								<div class="form-group row">
 										<label for="Birthdate" class="col-sm-4 col-form-label">Birthdate</label>
 										<div class="col-sm-8">
-											<input type="date" class="form-control" id="birthdate" name="" placeholder="Birthdate" required>
+											<input type="date" class="form-control" id="birthdate" name="birthdate" placeholder="Birthdate" required>
 										</div>
 								</div>
 							</div>
-						</form>
+						<!-- </form> -->
 					</div>
 				</div> 
 

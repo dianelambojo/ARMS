@@ -10471,17 +10471,17 @@ header.base h1 {
   .sidenav4 a {font-size: 13px;}
 }
 
-.modal {
+/*.modal {
    position: absolute;
-   top: 10px;
+   top: 150px;
    right: 0;
    bottom: 0;
    left: 500px;
-   z-index: 10040;
-   overflow: auto;
+   z-index: 1;
+   overflow-x: auto;
    overflow-y: auto;
 }
-
+*/
 .order-container{
     border-style: groove;
     position: absolute;
@@ -10504,7 +10504,7 @@ header.base h1 {
 }
 
 .parent {
-  display: flex;
+  display: inline-block;
   flex-wrap: wrap;
 }
 

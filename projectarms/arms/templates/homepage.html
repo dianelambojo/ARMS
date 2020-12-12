@@ -17,6 +17,7 @@
 			  	<div class="input-group-append">
 				  	<form method="POST">
 				  		{% csrf_token %}
+				  		<input type="text" name="text" hidden>
 				    	<button class="btn btn-mic" name="mic" style="border-radius: 1px; height: 40px;">
 		              	<i class="fa fa-lg fa-microphone"></i>
 		            	</button>
@@ -121,13 +122,13 @@
 									</div>
 
 										<button type="button" class="btn btn-RBD" onclick="openPDF()">
-											<a href="{{ book.book_file }}" id="pdfFile" target="_blank"><i class="fa fa-book fa-sm" aria-hidden="true" style="color: maroon"></i></a>
+											<a href="{{ book.book_file.url }}" id="pdfFile" target="_blank"><i class="fa fa-book fa-sm" aria-hidden="true" style="color: maroon"></i></a>
 										</button>
 										<button type="button" class="btn btn-RBD">
-											<a href="{{ book.book_file }}"><i class="fa fa-bookmark fa-sm" aria-hidden="true" style="color: maroon"></i></a>
+											<a href="{{ book.book_file.url }}"><i class="fa fa-bookmark fa-sm" aria-hidden="true" style="color: maroon"></i></a>
 										</button>
 										<button type="button" class="btn btn-RBD">
-											<a href="{{ book.book_file }}" download><i class="fa fa-download fa-sm" aria-hidden="true" style="color: maroon"></i></a>
+											<a href="{{ book.book_file.url }}" download><i class="fa fa-download fa-sm" aria-hidden="true" style="color: maroon"></i></a>
 										</button>
 										<span class="label">Read</span> 
 										<span class="label">Bookmark</span> 
@@ -136,7 +137,7 @@
 							    </div>
 							    <div class="col">
 							    	{% for author in authors %}
-								    	{% if author.book_author_id == book.book_author_id_id %}
+								    	{% if author.book_author_id == book.book_author_id %}
 											<span class="author"> {{ author.firstname }} {{ author.lastname }}</span>
 										{% endif %}
 									{% endfor %}

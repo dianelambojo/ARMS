@@ -36,6 +36,9 @@ $(document).ready(function() {
   });
 });
 
+
+
+
 /*function allImages(){
     var imgs = document.getElementsByClassName("thumbnail");
     var search = document.getElementById("searchBox").value;
