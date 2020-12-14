@@ -5,11 +5,19 @@
 	<link rel="stylesheet" href="{% static 'css/tags.css' %}">
 	<script type="text/javascript">
 		function addInput(){
-		  console.log('hi')
-		  var newInput = '<input type="text" name="book_tags"/>';
-		  document.getElementById('demo').innerHTML += newInput;  
+		    var max_fields      = 10; //maximum input boxes allowed
+		    var wrapper         = $(".input_fields_wrap"); //Fields wrapper
+		    
+		    var x = 1; //initlal text box count
+	        if(x < max_fields){ //max input box allowed
+	            x++; //text box increment
+	            $(wrapper).append('<div><input type="text" name="book_tags"/><a href="#" class="remove_field">Remove</a></div>'); //add input box
+	        }
+		    
+		    $(wrapper).on("click",".remove_field", function(e){ //user click on remove text
+		        e.preventDefault(); $(this).parent('div').remove(); x--;
+		    })
 		}
-
 	</script>
 </head>
 <div class="container">
@@ -20,6 +28,9 @@
 					<div class="col-sm-10">
 					&nbsp;
 					&nbsp;
+						{% for message in messages %}
+                       		<p id="messages">{{message}}</p>
+                    	{% endfor %}
 						<!-- Book Details -->
 						<div  class="col  ml-xl-5">
 							<h4>Book Details</h4>
@@ -84,10 +95,10 @@
 									<div class="form-group row">
 										<label for="tags" class="col-sm-4 form-check-label">Book Tags</label>
 							            <!-- <div class="tags-input col-sm-7" name="book_tags" data-name="tags-input" id="tags" placeholder="Enter Tags" required></div> -->
-							        	<input type="type" name="book_tags">
-							            <div id="demo"></div>
-							            <button type="button" id="add" class="btn btn-primary" onclick="addInput()"> ADD </button>
-							            
+							            <div class="input_fields_wrap">
+										    <button type="button" class="add_field_button btn btn-info" onclick="addInput()">Add</button>
+										    <div><input type="text" name="book_tags"></div>
+										</div>
 									</div>
 
 

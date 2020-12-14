@@ -37,38 +37,6 @@ $(document).ready(function() {
 });
 
 
-
-
-/*function allImages(){
-    var imgs = document.getElementsByClassName("thumbnail");
-    var search = document.getElementById("searchBox").value;
-    var title = [];
-    var display = document.getElementById("searched");
-    var cl;
-
-    for(var i = 0; i < imgs.length; i++) {
-        title[i] = imgs[i].getAttribute('title');
-
-
-        if(title[i] != null){
-          if(title[i].toLowerCase() == search.toLowerCase()){
-            //console.log(imgs[i].src);
-            display.appendChild(imgs[i]);
-            $(".text").hide();
-            $(".btn-next").hide();
-          }else{
-
-          }
-        }if(search == ""){
-          display.remove();
-
-          //console.log("null");
-        }
-
-    }
-}*/
-
-
 function openPDF(){
   var file = document.getElementById('pdfFile').getAttribute('href');
   window.open(file, "_blank");
@@ -92,46 +60,6 @@ $(document).ready(function(){
   $("#showToast").click(function(){
     $('.toast').toast('show');
   });
-});
-
-
-$(document).ready(function(){
-  /*var mysql = require('mysql');
-
-  var con = mysql.createConnection({
-    host: "localhost",
-    user: "root",
-    password: "",
-    database: "arms_database"
-  });*/
-
-  var style = $("#citeStyle :selected").val(); 
-
-  if(style == "American Psychological Association"){
-    document.getElementById('text').value = style;
-  }
-
-  $('#citeStyle').change(function() {
-    var style = $("#citeStyle :selected").val(); 
-
-    if(style == "American Psychological Association"){
-      document.getElementById('text').value = style;
-
-      /*con.connect(function(err) {
-        if (err) throw err;
-        
-        con.query("SELECT * FROM books", function (err, result) {
-          if (err) throw err;
-          console.log(result);
-        });
-      });*/
-
-    }else if(style == "Modern Language Association"){
-      document.getElementById('text').value = style;
-      console.log(style);
-    }
-  });
-
 });
 
 

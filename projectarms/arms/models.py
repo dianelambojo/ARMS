@@ -53,9 +53,13 @@ class Books(models.Model):
 	# firstname = models.CharField(max_length = 100 , default = "")
 	# lastname = models.CharField(max_length = 100 , default = "")
 	# birthdate = models.DateField(default=timezone.now)
-	is_bookmarked = models.BooleanField()
-	is_downloaded = models.BooleanField()
-	is_read = models.BooleanField()
+	readCount = models.IntegerField(default=0)
+	bookmarkCount = models.IntegerField(default=0)
+	downloadCount = models.IntegerField(default=0)
+
+	is_bookmarked = models.BooleanField(default=False)
+	is_downloaded = models.BooleanField(default=False)
+	is_read = models.BooleanField(default=False)
 	is_deleted= models.BooleanField(default=False)
 	
 	class Meta:

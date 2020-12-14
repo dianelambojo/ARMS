@@ -113,9 +113,10 @@ def category_search(request, searched):
 def author_category_search(request, searched, param):
 	searched = searched
 	param = param
-	authors = Author.objects.filter(Q(firstname__icontains=searched) & Q(lastname__icontains=param))
-	for author in authors:
-		books = Books.objects.filter(book_author_id=author.book_author_id)
+	authors = Author.objects.get(Q(firstname__icontains=searched) & Q(lastname__icontains=param))
+	# for author in authors:
+	if authors:
+		books = Books.objects.filter(book_author_id=authors.book_author_id)
 		category = Category.objects.all()
 		x = Author.objects.all()
 		context={
@@ -152,9 +153,6 @@ def author_search(request, search):
 	}
 	return render(request, 'results.html', context)
 
-def trial(request):
-	return render(request,'results.html')
-
 def bookTitle_search(request, search):
 	print(search)
 	search = search
@@ -171,10 +169,22 @@ def bookTitle_search(request, search):
 			'category' : category,
 		}
 		return render(request, 'results.html', context)
-
 	else:
 		# if the user tries to search using the authors first or last name
 		return author_search(request, search) 
+
+def newReleases(request):
+	# new releases within the month of the year (more or less): days is disregarded
+	today = datetime.date.today()
+	books = Books.objects.filter(date_added__year=today.year, date_added__month=today.month)
+	authors = Author.objects.all()
+	category = Category.objects.all()
+	context={
+		'books' : books,
+		'authors' : authors,
+		'category' : category,
+	}
+	return render(request, 'homepage.html', context)
 
 def count (request):
 	#is_read = 0
@@ -339,8 +349,7 @@ class HomepageView(View):
 			if search:
 				# if the user tries to search using the book title or year 
 				return bookTitle_search(request,search)
-			
-			#call search by category function 
+			#search by category  
 			searched = request.GET.get('searched')
 			param = request.GET.get('param')
 			if searched is not None:
@@ -348,20 +357,9 @@ class HomepageView(View):
 					return author_category_search(request, searched, param)
 				else:
 					return category_search(request, searched)
-
-			#if not search/searched
+			#display new added books 
 			else:
-				# new releases within the month of the year (more or less): days is disregarded
-				today = datetime.date.today()
-				books = Books.objects.filter(date_added__year=today.year, date_added__month=today.month)
-				authors = Author.objects.all()
-				category = Category.objects.all()
-				context={
-					'books' : books,
-					'authors' : authors,
-					'category' : category,
-				}
-				return render(request, 'homepage.html', context)
+				return newReleases(request)
 		else:
 			return render(request, 'homepage.html')	
 
@@ -370,7 +368,65 @@ class HomepageView(View):
 			if 'mic' in request.POST:
 				Hello(request)
 				return Take_query(request)
+			elif 'read' in request.POST:
+				idnum = request.POST.get('idnum')
+				form = Books.objects.get(book_id=idnum)
+				form.is_read = 1
+				form.readCount += 1
+				form.save()
 
+				search = request.GET.get('search')
+				if search:
+					return bookTitle_search(request,search)
+				searched = request.GET.get('searched')
+				param = request.GET.get('param')
+				if searched is not None:
+					if param is not None:
+						return author_category_search(request, searched, param)
+					else:
+						return category_search(request, searched)
+				else:
+					return newReleases(request)
+			elif 'downLoad' in request.POST:
+				idnum = request.POST.get('idnum')
+				form = Books.objects.get(book_id=idnum)
+				form.is_downloaded = 1
+				form.downloadCount += 1
+				form.save()
+
+				search = request.GET.get('search')
+				if search:
+					return bookTitle_search(request,search)
+				searched = request.GET.get('searched')
+				param = request.GET.get('param')
+				if searched is not None:
+					if param is not None:
+						return author_category_search(request, searched, param)
+					else:
+						return category_search(request, searched)
+				else:
+					return newReleases(request)
+			elif 'bookmark' in request.POST:
+				idnum = request.POST.get('idnum')
+				form = Books.objects.get(book_id=idnum)
+				form.is_bookmarked = 1
+				form.bookmarkCount += 1
+				form.save()
+
+				search = request.GET.get('search')
+				if search:
+					return bookTitle_search(request,search)
+				searched = request.GET.get('searched')
+				param = request.GET.get('param')
+				if searched is not None:
+					if param is not None:
+						return author_category_search(request, searched, param)
+					else:
+						return category_search(request, searched)
+				else:
+					return newReleases(request)
+		else:
+			return render(request, 'homepage.html')	
 
 class ProfileIndexView(View):
 	def get(self, request):
@@ -397,7 +453,6 @@ class ProfileIndexView(View):
 				email = request.POST.get("email")
 
 				update_user = User.objects.filter(id = sid).update(username=username,first_name=first_name,last_name=last_name,email=email)
-
 
 				print(update_user)
 				print('profile updated')
@@ -451,29 +506,6 @@ class AboutUsIndexView(View):
 
 class AddBookIndexView(View):
 	def get(self, request):
-		#queryset
-		booksQS = Books.objects.all()
-		authorsQS = Author.objects.all()
-		categoryQS = Category.objects.all()
-		print(authorsQS)
-		print(categoryQS)
-		print(booksQS)
-		#printing all items in books
-		for item in booksQS:
-			print("\t[Book ID: ",item.book_id,"]")
-			print("\t[Title: ",item.book_title,"]")
-			print("\t[Book Author ID: ",item.book_author_id,"]")
-			print("\t[Book Cover: ",item.book_cover,"]")
-			print("\t[File: ",item.book_file,"]")
-			print("\t[Year: ",item.book_year,"]")
-			print("\t[Tags: ",item.book_tags,"]")
-			print("\t[Summary: ",item.book_summary,"]")
-			print("\t[Category: ",item.book_category_id,"]")
-			print("----------------------------------------\n")
-
-			context={
-			'books' : booksQS
-			}
 		return render(request, 'addBook.html')
 
 	def post(self, request):
@@ -522,4 +554,4 @@ class AddBookIndexView(View):
 			 		return redirect('arms:addBook_view')
 		else:
 	 		print(form.errors)
-	 		return HttpResponse('Not Valid')
+	 		messages.warning(request,'Unsuccessful Save')

@@ -116,23 +116,25 @@
 						    	<div class="col">
 						    		<a href="{{ book.book_cover.url }}"><img class="thumbnail2" style="margin-bottom: 5px;" src="{{ book.book_cover.url }}" alt="{{ book.book_title }}"></a>
 									<div>
-										<span class="count"> 0 People read this book</span><br>
-										<span class="count"> 0 People downloaded this book</span>
+										<span class="count"> {{ book.readCount }} People read this book</span><br>
+										<span class="count"> {{ book.downloadCount }} People downloaded this book</span>
 									</div>
-
-										<button type="button" class="btn btn-RBD" onclick="openPDF()">
-											<a href="{{ book.book_file.url }}" id="pdfFile" target="_blank"><i class="fa fa-book fa-sm" aria-hidden="true" style="color: maroon"></i></a>
+									<form method="POST">
+										{% csrf_token %}
+										<input type="text" name="idnum" value="{{book.book_id}}" hidden>
+										<button name="read" class="btn btn-RBD" onclick="openPDF()">
+											<a href="{{ book.book_file.url }}" id="pdfFile" target="_blank"><i class="fa fa-book fa-sm" name="read" aria-hidden="true"></i></a>
 										</button>
-										<button type="button" class="btn btn-RBD">
-											<a href="{{ book.book_file.url }}"><i class="fa fa-bookmark fa-sm" aria-hidden="true" style="color: maroon"></i></a>
+										<button name="bookmark" class="btn btn-RBD">
+											<a href="{{ book.book_file.url }}"><i class="fa fa-bookmark fa-sm" name="bookmark" aria-hidden="true"></i></a>
 										</button>
-										<button type="button" class="btn btn-RBD">
-											<a href="{{ book.book_file.url }}" download><i class="fa fa-download fa-sm" aria-hidden="true" style="color: maroon"></i></a>
+										<button type="button" name="downLoad" class="btn btn-RBD">
+											<a href="{{ book.book_file.url }}" download><i class="fa fa-download fa-sm" name="download" aria-hidden="true"></i></a>
 										</button>
 										<span class="label">Read</span> 
 										<span class="label">Bookmark</span> 
 										<span class="label">Download</span>
-
+									</form>
 							    </div>
 							    <div class="col">
 							    	{% for author in authors %}
