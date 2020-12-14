@@ -106,9 +106,9 @@
 				<div class="modal-content">
 					<div class="modal-header">
 						<h5 class="modal-title" id="exampleModalLabel">Details</h5>
-						<button type="button" class="btn-close" data-dismiss="modal" aria-label="Close">
+						<!--<button type="button" class="btn-close" data-dismiss="modal" aria-label="Close">
 							<span aria-hidden="true">&times;</span>
-						</button>
+						</button>-->
 					</div>
 					<div class="modal-body">
 						<div class="container-fluid">
@@ -122,13 +122,13 @@
 									<form method="POST">
 										{% csrf_token %}
 										<input type="text" name="idnum" value="{{book.book_id}}" hidden>
-										<button name="read" class="btn btn-RBD" onclick="openPDF()">
+										<button name="read" class="btn-RBD" onclick="openPDF()">
 											<a href="{{ book.book_file.url }}" id="pdfFile" target="_blank"><i class="fa fa-book fa-sm" name="read" aria-hidden="true"></i></a>
 										</button>
-										<button name="bookmark" class="btn btn-RBD">
-											<a href="{{ book.book_file.url }}"><i class="fa fa-bookmark fa-sm" name="bookmark" aria-hidden="true"></i></a>
+										<button name="bookmark" class="btn-RBD">
+											<a href="{{ book.book_file.url }}"><i class="fa fa-bookmark fa-sm"name="bookmark" aria-hidden="true"></i></a>
 										</button>
-										<button type="button" name="downLoad" class="btn btn-RBD">
+										<button type="button" name="downLoad" class="btn-RBD">
 											<a href="{{ book.book_file.url }}" download><i class="fa fa-download fa-sm" name="download" aria-hidden="true"></i></a>
 										</button>
 										<span class="label">Read</span> 
@@ -162,7 +162,7 @@
 						</div>
 					</div>
 					<div class="modal-footer">
-						<button type="button" class="btn btn-cancel" data-dismiss="modal">Close</button>
+						<button type="button" class="btn-cancel" data-dismiss="modal">Close</button>
 					</div>
 				</div>
 			</div>

@@ -211,20 +211,24 @@
 															<div class="btn-RBD"> 
 																<div class="fa fa-book" style="color: maroon"></div>
 															</div>
-															<!--{% for book in readBooks %}
-																{% if book.is_read == 1 %}-->
-																	<div class="col-4" style="color: white" >{{ readBooks.book_id }}</div>
-																<!--{% endif%}
-															{% endfor %}-->
+															{% for book in books %}
+																<!--{% if book.is_read == 1 %}-->
+																	<div  class="count" style="color: white" >{{ book.readCount }}</div>
+																<!--{% endif%}}-->
+															{% endfor %}
 															
 															<div class="col" style='font-size:14px; color: white'>Reads</div>
 														</div>
 
 														<div class="col-4">
 															<div class="btn-RBD"> 
+															
 																<div class="fa fa-bookmark" style="color:maroon"></div>
+															
 															</div>
-																<div class="col-4" style="color: white">10</div>
+															{% for book in books %}
+																<div class="count" style="color: white">{{ book.bookmarkCount }}</div>
+															{% endfor %}
 															<div class="row" style='font-size:14px; color: white'>Bookmarks</div>
 														</div>
 
@@ -232,7 +236,9 @@
 															<div class="btn-RBD"> 
 																<div class="fa fa-download" style="color:maroon"></div>
 															</div>
-															<div class="col-4" style="color: white">20</div>
+															{% for book in books %}
+																<div class="col-4" style="color: white">{{ book.downloadCount }}</div>
+															{% endfor %}
 															<div class="row" style='font-size:14px; color: white'>Downloads</div>
 														</div>
 													
