@@ -253,22 +253,23 @@ def Hello(request):
 class ArmsAdminView(View):
 	#@staff_member_required(redirect_field_name='next', login_url='arms:landingpage_view')#If the user is logged in,is a staff member (User.is_staff=True),and is active (User.is_active=True),execute the view normally.
 	def get(self, request):
-		books = Books.objects.all() #filter(is_deleted=False).values()
+		books = Books.objects.select_related('book_author', 'book_category').filter(is_deleted=False).all()
+		#bookcategory= Books.objects.get(book_category_id)
 		users = User.objects.all()
-		authors = Author.objects.all()
-		category = Category.objects.all()
-		Totalbooks = Books.objects.count()
+		#authors = Author.objects.all()
+		#category = Category.objects.all() #get(pk=9) #filter(book_category_no=bookcategoryno)
+		Totalbooks = Books.objects.filter(is_deleted=False).count()
 		Totalusers = User.objects.count()
 		context={
 			'books' : books,
 			'users' : users,
-			'authors' : authors,
-			'category' : category,
+		#	'authors' : authors,
+		#	'category' : category,
 			'Totalbooks' : Totalbooks,
 			'Totalusers' : Totalusers,
 		}
 		return render(request,'admindashboard.html', context)
-		
+	
 	#@staff_member_required(redirect_field_name='next', login_url='arms:landingpage_view')
 	def post(self, request):
 		if request.method == 'POST':	

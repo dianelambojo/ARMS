@@ -17,18 +17,16 @@
 
                 <thead>
                   <tr>
-                    <th scope="col">Book ID</th>
-                    <th scope="col">Book Title</th>
-                    <th scope="col">Year</th>
-                    <th scope="col">Action</th>
+                    <th>Book ID</th>
+                    <th>Book Title</th>
+                    <th>Year</th>
+                    <th>Action</th>
                   </tr>
                 </thead>
                 <tbody>
                   {% for book in books %}
-                    {% for author in authors %}
-                    {% for category in category %}
                   <tr>
-                    <th scope="row"> {{book.book_id}} </th>
+                    <td>{{book.book_id}}</td>
                     <td>{{book.book_title}}</td>
                     <td>{{book.book_year}}</td>
                     <td>
@@ -42,7 +40,7 @@
                 <div class="modal-dialog " role="document">
                   <div class="modal-content">
                     <div class="modal-header">
-                      <h6 class="modal-title" id="ViewModalLabel">BOOK INFORMATION</h6>
+                      <h6 class="modal-title font-weight-bold" id="ViewModalLabel">BOOK INFORMATION</h6>
                       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                       </button>
@@ -51,35 +49,36 @@
                       {% csrf_token %}
                       <div class="modal-body">
                         <div class="form-row">
-                          <div class="form-group col-md-6">
-                            <label for="bookcover">Book Cover</label>
+                          <div class="form-group col-md-5">
+                           <p align="center"> <input type="text" name="bookid" value = {{book.book_id}} hidden>
                                 {% if book.book_cover.url is not null %}
-                                  <img src="{{ book.book_cover.url }}" width="100%" height="100%" style="border-radius: 8px; border: 1px solid gray; padding: 4px;" >
+                                  <img src="{{book.book_cover.url}}" width="120px" height="100px" style="border-radius: 8px; border: 1px solid black; padding: 3px;">
+
                                 {% else %}
                                   <img src="{% static 'images/prof.jpg' %}"><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 {% endif %}
                           </div>
-                        </div>
-                        <div class="form-row">
-                          <div class="form-group col-md-4">
+                           
+                           <div class="form-group col-md-7">
                             <label for="bookid">Book ID</label>
-                            <input type="text" class="form-control" id="booktitle" name="bookid" value = "{{book.book_id}}" readonly>
-                          </div>
-                          <div class="form-group col-md-4">
-                            <label for="booktitle">Book Title</label>
+                            <input type="text" class="form-control" id="bookid" name="bookid" value = "{{book.book_id}}" readonly>
+                             <label for="booktitle">Book Title</label>
                             <input type="text" class="form-control" id="booktitle" name="booktitle" value = "{{book.book_title}}">
-                          </div>
-                              <div class="form-group col-md-4">
-                            <label for="bookyear">Year Published</label>
-                            <input type="text" class="form-control" id="bookyear" name="bookyear" value = "{{book.book_year}}">
                           </div>
                         </div>
                         <div class="form-row">
                           <div class="form-group col-md-12">
                             <label for="booksummary">Summary</label>
-                            <input type="textarea" class="form-control" id="booksummary" name="booksummary" value = "{{book.book_summary}}">
+                            <textarea class="form-control" cols="50" rows="5" id="booksummary" name="booksummary" value = "{{book.book_summary}}"> {{book.book_summary}} </textarea>
                           </div>
                         </div>
+                         <div class="form-row">
+                              <div class="form-group col-md-12">
+                            <label for="bookyear">Year Published</label>
+                            <input type="text" class="form-control" id="bookyear" name="bookyear" value = "{{book.book_year}}">
+                          </div>
+                        </div>
+                         {% with category=book.book_category %}
                         <div class="form-row">
                           <div class="form-group col-md-6">
                             <label for="bookcategoryno">Category Number</label>
@@ -87,8 +86,9 @@
                           </div>
                           <div class="form-group col-md-6">
                             <label for="bookcategory">Category</label>
-                            <input type="textarea" class="form-control" id="bookcategory" name="bookcategory" value = "{{category.book_category}}">
+                            <input type="text" class="form-control" id="bookcategory" name="bookcategory" value = "{{category.book_category}}">
                           </div>
+                              {% endwith %}
                         </div>
                         <div class="form-row">
                           <div class="form-group col-md-12">
@@ -96,13 +96,15 @@
                             <input type="textarea" class="form-control" id="booktags" name="booktags" value = "{{book.book_tags}}">
                           </div>
                         </div>
-                        <hr>
-                        <label> Author's Details </label>
+                        <hr style="background-color:maroon;">
+                        <label> <strong> AUTHOR'S DETAILS </strong> </label> 
+                        {% with author=book.book_author %} 
                         <div class="form-row">
                           <div class="form-group col-md-4">
                             <label for="authorid">Author ID</label>
                             <input type="text" class="form-control" id="authorid" name="authorid" value = "{{author.book_author_id}}" readonly>
                           </div>
+                            
                           <div class="form-group col-md-4">
                             <label for="authorfname">Firstname</label>
                             <input type="text" class="form-control" id="authorfname" name="authorfname" value = "{{author.firstname}}">
@@ -125,6 +127,9 @@
                             <label for="authorgender">Gender</label>
                             <input type="text" class="form-control" id="authorgender" name="authorgender" value = "{{author.gender}}">
                           </div>
+
+
+                              {% endwith %}
                         </div>
                       </div>
                       <div class="modal-footer">
@@ -160,8 +165,6 @@
                 </div>
               </div>
             {% endfor %}
-          {% endfor %}
-        {% endfor %}
       </tbody>
     </table>
   </div>
@@ -205,7 +208,7 @@
                   <div class="modal-center">
                   <div class="modal-content">
                     <div class="modal-header">
-                      <h6 class="modal-title" id="ViewModalLabel1">USER INFORMATION</h6>
+                      <h6 class="modal-title font-weight-bold" id="ViewModalLabel1">USER INFORMATION</h6>
                       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                       </button>
