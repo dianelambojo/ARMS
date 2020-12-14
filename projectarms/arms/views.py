@@ -529,8 +529,10 @@ class AddBookIndexView(View):
 			 			book_file = bookFile, book_year = bookYear, book_summary = bookSummary, book_category = Category.objects.get(book_category_no = c.book_category_no),
 			 			is_bookmarked = 0, is_downloaded = 0, is_read = 0, is_deleted = 0)
 			 		form.save()
-			 		messages.success(request,'Book Added')
-			 		return redirect('arms:addBook_view')
+
+			 		#messages.success(request,'Book Added')
+			 		return HttpResponse('Book added!')
 		else:
 	 		print(form.errors)
-	 		messages.warning(request,'Unsuccessful Save')
+	 		#messages.warning(request,'Unsuccessful Save')
+	 		return HttpResponse('Unsuccessful Save')
