@@ -28,28 +28,6 @@ import speech_recognition as sr
 # 6 Check django admin if nasuod sya
 # 7 Login, pero dle pa sya mo redirect sa page
 
-#Pede nani idelete if dle gamiton ang login.html
-def loginPage(request):
-	if request.method == 'POST':
-		username = request.POST.get('username')
-		password = request.POST.get('password')
-
-		user = authenticate(request, username=username, password=password)
-
-		if user is not None:
-			login(request, user)
-			# pass the name of the user to the base.html navbar
-			request.session['username'] = username
-			if request.user.is_superuser:
-				return redirect('arms:arms_admin_view')
-			else:
-				return redirect('arms:homepage_view')
-		else:
-			messages.info(request, 'Username OR password is incorrect')
-			
-	context = {} 
-	return render(request,'login.html',context)
-
 def logoutPage(request):
 	logout(request)
 	return redirect('arms:landingpage_view')
@@ -63,7 +41,8 @@ def registerPage(request):
 		if form.is_valid():
 			form.save()
 			user = form.cleaned_data.get('username')
-			messages.success(request,'Account was created for '+user)
+			# messages.success(request,'Account was created for '+user)
+			messages.success(request, 'Registration Successful')
 			return redirect('arms:landingpage_view')
 
 	context = {'form':form}
@@ -494,7 +473,7 @@ class LandingPageIndexView(View):
 				else:
 					return redirect('arms:homepage_view')
 			else:
-				messages.info(request, 'Username OR password is incorrect')
+				messages.info(request, 'Username or password is incorrect')
 				
 			# context = {} 
 			return render(request, 'landingpage.html')
