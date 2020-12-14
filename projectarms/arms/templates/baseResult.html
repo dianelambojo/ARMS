@@ -8,7 +8,11 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>ARMS</title>
+        {% if title %}
+        <title>ARMS - {{ title }}</title>
+        {% else %}
+        <title>Archived of Reading Materials</title>
+        {% endif %}
         <!--All CSS links here-->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
         <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet"/>
