@@ -191,17 +191,19 @@
 					</div>
 					<div class="modal-body">
 						<div class="container-fluid">
-							<div>
-								<select class="cite" id="citeStyle" name="citeStyle">
-									<option value="APA" selected="selected"> American Psychological Association </option>
-									<option value="MLA"> Modern Language Association </option>
-									<option value="Chicago"> Chicago Manual of Style </option>
-									<option value="IEEE"> Institute of Electrical and Electronics Engineers </option>
-								</select>
-							</div><br>
-							<div>
-								<textarea class="textarea" id="citationText" name="citationText" readonly></textarea>
-								
+							<form method="POST">
+								{% csrf_token %}
+								<div>
+									<select class="cite" id="citeStyle" name="citeStyle">
+										<option value="APA" selected="selected"> American Psychological Association </option>
+										<option value="MLA"> Modern Language Association </option>
+										<option value="Chicago"> Chicago Manual of Style </option>
+										<option value="IEEE"> Institute of Electrical and Electronics Engineers </option>
+									</select>
+								</div>
+							</form>
+							<br><div>
+								<textarea class="textarea" id="citationText" name="citationText"  value="Citation Text" readonly></textarea>
 							</div>
 						</div> 
 					</div>
