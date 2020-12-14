@@ -29,7 +29,7 @@
 					        		<td>{{ book.book_title }}</td>
 					                <td>
 					                  <button type="button" class="btn btn-view-save" data-toggle="modal" data-target="#ViewModal-{{book.book_id}}"><i class="fa fa-eye"></i>View</button>
-					                  <button type="button" class="btn btn-cancel" data-toggle="modal" data-target="#DeleteModal-{{book.book_id}}"><i class="fa fa-trash"></i>Delete</button>
+					            <!--      <button type="button" class="btn btn-cancel" data-toggle="modal" data-target="#DeleteModal-{{book.book_id}}"><i class="fa fa-trash"></i>Delete</button> -->
 					                </td>
 					            </tr>
 				            {% endif %}
@@ -89,7 +89,7 @@
 								</div>
 							</div>
 				        	
-				    <!-- Modal Delete -->
+				    <!-- Modal Delete 
 						            <div class="modal fade" id="DeleteModal-{{book.book_id}}" tabindex="-1" role="dialog" aria-labelledby="DeleteModalLabel">
 						                <div class="modal-dialog" role="document">
 						                  <div class="modal-content">
@@ -112,7 +112,7 @@
 						                    </form>
 						                  </div>
 						                </div>
-						            </div>
+						            </div> -->
 				        {% endfor %}
 				    </tbody>
 				</table>

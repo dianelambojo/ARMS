@@ -1,10 +1,35 @@
 {% extends "base_1.1.html" %}
 {% load static %} 
 {% block content %}
-   
-    <div class="tab-content">
-      <div class="tab-pane fade" id="pills-tables" role="tabpanel" aria-labelledby="pills-tables-tab"> <br>
-        <div class="content">
+<div class="tab-content">
+  <div class="tab-pane fade show active" id="pills-charts" role="tabpanel" aria-labelledby="pills-charts-tab"> <br>
+    <div class="content">
+      <div id="layoutSidenav_content">
+          <main>
+                        <div class="row">
+                            <div class="col-xl-6 col-md-6">
+                                <div class="card mb-4" style="color: #8C383E;">
+                                    <div class="card-body"> <i class="fas fa-user"></i> Total number of Users </div>
+                                    <div class="card-footer d-flex align-items-center justify-content-between">
+                                        <a class="big font-weight-bold stretched-link" style="color: #8C383E;">{{Totalusers}}</a>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="col-xl-6 col-md-6">
+                                <div class="card mb-4" style="color: #8C383E;">
+                                    <div class="card-body"> <i class="fas fa-book"></i> Total number of Books </div>
+                                    <div class="card-footer d-flex align-items-center justify-content-between">
+                                        <a class="big font-weight-bold stretched-link" style="color: #8C383E;">{{Totalbooks}}</a>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                           
+                </main>
+              </div>
           <div class="card mb-4">
               <div class="card-header">
                 <i class="fas fa-table mr-1"></i>
@@ -287,71 +312,9 @@
 </div>
 </div>
 </div>
-  <div class="tab-pane fade show active" id="pills-charts" role="tabpanel" aria-labelledby="pills-charts-tab"> <br>
-      <div class="content">                               
+                               
                            
-                    <div id="layoutSidenav_content">
-                <main>
-                    <div class="container-fluid">
-                        <h1 class="mt-4">Analytics</h1>
-                        <div class="card mb-4">
-                            <div class="card-body">
-                                To keep track of the number of users and books
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-xl-6 col-md-6">
-                                <div class="card mb-4" style="color: #8C383E;">
-                                    <div class="card-body"> <i class="fas fa-user"></i> Total number of Users </div>
-                                    <div class="card-footer d-flex align-items-center justify-content-between">
-                                        <a class="big font-weight-bold stretched-link" style="color: #8C383E;">{{Totalusers}}</a>
-                                    </div>
-
-                                </div>
-                            </div>
-                            <div class="col-xl-6 col-md-6">
-                                <div class="card mb-4" style="color: #8C383E;">
-                                    <div class="card-body"> <i class="fas fa-book"></i> Total number of Books </div>
-                                    <div class="card-footer d-flex align-items-center justify-content-between">
-                                        <a class="big font-weight-bold stretched-link" style="color: #8C383E;">{{Totalbooks}}</a>
-                                        
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card mb-4">
-                            <div class="card-header">
-                                <i class="fas fa-chart-area mr-1"></i>
-                                Area Chart Example
-                            </div>
-                            <div class="card-body"><canvas id="myAreaChart" width="100%" height="30"></canvas></div>
-                            <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
-                        </div>
-                        <div class="row">
-                            <div class="col-lg-6">
-                                <div class="card mb-4">
-                                    <div class="card-header">
-                                        <i class="fas fa-chart-bar mr-1"></i>
-                                        Bar Chart Example
-                                    </div>
-                                    <div class="card-body"><canvas id="myChart" width="100%" height="50"></canvas></div>
-                                    <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
-                                </div>
-                            </div>
-                            <div class="col-lg-6">
-                                <div class="card mb-4">
-                                    <div class="card-header">
-                                        <i class="fas fa-chart-pie mr-1"></i>
-                                        Pie Chart Example
-                                    </div>
-                                    <div class="card-body"><canvas id="myPieChart" width="100%" height="50"></canvas> </div>
-                                    <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </main>
-              </div>
+              
             </div>             
       </div>
 
