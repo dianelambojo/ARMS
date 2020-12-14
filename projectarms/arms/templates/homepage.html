@@ -25,9 +25,20 @@
 			  	<div class="input-group-prepend">
 			    	<span class="input-group-text"><i class="fa fa-search"></i></span>
 			 	</div>
-
 				<div>&nbsp;&nbsp;&nbsp;
-					<button type="button" class="btn btn-secondary"><i class="fa fa-sort" aria-hidden="true"></i></button>
+					<div class="btn-group dropright">
+						<button class="btn btn-secondary" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="border-radius: 12px;">
+							<i class="fa fa-sort" aria-hidden="true"></i>
+						</button>
+						<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+							<a class="dropdown-item" href="#">Year ASC</a>
+							<a class="dropdown-item" href="#">Author A-Z</a>
+							<a class="dropdown-item" href="#">Title A-Z</a>
+							<a class="dropdown-item" href="#">Year DES</a>
+							<a class="dropdown-item" href="#">Author Z-A</a>
+							<a class="dropdown-item" href="#">Title Z-A</a>
+						</div>
+					</div>
 				</div>
 			</div>
 			<br>
@@ -73,26 +84,25 @@
 							<img class="thumbnail" src="{{ book.book_cover.url }}" alt="{{ book.book_title }}" data-toggle="modal" data-target="#viewModal-{{ book.book_id }}">
 						</li>		
 						{% endif %}
-						 {% for author in authors %}
-							{% if author.book_author_id == book.book_author_id_id %}
-								<li>
-									<img class="thumbnail" src="{{ book.book_cover.url }}" alt="{{ book.book_title }}" title="{{ book.book_title}} {{ author.firstname }} {{ author.lastname }} {{ book.book_year }}" data-toggle="modal" data-target="#viewModal-{{ book.book_id }}">
-								</li>
-							{% endif %}
-						{% endfor %} 
 					{% endfor %}
 					</div>
 				</ul>
-				<span class="text">Recommended</span>
+				<span class="text">Recommendations for {{ username }}</span>
 				<ul class="list">
 					<div class="slider">
-
+						<h3> No recommendations yet</h3>
 					</div>
 				</ul>
-				<span class="text">Popular</span>
+				<span class="text">Popular for the Month of {{ month }}</span>
 				<ul class="list">
 					<div class="slider">
-						
+					{% for pop in popular %}
+						{% if pop.is_deleted == 0 %}
+						<li>
+							<img class="thumbnail" src="{{ pop.book_cover.url }}" alt="{{ pop.book_title }}" data-toggle="modal" data-target="#viewModal-{{ pop.book_id }}">
+						</li>		
+						{% endif %}
+					{% endfor %}
 					</div>
 				</ul>
 			</div> <!-- Container -->

@@ -10,7 +10,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
-from django.db.models import Q, Count
+from django.db.models import Q, Count, Max, Min
 from django.core.paginator import Paginator, EmptyPage
 from django.contrib.admin.views.decorators import staff_member_required
 from django.contrib.auth.decorators import login_required
@@ -85,10 +85,10 @@ def pageResults(request, x):
 
 #By category searched of all books function
 def category_search(request, searched):
-	arr = ['Research','Journal','Filipiniana','Engineering','ComputerScience','InformationTechnology','Business','Architecture']
+	arr = ['Research','Journal','Filipiniana','Engineering','Computer Science','Information Technology','Business','Architecture']
 	length = len(arr)
 	i=0
-	searched = searched
+	searched = searched.capitalize()
 	while i<length:
 		if searched == arr[i]:
 			ctgy = Category.objects.get(book_category = searched)
@@ -146,20 +146,13 @@ def author_search(request, search):
 		}
 		return render(request, 'results.html', context)
 
-	context={
-		'search' : search,
-		'authors' : x,
-		'category' : category,
-	}
-	return render(request, 'results.html', context)
+	return category_search(request, search)
 
 def bookTitle_search(request, search):
 	print(search)
 	search = search
 	books = Books.objects.filter(Q(book_title__icontains=search) | Q(book_year__icontains=search))
 	if books:
-		print('it got in')
-		print(books)
 		category = Category.objects.all()
 		authors = Author.objects.all()
 		context={
@@ -179,12 +172,21 @@ def newReleases(request):
 	books = Books.objects.filter(date_added__year=today.year, date_added__month=today.month)
 	authors = Author.objects.all()
 	category = Category.objects.all()
+	popular = popularBooks(request,books)
 	context={
+		'month' : today.strftime('%B'),
+		'popular': popular,
 		'books' : books,
 		'authors' : authors,
 		'category' : category,
 	}
 	return render(request, 'homepage.html', context)
+
+def popularBooks(request,y):
+	maxValue = y.aggregate(Max('readCount'))
+	minValue = y.aggregate(Min('readCount'))
+	allBooks = y.filter(Q(readCount__gt=minValue['readCount__min']) & Q(readCount__lte=maxValue['readCount__max']))
+	return allBooks
 
 def count (request):
 	#is_read = 0
@@ -220,18 +222,13 @@ def speak(audio):
 
 def Take_query(request): 
     while(True): 
-        query = takeCommand(request).lower()
+        query = takeCommand(request).capitalize()
 
-        if "hey walter" in query: 
-            Hello(request)
-
-        elif "search" in query:
-        	speak("For searching of reading materials, you could directly say the book title, author or year.")
-
-        elif "thank you" in query: 
+        if "Hey jane" in query: 
+            speak("Good Day! I'm jane. What do you want to search?")
+        elif "Thank you" in query: 
             speak("My pleasure. Call me if you need anything.") 
             break
-
         elif query:
         	search = query
         	speak("here are the results for" + search)
@@ -253,12 +250,13 @@ def takeCommand(request):
         except Exception as e: 
             print(e) 
             speak("I'm sorry, I didn't get that. Please say it again.")
-            takeCommand(request)
+            return takeCommand(request)
 
         return Query
 
+
 def Hello(request): 
-    speak("Hi, I am Walter , your library assistant. What do you want to search?")
+    speak("Hi! I am Jane , your library assistant. What do you want to search?")
 
 class ArmsAdminView(View):
 	#@staff_member_required(redirect_field_name='next', login_url='arms:landingpage_view')#If the user is logged in,is a staff member (User.is_staff=True),and is active (User.is_active=True),execute the view normally.
@@ -346,9 +344,10 @@ class HomepageView(View):
 	def get(self, request):
 		if request.method == 'GET':
 			search = request.GET.get('search')
+			# if the user tries to search using the book title or year 
 			if search:
-				# if the user tries to search using the book title or year 
 				return bookTitle_search(request,search)
+
 			#search by category  
 			searched = request.GET.get('searched')
 			param = request.GET.get('param')
@@ -357,6 +356,7 @@ class HomepageView(View):
 					return author_category_search(request, searched, param)
 				else:
 					return category_search(request, searched)
+
 			#display new added books 
 			else:
 				return newReleases(request)
@@ -426,7 +426,7 @@ class HomepageView(View):
 				else:
 					return newReleases(request)
 		else:
-			return render(request, 'homepage.html')	
+			return redirect('arms:homepage_view')
 
 class ProfileIndexView(View):
 	def get(self, request):
