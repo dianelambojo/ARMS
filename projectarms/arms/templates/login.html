@@ -19,11 +19,13 @@
                         <span></span>
                         <label>Password</label>
                     </div>
+                    <div class="alert alert-success">
+                        <a class="close" href="#" data-dismiss="alert">×</a>
+                        {{ message }}
+                    </div>
                     <div class="pass">Forgot Password?</div>
                     <input type="submit" value="LOGIN">
-                    {% for message in messages %}
-                        <p id="messages">{{message}}</p>
-                    {% endfor %}
+                    
                     <div class="signup_link">
                         Not a member? <a href='{% url "arms:register_view" %}'> Signup</a>
                     </div>

@@ -38,8 +38,17 @@
 						<span></span>
 						<label>Confirm Password</label>
 					</div>
-					<div>
-						{{form.errors}}
+					<div class= "form-group">
+						<!-- {{form.errors}} -->
+						{% if messages %}
+						<ul class="messages">
+						{% for message in messages %}
+						<li>
+						<div class="alert-success"> {{ message }}</div>
+						</li>
+						{% endfor %}
+						</ul>
+						{% endif%}
 					</div>
 					<div class="signup_link">
 						Already have an acc? <a href='{% url "arms:landingpage_view" %}'> Sign in</a>

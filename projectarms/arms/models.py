@@ -25,6 +25,7 @@ class Author(models.Model):
 
 	class Meta:
 		db_table = "Author"
+		verbose_name_plural = "Authors"
 
 class Category(models.Model):
 	# book_category_no = models.CharField(primary_key=True, max_length=50)
@@ -33,6 +34,7 @@ class Category(models.Model):
 
 	class Meta:
 		db_table = "Category"
+		verbose_name_plural = "Categories"
 
 class Books(models.Model):
 	# book_id = models.CharField(primary_key=True, max_length=50)
@@ -58,4 +60,5 @@ class Books(models.Model):
 	
 	class Meta:
 		db_table = "Books"
+		verbose_name_plural = "Books"
 
